@@ -708,21 +708,30 @@ export default function Home() {
         </section>
 
         {/* --- FAQS SECTION --- */}
-        <section className="px-5 py-14 sm:py-20">
-          <div className="mx-auto max-w-[1280px] rounded-[28px] bg-white p-6 shadow-sm sm:p-10">
-            <h2 className="text-center text-3xl font-semibold sm:text-5xl">FAQs</h2>
-            <div className="mx-auto mt-10 max-w-3xl space-y-3">
-              {faqs.map((question) => (
-                <details key={question} className="rounded-lg border border-[#d5d5d5] bg-[#f7f3eb] px-5 py-4">
-                  <summary className="cursor-pointer text-lg font-bold">{question}</summary>
-                  <p className="mt-3 text-sm leading-6 text-[#555]">
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[80px]">
+          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[40px] rounded-[12px] p-[32px]">
+            <h2 className="text-center text-[32px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[56px] sm:leading-[1.05]">
+              FAQs
+            </h2>
+
+            <div className="flex w-full max-w-[752px] flex-col gap-[6px] pb-[6px]">
+              {faqs.map((question, index) => (
+                <details key={index} className="group w-full rounded-[12px] bg-white p-[30px] shadow-sm">
+                  <summary className="flex cursor-pointer items-center justify-between list-none text-[18px] font-normal leading-[1.2] text-[#161616] sm:text-[24px] [&::-webkit-details-marker]:hidden">
+                    {question}
+                    <svg className="size-[24px] shrink-0 text-[#161616] transition-transform duration-300 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" />
+                    </svg>
+                  </summary>
+                  <p className="mt-4 text-[14px] leading-[1.6] text-[#555] sm:text-[16px]">
                     Bring the piece, dimensions, or a photo of the room. Our team will walk you through materials, finish, glass, and timeline.
                   </p>
                 </details>
               ))}
             </div>
-            <div className="mt-8 text-center">
-              <Button dark>View All FAQs</Button>
+
+            <div className="mt-[8px] text-center">
+              <Button dark>VIEW ALL FAQS</Button>
             </div>
           </div>
         </section>
