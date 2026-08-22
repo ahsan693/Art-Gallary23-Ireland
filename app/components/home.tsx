@@ -150,15 +150,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#f7f3eb] text-[#161616]">
       
-      {/* --- HEADER & NAVIGATION --- */}
-      <header className="border-b border-[#d5d5d5] bg-white">
-        {/* Top Announcement Bar */}
-        <div className="bg-[#295b42] px-4 py-2 text-center text-[11px] font-medium tracking-[0.04em] text-white sm:text-xs">
-          Now Trending! <span className="underline underline-offset-2">Custom Gallery Walls -&gt;</span>
+  {/* --- HEADER & NAVIGATION --- */}
+      <header className="mx-auto w-full max-w-[1440px] border-b border-[#d5d5d5] bg-white">
+        {/* Top Announcement Bar: 36px Height */}
+        <div className="flex h-[36px] w-full items-center justify-center bg-[#295b42] px-4 text-[11px] font-medium tracking-[0.04em] text-white sm:text-xs">
+          <span>Now Trending! <span className="underline underline-offset-2">Custom Gallery Walls -&gt;</span></span>
         </div>
         
-        {/* Main Navbar */}
-        <nav className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-4 sm:h-[72px] lg:px-10">
+        {/* Main Navbar: 72px Height (Total Header Height: 36px + 72px = 108px) */}
+        <nav className="mx-auto flex h-[72px] w-full items-center justify-between px-4 lg:px-10">
           {/* Mobile Menu Icon & Logo */}
           <div className="flex items-center gap-3 lg:hidden">
             <button aria-label="Open menu" className="grid h-9 w-9 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
