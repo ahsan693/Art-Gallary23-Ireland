@@ -432,6 +432,68 @@ export default function ServicesComponent() {
           </div>
 
         </section>
+        {/* --- CONSULTATION / CTA SECTION --- */}
+        {/* Figma Layout: 1440px Fill, 578px Fixed Height, Background Image with 50% Black Overlay */}
+        <section className="relative mx-auto flex h-[578px] w-full max-w-[1440px] items-center justify-center overflow-hidden px-[24px]">
+          
+          {/* Background Image (z-0) */}
+          <img
+            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=85"
+            alt="Living room with art and a framed gallery wall"
+            className="absolute inset-0 z-0 h-full w-full object-cover"
+          />
+
+          {/* Dark Overlay (z-10) - #000000 at 50% opacity */}
+          <div className="absolute inset-0 z-10 bg-black/50" />
+
+          {/* Inner White Box (z-20) - 1050px Max Width, 12px Radius, 48px Top/Bottom Padding */}
+          <div className="relative z-20 flex w-full max-w-[1050px] flex-col items-center rounded-[12px] bg-white px-[24px] py-[48px] text-center shadow-lg">
+            
+            {/* Heading: 826px Max Width */}
+            <h2 className="w-full max-w-[826px] text-[32px] font-semibold leading-[1.05] tracking-[0px] text-black sm:text-[48px] lg:text-[56px]">
+              Book A Free Consultation Service.
+            </h2>
+
+            {/* Subtitle Container: 24px Top & Bottom Padding */}
+            <div className="py-[24px]">
+              <p className="text-[14px] leading-normal text-[#161616] sm:text-[16px]">
+                Get in touch with our friendly and knowledgeable team
+              </p>
+            </div>
+
+            {/* Actions Container: 16px Top Padding */}
+            <div className="pt-[16px]">
+              {/* Horizontal Flow Container: 12px Gap */}
+              <div className="flex flex-wrap items-center justify-center gap-[12px]">
+                
+                {/* Phone Button: 48.5px Height, 100px Radius, 24px Left/Right Padding, 10px Gap */}
+                <a
+                  href="tel:0856314964"
+                  className="inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-[100px] border border-black bg-black px-[24px] text-[14px] font-semibold text-white transition hover:bg-neutral-800"
+                >
+                  <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                    <line x1="12" y1="18" x2="12.01" y2="18" />
+                  </svg>
+                  <span>(085) 631-4964</span>
+                </a>
+
+                {/* Email Button: 48.5px Height, 100px Radius, 24px Left/Right Padding, 10px Gap */}
+                <a
+                  href="mailto:hello@gallery23.com"
+                  className="inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-[100px] border border-black bg-black px-[24px] text-[14px] font-semibold uppercase text-white transition hover:bg-neutral-800"
+                >
+                  <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <polyline points="3 7 12 13 21 7" />
+                  </svg>
+                  <span>SEND MESSAGE</span>
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </section>
 
       </main>
 
