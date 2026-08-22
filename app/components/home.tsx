@@ -49,7 +49,7 @@ const services = [
   },
 ];
 
-// Updated Testimonials Section Data
+// Testimonials Section Data
 const testimonials = [
   {
     name: "Ayla Renford",
@@ -58,22 +58,22 @@ const testimonials = [
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
   },
   {
-    name: "Ayla Renford",
-    date: "6 Days Ago",
+    name: "Marcus Byrne",
+    date: "2 Weeks Ago",
     quote: "My go-to place for framing. The staff is personable and thoughtful in their creative guidance. I know my pieces are in good hands, and I'm always thrilled with the results. Highly recommend, you won't be disappointed!",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80"
   },
   {
-    name: "Ayla Renford",
-    date: "6 Days Ago",
-    quote: "This is my go to shop for framing. The staff is extremely friendly and knowledgeable. They have a great sense of what works and what doesn't. They always find creative ways to work with our budget. The store has unlimited samples to work with and they always seem to find the best.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
+    name: "Niamh O'Connell",
+    date: "1 Month Ago",
+    quote: "This is my go to shop for framing. The staff is extremely friendly and knowledgeable. They have a great sense of what works and what doesn't. They always find creative ways to work with our budget.",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
   },
   {
-    name: "Ayla Renford",
-    date: "6 Days Ago",
-    quote: "I've had two pieces framed here and each time I was so impressed with their acumen for choosing the right frame and border to properly accent the piece. They turned each from a print into a work of art. Their work is done timely and they have very competitive pricing.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
+    name: "Sarah Jenkins",
+    date: "2 Months Ago",
+    quote: "I've had two pieces framed here and each time I was so impressed with their acumen for choosing the right frame and border to properly accent the piece. They turned each from a print into a work of art.",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
   }
 ];
 
@@ -563,9 +563,9 @@ export default function Home() {
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[48px] overflow-hidden bg-[#f5f0eb] px-5 py-[80px] lg:px-[80px]">
           
           <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
-       <h2 className="w-full max-w-none whitespace-nowrap text-[22px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[40px] lg:text-[56px] sm:leading-[1.05]">
-  What Our Costumer Say
-</h2>
+            <h2 className="w-full max-w-none whitespace-nowrap text-[22px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[40px] lg:text-[56px] sm:leading-[1.05]">
+              What Our Costumer Say
+            </h2>
 
             <div className="flex h-[82px] w-full max-w-[1200px] items-center justify-between rounded-[27px] bg-white pl-[32px] pr-[16px] sm:pr-[24px]">
               <div className="flex flex-col items-start justify-center">
@@ -628,26 +628,18 @@ export default function Home() {
           </div>
         </section>
 
-    {/* --- TRUSTED BY SECTION --- */}
-        {/* Outer Section: Max Width 1440px, Background White, Padding: Top/Bottom 52px, L/R 80px */}
+        {/* --- TRUSTED BY SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden bg-white px-5 py-[52px] lg:px-[80px]">
-          
-          {/* Trusted By Card: Max Width 1280px, Vertical Flow, Gap 26px */}
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[26px]">
-            
-            {/* eyebrow-label: 56px Size, Bold (700), 105% Line Height, 1% Letter Spacing */}
             <h2 className="w-full text-center text-[32px] font-bold tracking-[0.01em] text-[#161616] sm:text-[56px] sm:leading-[1.05]">
               Trusted By
             </h2>
-
-            {/* logo-row (Marquee Container): 1280px Width, 106px Height, 64px Gap */}
             <div className="relative flex h-[106px] w-full items-center overflow-hidden">
               <motion.div
                 className="flex w-max items-center"
-                animate={{ x: ["0%", "-50%"] }} // Translates exactly half its width infinitely
-                transition={{ repeat: Infinity, ease: "linear", duration: 25 }} // Slow continuous movement
+                animate={{ x: ["0%", "-50%"] }} 
+                transition={{ repeat: Infinity, ease: "linear", duration: 25 }} 
               >
-                {/* Duplicate the array twice to ensure seamless infinite scrolling */}
                 {[...Array(2)].map((_, idx) => (
                   <div key={idx} className="flex items-center gap-[64px] pr-[64px]">
                     {["Forbes", "HUFFPOST", "ELLE DECOR", "AD", "The New York Times"].map((brand, i) => (
@@ -662,31 +654,56 @@ export default function Home() {
                 ))}
               </motion.div>
             </div>
-            
           </div>
         </section>
 
-        {/* --- INSTAGRAM FEED SECTION --- */}
-        <section className="px-5 py-14 sm:py-20">
-          <div className="mx-auto max-w-[1440px] text-center">
-            <h2 className="text-3xl font-semibold sm:text-5xl">Recent Work on Instagram</h2>
-            <p className="mt-4 text-sm text-[#555]">@gallery23dublin</p>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                ["19th Century Portrait in Ornate Gold", images.instagramOne],
-                ["Botanical Series in Natural Oak", images.instagramTwo],
-                ["Abstract Minimalism in Matte Black", images.instagramThree],
-                ["Championship Jersey Shadow Box", images.instagramFour],
-              ].map(([caption, src]) => (
-                <figure key={caption} className="text-left">
-                  <div className="h-[360px] overflow-hidden rounded-2xl">
-                    <ResponsiveImage src={src} alt={caption} />
-                  </div>
-                  <figcaption className="mt-4 text-sm font-semibold">{caption}</figcaption>
-                  <p className="mt-1 text-sm text-[#777]">@gallery23dublin</p>
-                </figure>
-              ))}
+        {/* --- WHAT WE'VE BEEN FRAMING SECTION (INSTAGRAM FEED) --- */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden bg-[#f5f0eb]">
+          <div className="flex w-full flex-col items-center gap-[32px] py-[56px]">
+            <h2 className="w-full max-w-[697px] text-center text-[32px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[56px] sm:leading-[1.05]">
+              What We&apos;ve Been Framing
+            </h2>
+            <div className="flex items-center gap-[8px] text-[14px] font-medium text-[#161616]">
+              <svg className="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              Follow us <span className="text-[#295b42]">@gallery23framing</span>
             </div>
+          </div>
+
+          <div className="relative flex h-[581px] w-full pl-[20px] lg:pl-[40px]">
+            <motion.div
+              className="flex w-max"
+              animate={{ x: ["0%", "-50%"] }} 
+              transition={{ repeat: Infinity, ease: "linear", duration: 35 }} 
+            >
+              {[
+                { title: "19th Century Portrait in Ornate Gold", handle: "@vintagelover_ny", img: images.instagramOne },
+                { title: "Botanical Series in Natural Oak", handle: "@botanical_living", img: images.instagramTwo },
+                { title: "Abstract Minimalism in Matte Black", handle: "@modern_nest", img: images.instagramThree },
+                { title: "Championship Jersey Shadow Box", handle: "@sportscollector_88", img: images.instagramFour },
+                { title: "19th Century Portrait in Ornate Gold", handle: "@vintagelover_ny", img: images.instagramOne },
+                { title: "Botanical Series in Natural Oak", handle: "@botanical_living", img: images.instagramTwo },
+                { title: "Abstract Minimalism in Matte Black", handle: "@modern_nest", img: images.instagramThree },
+                { title: "Championship Jersey Shadow Box", handle: "@sportscollector_88", img: images.instagramFour },
+              ].map((item, index) => (
+                <article key={index} className="flex w-[350px] shrink-0 flex-col items-start">
+                  <div className="relative h-[400px] w-[270px] overflow-hidden rounded-[8px]">
+                    <ResponsiveImage src={item.img} alt={item.title} />
+                  </div>
+                  <div className="mt-[16px] flex w-[270px] flex-col gap-[4px]">
+                    <h3 className="truncate text-[15px] font-semibold leading-[1.4] text-[#161616]">
+                      {item.title}
+                    </h3>
+                    <p className="text-[14px] text-[#777]">
+                      {item.handle}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </motion.div>
           </div>
         </section>
 
