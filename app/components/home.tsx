@@ -48,14 +48,6 @@ const services = [
   },
 ];
 
-// Benefits Section Data
-const benefits = [
-  "Professional framers",
-  "Museum-quality materials",
-  "Design guidance in store",
-  "Made to preserve",
-];
-
 // Testimonials Section Data
 const testimonials = [
   {
@@ -80,7 +72,7 @@ const faqs = [
 ];
 
 // ==========================================
-// SVG ICONS
+// SVG ICONS & NEW BENEFITS DATA
 // ==========================================
 
 function ArrowIcon() {
@@ -98,6 +90,68 @@ function MenuIcon() {
     </svg>
   );
 }
+
+function GlobeIcon() {
+  return (
+    <svg className="size-[48px] text-[#295b42]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3v18" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-2.5 0-4.5-4-4.5-9S9.5 3 12 3s4.5 4 4.5 9-2 9-4.5 9Z" />
+    </svg>
+  );
+}
+
+function LightbulbIcon() {
+  return (
+    <svg className="size-[48px] text-[#295b42]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9.6 20.4h4.8m-2.4 3v-3m-6-8.4a6 6 0 1 1 12 0c0 2.4-1.8 4.2-3 5.4H9c-1.2-1.2-3-3-3-5.4Z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v1.2m-3.6.6.6.6m5.4 0-.6.6" />
+    </svg>
+  );
+}
+
+function FrameOutlineIcon() {
+  return (
+    <svg className="size-[48px] text-[#295b42]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v18H3V3Z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M7.2 7.2h9.6v9.6H7.2V7.2Z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 3l4.2 4.2M21 3l-4.2 4.2M3 21l4.2-4.2M21 21l-4.2-4.2" />
+    </svg>
+  );
+}
+
+function BadgeIcon() {
+  return (
+    <svg className="size-[48px] text-[#295b42]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9.6 12.6 11.4 14.4 15.6 9.6M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 22.8c-1.1 0-2.2-.4-3-1.1L7.1 20H4.8c-.7 0-1.2-.5-1.2-1.2v-2.3l-1.7-1.9c-.7-.8-.7-1.9 0-2.7L3.6 10V7.7c0-.7.5-1.2 1.2-1.2H7l1.9-1.7c.8-.7 1.9-.7 2.7 0L13.4 6h2.3c.7 0 1.2.5 1.2 1.2V9.6l1.7 1.9c.7.8.7 1.9 0 2.7l-1.7 1.9v2.3c0 .7-.5 1.2-1.2 1.2h-2.3l-1.9 1.7c-.7.8-1.9.8-2.7.1Z" />
+    </svg>
+  );
+}
+
+const benefitsData = [
+  {
+    title: "Independently Owned",
+    body: "Each store is independently owned and operated by a member of your community.",
+    icon: <GlobeIcon />,
+  },
+  {
+    title: "Free Design Consultation",
+    body: "Personalized design services make creating the perfect frame easy and enjoyable.",
+    icon: <LightbulbIcon />,
+  },
+  {
+    title: "Expert Craftsmanship",
+    body: "Our artisans thoughtfully handcraft each frame using high-quality materials.",
+    icon: <FrameOutlineIcon />,
+  },
+  {
+    title: "True Love Guarantee",
+    body: "Enjoy peace of mind knowing your frame is covered by our True Love Guarantee.",
+    icon: <BadgeIcon />,
+  },
+];
+
 
 // ==========================================
 // REUSABLE UI COMPONENTS
@@ -278,7 +332,7 @@ export default function Home() {
           </div>
         </section>
 
-       {/* --- OUR SERVICES SECTION --- */}
+        {/* --- OUR SERVICES SECTION --- */}
         {/* Outer Container (Services): 1440px Max Width, Warm/Cream bg, 80px Padding */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] py-[80px]">
           
@@ -346,25 +400,50 @@ export default function Home() {
           
         </section>
 
-        {/* --- WHY CHOOSE US SECTION --- */}
-        <section className="bg-[#f5f0eb] px-5 py-14 sm:py-20">
-          <div className="mx-auto grid max-w-[1280px] gap-8 rounded-[32px] bg-white p-5 shadow-sm sm:p-8 lg:grid-cols-[1fr_520px] lg:items-center">
-            <div>
-              <h2 className="text-3xl font-semibold sm:text-5xl">Why Choose Our Frames</h2>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#555]">
-                From heirloom photographs to contemporary prints, each project receives careful material selection, balanced proportions, and preservation-first finishing.
-              </p>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {benefits.map((item) => (
-                  <div key={item} className="rounded-lg border border-[#d5d5d5] bg-[#f7f3eb] p-4">
-                    <span className="text-sm font-semibold">{item}</span>
+        {/* --- WHY CHOOSE OUR FRAMES SECTION --- */}
+        {/* Outer Section Container: 1440px Max Width, Vertical Flow, 80px Padding, 56px Gap */}
+        <section className="relative isolate mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] px-5 py-[80px] lg:px-[80px]">
+          
+          {/* Background Image & Overlay */}
+          <ResponsiveImage src={images.consultation} alt="Gallery styling interior" className="absolute inset-0 -z-20" />
+          <div className="absolute inset-0 -z-10 bg-[#161616]/75" /> 
+
+          {/* Header Container: 700px Fixed Width, Vertical Flow, 16px Gap */}
+          <div className="flex w-full max-w-[700px] flex-col items-center gap-[16px] text-center text-white">
+            <h2 className="text-3xl font-semibold sm:text-[48px] sm:leading-tight">
+              Why Choose Our Frames
+            </h2>
+            <p className="text-sm leading-[1.6] text-white/90 sm:text-[16px]">
+              From independent craftsmanship to personalized design services, we bring passion and expertise to every frame we create.
+            </p>
+          </div>
+
+          {/* Cards Wrapper: 1280px Width, Horizontal Flow, 24px Gap */}
+          <div className="flex w-full max-w-[1280px] flex-col gap-[24px] lg:flex-row lg:justify-between">
+            {benefitsData.map((item) => (
+              <article 
+                key={item.title} 
+                className="flex flex-1 flex-col rounded-[16px] bg-white px-[32px] py-[36px] shadow-sm lg:max-w-[302px]"
+              >
+                {/* Individual Card (302px Fill x 296px Hug, 16px Radius, Padding: 36px Y / 32px X) */}
+                {/* Top Icon Container: 64px Height Hug, Justify space-between */}
+                <div className="flex h-[64px] w-full items-start justify-between">
+                  <div className="flex size-[64px] items-center justify-center rounded-full bg-[#f5f0eb]">
+                    {item.icon}
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="h-[320px] overflow-hidden rounded-3xl lg:h-[430px]">
-              <ResponsiveImage src={images.why} alt="Close-up of a framed print corner" />
-            </div>
+                </div>
+
+                {/* Bottom Text Container: 160px Height Hug, Gap 12px, Padding Y 24px */}
+                <div className="flex flex-col justify-center gap-[12px] py-[24px]">
+                  <h3 className="text-[16px] font-bold text-[#161616]">
+                    {item.title}
+                  </h3>
+                  <p className="text-[14px] leading-[1.5] text-[#555]">
+                    {item.body}
+                  </p>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
