@@ -321,6 +321,117 @@ export default function ServicesComponent() {
 
           </div>
         </section>
+        {/* --- INQUIRE NOW FORM SECTION --- */}
+        {/* Figma Layout: Vertical Flow, 1440px Fill, Background: #F5F0EB, Padding: 80px Top/Bottom, 120px Left/Right */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[40px] lg:px-[120px] lg:py-[80px]">
+          
+          {/* Form Card: 900px Fixed Width, White BG, 32px Radius, 1px #D5D5D5 Border, 64px Padding, 40px Gap */}
+          <div className="flex w-full max-w-[900px] flex-col items-center gap-[40px] rounded-[32px] border border-[#d5d5d5] bg-white p-[32px] sm:p-[48px] lg:p-[64px]">
+            
+            {/* Form Header Content: 772px Fill, Vertical Flow, 12px Gap */}
+            <div className="flex w-full max-w-[772px] flex-col items-center gap-[12px] text-center">
+              <h2 className="text-[32px] font-bold tracking-tight text-[#161616] sm:text-[40px] lg:text-[48px]">
+                Inquire Now
+              </h2>
+              <p className="text-[14px] leading-[1.6] text-[#555] sm:text-[16px]">
+                Have questions about our services? Fill out the form below and we&apos;ll get back to you shortly.
+              </p>
+            </div>
+
+            {/* Form Fields Container: 772px Fill, Vertical Flow, 20px Gap */}
+            <form className="flex w-full max-w-[772px] flex-col gap-[20px]" onSubmit={(e) => e.preventDefault()}>
+              
+              {/* Row 1: Horizontal Flow, 20px Gap */}
+              <div className="grid grid-cols-1 gap-[20px] sm:grid-cols-2">
+                {/* Full Name */}
+                <div className="flex flex-col gap-[10px]">
+                  <label htmlFor="fullName" className="text-[13px] font-bold text-[#161616]">Full Name</label>
+                  <input 
+                    type="text" 
+                    id="fullName" 
+                    placeholder="Enter your full name" 
+                    className="h-[54px] w-full rounded-[12px] border border-[#d5d5d5] bg-[#fdfdfd] px-[16px] text-[14px] text-[#161616] placeholder-[#999] outline-none transition focus:border-[#295b42] focus:ring-1 focus:ring-[#295b42]" 
+                  />
+                </div>
+                {/* Email Address */}
+                <div className="flex flex-col gap-[10px]">
+                  <label htmlFor="email" className="text-[13px] font-bold text-[#161616]">Email Address</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    placeholder="Enter your email address" 
+                    className="h-[54px] w-full rounded-[12px] border border-[#d5d5d5] bg-[#fdfdfd] px-[16px] text-[14px] text-[#161616] placeholder-[#999] outline-none transition focus:border-[#295b42] focus:ring-1 focus:ring-[#295b42]" 
+                  />
+                </div>
+              </div>
+
+              {/* Row 2: Horizontal Flow, 20px Gap */}
+              <div className="grid grid-cols-1 gap-[20px] sm:grid-cols-2">
+                {/* Phone Number */}
+                <div className="flex flex-col gap-[10px]">
+                  <label htmlFor="phone" className="text-[13px] font-bold text-[#161616]">Phone Number</label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    placeholder="Enter your phone number" 
+                    className="h-[54px] w-full rounded-[12px] border border-[#d5d5d5] bg-[#fdfdfd] px-[16px] text-[14px] text-[#161616] placeholder-[#999] outline-none transition focus:border-[#295b42] focus:ring-1 focus:ring-[#295b42]" 
+                  />
+                </div>
+                {/* Service of Interest */}
+                <div className="flex flex-col gap-[10px]">
+                  <label htmlFor="service" className="text-[13px] font-bold text-[#161616]">Service of Interest</label>
+                  <div className="relative">
+                    <select 
+                      id="service" 
+                      defaultValue=""
+                      className="h-[54px] w-full appearance-none rounded-[12px] border border-[#d5d5d5] bg-[#fdfdfd] px-[16px] text-[14px] text-[#161616] outline-none transition focus:border-[#295b42] focus:ring-1 focus:ring-[#295b42]"
+                    >
+                      <option value="" disabled hidden>Select a service</option>
+                      <option value="picture-framing">Picture Framing</option>
+                      <option value="jersey-framing">Jersey Framing</option>
+                      <option value="canvas-prints">Canvas Prints</option>
+                      <option value="shadow-box">Shadow Box Framing</option>
+                      <option value="certificate">Certificate & Award Framing</option>
+                      <option value="photo-restoration">Photo Restoration</option>
+                    </select>
+                    {/* Custom Dropdown Chevron */}
+                    <div className="pointer-events-none absolute inset-y-0 right-[16px] flex items-center">
+                      <svg className="size-[16px] text-[#555]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Message Field: Vertical Flow, 10px Gap */}
+              <div className="flex flex-col gap-[10px]">
+                <label htmlFor="message" className="text-[13px] font-bold text-[#161616]">Message</label>
+                <textarea 
+                  id="message" 
+                  placeholder="Tell us about your project..." 
+                  className="min-h-[140px] w-full resize-y rounded-[12px] border border-[#d5d5d5] bg-[#fdfdfd] p-[16px] text-[14px] text-[#161616] placeholder-[#999] outline-none transition focus:border-[#295b42] focus:ring-1 focus:ring-[#295b42]"
+                ></textarea>
+              </div>
+
+              {/* Submit Row: Vertical Flow, 12px Gap */}
+              <div className="mt-[12px] flex flex-col items-center gap-[12px]">
+                {/* Submit Button: 772px Fill, 64px Hug, 12px Radius, #295B42 Background */}
+                <button 
+                  type="submit" 
+                  className="h-[64px] w-full rounded-[12px] bg-[#295b42] text-[16px] font-bold text-white transition-colors hover:bg-[#204834] focus:outline-none focus:ring-2 focus:ring-[#295b42] focus:ring-offset-2"
+                >
+                  Submit Inquiry
+                </button>
+                <p className="text-center text-[12px] font-medium text-[#777]">
+                  All inquiries sent to info@g23.ie. Our commercial team responds within 24 hours.
+                </p>
+              </div>
+
+            </form>
+          </div>
+
+        </section>
 
       </main>
 
