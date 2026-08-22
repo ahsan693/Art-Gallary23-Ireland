@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 // ==========================================
 // DATA & CONSTANTS
@@ -88,22 +91,6 @@ function ArrowIcon() {
   );
 }
 
-function SearchIcon() {
-  return (
-    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="m21 21-4.3-4.3M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z" />
-    </svg>
-  );
-}
-
-function BagIcon() {
-  return (
-    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M7 8h10l1 12H6L7 8Zm3 0a2 2 0 1 1 4 0" />
-    </svg>
-  );
-}
-
 function MenuIcon() {
   return (
     <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -149,57 +136,65 @@ function ResponsiveImage({ src, alt, className = "" }: { src: string; alt: strin
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#f7f3eb] text-[#161616]">
-      
-  {/* --- HEADER & NAVIGATION --- */}
-      <header className="mx-auto w-full max-w-[1440px] border-b border-[#d5d5d5] bg-white">
-        {/* Top Announcement Bar: 36px Height */}
-        <div className="flex h-[36px] w-full items-center justify-center bg-[#295b42] px-4 text-[11px] font-medium tracking-[0.04em] text-white sm:text-xs">
-          <span>Now Trending! <span className="underline underline-offset-2">Custom Gallery Walls -&gt;</span></span>
+      {/* --- HEADER & NAVIGATION --- */}
+      <header className="mx-auto flex w-full max-w-[1440px] flex-col items-start border-b border-[#d5d5d5] bg-white">
+        <div className="flex h-[36px] w-full items-center justify-center bg-[#295b42] px-4 py-2 text-center text-[13px] font-normal tracking-[0.5px] text-white lg:px-[80px]">
+          <span className="leading-[1.5]">
+            Now Trending!{" "}
+            <span className="font-semibold underline decoration-solid underline-offset-2">
+              Custom Gallery Walls &rarr;
+            </span>
+          </span>
         </div>
-        
-        {/* Main Navbar: 72px Height (Total Header Height: 36px + 72px = 108px) */}
-        <nav className="mx-auto flex h-[72px] w-full items-center justify-between px-4 lg:px-10">
-          {/* Mobile Menu Icon & Logo */}
+
+        <nav className="relative flex h-[72px] w-full items-center bg-white px-4 lg:px-[40px]">
           <div className="flex items-center gap-3 lg:hidden">
-            <button aria-label="Open menu" className="grid h-9 w-9 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
+            <button aria-label="Open menu" className="grid size-10 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
               <MenuIcon />
             </button>
-            <span className="text-xl font-bold">Gallery 23</span>
+            <span className="text-xl font-bold tracking-[1px]">Gallery 23</span>
           </div>
 
-          {/* Desktop Left Navigation */}
-          <div className="hidden items-center gap-1 lg:flex">
+          <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex">
             {navItems.map((item) => (
               <a
                 key={item}
                 href="#"
-                className={`px-4 py-6 text-sm ${item === "Home" ? "border-b-2 border-[#295b42] font-semibold" : "text-[#333]"}`}
+                className={`relative flex h-[72px] items-center px-4 text-[13px] font-medium leading-[1.5] tracking-[0.78px] ${
+                  item === "Home" ? "text-[#295b42]" : "text-[#161616]"
+                }`}
               >
                 {item}
+                {item === "Home" ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-[#295b42]" /> : null}
               </a>
             ))}
           </div>
 
-          {/* Desktop Center Logo */}
-          <a href="#" className="hidden text-xl font-bold lg:block">
+          <a
+            href="#"
+            className="absolute left-1/2 top-0 hidden h-[72px] w-[320px] -translate-x-1/2 items-center justify-center text-center text-[24px] font-bold leading-[1.2] tracking-[1px] text-[#161616] lg:flex"
+          >
             Gallery 23
           </a>
 
-          {/* Right Navigation & Icons */}
-          <div className="flex items-center gap-3">
+          <div className="ml-auto flex min-w-0 items-center justify-end gap-3 lg:flex-1 lg:gap-1">
             <div className="hidden items-center gap-1 lg:flex">
               {rightNav.map((item) => (
-                <a key={item} href="#" className="px-3 py-6 text-sm text-[#333]">
+                <a
+                  key={item}
+                  href="#"
+                  className="flex h-[72px] items-center justify-center px-3 text-[13px] font-medium leading-[1.5] tracking-[0.78px] text-[#161616]"
+                >
                   {item}
                 </a>
               ))}
             </div>
             <span className="hidden h-6 w-px bg-[#d5d5d5] lg:block" />
-            <button aria-label="Search" className="grid h-9 w-9 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
-              <SearchIcon />
+            <button aria-label="Search" className="grid size-10 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
+              <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-5" />
             </button>
-            <button aria-label="Cart" className="grid h-9 w-9 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
-              <BagIcon />
+            <button aria-label="Cart" className="grid size-10 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
+              <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-5" />
             </button>
           </div>
         </nav>
@@ -209,7 +204,7 @@ export default function Home() {
       <main>
         
         {/* --- HERO SECTION --- */}
-        <section className="flex flex-col items-start">
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-start">
           <div className="relative h-[620px] w-full overflow-hidden lg:h-[760px]">
             <div className="absolute inset-0 overflow-hidden">
               <Image
@@ -261,23 +256,25 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="relative h-[58px] w-full overflow-hidden bg-[#161616] text-[13px] font-medium text-white">
-            <div className="absolute left-1/2 top-0 flex h-[58px] w-[1049px] -translate-x-[calc(50%+327.5px)] items-start gap-[7.8px] overflow-hidden whitespace-nowrap pl-[23.41px] pr-[7.81px]">
-              <span className="leading-[58px]">Get Free Consultation</span>
-              <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
-              <span className="leading-[58px]">Explore Services</span>
-              <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
-              <span className="leading-[58px]">Shop Prints Now&nbsp;&nbsp;&nbsp;&nbsp;&bull;</span>
-              <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
-            </div>
-            <div className="absolute left-1/2 top-0 flex h-[58px] w-[1049px] -translate-x-[calc(50%-704.5px)] items-start gap-[7.8px] overflow-hidden whitespace-nowrap pl-[23.41px] pr-[7.81px]">
-              <span className="leading-[58px]">Get Free Consultation</span>
-              <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
-              <span className="leading-[58px]">Explore Services</span>
-              <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
-              <span className="leading-[58px]">Shop Prints Now&nbsp;&nbsp;&nbsp;&nbsp;&bull;</span>
-              <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
-            </div>
+          
+          {/* --- ANIMATED TICKER (58px Height) --- */}
+          <div className="relative flex h-[58px] w-full items-center overflow-hidden bg-[#161616] text-[13px] font-medium text-white">
+            <motion.div
+              className="flex whitespace-nowrap"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+            >
+              {[...Array(2)].map((_, index) => (
+                <div key={index} className="flex items-center gap-[7.8px] pl-[23.41px] pr-[7.81px]">
+                  <span className="leading-[58px]">Get Free Consultation</span>
+                  <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
+                  <span className="leading-[58px]">Explore Services</span>
+                  <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
+                  <span className="leading-[58px]">Shop Prints Now&nbsp;&nbsp;&nbsp;&nbsp;&bull;</span>
+                  <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </section>
 
