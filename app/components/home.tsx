@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 // ==========================================
 // DATA & CONSTANTS
@@ -152,7 +153,6 @@ const benefitsData = [
   },
 ];
 
-
 // ==========================================
 // REUSABLE UI COMPONENTS
 // ==========================================
@@ -188,6 +188,20 @@ function ResponsiveImage({ src, alt, className = "" }: { src: string; alt: strin
 // ==========================================
 
 export default function Home() {
+  // Array of images specifically for the showcase carousel
+  const showcaseImages = [images.frameOne, images.frameTwo, images.frameThree];
+  
+  // Track the active image index
+  const [activeProject, setActiveProject] = useState(0);
+
+  // Auto-play functionality: Changes image every 1 second (1000ms)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveProject((prev) => (prev + 1) % showcaseImages.length);
+    }, 1000); // 1 second delay
+    return () => clearInterval(interval);
+  }, [showcaseImages.length]);
+
   return (
     <div className="min-h-screen bg-[#f7f3eb] text-[#161616]">
       {/* --- HEADER & NAVIGATION --- */}
@@ -333,82 +347,55 @@ export default function Home() {
         </section>
 
         {/* --- OUR SERVICES SECTION --- */}
-        {/* Outer Container (Services): 1440px Max Width, Warm/Cream bg, 80px Padding */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] py-[80px]">
-          
-          {/* Inner Container (services-main): 1280px Width, 80px Gap, Padding 40px Y / 64px X */}
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[80px] px-5 py-[40px] lg:flex-row lg:px-[64px]">
-            
-            {/* Left Image Section (gallery-image): 580px Width x 780px Height, 48px Radius */}
             <div className="relative h-[400px] w-full shrink-0 overflow-hidden rounded-[32px] lg:h-[780px] lg:w-[580px] lg:rounded-[48px]">
               <ResponsiveImage src={images.services} alt="Custom framing tools and artwork in a studio" />
             </div>
-
-            {/* Right Text Section (services-content): 492px Width, Vertical Layout, 48px Gap */}
             <div className="flex w-full flex-col gap-[48px] lg:w-[492px]">
-              
               <h2 className="text-3xl font-semibold tracking-tight text-[#161616] sm:text-[48px]">
                 Our Services
               </h2>
-              
               <div className="flex flex-col divide-y divide-[#d5d5d5] border-y border-[#d5d5d5]">
                 {services.map((service) => (
                   <article key={service.title} className="flex flex-col items-start justify-center gap-4 py-[32px]">
                     <h3 className="text-xl font-bold text-[#161616]">{service.title}</h3>
-                    <p className="text-sm leading-6 text-[#555]">
-                      {service.body}
-                    </p>
+                    <p className="text-sm leading-6 text-[#555]">{service.body}</p>
                     <div className="mt-2">
                       <Button dark>{service.cta}</Button>
                     </div>
                   </article>
                 ))}
               </div>
-
             </div>
-
           </div>
         </section>
 
         {/* --- ABOUT SECTION (About - Gallery23) --- */}
-        {/* Outer Container: 1440px Max Width, 704px Fixed Height, Padding: 72px Y / 120px X, Gap: 64px */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#161616] px-5 py-14 lg:h-[704px] lg:flex-row lg:gap-[64px] lg:px-[120px] lg:py-[72px]">
-          
-          {/* Left Text Section (content): 560px Fixed Width, Vertical Layout, 24px Gap */}
           <div className="flex w-full flex-col gap-[24px] lg:w-[560px]">
             <h2 className="text-3xl font-semibold text-white sm:text-[48px] sm:leading-tight">
               About Gallery23
             </h2>
-            
             <p className="text-base text-white/75">
               A space for art, framing, and conversation.
             </p>
-            
             <p className="text-sm leading-[1.6] text-white/75 sm:text-[16px]">
               Our professional framers love what they do and will happily advise you on your next custom framing project. With a wealth of knowledge and experience, our designers tailor each complimentary design session to your needs so they can create the ideal custom frame for you.
             </p>
-            
             <div className="mt-2">
               <Button dark>LEARN MORE</Button>
             </div>
           </div>
-
-          {/* Right Image Section (image-wrapper): 640px Width x 560px Height */}
           <div className="relative h-[320px] w-full shrink-0 overflow-hidden rounded-3xl lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
             <ResponsiveImage src={images.about} alt="Gallery interior with a motorcycle and framed artwork on the wall" />
           </div>
-          
         </section>
 
         {/* --- WHY CHOOSE OUR FRAMES SECTION --- */}
-        {/* Outer Section Container: 1440px Max Width, Vertical Flow, 80px Padding, 56px Gap */}
         <section className="relative isolate mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] px-5 py-[80px] lg:px-[80px]">
-          
-          {/* Background Image & Overlay */}
           <ResponsiveImage src={images.consultation} alt="Gallery styling interior" className="absolute inset-0 -z-20" />
           <div className="absolute inset-0 -z-10 bg-[#161616]/75" /> 
-
-          {/* Header Container: 700px Fixed Width, Vertical Flow, 16px Gap */}
           <div className="flex w-full max-w-[700px] flex-col items-center gap-[16px] text-center text-white">
             <h2 className="text-3xl font-semibold sm:text-[48px] sm:leading-tight">
               Why Choose Our Frames
@@ -417,23 +404,17 @@ export default function Home() {
               From independent craftsmanship to personalized design services, we bring passion and expertise to every frame we create.
             </p>
           </div>
-
-          {/* Cards Wrapper: 1280px Width, Horizontal Flow, 24px Gap */}
           <div className="flex w-full max-w-[1280px] flex-col gap-[24px] lg:flex-row lg:justify-between">
             {benefitsData.map((item) => (
               <article 
                 key={item.title} 
                 className="flex flex-1 flex-col rounded-[16px] bg-white px-[32px] py-[36px] shadow-sm lg:max-w-[302px]"
               >
-                {/* Individual Card (302px Fill x 296px Hug, 16px Radius, Padding: 36px Y / 32px X) */}
-                {/* Top Icon Container: 64px Height Hug, Justify space-between */}
                 <div className="flex h-[64px] w-full items-start justify-between">
                   <div className="flex size-[64px] items-center justify-center rounded-full bg-[#f5f0eb]">
                     {item.icon}
                   </div>
                 </div>
-
-                {/* Bottom Text Container: 160px Height Hug, Gap 12px, Padding Y 24px */}
                 <div className="flex flex-col justify-center gap-[12px] py-[24px]">
                   <h3 className="text-[16px] font-bold text-[#161616]">
                     {item.title}
@@ -447,51 +428,129 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- CUSTOM PRINTING SECTION --- */}
-        <section className="px-5 py-14 sm:py-20">
-          <div className="mx-auto max-w-[1280px]">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-3xl font-semibold sm:text-5xl">Custom Printing Made for You</h2>
-              <p className="mt-4 text-sm leading-7 text-[#555]">
-                Print your own photos, artwork, or designs on premium fine art papers. Choose your paper, upload your file, and we will handle the rest.
-              </p>
+        {/* --- CUSTOM PRINTING SECTION (UPDATED TO FIGMA SPECS) --- */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[48px] bg-[#f5f0eb] px-5 py-[80px] lg:px-[80px]">
+          <div className="flex w-full max-w-[802px] flex-col items-center gap-[12px] text-center">
+            <h2 className="text-[32px] font-bold text-[#161616] sm:text-[48px] sm:leading-tight">
+              Custom Printing Made for You
+            </h2>
+            <p className="text-[16px] leading-[1.6] text-[#555]">
+              Print your own photos, artwork, or designs on premium fine art papers. Choose your paper, upload your file, and we'll handle the rest.
+            </p>
+          </div>
+          <div className="flex w-full max-w-[1280px] flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_8px_32px_0_rgba(0,0,0,0.078)] lg:h-[432px] lg:flex-row">
+            <div className="relative h-[300px] w-full shrink-0 lg:h-full lg:w-[554px]">
+              <ResponsiveImage src={images.print} alt="Professional fine art printing studio with a large format printer" />
             </div>
-            <div className="mt-10 grid overflow-hidden rounded-[28px] bg-white shadow-sm lg:grid-cols-[43%_57%]">
-              <div className="h-[300px] lg:h-[432px]">
-                <ResponsiveImage src={images.print} alt="Fine art print and paper samples on a work table" />
-              </div>
-              <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-14">
-                <span className="w-max rounded-full border border-[#d5d5d5] px-4 py-2 text-xs font-semibold">Custom Print</span>
-                <h3 className="mt-5 text-2xl font-bold sm:text-3xl">Your Own Photo or Artwork</h3>
-                <p className="mt-4 text-sm leading-7 text-[#555]">
-                  Upload your personal photos, artwork, or digital files and we will print them to museum quality on your choice of paper or canvas.
+            <div className="flex w-full flex-1 flex-col justify-between px-6 py-8 lg:pb-[36px] lg:pl-[90px] lg:pr-[36px] lg:pt-[32px]">
+              <div className="flex flex-col items-start gap-[16px]">
+                <span className="inline-flex h-[27px] items-center justify-center rounded-[100px] bg-[#295b42] px-[14px] py-[6px] text-[11px] font-bold tracking-[0.04em] text-white">
+                  Custom Print
+                </span>
+                <h3 className="text-[28px] font-bold leading-[1.2] text-[#161616]">
+                  Your Own Photo or Artwork
+                </h3>
+                <p className="text-[15px] leading-7 text-[#555]">
+                  Upload your personal photos, artwork, or digital files and we'll print them to museum quality on your choice of paper or canvas.
                 </p>
-                <ul className="mt-6 space-y-3 text-sm text-[#555]">
-                  <li>Available in multiple sizes from 4x6 to 40x60</li>
-                  <li>Perfect for photographs and digital art</li>
-                  <li>Same-day options available in store</li>
+                <ul className="flex flex-col gap-[8px] text-[15px] text-[#555]">
+                  <li className="flex items-center gap-[10px]">
+                    <span className="size-1.5 rounded-full bg-[#295b42]" />
+                    Available in multiple sizes from 4x6 to 40x60
+                  </li>
+                  <li className="flex items-center gap-[10px]">
+                    <span className="size-1.5 rounded-full bg-[#295b42]" />
+                    Perfect for photographs and digital art
+                  </li>
+                  <li className="flex items-center gap-[10px]">
+                    <span className="size-1.5 rounded-full bg-[#295b42]" />
+                    Same-day options available in store
+                  </li>
                 </ul>
-                <a href="#" className="mt-8 inline-flex w-max items-center gap-2 text-sm font-bold uppercase tracking-[0.04em]">
-                  Start your custom print <ArrowIcon />
+              </div>
+              <div className="mt-8 lg:mt-[36px]">
+                <a href="#" className="inline-flex h-[49px] items-center justify-center gap-[8px] rounded-[999px] bg-[#161616] px-[28px] py-[14px] text-[12px] font-bold uppercase tracking-[0.04em] text-white transition hover:bg-black">
+                  START YOUR CUSTOM PRINT <ArrowIcon />
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* --- SHOWCASE / FEATURED PROJECTS SECTION --- */}
-        <section className="bg-white px-5 py-14 sm:py-20">
-          <div className="mx-auto max-w-[1200px]">
-            <h2 className="text-3xl font-semibold sm:text-5xl">Featured Framing Projects</h2>
-            <div className="mt-10 h-[280px] overflow-hidden rounded-[28px] sm:h-[558px]">
-              <ResponsiveImage src={images.showcase} alt="Large framed artwork in a refined interior" />
+        {/* --- SHOWCASE / FEATURED FRAMING PROJECTS SECTION --- */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] bg-[#295b42] px-5 pb-[120px] pt-[96px] lg:px-[120px]">
+          
+          {/* Showcase-Header: 1200px Fill Width, Horizontal Layout */}
+          <div className="flex w-full max-w-[1200px] items-center justify-between">
+            {/* Main-Title: 720px Width, 56px Size, SemiBold, 105% Line Height, 1% Letter Spacing */}
+          <h2 className="w-full max-w-none whitespace-nowrap text-[22px] font-semibold tracking-[0.01em] text-white sm:text-[40px] lg:text-[56px] sm:leading-[1.05]">
+  Featured Framing Projects
+</h2>
+          </div>
+
+          {/* Hero-Showcase: 1200px Fill Width, Vertical Layout, 24px Gap */}
+          <div className="flex w-full max-w-[1200px] flex-col items-center gap-[24px]">
+            
+            {/* Main-Artwork / Inner-Bevel-Art: 1200px Width, 558px Height, 46px Radius */}
+            <div className="relative h-[300px] w-full shrink-0 overflow-hidden rounded-[32px] lg:h-[558px] lg:w-[1200px] lg:rounded-[46px]">
+              
+              {/* Smooth crossfade animation for the active main image */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeProject}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="absolute inset-0"
+                >
+                  <ResponsiveImage src={showcaseImages[activeProject]} alt={`Featured framing project ${activeProject + 1}`} />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Inner shadow overlay (inset Y:4, Blur:8, Black at 40%) */}
+              <div className="pointer-events-none absolute inset-0 z-10 rounded-[32px] shadow-[inset_0_4px_8px_rgba(0,0,0,0.40)] lg:rounded-[46px]" />
             </div>
-            <div className="mt-8 grid gap-5 sm:grid-cols-3">
-              {[images.frameOne, images.frameTwo, images.frameThree].map((src, index) => (
-                <div key={src} className="h-[180px] overflow-hidden rounded-2xl sm:h-[200px]">
-                  <ResponsiveImage src={src} alt={`Framed artwork project ${index + 1}`} />
-                </div>
+
+            {/* Carousel Dot Indicators */}
+            <div className="flex items-center gap-2">
+              {showcaseImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveProject(index)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    index === activeProject ? "w-6 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
               ))}
+            </div>
+
+            {/* Gallery-Grid: 1200px Fill Width, Horizontal Layout, 32px Gap */}
+            <div className="flex w-full flex-col gap-[32px] overflow-x-auto sm:flex-row lg:overflow-visible">
+              
+              {showcaseImages.map((src, index) => {
+                const isActive = index === activeProject;
+
+                return (
+                  <div
+                    key={index}
+                    onClick={() => setActiveProject(index)}
+                    // Dynamic classes based on active state (Frame-Card-1 vs inactive)
+                    className={`relative flex h-[200px] w-full shrink-0 cursor-pointer items-center justify-center transition-all duration-300 sm:w-[380px] ${
+                      isActive
+                        ? "rounded-[24px] border-2 border-white bg-[#336a4c] p-[8px]" // Active properties
+                        : "rounded-[24px] border-2 border-transparent bg-transparent opacity-60 hover:opacity-100" // Inactive properties
+                    }`}
+                  >
+                    {/* Image-Aspect-Container */}
+                    <div className={`relative h-full w-full overflow-hidden ${isActive ? "rounded-[16px]" : "rounded-[24px]"}`}>
+                      <ResponsiveImage src={src} alt={`Thumbnail ${index + 1}`} />
+                    </div>
+                  </div>
+                );
+              })}
+
             </div>
           </div>
         </section>
