@@ -407,7 +407,7 @@ export default function Home() {
               <Button dark>LEARN MORE</Button>
             </div>
           </div>
-          <div className="relative h-[320px] w-full shrink-0 overflow-hidden rounded-3xl lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
+          <div className="relative mt-10 h-[260px] w-full shrink-0 overflow-hidden rounded-3xl lg:mt-0 lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
             <ResponsiveImage src={images.about} alt="Gallery interior with a motorcycle and framed artwork on the wall" />
           </div>
         </section>
@@ -467,7 +467,7 @@ export default function Home() {
                 <span className="inline-flex h-[27px] items-center justify-center rounded-[100px] bg-[#295b42] px-[14px] py-[6px] text-[11px] font-bold tracking-[0.04em] text-white">
                   Custom Print
                 </span>
-                <h3 className="text-[28px] font-bold leading-[1.2] text-[#161616]">
+                <h3 className="text-[24px] font-bold leading-[1.2] text-[#161616] sm:text-[28px]">
                   Your Own Photo or Artwork
                 </h3>
                 <p className="text-[15px] leading-7 text-[#555]">
@@ -475,15 +475,15 @@ export default function Home() {
                 </p>
                 <ul className="flex flex-col gap-[8px] text-[15px] text-[#555]">
                   <li className="flex items-center gap-[10px]">
-                    <span className="size-1.5 rounded-full bg-[#295b42]" />
+                    <span className="size-1.5 shrink-0 rounded-full bg-[#295b42]" />
                     Available in multiple sizes from 4x6 to 40x60
                   </li>
                   <li className="flex items-center gap-[10px]">
-                    <span className="size-1.5 rounded-full bg-[#295b42]" />
+                    <span className="size-1.5 shrink-0 rounded-full bg-[#295b42]" />
                     Perfect for photographs and digital art
                   </li>
                   <li className="flex items-center gap-[10px]">
-                    <span className="size-1.5 rounded-full bg-[#295b42]" />
+                    <span className="size-1.5 shrink-0 rounded-full bg-[#295b42]" />
                     Same-day options available in store
                   </li>
                 </ul>
@@ -498,16 +498,16 @@ export default function Home() {
         </section>
 
         {/* --- SHOWCASE / FEATURED FRAMING PROJECTS SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] bg-[#295b42] px-5 pb-[120px] pt-[96px] lg:px-[120px]">
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] bg-[#295b42] px-5 pb-[80px] pt-[64px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
           
           <div className="flex w-full max-w-[1200px] items-center justify-between">
-            <h2 className="w-full max-w-none whitespace-nowrap text-[22px] font-semibold tracking-[0.01em] text-white sm:text-[40px] lg:text-[56px] sm:leading-[1.05]">
+            <h2 className="w-full max-w-none text-[26px] font-semibold tracking-[0.01em] text-white sm:text-[40px] sm:leading-[1.05] lg:whitespace-nowrap lg:text-[56px]">
               Featured Framing Projects
             </h2>
           </div>
 
           <div className="flex w-full max-w-[1200px] flex-col items-center gap-[24px]">
-            <div className="relative h-[300px] w-full shrink-0 overflow-hidden rounded-[32px] lg:h-[558px] lg:w-[1200px] lg:rounded-[46px]">
+            <div className="relative h-[240px] w-full shrink-0 overflow-hidden rounded-[24px] sm:h-[300px] lg:h-[558px] lg:w-[1200px] lg:rounded-[46px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeProject}
@@ -520,7 +520,7 @@ export default function Home() {
                   <ResponsiveImage src={showcaseImages[activeProject]} alt={`Featured framing project ${activeProject + 1}`} />
                 </motion.div>
               </AnimatePresence>
-              <div className="pointer-events-none absolute inset-0 z-10 rounded-[32px] shadow-[inset_0_4px_8px_rgba(0,0,0,0.40)] lg:rounded-[46px]" />
+              <div className="pointer-events-none absolute inset-0 z-10 rounded-[24px] shadow-[inset_0_4px_8px_rgba(0,0,0,0.40)] lg:rounded-[46px]" />
             </div>
 
             <div className="flex items-center gap-2">
@@ -536,20 +536,20 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="flex w-full flex-col gap-[32px] overflow-x-auto sm:flex-row lg:overflow-visible">
+            <div className="flex w-full gap-[16px] overflow-x-auto pb-2 sm:flex-row sm:gap-[32px] lg:overflow-visible">
               {showcaseImages.map((src, index) => {
                 const isActive = index === activeProject;
                 return (
                   <div
                     key={index}
                     onClick={() => setActiveProject(index)}
-                    className={`relative flex h-[200px] w-full shrink-0 cursor-pointer items-center justify-center transition-all duration-300 sm:w-[380px] ${
+                    className={`relative flex h-[140px] w-[220px] shrink-0 cursor-pointer items-center justify-center transition-all duration-300 sm:h-[200px] sm:w-[380px] ${
                       isActive
-                        ? "rounded-[24px] border-2 border-white bg-[#336a4c] p-[8px]" 
-                        : "rounded-[24px] border-2 border-transparent bg-transparent opacity-60 hover:opacity-100" 
+                        ? "rounded-[20px] border-2 border-white bg-[#336a4c] p-[6px] sm:rounded-[24px] sm:p-[8px]" 
+                        : "rounded-[20px] border-2 border-transparent bg-transparent opacity-60 hover:opacity-100 sm:rounded-[24px]" 
                     }`}
                   >
-                    <div className={`relative h-full w-full overflow-hidden ${isActive ? "rounded-[16px]" : "rounded-[24px]"}`}>
+                    <div className={`relative h-full w-full overflow-hidden ${isActive ? "rounded-[14px] sm:rounded-[16px]" : "rounded-[20px] sm:rounded-[24px]"}`}>
                       <ResponsiveImage src={src} alt={`Thumbnail ${index + 1}`} />
                     </div>
                   </div>
@@ -560,14 +560,14 @@ export default function Home() {
         </section>
 
         {/* --- TESTIMONIALS SECTION (What Our Costumer Say) --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[48px] overflow-hidden bg-[#f5f0eb] px-5 py-[80px] lg:px-[80px]">
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[40px] overflow-hidden bg-[#f5f0eb] px-5 py-[64px] lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
           
           <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
-            <h2 className="w-full max-w-none whitespace-nowrap text-[22px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[40px] lg:text-[56px] sm:leading-[1.05]">
+            <h2 className="w-full max-w-none text-[26px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[40px] sm:leading-[1.05] lg:whitespace-nowrap lg:text-[56px]">
               What Our Costumer Say
             </h2>
 
-            <div className="flex h-[82px] w-full max-w-[1200px] items-center justify-between rounded-[27px] bg-white pl-[32px] pr-[16px] sm:pr-[24px]">
+            <div className="flex h-auto w-full max-w-[1200px] flex-col items-stretch gap-3 rounded-[20px] bg-white p-[20px] sm:h-[82px] sm:flex-row sm:items-center sm:justify-between sm:rounded-[27px] sm:py-0 sm:pl-[32px] sm:pr-[24px]">
               <div className="flex flex-col items-start justify-center">
                 <div className="text-[22px] font-bold tracking-tighter sm:text-[26px]">
                   <span className="text-[#4285F4]">G</span>
@@ -588,7 +588,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <a href="#" className="flex h-[48px] items-center justify-center gap-[10px] rounded-[100px] bg-[#295b42] px-[16px] text-[12px] font-medium text-white transition hover:bg-[#204834] sm:px-[24px] sm:text-[14px]">
+              <a href="#" className="flex h-[44px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-[#295b42] px-[16px] text-[12px] font-medium text-white transition hover:bg-[#204834] sm:h-[48px] sm:w-auto sm:px-[24px] sm:text-[14px]">
                 Review us on Google <ArrowIcon />
               </a>
             </div>
@@ -596,14 +596,14 @@ export default function Home() {
 
           <div className="relative w-full max-w-[1440px] overflow-hidden">
             <motion.div
-              className="flex w-max gap-[24px] pb-[16px] lg:gap-[32px]"
+              className="flex w-max gap-[16px] pb-[16px] sm:gap-[24px] lg:gap-[32px]"
               animate={{ x: ["0%", "-50%"] }} 
               transition={{ repeat: Infinity, ease: "linear", duration: 35 }} 
             >
               {[...testimonials, ...testimonials].map((item, index) => (
                 <article
                   key={index}
-                  className="flex h-[440px] w-[300px] shrink-0 flex-col gap-[20px] rounded-[12px] bg-white p-[24px] shadow-sm sm:w-[360px] sm:p-[32px]"
+                  className="flex h-[400px] w-[260px] shrink-0 flex-col gap-[16px] rounded-[12px] bg-white p-[20px] shadow-sm sm:h-[440px] sm:w-[360px] sm:gap-[20px] sm:p-[32px]"
                 >
                   <div className="flex items-center gap-[12px]">
                     <div className="relative size-[48px] shrink-0 overflow-hidden rounded-full">
@@ -629,23 +629,23 @@ export default function Home() {
         </section>
 
         {/* --- TRUSTED BY SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden bg-white px-5 py-[52px] lg:px-[80px]">
-          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[26px]">
-            <h2 className="w-full text-center text-[32px] font-bold tracking-[0.01em] text-[#161616] sm:text-[56px] sm:leading-[1.05]">
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden bg-white px-5 py-[40px] lg:px-[80px] lg:py-[52px]">
+          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[20px] lg:gap-[26px]">
+            <h2 className="w-full text-center text-[26px] font-bold tracking-[0.01em] text-[#161616] sm:text-[32px] lg:text-[56px] lg:leading-[1.05]">
               Trusted By
             </h2>
-            <div className="relative flex h-[106px] w-full items-center overflow-hidden">
+            <div className="relative flex h-[64px] w-full items-center overflow-hidden sm:h-[106px]">
               <motion.div
                 className="flex w-max items-center"
                 animate={{ x: ["0%", "-50%"] }} 
                 transition={{ repeat: Infinity, ease: "linear", duration: 25 }} 
               >
                 {[...Array(2)].map((_, idx) => (
-                  <div key={idx} className="flex items-center gap-[64px] pr-[64px]">
+                  <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
                     {["Forbes", "HUFFPOST", "ELLE DECOR", "AD", "The New York Times"].map((brand, i) => (
                       <div 
                         key={i} 
-                        className="flex h-[106px] items-center justify-center whitespace-nowrap text-[28px] font-black tracking-tighter text-[#333] opacity-80"
+                        className="flex h-[64px] items-center justify-center whitespace-nowrap text-[18px] font-black tracking-tighter text-[#333] opacity-80 sm:h-[106px] sm:text-[28px]"
                       >
                         {brand}
                       </div>
@@ -659,11 +659,11 @@ export default function Home() {
 
         {/* --- WHAT WE'VE BEEN FRAMING SECTION (INSTAGRAM FEED) --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden bg-[#f5f0eb]">
-          <div className="flex w-full flex-col items-center gap-[32px] py-[56px]">
-            <h2 className="w-full max-w-[697px] text-center text-[32px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[56px] sm:leading-[1.05]">
+          <div className="flex w-full flex-col items-center gap-[20px] px-5 py-[40px] sm:gap-[32px] sm:py-[56px]">
+            <h2 className="w-full max-w-[697px] text-center text-[26px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[40px] lg:text-[56px] lg:leading-[1.05]">
               What We&apos;ve Been Framing
             </h2>
-            <div className="flex items-center gap-[8px] text-[14px] font-medium text-[#161616]">
+            <div className="flex items-center gap-[8px] text-[13px] font-medium text-[#161616] sm:text-[14px]">
               <svg className="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -673,7 +673,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative flex h-[581px] w-full pl-[20px] lg:pl-[40px]">
+          <div className="relative flex h-[420px] w-full pl-[20px] sm:h-[581px] lg:pl-[40px]">
             <motion.div
               className="flex w-max"
               animate={{ x: ["0%", "-50%"] }} 
@@ -689,15 +689,15 @@ export default function Home() {
                 { title: "Abstract Minimalism in Matte Black", handle: "@modern_nest", img: images.instagramThree },
                 { title: "Championship Jersey Shadow Box", handle: "@sportscollector_88", img: images.instagramFour },
               ].map((item, index) => (
-                <article key={index} className="flex w-[350px] shrink-0 flex-col items-start">
-                  <div className="relative h-[400px] w-[270px] overflow-hidden rounded-[8px]">
+                <article key={index} className="flex w-[250px] shrink-0 flex-col items-start sm:w-[350px]">
+                  <div className="relative h-[290px] w-[190px] overflow-hidden rounded-[8px] sm:h-[400px] sm:w-[270px]">
                     <ResponsiveImage src={item.img} alt={item.title} />
                   </div>
-                  <div className="mt-[16px] flex w-[270px] flex-col gap-[4px]">
-                    <h3 className="truncate text-[15px] font-semibold leading-[1.4] text-[#161616]">
+                  <div className="mt-[12px] flex w-[190px] flex-col gap-[4px] sm:mt-[16px] sm:w-[270px]">
+                    <h3 className="truncate text-[14px] font-semibold leading-[1.4] text-[#161616] sm:text-[15px]">
                       {item.title}
                     </h3>
-                    <p className="text-[14px] text-[#777]">
+                    <p className="text-[13px] text-[#777] sm:text-[14px]">
                       {item.handle}
                     </p>
                   </div>
@@ -708,18 +708,18 @@ export default function Home() {
         </section>
 
         {/* --- FAQS SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[80px]">
-          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[40px] rounded-[12px] p-[32px]">
-            <h2 className="text-center text-[32px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[56px] sm:leading-[1.05]">
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[16px] py-[56px] sm:px-[24px] lg:py-[80px]">
+          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[32px] rounded-[12px] p-0 sm:gap-[40px] sm:p-[32px]">
+            <h2 className="text-center text-[26px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[40px] lg:text-[56px] lg:leading-[1.05]">
               FAQs
             </h2>
 
             <div className="flex w-full max-w-[752px] flex-col gap-[6px] pb-[6px]">
               {faqs.map((question, index) => (
-                <details key={index} className="group w-full rounded-[12px] bg-white p-[30px] shadow-sm">
-                  <summary className="flex cursor-pointer items-center justify-between list-none text-[18px] font-normal leading-[1.2] text-[#161616] sm:text-[24px] [&::-webkit-details-marker]:hidden">
+                <details key={index} className="group w-full rounded-[12px] bg-white p-[20px] shadow-sm sm:p-[30px]">
+                  <summary className="flex cursor-pointer items-center justify-between gap-4 list-none text-[16px] font-normal leading-[1.3] text-[#161616] sm:text-[18px] lg:text-[24px] [&::-webkit-details-marker]:hidden">
                     {question}
-                    <svg className="size-[24px] shrink-0 text-[#161616] transition-transform duration-300 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="size-[20px] shrink-0 text-[#161616] transition-transform duration-300 group-open:rotate-45 sm:size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" />
                     </svg>
                   </summary>
@@ -739,7 +739,7 @@ export default function Home() {
 {/* --- CONSULTATION / CTA SECTION --- */}
         <section
           id="consultation"
-          className="relative mx-auto flex h-[578px] w-full max-w-[1440px] items-center justify-center overflow-hidden px-[24px]"
+          className="relative mx-auto flex min-h-[480px] w-full max-w-[1440px] items-center justify-center overflow-hidden px-[16px] py-[48px] sm:min-h-[578px] sm:px-[24px] sm:py-0"
         >
           {/* Background Image (Fixed positioning bug) */}
           <div className="absolute inset-0 -z-20">
@@ -756,24 +756,24 @@ export default function Home() {
           <div className="absolute inset-0 -z-10 bg-black/50" />
 
           {/* Inner White Box (1050px Fixed Max Width, 12px Radius, 48px Top/Bottom Padding) */}
-          <div className="flex w-full max-w-[1050px] flex-col items-center rounded-[12px] bg-white px-[24px] py-[48px] text-center shadow-lg">
+          <div className="flex w-full max-w-[1050px] flex-col items-center rounded-[12px] bg-white px-[20px] py-[36px] text-center shadow-lg sm:px-[24px] sm:py-[48px]">
             
             {/* Heading 1 (Host Grotesk 600 SemiBold, 56px, 105% Line Height, 0% Letter Spacing) */}
-            <h2 className="mx-auto w-full max-w-[861px] text-[32px] font-semibold leading-[1.05] tracking-[0px] text-black sm:text-[56px]">
+            <h2 className="mx-auto w-full max-w-[861px] text-[26px] font-semibold leading-[1.15] tracking-[0px] text-black sm:text-[32px] lg:text-[56px] lg:leading-[1.05]">
               Book A Free Consultation Service.
             </h2>
 
             {/* Subtitle Container (24px Top & Bottom Padding) */}
-            <div className="py-[24px]">
+            <div className="py-[16px] sm:py-[24px]">
               <p className="text-[14px] leading-normal text-[#161616] sm:text-[16px]">
                 Get in touch with our friendly and knowledgeable team
               </p>
             </div>
 
             {/* Actions Container (16px Top Padding) */}
-            <div className="pt-[16px]">
+            <div className="pt-[8px] sm:pt-[16px]">
               {/* Horizontal Flow Container (12px Gap) */}
-              <div className="flex flex-wrap items-center justify-center gap-[12px]">
+              <div className="flex w-full flex-col items-stretch justify-center gap-[12px] sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
                 
                 {/* Phone Button (48.5px Height, 100px Radius, 24px Left/Right Padding, 10px Gap) */}
                 <a
@@ -809,22 +809,20 @@ export default function Home() {
       <footer className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-black text-white">
         
         {/* Top Section (footer-header) */}
-        {/* 1440px Fill, 145px Hug, Padding: 40px Top/Bottom, 80px Left/Right */}
-        <div className="flex w-full items-center justify-between border-b border-[#222222] px-[80px] py-[40px]">
+        <div className="flex w-full items-center justify-between border-b border-[#222222] px-5 py-[28px] sm:px-[40px] lg:px-[80px] lg:py-[40px]">
           {/* logo-group: 180px Hug Width, 65px Fixed Height, 12px Gap */}
-          <div className="flex h-[65px] w-[180px] items-center gap-[12px]">
-            <div className="flex size-[48px] items-center justify-center border-2 border-white text-[16px] font-bold">
+          <div className="flex h-[48px] items-center gap-[10px] sm:h-[65px] sm:gap-[12px]">
+            <div className="flex size-[40px] items-center justify-center border-2 border-white text-[13px] font-bold sm:size-[48px] sm:text-[16px]">
               G23
             </div>
-            <span className="text-[22px] font-semibold tracking-tight text-white">
+            <span className="text-[18px] font-semibold tracking-tight text-white sm:text-[22px]">
               Gallery 23
             </span>
           </div>
         </div>
 
         {/* Middle Section (footer-columns) */}
-        {/* 1440px Fill, 339px Hug, Padding: 56px Top/Bottom, 80px Left/Right, space-between */}
-        <div className="flex w-full items-start justify-between border-b border-[#222222] px-[80px] py-[56px]">
+        <div className="flex w-full flex-col items-start gap-[32px] border-b border-[#222222] px-5 py-[40px] sm:grid sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[40px] sm:px-[40px] lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:px-[80px] lg:py-[56px]">
           <FooterColumn 
             title="Services" 
             items={["Picture Framing", "Canvas Prints", "Jersey Framing", "Shadow Boxes", "Certificates & Awards", "Photo Frames"]} 
@@ -848,11 +846,10 @@ export default function Home() {
         </div>
 
         {/* Bottom Section (footer-bottom) */}
-        {/* 1440px Fill, 140px Hug, Padding: 32px Top, 40px Bottom, 80px Left/Right */}
-        <div className="flex w-full items-start justify-between px-[80px] pb-[40px] pt-[32px]">
+        <div className="flex w-full flex-col items-start gap-[24px] px-5 pb-[32px] pt-[24px] sm:px-[40px] lg:flex-row lg:items-start lg:justify-between lg:px-[80px] lg:pb-[40px] lg:pt-[32px]">
           
           {/* bottom-left: 380px Fixed Width, 68px Hug Height, 8px Gap */}
-          <div className="flex w-[380px] flex-col gap-[8px] text-[13px] leading-[1.6] text-[#999999]">
+          <div className="flex w-full flex-col gap-[8px] text-[13px] leading-[1.6] text-[#999999] lg:w-[380px]">
             <p>©2024 Gallery 23. All rights reserved.</p>
             <p>
               Professional custom framing and fine art printing services.
@@ -861,10 +858,10 @@ export default function Home() {
           </div>
 
           {/* bottom-right: 368px Hug Width, 54px Hug Height, 12px Gap */}
-          <div className="flex items-center gap-[12px]">
+          <div className="flex w-full flex-col items-stretch gap-[12px] sm:w-auto sm:flex-row sm:items-center">
             
             {/* badge-rating: 212px Hug, 54px Hug, 10px Gap, 10px Top/Bottom & 16px Left/Right Padding */}
-            <div className="flex items-center gap-[10px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px]">
+            <div className="flex items-center justify-center gap-[10px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px] sm:justify-start">
               {/* Stars */}
               <div className="flex text-[#FBBF24]">
                 {[...Array(5)].map((_, i) => (
@@ -881,7 +878,7 @@ export default function Home() {
             </div>
 
             {/* badge-google: 144px Hug, 38px Hug, 8px Gap, 10px Top/Bottom & 16px Left/Right Padding */}
-            <a href="#" className="flex items-center gap-[8px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px] transition hover:bg-[#222222]">
+            <a href="#" className="flex items-center justify-center gap-[8px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px] transition hover:bg-[#222222]">
               <svg className="size-[16px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3v18" />
@@ -903,9 +900,9 @@ export default function Home() {
 
 function FooterColumn({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="flex flex-col items-start">
+    <div className="flex w-full flex-col items-start lg:w-auto">
       <h3 className="text-[12px] font-bold capitalize text-white">{title}</h3>
-      <ul className="mt-[24px] flex flex-col gap-[14px] text-[13px] leading-[1.5] text-[#999999]">
+      <ul className="mt-[16px] flex flex-col gap-[12px] text-[13px] leading-[1.5] text-[#999999] sm:mt-[24px] sm:gap-[14px]">
         {items.map((item, index) => {
           // Identify icons based on content for the addresses column
           const isPhone = item.includes("(555)");
@@ -913,7 +910,7 @@ function FooterColumn({ title, items }: { title: string; items: string[] }) {
           const isHighlight = index === 0 && (title === "North side" || title === "South side");
 
           return (
-            <li key={index} className="flex max-w-[200px] items-start gap-[8px]">
+            <li key={index} className="flex max-w-[260px] items-start gap-[8px] sm:max-w-[200px]">
               {isPhone && (
                 <svg className="mt-[2px] size-[14px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
