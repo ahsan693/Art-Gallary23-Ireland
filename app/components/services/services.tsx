@@ -494,6 +494,55 @@ export default function ServicesComponent() {
             </div>
           </div>
         </section>
+        {/* --- FEATURES SECTION (WHY GALLERY 23) --- */}
+        {/* Figma Layout: 1440px Fill, Background: #F5F0EB, Padding: 80px Top/Bottom, 120px Left/Right */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[40px] lg:px-[120px] lg:py-[80px]">
+          
+          {/* Inner Container: 1200px Max Width, Horizontal Flow, 80px Gap */}
+          <div className="grid w-full max-w-[1200px] grid-cols-1 gap-[40px] sm:grid-cols-2 lg:flex lg:flex-row lg:justify-between lg:gap-[80px]">
+            
+            {/* Feature 1: 240px Width, Vertical Flow, 12px Gap */}
+            <div className="flex flex-col items-start gap-[12px] lg:w-[240px]">
+              <h3 className="text-[20px] font-bold leading-[1.4] text-[#295b42]">
+                40 Years Expertise
+              </h3>
+              <p className="text-[14px] font-medium leading-[1.5] text-[#555]">
+                Unrivalled technical knowledge passed down through generations.
+              </p>
+            </div>
+
+            {/* Feature 2: 240px Width, Vertical Flow, 12px Gap */}
+            <div className="flex flex-col items-start gap-[12px] lg:w-[240px]">
+              <h3 className="text-[20px] font-bold leading-[1.4] text-[#295b42]">
+                Sustainable Practices
+              </h3>
+              <p className="text-[14px] font-medium leading-[1.5] text-[#555]">
+                Committed to eco-friendly materials and workshop waste reduction.
+              </p>
+            </div>
+
+            {/* Feature 3: 240px Width, Vertical Flow, 12px Gap */}
+            <div className="flex flex-col items-start gap-[12px] lg:w-[240px]">
+              <h3 className="text-[20px] font-bold leading-[1.4] text-[#295b42]">
+                500+ Mouldings
+              </h3>
+              <p className="text-[14px] font-medium leading-[1.5] text-[#555]">
+                One of Ireland&apos;s largest selections of classic and modern frames.
+              </p>
+            </div>
+
+            {/* Feature 4: 240px Width, Vertical Flow, 12px Gap */}
+            <div className="flex flex-col items-start gap-[12px] lg:w-[240px]">
+              <h3 className="text-[20px] font-bold leading-[1.4] text-[#295b42]">
+                Free Consultations
+              </h3>
+              <p className="text-[14px] font-medium leading-[1.5] text-[#555]">
+                No appointment needed for expert design advice from our team.
+              </p>
+            </div>
+
+          </div>
+        </section>
 
       </main>
 
