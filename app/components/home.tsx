@@ -307,15 +307,15 @@ export default function Home() {
             </div>
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 from-[18.54%] to-black/40 to-[68.99%]" />
             <div className="relative mx-auto flex h-full max-w-[1280px] items-center px-5 py-20 sm:px-[42px] sm:py-8">
-              <div className="flex w-full max-w-[620px] flex-col items-start gap-8 py-12 text-left text-white sm:py-20">
-                <h1 className="text-[42px] font-bold leading-[1.1] sm:text-[56px] lg:text-[64px]">
+              <div className="mx-auto flex w-full max-w-[620px] flex-col items-center gap-8 py-12 text-center text-white sm:py-20 lg:mx-0 lg:items-start lg:text-left">
+                <h1 className="text-[38px] font-bold leading-[1.15] sm:text-[56px] lg:text-[64px] lg:leading-[1.1]">
                   Dublin&apos;s Premier
                   <br />
                   Custom Framing &amp;
                   <br />
                   Archival Printing
                 </h1>
-                <p className="w-full max-w-[520px] text-[16px] leading-[1.5] text-white/80">
+                <p className="w-full max-w-[480px] text-[15px] leading-[1.5] text-white/80 sm:max-w-[520px] sm:text-[16px]">
                   Experience the art of preservation with our expert framing and museum-quality archival printing services,
                   crafted with care in the heart of Dublin.
                 </p>
@@ -368,12 +368,20 @@ export default function Home() {
 
         {/* --- OUR SERVICES SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] py-[80px]">
-          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[80px] px-5 py-[40px] lg:flex-row lg:px-[64px]">
+          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[32px] px-5 py-[40px] lg:flex-row lg:gap-[80px] lg:px-[64px]">
+            <div className="flex w-full flex-col items-center gap-[12px] text-center lg:hidden">
+              <h2 className="text-3xl font-semibold tracking-tight text-[#161616]">
+                Our Services
+              </h2>
+              <p className="max-w-[320px] text-sm leading-6 text-[#555]">
+                Expert solutions tailored to showcase and preserve your most valued pieces.
+              </p>
+            </div>
             <div className="relative h-[400px] w-full shrink-0 overflow-hidden rounded-[32px] lg:h-[780px] lg:w-[580px] lg:rounded-[48px]">
               <ResponsiveImage src={images.services} alt="Custom framing tools and artwork in a studio" />
             </div>
             <div className="flex w-full flex-col gap-[48px] lg:w-[492px]">
-              <h2 className="text-3xl font-semibold tracking-tight text-[#161616] sm:text-[48px]">
+              <h2 className="hidden text-3xl font-semibold tracking-tight text-[#161616] sm:text-[48px] lg:block">
                 Our Services
               </h2>
               <div className="flex flex-col divide-y divide-[#d5d5d5] border-y border-[#d5d5d5]">
