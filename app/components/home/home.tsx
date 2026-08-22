@@ -88,7 +88,7 @@ const faqs = [
 // SVG ICONS & NEW BENEFITS DATA
 // ==========================================
 
-function ArrowIcon() {
+export function ArrowIcon() {
   return (
     <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
@@ -96,7 +96,7 @@ function ArrowIcon() {
   );
 }
 
-function MenuIcon() {
+export function MenuIcon() {
   return (
     <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeWidth="1.8" d="M4 7h16M4 12h16M4 17h16" />
@@ -104,7 +104,7 @@ function MenuIcon() {
   );
 }
 
-function GlobeIcon() {
+export function GlobeIcon() {
   return (
     <svg className="size-[48px] text-[#295b42]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
@@ -114,7 +114,7 @@ function GlobeIcon() {
   );
 }
 
-function LightbulbIcon() {
+export function LightbulbIcon() {
   return (
     <svg className="size-[48px] text-[#295b42]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M9.6 20.4h4.8m-2.4 3v-3m-6-8.4a6 6 0 1 1 12 0c0 2.4-1.8 4.2-3 5.4H9c-1.2-1.2-3-3-3-5.4Z" />
@@ -123,7 +123,7 @@ function LightbulbIcon() {
   );
 }
 
-function FrameOutlineIcon() {
+export function FrameOutlineIcon() {
   return (
     <svg className="size-[48px] text-[#295b42]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v18H3V3Z" />
@@ -133,7 +133,7 @@ function FrameOutlineIcon() {
   );
 }
 
-function BadgeIcon() {
+export function BadgeIcon() {
   return (
     <svg className="size-[48px] text-[#295b42]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M9.6 12.6 11.4 14.4 15.6 9.6M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
@@ -142,7 +142,7 @@ function BadgeIcon() {
   );
 }
 
-function StarIcon({ fill = "currentColor", className = "size-4" }) {
+export function StarIcon({ fill = "currentColor", className = "size-4" }: { fill?: string; className?: string }) {
   return (
     <svg className={className} fill={fill} viewBox="0 0 24 24" stroke="none">
       <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
@@ -178,7 +178,7 @@ const benefitsData = [
 // ==========================================
 
 // Primary Button Component
-function Button({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+export function Button({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return (
     <a
       href="#consultation"
@@ -195,11 +195,206 @@ function Button({ children, dark = false }: { children: React.ReactNode; dark?: 
 }
 
 // Next.js Responsive Image Wrapper
-function ResponsiveImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
   return (
     <span className={`relative block h-full w-full overflow-hidden ${className}`}>
       <Image src={src} alt={alt} fill sizes="100vw" className="object-cover" />
     </span>
+  );
+}
+
+// ==========================================
+// HEADER COMPONENT (EXPORTED)
+// ==========================================
+export function Header() {
+  return (
+    <header className="mx-auto flex w-full max-w-[1440px] flex-col items-start border-b border-[#d5d5d5] bg-white">
+      <div className="flex h-[36px] w-full items-center justify-center bg-[#295b42] px-4 py-2 text-center text-[13px] font-normal tracking-[0.5px] text-white lg:px-[80px]">
+        <span className="leading-[1.5]">
+          Now Trending!{" "}
+          <span className="font-semibold underline decoration-solid underline-offset-2">
+            Custom Gallery Walls &rarr;
+          </span>
+        </span>
+      </div>
+
+      <nav className="relative flex h-[72px] w-full items-center bg-white px-4 lg:px-[40px]">
+        <div className="flex items-center gap-3 lg:hidden">
+          <button aria-label="Open menu" className="grid size-10 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
+            <MenuIcon />
+          </button>
+          <span className="text-xl font-bold tracking-[1px]">Gallery 23</span>
+        </div>
+
+        <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex">
+          {navItems.map((item) => (
+            <a
+              key={item}
+              href="#"
+              className={`relative flex h-[72px] items-center px-4 text-[13px] font-medium leading-[1.5] tracking-[0.78px] ${
+                item === "Home" ? "text-[#295b42]" : "text-[#161616]"
+              }`}
+            >
+              {item}
+              {item === "Home" ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-[#295b42]" /> : null}
+            </a>
+          ))}
+        </div>
+
+        <a
+          href="#"
+          className="absolute left-1/2 top-0 hidden h-[72px] w-[320px] -translate-x-1/2 items-center justify-center text-center text-[24px] font-bold leading-[1.2] tracking-[1px] text-[#161616] lg:flex"
+        >
+          Gallery 23
+        </a>
+
+        <div className="ml-auto flex min-w-0 items-center justify-end gap-3 lg:flex-1 lg:gap-1">
+          <div className="hidden items-center gap-1 lg:flex">
+            {rightNav.map((item) => (
+              <a
+                key={item}
+                href="#"
+                className="flex h-[72px] items-center justify-center px-3 text-[13px] font-medium leading-[1.5] tracking-[0.78px] text-[#161616]"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+          <span className="hidden h-6 w-px bg-[#d5d5d5] lg:block" />
+          <button aria-label="Search" className="grid size-10 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
+            <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-5" />
+          </button>
+          <button aria-label="Cart" className="grid size-10 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
+            <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-5" />
+          </button>
+        </div>
+      </nav>
+    </header>
+  );
+}
+
+// ==========================================
+// FOOTER COMPONENTS (EXPORTED)
+// ==========================================
+export function FooterColumn({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div className="flex w-full flex-col items-start lg:w-auto">
+      <h3 className="text-[12px] font-bold capitalize text-white">{title}</h3>
+      <ul className="mt-[16px] flex flex-col gap-[12px] text-[13px] leading-[1.5] text-[#999999] sm:mt-[24px] sm:gap-[14px]">
+        {items.map((item, index) => {
+          // Identify icons based on content for the addresses column
+          const isPhone = item.includes("(555)");
+          const isEmail = item.includes("@");
+          const isHighlight = index === 0 && (title === "North side" || title === "South side");
+
+          return (
+            <li key={index} className="flex max-w-[260px] items-start gap-[8px] sm:max-w-[200px]">
+              {isPhone && (
+                <svg className="mt-[2px] size-[14px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              )}
+              {isEmail && (
+                <svg className="mt-[2px] size-[14px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              )}
+              <span className={isHighlight ? "font-bold text-white" : "hover:text-white transition-colors cursor-pointer"}>
+                {item}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+export function Footer() {
+  return (
+    <footer className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-black text-white">
+      {/* Top Section (footer-header) */}
+      <div className="flex w-full items-center justify-between border-b border-[#222222] px-5 py-[28px] sm:px-[40px] lg:px-[80px] lg:py-[40px]">
+        {/* logo-group: 180px Hug Width, 65px Fixed Height, 12px Gap */}
+        <div className="flex h-[48px] items-center gap-[10px] sm:h-[65px] sm:gap-[12px]">
+          <div className="flex size-[40px] items-center justify-center border-2 border-white text-[13px] font-bold sm:size-[48px] sm:text-[16px]">
+            G23
+          </div>
+          <span className="text-[18px] font-semibold tracking-tight text-white sm:text-[22px]">
+            Gallery 23
+          </span>
+        </div>
+      </div>
+
+      {/* Middle Section (footer-columns) */}
+      <div className="flex w-full flex-col items-start gap-[32px] border-b border-[#222222] px-5 py-[40px] sm:grid sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[40px] sm:px-[40px] lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:px-[80px] lg:py-[56px]">
+        <FooterColumn 
+          title="Services" 
+          items={["Picture Framing", "Canvas Prints", "Jersey Framing", "Shadow Boxes", "Certificates & Awards", "Photo Frames"]} 
+        />
+        <FooterColumn 
+          title="Company" 
+          items={["About Us", "Print Shop", "Commercial"]} 
+        />
+        <FooterColumn 
+          title="Resources" 
+          items={["FAQs", "Contact Us"]} 
+        />
+        <FooterColumn 
+          title="North side" 
+          items={["Gallery 23 Downtown", "Unit 4 Coolport Porters Road, Coolmine Blanchardstown D15DX3D", "(555) 123-4567", "hello@gallery23.com"]} 
+        />
+        <FooterColumn 
+          title="South side" 
+          items={["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"]} 
+        />
+      </div>
+
+      {/* Bottom Section (footer-bottom) */}
+      <div className="flex w-full flex-col items-start gap-[24px] px-5 pb-[32px] pt-[24px] sm:px-[40px] lg:flex-row lg:items-start lg:justify-between lg:px-[80px] lg:pb-[40px] lg:pt-[32px]">
+        
+        {/* bottom-left: 380px Fixed Width, 68px Hug Height, 8px Gap */}
+        <div className="flex w-full flex-col gap-[8px] text-[13px] leading-[1.6] text-[#999999] lg:w-[380px]">
+          <p>©2024 Gallery 23. All rights reserved.</p>
+          <p>
+            Professional custom framing and fine art printing services.
+            Museum-quality preservation for your most valued memories.
+          </p>
+        </div>
+
+        {/* bottom-right: 368px Hug Width, 54px Hug Height, 12px Gap */}
+        <div className="flex w-full flex-col items-stretch gap-[12px] sm:w-auto sm:flex-row sm:items-center">
+          
+          {/* badge-rating: 212px Hug, 54px Hug, 10px Gap, 10px Top/Bottom & 16px Left/Right Padding */}
+          <div className="flex items-center justify-center gap-[10px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px] sm:justify-start">
+            {/* Stars */}
+            <div className="flex text-[#FBBF24]">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} className="size-[14px]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              ))}
+            </div>
+            {/* Text */}
+            <div className="flex flex-col text-[11px] font-medium leading-[1.3]">
+              <span className="text-white">Rated 4.9 from</span>
+              <span className="text-[#999999]">200+ customers</span>
+            </div>
+          </div>
+
+          {/* badge-google: 144px Hug, 38px Hug, 8px Gap, 10px Top/Bottom & 16px Left/Right Padding */}
+          <a href="#" className="flex items-center justify-center gap-[8px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px] transition hover:bg-[#222222]">
+            <svg className="size-[16px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3v18" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-2.5 0-4.5-4-4.5-9S9.5 3 12 3s4.5 4 4.5 9-2 9-4.5 9Z" />
+            </svg>
+            <span className="text-[12px] font-medium text-white">Google Reviews</span>
+          </a>
+
+        </div>
+      </div>
+    </footer>
   );
 }
 
@@ -224,73 +419,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#f7f3eb] text-[#161616]">
-      {/* --- HEADER & NAVIGATION --- */}
-      <header className="mx-auto flex w-full max-w-[1440px] flex-col items-start border-b border-[#d5d5d5] bg-white">
-        <div className="flex h-[36px] w-full items-center justify-center bg-[#295b42] px-4 py-2 text-center text-[13px] font-normal tracking-[0.5px] text-white lg:px-[80px]">
-          <span className="leading-[1.5]">
-            Now Trending!{" "}
-            <span className="font-semibold underline decoration-solid underline-offset-2">
-              Custom Gallery Walls &rarr;
-            </span>
-          </span>
-        </div>
-
-        <nav className="relative flex h-[72px] w-full items-center bg-white px-4 lg:px-[40px]">
-          <div className="flex items-center gap-3 lg:hidden">
-            <button aria-label="Open menu" className="grid size-10 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
-              <MenuIcon />
-            </button>
-            <span className="text-xl font-bold tracking-[1px]">Gallery 23</span>
-          </div>
-
-          <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex">
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href="#"
-                className={`relative flex h-[72px] items-center px-4 text-[13px] font-medium leading-[1.5] tracking-[0.78px] ${
-                  item === "Home" ? "text-[#295b42]" : "text-[#161616]"
-                }`}
-              >
-                {item}
-                {item === "Home" ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-[#295b42]" /> : null}
-              </a>
-            ))}
-          </div>
-
-          <a
-            href="#"
-            className="absolute left-1/2 top-0 hidden h-[72px] w-[320px] -translate-x-1/2 items-center justify-center text-center text-[24px] font-bold leading-[1.2] tracking-[1px] text-[#161616] lg:flex"
-          >
-            Gallery 23
-          </a>
-
-          <div className="ml-auto flex min-w-0 items-center justify-end gap-3 lg:flex-1 lg:gap-1">
-            <div className="hidden items-center gap-1 lg:flex">
-              {rightNav.map((item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="flex h-[72px] items-center justify-center px-3 text-[13px] font-medium leading-[1.5] tracking-[0.78px] text-[#161616]"
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-            <span className="hidden h-6 w-px bg-[#d5d5d5] lg:block" />
-            <button aria-label="Search" className="grid size-10 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
-              <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-5" />
-            </button>
-            <button aria-label="Cart" className="grid size-10 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
-              <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-5" />
-            </button>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       {/* --- MAIN PAGE CONTENT --- */}
       <main>
-        
         {/* --- HERO SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-start">
           <div className="relative h-[620px] w-full overflow-hidden lg:h-[760px]">
@@ -744,7 +876,7 @@ export default function Home() {
           </div>
         </section>
 
-{/* --- CONSULTATION / CTA SECTION --- */}
+        {/* --- CONSULTATION / CTA SECTION --- */}
         <section
           id="consultation"
           className="relative mx-auto flex min-h-[480px] w-full max-w-[1440px] items-center justify-center overflow-hidden px-[16px] py-[48px] sm:min-h-[578px] sm:px-[24px] sm:py-0"
@@ -813,129 +945,7 @@ export default function Home() {
         </section>
       </main>
 
- {/* --- FOOTER SECTION --- */}
-      <footer className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-black text-white">
-        
-        {/* Top Section (footer-header) */}
-        <div className="flex w-full items-center justify-between border-b border-[#222222] px-5 py-[28px] sm:px-[40px] lg:px-[80px] lg:py-[40px]">
-          {/* logo-group: 180px Hug Width, 65px Fixed Height, 12px Gap */}
-          <div className="flex h-[48px] items-center gap-[10px] sm:h-[65px] sm:gap-[12px]">
-            <div className="flex size-[40px] items-center justify-center border-2 border-white text-[13px] font-bold sm:size-[48px] sm:text-[16px]">
-              G23
-            </div>
-            <span className="text-[18px] font-semibold tracking-tight text-white sm:text-[22px]">
-              Gallery 23
-            </span>
-          </div>
-        </div>
-
-        {/* Middle Section (footer-columns) */}
-        <div className="flex w-full flex-col items-start gap-[32px] border-b border-[#222222] px-5 py-[40px] sm:grid sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[40px] sm:px-[40px] lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:px-[80px] lg:py-[56px]">
-          <FooterColumn 
-            title="Services" 
-            items={["Picture Framing", "Canvas Prints", "Jersey Framing", "Shadow Boxes", "Certificates & Awards", "Photo Frames"]} 
-          />
-          <FooterColumn 
-            title="Company" 
-            items={["About Us", "Print Shop", "Commercial"]} 
-          />
-          <FooterColumn 
-            title="Resources" 
-            items={["FAQs", "Contact Us"]} 
-          />
-          <FooterColumn 
-            title="North side" 
-            items={["Gallery 23 Downtown", "Unit 4 Coolport Porters Road, Coolmine Blanchardstown D15DX3D", "(555) 123-4567", "hello@gallery23.com"]} 
-          />
-          <FooterColumn 
-            title="South side" 
-            items={["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"]} 
-          />
-        </div>
-
-        {/* Bottom Section (footer-bottom) */}
-        <div className="flex w-full flex-col items-start gap-[24px] px-5 pb-[32px] pt-[24px] sm:px-[40px] lg:flex-row lg:items-start lg:justify-between lg:px-[80px] lg:pb-[40px] lg:pt-[32px]">
-          
-          {/* bottom-left: 380px Fixed Width, 68px Hug Height, 8px Gap */}
-          <div className="flex w-full flex-col gap-[8px] text-[13px] leading-[1.6] text-[#999999] lg:w-[380px]">
-            <p>©2024 Gallery 23. All rights reserved.</p>
-            <p>
-              Professional custom framing and fine art printing services.
-              Museum-quality preservation for your most valued memories.
-            </p>
-          </div>
-
-          {/* bottom-right: 368px Hug Width, 54px Hug Height, 12px Gap */}
-          <div className="flex w-full flex-col items-stretch gap-[12px] sm:w-auto sm:flex-row sm:items-center">
-            
-            {/* badge-rating: 212px Hug, 54px Hug, 10px Gap, 10px Top/Bottom & 16px Left/Right Padding */}
-            <div className="flex items-center justify-center gap-[10px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px] sm:justify-start">
-              {/* Stars */}
-              <div className="flex text-[#FBBF24]">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="size-[14px]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                  </svg>
-                ))}
-              </div>
-              {/* Text */}
-              <div className="flex flex-col text-[11px] font-medium leading-[1.3]">
-                <span className="text-white">Rated 4.9 from</span>
-                <span className="text-[#999999]">200+ customers</span>
-              </div>
-            </div>
-
-            {/* badge-google: 144px Hug, 38px Hug, 8px Gap, 10px Top/Bottom & 16px Left/Right Padding */}
-            <a href="#" className="flex items-center justify-center gap-[8px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px] transition hover:bg-[#222222]">
-              <svg className="size-[16px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3v18" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-2.5 0-4.5-4-4.5-9S9.5 3 12 3s4.5 4 4.5 9-2 9-4.5 9Z" />
-              </svg>
-              <span className="text-[12px] font-medium text-white">Google Reviews</span>
-            </a>
-
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
-
-// ==========================================
-// FOOTER HELPER COMPONENT
-// ==========================================
-
-function FooterColumn({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div className="flex w-full flex-col items-start lg:w-auto">
-      <h3 className="text-[12px] font-bold capitalize text-white">{title}</h3>
-      <ul className="mt-[16px] flex flex-col gap-[12px] text-[13px] leading-[1.5] text-[#999999] sm:mt-[24px] sm:gap-[14px]">
-        {items.map((item, index) => {
-          // Identify icons based on content for the addresses column
-          const isPhone = item.includes("(555)");
-          const isEmail = item.includes("@");
-          const isHighlight = index === 0 && (title === "North side" || title === "South side");
-
-          return (
-            <li key={index} className="flex max-w-[260px] items-start gap-[8px] sm:max-w-[200px]">
-              {isPhone && (
-                <svg className="mt-[2px] size-[14px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              )}
-              {isEmail && (
-                <svg className="mt-[2px] size-[14px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              )}
-              <span className={isHighlight ? "font-bold text-white" : "hover:text-white transition-colors cursor-pointer"}>
-                {item}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
+      <Footer />
     </div>
   );
 }
