@@ -1,14 +1,15 @@
 "use client";
 
-// Importing the reusable Header and Footer from your Home page component
-import { Header, Footer } from "@/app/components/home/home";
+import Image from "next/image";
+
+// Added Button to the import list from your home component
+import { Header, Footer, Button } from "@/app/components/home/home";
 
 // ==========================================
 // DATA & CONSTANTS
 // ==========================================
 
 // Image asset for the Services Hero section
-// Using a placeholder that matches the framing workshop vibe from your Figma design
 const servicesHeroImg = "https://images.unsplash.com/photo-1459908676235-d5f02a50184b?auto=format&fit=crop&w=1920&q=85";
 
 // ==========================================
@@ -29,10 +30,7 @@ export default function ServicesComponent() {
         {/* Figma: 1440px Width, 600px Fixed Height, 80px Padding */}
         <section className="relative flex h-[600px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[80px] lg:px-[80px]">
           
-          {/* 1. Background Image (z-0) 
-              Using a standard <img> tag here to bypass Next.js external domain config errors 
-              so it shows up immediately.
-          */}
+          {/* 1. Background Image (z-0) */}
           <img
             src={servicesHeroImg}
             alt="Expert framing and printing services workshop"
@@ -58,10 +56,40 @@ export default function ServicesComponent() {
           </div>
         </section>
 
-        {/* 
-          Future sections (Picture Framing, etc.) 
-          will be placed down here in the next steps 
-        */}
+        {/* --- PICTURE FRAMING SECTION --- */}
+        {/* Figma Layout: Horizontal Flow, 1440px Fill, Padding: 60px Top/Bottom, 80px Left/Right, Gap 80px */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-white px-[24px] py-[40px] lg:flex-row lg:justify-center lg:gap-[80px] lg:px-[80px] lg:py-[60px]">
+          
+          {/* Left Content Container: 600px Max Width, Vertical Flow, 24px Gap */}
+          <div className="flex w-full max-w-[600px] flex-col items-start gap-[24px]">
+            
+            {/* Heading: Host Grotesk 600 SemiBold, 56px, 105% Line Height, 400px Max Width */}
+            <h2 className="w-full max-w-[400px] text-[32px] font-semibold leading-[1.05] text-[#161616] sm:text-[48px] lg:text-[56px]">
+              Picture Framing
+            </h2>
+            
+            {/* Subtitle: Host Grotesk 500 Medium, 600px Max Width */}
+            <p className="w-full max-w-[600px] text-[16px] font-medium leading-[1.6] text-[#555]">
+              Preserve and showcase your artwork, photographs, and prints with our custom picture framing. Choose from hundreds of frame styles, mats, and glass options.
+            </p>
+            
+            {/* Button */}
+            <div className="pt-2">
+              <Button dark>INQUIRE NOW</Button>
+            </div>
+          </div>
+
+          {/* Right Image Container: 600px Width, 450px Height, Sharp Corners */}
+          <div className="relative mt-8 h-[300px] w-full max-w-[600px] shrink-0 sm:h-[450px] lg:mt-0">
+            {/* Using a standard <img> tag for immediate rendering. */}
+            <img
+              src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=800&q=85"
+              alt="Assortment of wooden picture frame corner samples"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+
+        </section>
 
       </main>
 
