@@ -49,20 +49,32 @@ const services = [
   },
 ];
 
-// Testimonials Section Data
+// Updated Testimonials Section Data
 const testimonials = [
   {
     name: "Ayla Renford",
-    quote: "The consultation was calm, detailed, and genuinely useful. The finished frame changed the whole room.",
+    date: "6 Days Ago",
+    quote: "Had a wonderful experience here. I had two limited edition prints framed and FastFrame did an amazing job. The quality of the framing is some of the best I've experienced and I will definitely use FastFrame again.",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
   },
   {
-    name: "Marcus Byrne",
-    quote: "Gallery 23 handled a fragile family portrait beautifully. Every material choice felt considered.",
+    name: "Ayla Renford",
+    date: "6 Days Ago",
+    quote: "My go-to place for framing. The staff is personable and thoughtful in their creative guidance. I know my pieces are in good hands, and I'm always thrilled with the results. Highly recommend, you won't be disappointed!",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
   },
   {
-    name: "Niamh O'Connell",
-    quote: "Fast turnaround, crisp print quality, and a team that clearly loves the craft.",
+    name: "Ayla Renford",
+    date: "6 Days Ago",
+    quote: "This is my go to shop for framing. The staff is extremely friendly and knowledgeable. They have a great sense of what works and what doesn't. They always find creative ways to work with our budget. The store has unlimited samples to work with and they always seem to find the best.",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
   },
+  {
+    name: "Ayla Renford",
+    date: "6 Days Ago",
+    quote: "I've had two pieces framed here and each time I was so impressed with their acumen for choosing the right frame and border to properly accent the piece. They turned each from a print into a work of art. Their work is done timely and they have very competitive pricing.",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
+  }
 ];
 
 // FAQs Section Data
@@ -126,6 +138,14 @@ function BadgeIcon() {
     <svg className="size-[48px] text-[#295b42]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
       <path strokeLinecap="round" strokeLinejoin="round" d="M9.6 12.6 11.4 14.4 15.6 9.6M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 22.8c-1.1 0-2.2-.4-3-1.1L7.1 20H4.8c-.7 0-1.2-.5-1.2-1.2v-2.3l-1.7-1.9c-.7-.8-.7-1.9 0-2.7L3.6 10V7.7c0-.7.5-1.2 1.2-1.2H7l1.9-1.7c.8-.7 1.9-.7 2.7 0L13.4 6h2.3c.7 0 1.2.5 1.2 1.2V9.6l1.7 1.9c.7.8.7 1.9 0 2.7l-1.7 1.9v2.3c0 .7-.5 1.2-1.2 1.2h-2.3l-1.9 1.7c-.7.8-1.9.8-2.7.1Z" />
+    </svg>
+  );
+}
+
+function StarIcon({ fill = "currentColor", className = "size-4" }) {
+  return (
+    <svg className={className} fill={fill} viewBox="0 0 24 24" stroke="none">
+      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
     </svg>
   );
 }
@@ -428,7 +448,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- CUSTOM PRINTING SECTION (UPDATED TO FIGMA SPECS) --- */}
+        {/* --- CUSTOM PRINTING SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[48px] bg-[#f5f0eb] px-5 py-[80px] lg:px-[80px]">
           <div className="flex w-full max-w-[802px] flex-col items-center gap-[12px] text-center">
             <h2 className="text-[32px] font-bold text-[#161616] sm:text-[48px] sm:leading-tight">
@@ -480,21 +500,14 @@ export default function Home() {
         {/* --- SHOWCASE / FEATURED FRAMING PROJECTS SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] bg-[#295b42] px-5 pb-[120px] pt-[96px] lg:px-[120px]">
           
-          {/* Showcase-Header: 1200px Fill Width, Horizontal Layout */}
           <div className="flex w-full max-w-[1200px] items-center justify-between">
-            {/* Main-Title: 720px Width, 56px Size, SemiBold, 105% Line Height, 1% Letter Spacing */}
-          <h2 className="w-full max-w-none whitespace-nowrap text-[22px] font-semibold tracking-[0.01em] text-white sm:text-[40px] lg:text-[56px] sm:leading-[1.05]">
-  Featured Framing Projects
-</h2>
+            <h2 className="w-full max-w-none whitespace-nowrap text-[22px] font-semibold tracking-[0.01em] text-white sm:text-[40px] lg:text-[56px] sm:leading-[1.05]">
+              Featured Framing Projects
+            </h2>
           </div>
 
-          {/* Hero-Showcase: 1200px Fill Width, Vertical Layout, 24px Gap */}
           <div className="flex w-full max-w-[1200px] flex-col items-center gap-[24px]">
-            
-            {/* Main-Artwork / Inner-Bevel-Art: 1200px Width, 558px Height, 46px Radius */}
             <div className="relative h-[300px] w-full shrink-0 overflow-hidden rounded-[32px] lg:h-[558px] lg:w-[1200px] lg:rounded-[46px]">
-              
-              {/* Smooth crossfade animation for the active main image */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeProject}
@@ -507,12 +520,9 @@ export default function Home() {
                   <ResponsiveImage src={showcaseImages[activeProject]} alt={`Featured framing project ${activeProject + 1}`} />
                 </motion.div>
               </AnimatePresence>
-
-              {/* Inner shadow overlay (inset Y:4, Blur:8, Black at 40%) */}
               <div className="pointer-events-none absolute inset-0 z-10 rounded-[32px] shadow-[inset_0_4px_8px_rgba(0,0,0,0.40)] lg:rounded-[46px]" />
             </div>
 
-            {/* Carousel Dot Indicators */}
             <div className="flex items-center gap-2">
               {showcaseImages.map((_, index) => (
                 <button
@@ -526,55 +536,95 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Gallery-Grid: 1200px Fill Width, Horizontal Layout, 32px Gap */}
             <div className="flex w-full flex-col gap-[32px] overflow-x-auto sm:flex-row lg:overflow-visible">
-              
               {showcaseImages.map((src, index) => {
                 const isActive = index === activeProject;
-
                 return (
                   <div
                     key={index}
                     onClick={() => setActiveProject(index)}
-                    // Dynamic classes based on active state (Frame-Card-1 vs inactive)
                     className={`relative flex h-[200px] w-full shrink-0 cursor-pointer items-center justify-center transition-all duration-300 sm:w-[380px] ${
                       isActive
-                        ? "rounded-[24px] border-2 border-white bg-[#336a4c] p-[8px]" // Active properties
-                        : "rounded-[24px] border-2 border-transparent bg-transparent opacity-60 hover:opacity-100" // Inactive properties
+                        ? "rounded-[24px] border-2 border-white bg-[#336a4c] p-[8px]" 
+                        : "rounded-[24px] border-2 border-transparent bg-transparent opacity-60 hover:opacity-100" 
                     }`}
                   >
-                    {/* Image-Aspect-Container */}
                     <div className={`relative h-full w-full overflow-hidden ${isActive ? "rounded-[16px]" : "rounded-[24px]"}`}>
                       <ResponsiveImage src={src} alt={`Thumbnail ${index + 1}`} />
                     </div>
                   </div>
                 );
               })}
-
             </div>
           </div>
         </section>
 
-        {/* --- TESTIMONIALS SECTION --- */}
-        <section className="px-5 py-14 sm:py-20">
-          <div className="mx-auto max-w-[1280px]">
-            <h2 className="text-3xl font-semibold sm:text-5xl">Happy clients</h2>
-            <div className="mt-10 grid gap-5 lg:grid-cols-3">
-              {testimonials.map((item) => (
-                <article key={item.name} className="rounded-lg bg-white p-6 shadow-sm">
-                  <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#295b42]">Verified client</p>
-                  <p className="mt-8 min-h-28 text-sm leading-7 text-[#555]">&quot;{item.quote}&quot;</p>
-                  <h3 className="mt-7 font-bold">{item.name}</h3>
+        {/* --- TESTIMONIALS SECTION (What Our Costumer Say) --- */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[48px] overflow-hidden bg-[#f5f0eb] px-5 py-[80px] lg:px-[80px]">
+          
+          <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
+            <h2 className="w-full max-w-[640px] text-[32px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[56px] sm:leading-[1.05]">
+              What Our Costumer Say
+            </h2>
+
+            <div className="flex h-[82px] w-full max-w-[1200px] items-center justify-between rounded-[27px] bg-white pl-[32px] pr-[16px] sm:pr-[24px]">
+              <div className="flex flex-col items-start justify-center">
+                <div className="text-[22px] font-bold tracking-tighter sm:text-[26px]">
+                  <span className="text-[#4285F4]">G</span>
+                  <span className="text-[#EA4335]">o</span>
+                  <span className="text-[#FBBC05]">o</span>
+                  <span className="text-[#4285F4]">g</span>
+                  <span className="text-[#34A853]">l</span>
+                  <span className="text-[#EA4335]">e</span>
+                </div>
+                <div className="flex items-center gap-[6px] text-[12px] font-bold text-[#161616] sm:text-[14px]">
+                  4.9
+                  <div className="flex text-[#FBBC05]">
+                    {[...Array(5)].map((_, i) => (
+                      <StarIcon key={i} className="size-[14px]" />
+                    ))}
+                  </div>
+                  <span className="font-normal text-[#777]">(264)</span>
+                </div>
+              </div>
+
+              <a href="#" className="flex h-[48px] items-center justify-center gap-[10px] rounded-[100px] bg-[#295b42] px-[16px] text-[12px] font-medium text-white transition hover:bg-[#204834] sm:px-[24px] sm:text-[14px]">
+                Review us on Google <ArrowIcon />
+              </a>
+            </div>
+          </div>
+
+          <div className="relative w-full max-w-[1440px] overflow-hidden">
+            <motion.div
+              className="flex w-max gap-[24px] pb-[16px] lg:gap-[32px]"
+              animate={{ x: ["0%", "-50%"] }} 
+              transition={{ repeat: Infinity, ease: "linear", duration: 35 }} 
+            >
+              {[...testimonials, ...testimonials].map((item, index) => (
+                <article
+                  key={index}
+                  className="flex h-[440px] w-[300px] shrink-0 flex-col gap-[20px] rounded-[12px] bg-white p-[24px] shadow-sm sm:w-[360px] sm:p-[32px]"
+                >
+                  <div className="flex items-center gap-[12px]">
+                    <div className="relative size-[48px] shrink-0 overflow-hidden rounded-full">
+                      <Image src={item.avatar} alt={item.name} fill className="object-cover" />
+                    </div>
+                    <div className="flex flex-col">
+                      <h3 className="text-[15px] font-bold text-[#161616]">{item.name}</h3>
+                      <p className="text-[12px] text-[#999]">{item.date}</p>
+                    </div>
+                  </div>
+                  <div className="inline-flex w-max items-center gap-1 rounded-[100px] bg-[#295b42] px-[12px] py-[6px] text-white">
+                    {[...Array(5)].map((_, i) => (
+                      <StarIcon key={i} className="size-[12px]" />
+                    ))}
+                  </div>
+                  <p className="text-[14px] leading-[1.6] text-[#555]">
+                    {item.quote}
+                  </p>
                 </article>
               ))}
-            </div>
-            <div className="mt-8 flex flex-col gap-4 rounded-lg bg-[#161616] p-5 text-white sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="text-2xl font-bold">4.9</p>
-                <p className="text-sm text-white/70">Rated by 264 local customers</p>
-              </div>
-              <Button>Read Google Reviews</Button>
-            </div>
+            </motion.div>
           </div>
         </section>
 
