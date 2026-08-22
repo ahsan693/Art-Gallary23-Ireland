@@ -278,47 +278,72 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- OUR SERVICES SECTION --- */}
-        <section className="mx-auto grid max-w-[1280px] gap-8 px-5 py-12 sm:py-20 lg:grid-cols-[580px_1fr] lg:gap-20 lg:px-0">
-          <div className="order-2 h-[280px] overflow-hidden rounded-3xl sm:h-[520px] lg:order-1 lg:h-[780px]">
-            <ResponsiveImage src={images.services} alt="Custom framing tools and artwork in a studio" />
-          </div>
-          <div className="order-1 flex flex-col justify-center lg:order-2">
-            <h2 className="text-center text-3xl font-semibold leading-tight sm:text-5xl lg:text-left">Our Services</h2>
-            <p className="mt-3 text-center text-sm leading-6 text-[#555] lg:text-left">
-              Expert solutions tailored to showcase and preserve your most valued pieces.
-            </p>
-            <div className="mt-10 divide-y divide-[#d5d5d5] border-y border-[#d5d5d5]">
-              {services.map((service) => (
-                <article key={service.title} className="py-6 sm:py-8">
-                  <h3 className="text-xl font-bold sm:text-2xl">{service.title}</h3>
-                  <p className="mt-2 max-w-xl text-sm leading-6 text-[#555] sm:text-base">{service.body}</p>
-                  <div className="mt-5">
-                    <Button dark>{service.cta}</Button>
-                  </div>
-                </article>
-              ))}
+       {/* --- OUR SERVICES SECTION --- */}
+        {/* Outer Container (Services): 1440px Max Width, Warm/Cream bg, 80px Padding */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] py-[80px]">
+          
+          {/* Inner Container (services-main): 1280px Width, 80px Gap, Padding 40px Y / 64px X */}
+          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[80px] px-5 py-[40px] lg:flex-row lg:px-[64px]">
+            
+            {/* Left Image Section (gallery-image): 580px Width x 780px Height, 48px Radius */}
+            <div className="relative h-[400px] w-full shrink-0 overflow-hidden rounded-[32px] lg:h-[780px] lg:w-[580px] lg:rounded-[48px]">
+              <ResponsiveImage src={images.services} alt="Custom framing tools and artwork in a studio" />
             </div>
+
+            {/* Right Text Section (services-content): 492px Width, Vertical Layout, 48px Gap */}
+            <div className="flex w-full flex-col gap-[48px] lg:w-[492px]">
+              
+              <h2 className="text-3xl font-semibold tracking-tight text-[#161616] sm:text-[48px]">
+                Our Services
+              </h2>
+              
+              <div className="flex flex-col divide-y divide-[#d5d5d5] border-y border-[#d5d5d5]">
+                {services.map((service) => (
+                  <article key={service.title} className="flex flex-col items-start justify-center gap-4 py-[32px]">
+                    <h3 className="text-xl font-bold text-[#161616]">{service.title}</h3>
+                    <p className="text-sm leading-6 text-[#555]">
+                      {service.body}
+                    </p>
+                    <div className="mt-2">
+                      <Button dark>{service.cta}</Button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+            </div>
+
           </div>
         </section>
 
-        {/* --- ABOUT SECTION --- */}
-        <section className="bg-[#161616] text-white lg:bg-[#f7f3eb] lg:text-[#161616]">
-          <div className="mx-auto grid max-w-[1200px] gap-8 px-5 py-16 sm:py-20 lg:grid-cols-2 lg:items-center">
-            <div>
-              <h2 className="text-3xl font-semibold sm:text-5xl">About Gallery23</h2>
-              <p className="mt-3 text-base text-white/75 lg:text-[#555]">A space for art, framing, and conversation.</p>
-              <p className="mt-6 max-w-xl text-sm leading-7 text-white/75 lg:text-[#555]">
-                Our professional framers love what they do and will happily advise you on your next custom framing project. With a wealth of knowledge and experience, our designers tailor each complimentary design session to your needs.
-              </p>
-              <div className="mt-7">
-                <Button dark>Learn More</Button>
-              </div>
-            </div>
-            <div className="h-[320px] overflow-hidden rounded-3xl sm:h-[560px]">
-              <ResponsiveImage src={images.about} alt="Gallery interior with framed artwork on the wall" />
+        {/* --- ABOUT SECTION (About - Gallery23) --- */}
+        {/* Outer Container: 1440px Max Width, 704px Fixed Height, Padding: 72px Y / 120px X, Gap: 64px */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#161616] px-5 py-14 lg:h-[704px] lg:flex-row lg:gap-[64px] lg:px-[120px] lg:py-[72px]">
+          
+          {/* Left Text Section (content): 560px Fixed Width, Vertical Layout, 24px Gap */}
+          <div className="flex w-full flex-col gap-[24px] lg:w-[560px]">
+            <h2 className="text-3xl font-semibold text-white sm:text-[48px] sm:leading-tight">
+              About Gallery23
+            </h2>
+            
+            <p className="text-base text-white/75">
+              A space for art, framing, and conversation.
+            </p>
+            
+            <p className="text-sm leading-[1.6] text-white/75 sm:text-[16px]">
+              Our professional framers love what they do and will happily advise you on your next custom framing project. With a wealth of knowledge and experience, our designers tailor each complimentary design session to your needs so they can create the ideal custom frame for you.
+            </p>
+            
+            <div className="mt-2">
+              <Button dark>LEARN MORE</Button>
             </div>
           </div>
+
+          {/* Right Image Section (image-wrapper): 640px Width x 560px Height */}
+          <div className="relative h-[320px] w-full shrink-0 overflow-hidden rounded-3xl lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
+            <ResponsiveImage src={images.about} alt="Gallery interior with a motorcycle and framed artwork on the wall" />
+          </div>
+          
         </section>
 
         {/* --- WHY CHOOSE US SECTION --- */}
