@@ -736,45 +736,160 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- CONSULTATION / CTA SECTION --- */}
-        <section id="consultation" className="relative isolate overflow-hidden px-5 py-16 sm:py-24">
-          <ResponsiveImage src={images.consultation} alt="Living room with art and a framed gallery wall" className="absolute inset-0 -z-20" />
-          <div className="absolute inset-0 -z-10 bg-[#f7f3eb]/85" />
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-semibold sm:text-5xl">Book A Free Consultation Service.</h2>
-            <p className="mt-4 text-sm leading-7">Get in touch with our friendly and knowledgeable team.</p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <a href="tel:0856314964" className="rounded-full bg-black px-6 py-3 text-sm font-semibold text-white">
-                (085) 631-4964
-              </a>
-              <a href="mailto:hello@gallery23.com" className="rounded-full bg-black px-6 py-3 text-sm font-semibold text-white">
-                Send Message
-              </a>
+{/* --- CONSULTATION / CTA SECTION --- */}
+        <section
+          id="consultation"
+          className="relative mx-auto flex h-[578px] w-full max-w-[1440px] items-center justify-center overflow-hidden px-[24px]"
+        >
+          {/* Background Image (Fixed positioning bug) */}
+          <div className="absolute inset-0 -z-20">
+            <Image
+              src={images.consultation}
+              alt="Living room with art and a framed gallery wall"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+
+          {/* Dark Overlay (#000000 at 50% opacity) */}
+          <div className="absolute inset-0 -z-10 bg-black/50" />
+
+          {/* Inner White Box (1050px Fixed Max Width, 12px Radius, 48px Top/Bottom Padding) */}
+          <div className="flex w-full max-w-[1050px] flex-col items-center rounded-[12px] bg-white px-[24px] py-[48px] text-center shadow-lg">
+            
+            {/* Heading 1 (Host Grotesk 600 SemiBold, 56px, 105% Line Height, 0% Letter Spacing) */}
+            <h2 className="mx-auto w-full max-w-[861px] text-[32px] font-semibold leading-[1.05] tracking-[0px] text-black sm:text-[56px]">
+              Book A Free Consultation Service.
+            </h2>
+
+            {/* Subtitle Container (24px Top & Bottom Padding) */}
+            <div className="py-[24px]">
+              <p className="text-[14px] leading-normal text-[#161616] sm:text-[16px]">
+                Get in touch with our friendly and knowledgeable team
+              </p>
+            </div>
+
+            {/* Actions Container (16px Top Padding) */}
+            <div className="pt-[16px]">
+              {/* Horizontal Flow Container (12px Gap) */}
+              <div className="flex flex-wrap items-center justify-center gap-[12px]">
+                
+                {/* Phone Button (48.5px Height, 100px Radius, 24px Left/Right Padding, 10px Gap) */}
+                <a
+                  href="tel:0856314964"
+                  className="inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-[100px] border border-black bg-black px-[24px] text-[14px] font-semibold text-white transition hover:bg-neutral-800"
+                >
+                  <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                    <line x1="12" y1="18" x2="12.01" y2="18" />
+                  </svg>
+                  <span>(085) 631-4964</span>
+                </a>
+
+                {/* Email Button (48.5px Height, 100px Radius, 24px Left/Right Padding, 10px Gap) */}
+                <a
+                  href="mailto:hello@gallery23.com"
+                  className="inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-[100px] border border-black bg-black px-[24px] text-[14px] font-semibold text-white transition hover:bg-neutral-800"
+                >
+                  <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <polyline points="3 7 12 13 21 7" />
+                  </svg>
+                  <span>Send Message</span>
+                </a>
+
+              </div>
             </div>
           </div>
         </section>
       </main>
 
-      {/* --- FOOTER SECTION --- */}
-      <footer className="bg-black text-white">
-        <div className="mx-auto max-w-[1280px] px-5 py-8">
-          <div className="border-b border-white/15 pb-8 text-2xl font-bold">Gallery 23</div>
-          <div className="grid gap-8 border-b border-white/15 py-8 sm:grid-cols-3 lg:grid-cols-5">
-            <FooterColumn title="Services" items={["Picture Framing", "Canvas Prints", "Jersey Framing", "Shadow Boxes", "Certificates & Awards", "Photo Frames"]} />
-            <FooterColumn title="Company" items={["About Us", "Print Shop", "Commercial"]} />
-            <FooterColumn title="Resources" items={["FAQs", "Contact Us"]} />
-            <FooterColumn title="North Side" items={["Gallery 23 Downtown", "Unit 4 Coolport Porters Road, Coolmine Blanchardstown D15DX3D", "(555) 123-4567", "hello@gallery23.com"]} />
-            <FooterColumn title="South Side" items={["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"]} />
+ {/* --- FOOTER SECTION --- */}
+      <footer className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-black text-white">
+        
+        {/* Top Section (footer-header) */}
+        {/* 1440px Fill, 145px Hug, Padding: 40px Top/Bottom, 80px Left/Right */}
+        <div className="flex w-full items-center justify-between border-b border-[#222222] px-[80px] py-[40px]">
+          {/* logo-group: 180px Hug Width, 65px Fixed Height, 12px Gap */}
+          <div className="flex h-[65px] w-[180px] items-center gap-[12px]">
+            <div className="flex size-[48px] items-center justify-center border-2 border-white text-[16px] font-bold">
+              G23
+            </div>
+            <span className="text-[22px] font-semibold tracking-tight text-white">
+              Gallery 23
+            </span>
           </div>
-          <div className="flex flex-col gap-5 py-8 text-sm text-[#999] lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <p>(c) 2024 Gallery 23. All rights reserved.</p>
-              <p className="mt-2 max-w-md">Professional custom framing and fine art printing services. Museum-quality preservation for your most valued memories.</p>
+        </div>
+
+        {/* Middle Section (footer-columns) */}
+        {/* 1440px Fill, 339px Hug, Padding: 56px Top/Bottom, 80px Left/Right, space-between */}
+        <div className="flex w-full items-start justify-between border-b border-[#222222] px-[80px] py-[56px]">
+          <FooterColumn 
+            title="Services" 
+            items={["Picture Framing", "Canvas Prints", "Jersey Framing", "Shadow Boxes", "Certificates & Awards", "Photo Frames"]} 
+          />
+          <FooterColumn 
+            title="Company" 
+            items={["About Us", "Print Shop", "Commercial"]} 
+          />
+          <FooterColumn 
+            title="Resources" 
+            items={["FAQs", "Contact Us"]} 
+          />
+          <FooterColumn 
+            title="North side" 
+            items={["Gallery 23 Downtown", "Unit 4 Coolport Porters Road, Coolmine Blanchardstown D15DX3D", "(555) 123-4567", "hello@gallery23.com"]} 
+          />
+          <FooterColumn 
+            title="South side" 
+            items={["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"]} 
+          />
+        </div>
+
+        {/* Bottom Section (footer-bottom) */}
+        {/* 1440px Fill, 140px Hug, Padding: 32px Top, 40px Bottom, 80px Left/Right */}
+        <div className="flex w-full items-start justify-between px-[80px] pb-[40px] pt-[32px]">
+          
+          {/* bottom-left: 380px Fixed Width, 68px Hug Height, 8px Gap */}
+          <div className="flex w-[380px] flex-col gap-[8px] text-[13px] leading-[1.6] text-[#999999]">
+            <p>©2024 Gallery 23. All rights reserved.</p>
+            <p>
+              Professional custom framing and fine art printing services.
+              Museum-quality preservation for your most valued memories.
+            </p>
+          </div>
+
+          {/* bottom-right: 368px Hug Width, 54px Hug Height, 12px Gap */}
+          <div className="flex items-center gap-[12px]">
+            
+            {/* badge-rating: 212px Hug, 54px Hug, 10px Gap, 10px Top/Bottom & 16px Left/Right Padding */}
+            <div className="flex items-center gap-[10px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px]">
+              {/* Stars */}
+              <div className="flex text-[#FBBF24]">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="size-[14px]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                  </svg>
+                ))}
+              </div>
+              {/* Text */}
+              <div className="flex flex-col text-[11px] font-medium leading-[1.3]">
+                <span className="text-white">Rated 4.9 from</span>
+                <span className="text-[#999999]">200+ customers</span>
+              </div>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <span className="rounded-full border border-[#232323] bg-[#161616] px-4 py-3 text-white">Rated 4.9 from 200+ customers</span>
-              <span className="rounded-full border border-[#232323] bg-[#161616] px-4 py-3 text-white">Google Reviews</span>
-            </div>
+
+            {/* badge-google: 144px Hug, 38px Hug, 8px Gap, 10px Top/Bottom & 16px Left/Right Padding */}
+            <a href="#" className="flex items-center gap-[8px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px] transition hover:bg-[#222222]">
+              <svg className="size-[16px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3v18" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-2.5 0-4.5-4-4.5-9S9.5 3 12 3s4.5 4 4.5 9-2 9-4.5 9Z" />
+              </svg>
+              <span className="text-[12px] font-medium text-white">Google Reviews</span>
+            </a>
+
           </div>
         </div>
       </footer>
@@ -788,12 +903,33 @@ export default function Home() {
 
 function FooterColumn({ title, items }: { title: string; items: string[] }) {
   return (
-    <div>
-      <h3 className="text-xs font-bold uppercase tracking-[0.08em]">{title}</h3>
-      <ul className="mt-4 space-y-3 text-sm text-[#999]">
-        {items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
+    <div className="flex flex-col items-start">
+      <h3 className="text-[12px] font-bold capitalize text-white">{title}</h3>
+      <ul className="mt-[24px] flex flex-col gap-[14px] text-[13px] leading-[1.5] text-[#999999]">
+        {items.map((item, index) => {
+          // Identify icons based on content for the addresses column
+          const isPhone = item.includes("(555)");
+          const isEmail = item.includes("@");
+          const isHighlight = index === 0 && (title === "North side" || title === "South side");
+
+          return (
+            <li key={index} className="flex max-w-[200px] items-start gap-[8px]">
+              {isPhone && (
+                <svg className="mt-[2px] size-[14px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              )}
+              {isEmail && (
+                <svg className="mt-[2px] size-[14px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              )}
+              <span className={isHighlight ? "font-bold text-white" : "hover:text-white transition-colors cursor-pointer"}>
+                {item}
+              </span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
