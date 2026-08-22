@@ -628,17 +628,41 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- AS SEEN IN (PRESS) SECTION --- */}
-        <section className="bg-white px-5 py-12">
-          <div className="mx-auto max-w-[1280px] text-center">
-            <h2 className="text-3xl font-semibold sm:text-5xl">As seen in</h2>
-            <div className="mt-8 grid grid-cols-2 items-center gap-4 text-xl font-bold text-[#777] sm:grid-cols-5">
-              {["Forbes", "HuffPost", "ELLE", "AD", "NYT"].map((brand) => (
-                <div key={brand} className="rounded-lg border border-[#ece4da] py-6">
-                  {brand}
-                </div>
-              ))}
+    {/* --- TRUSTED BY SECTION --- */}
+        {/* Outer Section: Max Width 1440px, Background White, Padding: Top/Bottom 52px, L/R 80px */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden bg-white px-5 py-[52px] lg:px-[80px]">
+          
+          {/* Trusted By Card: Max Width 1280px, Vertical Flow, Gap 26px */}
+          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[26px]">
+            
+            {/* eyebrow-label: 56px Size, Bold (700), 105% Line Height, 1% Letter Spacing */}
+            <h2 className="w-full text-center text-[32px] font-bold tracking-[0.01em] text-[#161616] sm:text-[56px] sm:leading-[1.05]">
+              Trusted By
+            </h2>
+
+            {/* logo-row (Marquee Container): 1280px Width, 106px Height, 64px Gap */}
+            <div className="relative flex h-[106px] w-full items-center overflow-hidden">
+              <motion.div
+                className="flex w-max items-center"
+                animate={{ x: ["0%", "-50%"] }} // Translates exactly half its width infinitely
+                transition={{ repeat: Infinity, ease: "linear", duration: 25 }} // Slow continuous movement
+              >
+                {/* Duplicate the array twice to ensure seamless infinite scrolling */}
+                {[...Array(2)].map((_, idx) => (
+                  <div key={idx} className="flex items-center gap-[64px] pr-[64px]">
+                    {["Forbes", "HUFFPOST", "ELLE DECOR", "AD", "The New York Times"].map((brand, i) => (
+                      <div 
+                        key={i} 
+                        className="flex h-[106px] items-center justify-center whitespace-nowrap text-[28px] font-black tracking-tighter text-[#333] opacity-80"
+                      >
+                        {brand}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </motion.div>
             </div>
+            
           </div>
         </section>
 
