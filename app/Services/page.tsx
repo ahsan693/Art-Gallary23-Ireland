@@ -1,4 +1,4 @@
-import ServicesComponent from "./components/services/services";
+import ServicesComponent from "../components/services/services";
 
 
 export default function Services() {

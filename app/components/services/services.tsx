@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 // Importing the reusable Header and Footer from your Home page component
 import { Header, Footer } from "@/app/components/home/home";
 
@@ -10,6 +8,7 @@ import { Header, Footer } from "@/app/components/home/home";
 // ==========================================
 
 // Image asset for the Services Hero section
+// Using a placeholder that matches the framing workshop vibe from your Figma design
 const servicesHeroImg = "https://images.unsplash.com/photo-1459908676235-d5f02a50184b?auto=format&fit=crop&w=1920&q=85";
 
 // ==========================================
@@ -18,43 +17,41 @@ const servicesHeroImg = "https://images.unsplash.com/photo-1459908676235-d5f02a5
 
 export default function ServicesComponent() {
   return (
-    <div className="min-h-screen bg-[#f7f3eb] text-[#161616]">
+    <div className="flex min-h-screen flex-col bg-[#f7f3eb] text-[#161616]">
       
       {/* --- REUSABLE HEADER --- */}
       <Header />
 
       {/* --- MAIN PAGE CONTENT --- */}
-      <main>
+      <main className="flex w-full flex-1 flex-col items-center">
         
         {/* --- SERVICES HERO SECTION --- */}
-        {/* 1440px Fill, 600px Fixed Height, 80px Top/Bottom Padding (handled by centering) */}
-        <section className="relative mx-auto flex h-[600px] w-full max-w-[1440px] items-center justify-center overflow-hidden px-[24px]">
+        {/* Figma: 1440px Width, 600px Fixed Height, 80px Padding */}
+        <section className="relative flex h-[600px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[80px] lg:px-[80px]">
           
-          {/* Background Image */}
-          <div className="absolute inset-0 -z-20">
-            <Image
-              src={servicesHeroImg}
-              alt="Expert framing and printing services workshop"
-              fill
-              className="object-cover"
-              sizes="100vw"
-              priority
-            />
-          </div>
+          {/* 1. Background Image (z-0) 
+              Using a standard <img> tag here to bypass Next.js external domain config errors 
+              so it shows up immediately.
+          */}
+          <img
+            src={servicesHeroImg}
+            alt="Expert framing and printing services workshop"
+            className="absolute inset-0 z-0 h-full w-full object-cover"
+          />
 
-          {/* Dark Overlay (#000000 at 55% opacity per Figma spec) */}
-          <div className="absolute inset-0 -z-10 bg-black/[0.55]" />
+          {/* 2. Dark Overlay (z-10) - Figma spec: #000000 at 55% opacity */}
+          <div className="absolute inset-0 z-10 bg-[#000000]/[0.55]" />
 
-          {/* Inner Content Container (900px Max Width, Vertical Flow, 20px Gap) */}
-          <div className="flex w-full max-w-[900px] flex-col items-center gap-[20px] text-center text-white">
+          {/* 3. Inner Content Container (z-20) - 900px Max Width, Vertical Flow, 20px Gap */}
+          <div className="relative z-20 flex w-full max-w-[900px] flex-col items-center gap-[20px] text-center text-white">
             
-            {/* Heading 1 (Host Grotesk 700 Bold, 64px, 110% Line Height) */}
-            <h1 className="w-full text-[36px] font-bold leading-[1.1] tracking-[0px] sm:text-[48px] lg:text-[64px]">
-              Our Expert Framing & Printing Services
+            {/* Heading 1: Host Grotesk 700 Bold, 64px, 110% Line Height, Center Aligned */}
+            <h1 className="w-full text-[36px] font-bold leading-[1.1] sm:text-[48px] lg:text-[64px]">
+              Our Expert Framing &amp; Printing Services
             </h1>
 
-            {/* Subtitle (Host Grotesk 500 Medium, 20px, 140% Line Height, 700px Max Width) */}
-            <p className="w-full max-w-[700px] text-[16px] font-medium leading-[1.4] sm:text-[20px]">
+            {/* Subtitle: Host Grotesk 500 Medium, 20px, 140% Line Height, 700px Max Width */}
+            <p className="w-full max-w-[700px] text-[16px] font-medium leading-[1.4] sm:text-[18px] lg:text-[20px]">
               Dublin&apos;s most comprehensive range of professional framing services — every piece handcrafted by master framers with nearly 40 years of experience.
             </p>
 
