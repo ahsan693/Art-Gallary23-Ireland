@@ -563,9 +563,9 @@ export default function Home() {
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[48px] overflow-hidden bg-[#f5f0eb] px-5 py-[80px] lg:px-[80px]">
           
           <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
-            <h2 className="w-full max-w-[640px] text-[32px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[56px] sm:leading-[1.05]">
-              What Our Costumer Say
-            </h2>
+       <h2 className="w-full max-w-none whitespace-nowrap text-[22px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[40px] lg:text-[56px] sm:leading-[1.05]">
+  What Our Costumer Say
+</h2>
 
             <div className="flex h-[82px] w-full max-w-[1200px] items-center justify-between rounded-[27px] bg-white pl-[32px] pr-[16px] sm:pr-[24px]">
               <div className="flex flex-col items-start justify-center">
