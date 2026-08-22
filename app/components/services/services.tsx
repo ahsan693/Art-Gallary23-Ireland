@@ -90,6 +90,40 @@ export default function ServicesComponent() {
           </div>
 
         </section>
+        {/* --- JERSEY FRAMING SECTION --- */}
+        {/* Figma Layout: Horizontal Flow, 1440px Fill, Background: #F5F0EB, Padding: 60px Top/Bottom, 80px Left/Right, Gap 80px */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[40px] lg:flex-row lg:justify-center lg:gap-[80px] lg:px-[80px] lg:py-[60px]">
+          
+          {/* Left Image Container: 600px Width, 450px Height */}
+          <div className="relative h-[300px] w-full max-w-[600px] shrink-0 sm:h-[450px]">
+            {/* Using a standard <img> tag for immediate rendering. */}
+            <img
+              src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=85"
+              alt="Framed sports jersey in a custom shadow box"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+
+          {/* Right Content Container: 600px Max Width, Vertical Flow, 24px Gap */}
+          <div className="mt-8 flex w-full max-w-[600px] flex-col items-start gap-[24px] lg:mt-0">
+            
+            {/* Heading: Host Grotesk 600 SemiBold, 56px, 105% Line Height */}
+            <h2 className="w-full text-[32px] font-semibold leading-[1.05] text-[#161616] sm:text-[48px] lg:text-[56px]">
+              Jersey Framing
+            </h2>
+            
+            {/* Subtitle: Host Grotesk 500 Medium, 18px, 140% Line Height, 75% Opacity */}
+            <p className="w-full max-w-[600px] text-[16px] font-medium leading-[1.4] text-[#161616]/75 sm:text-[18px]">
+              Display your prized sports jerseys and memorabilia in custom-built shadow box frames. UV-protective glass keeps colors vibrant for years.
+            </p>
+            
+            {/* Button */}
+            <div className="pt-2">
+              <Button dark>INQUIRE NOW</Button>
+            </div>
+          </div>
+
+        </section>
 
       </main>
 
