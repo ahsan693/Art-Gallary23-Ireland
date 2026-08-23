@@ -45,51 +45,70 @@ export default function CommercialPage() {
           </div>
         </section>
 
-        {/* --- 2. WHO WE SERVE SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[24px] py-[80px] lg:px-[120px] lg:py-[100px]">
-          <h2 className="mb-[64px] text-center text-[36px] font-bold text-[#161616] sm:text-[48px]">
+      {/* --- 2. WHO WE SERVE SECTION --- */}
+        {/* Figma Layout: Vertical Flow, 1440px Fill, Background: #F5F0EB, Padding: 80px Top/Bottom, 120px Left/Right, Gap 56px */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[64px] lg:gap-[56px] lg:px-[120px] lg:py-[80px]">
+          
+          {/* Heading: Host Grotesk 600 SemiBold, 56px, 105% Line Height */}
+          <h2 className="text-center text-[36px] font-semibold leading-[1.05] text-[#161616] sm:text-[48px] lg:text-[56px] mb-[40px] lg:mb-0">
             Who We Serve
           </h2>
           
-          <div className="grid w-full max-w-[1200px] grid-cols-1 gap-[40px] md:grid-cols-3 lg:gap-[64px]">
-            {/* Architects */}
-            <div className="flex flex-col items-center text-center sm:items-start sm:text-left gap-[16px] rounded-[16px] bg-white p-[32px] shadow-sm">
-              <div className="flex size-[48px] items-center justify-center rounded-full bg-[#eaf2ef] text-[#295b42]">
-                <svg className="size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          {/* Grid Container: Horizontal Flow, 1200px Fill, 24px Gap */}
+          <div className="flex w-full max-w-[1200px] flex-col gap-[24px] lg:flex-row">
+            
+            {/* Card 1: Interior Designers & Architects */}
+            {/* 384px Width, 24px Radius, 1px Border, 40px Padding, 20px Gap */}
+            <div className="flex flex-1 flex-col items-start gap-[20px] rounded-[24px] border border-[#d5d5d5] bg-[#f5f0eb] p-[32px] sm:p-[40px]">
+              
+              {/* Icon Container: 64x64, 32px Radius, #295B42 Background */}
+              <div className="flex size-[64px] shrink-0 items-center justify-center rounded-[32px] bg-[#295b42] text-white">
+                <svg className="size-[28px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
               </div>
-              <h3 className="text-[20px] font-bold text-[#161616]">Interior Designers &amp; Architects</h3>
-              <p className="text-[15px] font-medium leading-[1.5] text-[#555]">
+              
+              {/* Title: Host Grotesk 700 Bold, 24px, 120% Line Height */}
+              <h3 className="text-[20px] font-bold leading-[1.2] text-[#161616] sm:text-[24px]">
+                Interior Designers &amp; Architects
+              </h3>
+              
+              {/* Text: Host Grotesk 400 Regular, 16px, 150% Line Height */}
+              <p className="text-[15px] font-normal leading-[1.5] text-[#555] sm:text-[16px]">
                 Large-scale framing projects for hotels, restaurants, offices, and residential developments. Custom specifications, bulk ordering, and project consultation.
               </p>
             </div>
 
-            {/* Corporate */}
-            <div className="flex flex-col items-center text-center sm:items-start sm:text-left gap-[16px] rounded-[16px] bg-white p-[32px] shadow-sm">
-              <div className="flex size-[48px] items-center justify-center rounded-full bg-[#eaf2ef] text-[#295b42]">
-                <svg className="size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            {/* Card 2: Corporate & Institutional Clients */}
+            <div className="flex flex-1 flex-col items-start gap-[20px] rounded-[24px] border border-[#d5d5d5] bg-[#f5f0eb] p-[32px] sm:p-[40px]">
+              <div className="flex size-[64px] shrink-0 items-center justify-center rounded-[32px] bg-[#295b42] text-white">
+                <svg className="size-[28px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="text-[20px] font-bold text-[#161616]">Corporate &amp; Institutional Clients</h3>
-              <p className="text-[15px] font-medium leading-[1.5] text-[#555]">
+              <h3 className="text-[20px] font-bold leading-[1.2] text-[#161616] sm:text-[24px]">
+                Corporate &amp; Institutional Clients
+              </h3>
+              <p className="text-[15px] font-normal leading-[1.5] text-[#555] sm:text-[16px]">
                 Branded framing solutions, bulk certificate framing, office art installations, and corporate gift programmes.
               </p>
             </div>
 
-            {/* Artists */}
-            <div className="flex flex-col items-center text-center sm:items-start sm:text-left gap-[16px] rounded-[16px] bg-white p-[32px] shadow-sm">
-              <div className="flex size-[48px] items-center justify-center rounded-full bg-[#eaf2ef] text-[#295b42]">
-                <svg className="size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            {/* Card 3: Professional Artists & Galleries */}
+            <div className="flex flex-1 flex-col items-start gap-[20px] rounded-[24px] border border-[#d5d5d5] bg-[#f5f0eb] p-[32px] sm:p-[40px]">
+              <div className="flex size-[64px] shrink-0 items-center justify-center rounded-[32px] bg-[#295b42] text-white">
+                <svg className="size-[28px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                 </svg>
               </div>
-              <h3 className="text-[20px] font-bold text-[#161616]">Professional Artists &amp; Galleries</h3>
-              <p className="text-[15px] font-medium leading-[1.5] text-[#555]">
+              <h3 className="text-[20px] font-bold leading-[1.2] text-[#161616] sm:text-[24px]">
+                Professional Artists &amp; Galleries
+              </h3>
+              <p className="text-[15px] font-normal leading-[1.5] text-[#555] sm:text-[16px]">
                 Exhibition-grade framing, canvas stretching, and archival printing services for galleries and solo shows.
               </p>
             </div>
+
           </div>
         </section>
 
