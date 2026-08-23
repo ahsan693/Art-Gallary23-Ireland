@@ -462,6 +462,68 @@ export default function AboutUsComponent() {
           </div>
 
         </section>
+
+        {/* --- PRESERVING MEMORIES (CTA) SECTION --- */}
+        {/* Figma Layout: Vertical Flow, 1440px Fill, Background: #F5F0EB, Padding: 80px Top/Bottom/Left/Right */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[80px] lg:px-[80px]">
+          
+          {/* Content Wrapper: 854px Max Width, Vertical Flow, 48px Gap */}
+          <div className="flex w-full max-w-[854px] flex-col items-center text-center gap-[48px]">
+            
+            {/* Headlines & Subtext Container */}
+            <div className="flex flex-col items-center gap-[24px]">
+              {/* Headline: Host Grotesk 700 Bold, 56px, 110% Line Height, -2% Tracking */}
+              <h2 className="text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[#161616] sm:text-[48px] lg:text-[56px]">
+                Preserving Memories <span className="text-[#295b42]">for Art Lovers like you</span>
+              </h2>
+              
+              {/* Subtext: Host Grotesk 400 Regular, 16px (scalable), 150% Line Height */}
+              <p className="max-w-[700px] text-[16px] font-normal leading-[1.5] text-[#555]">
+                From museum-quality framing to archival canvas prints, our expert team at Gallery 23 helps you protect your most treasured pieces and elevate your home with curated art.
+              </p>
+            </div>
+
+            {/* CTA Button: 600 SemiBold, 14px, 150% LH, 120% Letter Spacing (0.12em) */}
+            <button className="rounded-full bg-[#161616] px-[40px] py-[16px] text-[14px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-neutral-800">
+              Book a Consultation
+            </button>
+
+            {/* Trust Indicator Container: Horizontal Flow, 16px Gap, 32px Height */}
+            <div className="flex flex-row items-center justify-center gap-[16px]">
+              
+              {/* Avatars Grid: 80px Width, 32px Height (-space-x-4 achieves the exact 80px width for 4x32px avatars) */}
+              <div className="flex h-[32px] w-[80px] -space-x-4">
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=85"
+                  alt="Collector 1"
+                  className="relative z-10 size-[32px] rounded-full border-[2px] border-[#f5f0eb] object-cover"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&q=85"
+                  alt="Collector 2"
+                  className="relative z-20 size-[32px] rounded-full border-[2px] border-[#f5f0eb] object-cover"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=85"
+                  alt="Collector 3"
+                  className="relative z-30 size-[32px] rounded-full border-[2px] border-[#f5f0eb] object-cover"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=85"
+                  alt="Collector 4"
+                  className="relative z-40 size-[32px] rounded-full border-[2px] border-[#f5f0eb] object-cover"
+                />
+              </div>
+
+              {/* Trust Text: Host Grotesk 500 Medium, 14px, 150% Line Height */}
+              <p className="text-[14px] font-medium leading-[1.5] text-[#161616]">
+                Trusted by collectors and artists across Ireland
+              </p>
+
+            </div>
+
+          </div>
+        </section>
         
 
         {/* 
