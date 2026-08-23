@@ -112,74 +112,125 @@ export default function CommercialPage() {
           </div>
         </section>
 
-        {/* --- 3. ALTERNATING FEATURES --- */}
-        <section className="flex w-full max-w-[1440px] flex-col items-center gap-[80px] px-[24px] py-[40px] lg:px-[120px] lg:py-[80px]">
+     {/* --- 3. ALTERNATING FEATURES --- */}
+        <div className="flex w-full flex-col items-center">
           
-          {/* Feature 1: Text Left, Image Right */}
-          <div className="flex w-full flex-col-reverse items-center justify-between gap-[48px] lg:flex-row lg:gap-[80px]">
-            <div className="flex w-full max-w-[480px] flex-col items-start gap-[24px]">
-              <h2 className="text-[32px] font-bold leading-[1.1] text-[#161616] sm:text-[40px]">Bulk Custom Framing</h2>
-              <p className="text-[16px] font-medium leading-[1.5] text-[#555]">
-                Large volume orders with consistent quality across hundreds of frames. Ideal for hotel chains, office fit-outs, and property developments.
-              </p>
-              <button className="rounded-full bg-[#161616] px-[28px] py-[12px] text-[14px] font-semibold text-white transition hover:bg-neutral-800">
-                Get a Quote &rarr;
-              </button>
-            </div>
-            <div className="h-[360px] w-full max-w-[600px] overflow-hidden rounded-[24px]">
-              <img src={bulkFramingImg} alt="Bulk Framing" className="h-full w-full object-cover" />
-            </div>
-          </div>
+          {/* Feature 1: Bulk Custom Framing (Text Left, Image Right) | Background: White */}
+          <section className="flex w-full justify-center bg-white px-[24px] py-[64px] lg:px-[120px] lg:py-[80px]">
+            <div className="flex w-full max-w-[1200px] flex-col-reverse items-center justify-between gap-[48px] lg:flex-row lg:gap-[80px]">
+              
+              {/* Text Container: 412px Width, Vertical Flow, 12px Gap */}
+              <div className="flex w-full flex-col items-start gap-[12px] lg:w-[412px] lg:shrink-0">
+                {/* Heading: Host Grotesk 600 SemiBold, 56px, 105% Line Height */}
+                <h2 className="text-[36px] font-semibold leading-[1.05] text-[#161616] sm:text-[48px] lg:text-[56px]">
+                  Bulk Custom Framing
+                </h2>
+                {/* Paragraph: Host Grotesk 400 Regular, 16px, 150% Line Height, #555555 */}
+                <p className="text-[16px] font-normal leading-[1.5] text-[#555555]">
+                  Large volume orders with consistent quality across hundreds of frames. Ideal for hotel chains, office fit-outs, and property developments.
+                </p>
+                {/* Button: 48.5px Height, 100px Radius, Black */}
+                <button className="mt-[12px] inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-full bg-black px-[24px] text-[14px] font-semibold text-white transition hover:bg-neutral-800">
+                  Get a Quote
+                  <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+              </div>
 
-          {/* Feature 2: Image Left, Text Right */}
-          <div className="flex w-full flex-col items-center justify-between gap-[48px] lg:flex-row lg:gap-[80px]">
-            <div className="h-[360px] w-full max-w-[600px] overflow-hidden rounded-[24px]">
-              <img src={printingImg} alt="Fine Art Printing" className="h-full w-full object-cover" />
-            </div>
-            <div className="flex w-full max-w-[480px] flex-col items-start gap-[24px]">
-              <h2 className="text-[32px] font-bold leading-[1.1] text-[#161616] sm:text-[40px]">Commercial Fine Art Printing</h2>
-              <p className="text-[16px] font-medium leading-[1.5] text-[#555]">
-                High-volume giclée printing on archival papers and canvas. Perfect for interior design schemes and corporate art programmes.
-              </p>
-              <button className="rounded-full bg-[#161616] px-[28px] py-[12px] text-[14px] font-semibold text-white transition hover:bg-neutral-800">
-                Get a Quote &rarr;
-              </button>
-            </div>
-          </div>
+              {/* Image Container: 600px Width, 450px Height, 24px Radius */}
+              <div className="h-[300px] w-full max-w-[600px] shrink-0 overflow-hidden rounded-[24px] sm:h-[450px]">
+                <img src={bulkFramingImg} alt="Bulk Custom Framing" className="h-full w-full object-cover" />
+              </div>
 
-          {/* Feature 3: Text Left, Image Right */}
-          <div className="flex w-full flex-col-reverse items-center justify-between gap-[48px] lg:flex-row lg:gap-[80px]">
-            <div className="flex w-full max-w-[480px] flex-col items-start gap-[24px]">
-              <h2 className="text-[32px] font-bold leading-[1.1] text-[#161616] sm:text-[40px]">Installation Services</h2>
-              <p className="text-[16px] font-medium leading-[1.5] text-[#555]">
-                Professional on-site installation for commercial spaces. Our team handles delivery, hanging, and placement with laser precision.
-              </p>
-              <button className="rounded-full bg-[#161616] px-[28px] py-[12px] text-[14px] font-semibold text-white transition hover:bg-neutral-800">
-                Get a Quote &rarr;
-              </button>
             </div>
-            <div className="h-[360px] w-full max-w-[600px] overflow-hidden rounded-[24px]">
-              <img src={installationImg} alt="Installation Services" className="h-full w-full object-cover" />
-            </div>
-          </div>
+          </section>
 
-          {/* Feature 4: Image Left, Text Right */}
-          <div className="flex w-full flex-col items-center justify-between gap-[48px] lg:flex-row lg:gap-[80px]">
-            <div className="h-[360px] w-full max-w-[600px] overflow-hidden rounded-[24px]">
-              <img src={consultationImg} alt="Project Consultation" className="h-full w-full object-cover" />
-            </div>
-            <div className="flex w-full max-w-[480px] flex-col items-start gap-[24px]">
-              <h2 className="text-[32px] font-bold leading-[1.1] text-[#161616] sm:text-[40px]">Project Consultation</h2>
-              <p className="text-[16px] font-medium leading-[1.5] text-[#555]">
-                Free consultations to scope your project requirements, timeline, and budget. We work directly with your design team.
-              </p>
-              <button className="rounded-full bg-[#161616] px-[28px] py-[12px] text-[14px] font-semibold text-white transition hover:bg-neutral-800">
-                Get a Quote &rarr;
-              </button>
-            </div>
-          </div>
+          {/* Feature 2: Commercial Fine Art Printing (Image Left, Text Right) | Background: Cream */}
+          <section className="flex w-full justify-center bg-[#f5f0eb] px-[24px] py-[64px] lg:px-[120px] lg:py-[80px]">
+            <div className="flex w-full max-w-[1200px] flex-col-reverse items-center justify-between gap-[48px] lg:flex-row-reverse lg:gap-[80px]">
+              
+              {/* Text Container: 412px Width, Vertical Flow, 12px Gap */}
+              <div className="flex w-full flex-col items-start gap-[12px] lg:w-[412px] lg:shrink-0">
+                <h2 className="text-[36px] font-semibold leading-[1.05] text-[#161616] sm:text-[48px] lg:text-[56px]">
+                  Commercial Fine Art Printing
+                </h2>
+                <p className="text-[16px] font-normal leading-[1.5] text-[#555555]">
+                  High-volume giclée printing on archival papers and canvas. Perfect for interior design schemes and corporate art programmes.
+                </p>
+                <button className="mt-[12px] inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-full bg-black px-[24px] text-[14px] font-semibold text-white transition hover:bg-neutral-800">
+                  Get a Quote
+                  <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+              </div>
 
-        </section>
+              {/* Image Container: 600px Width, 450px Height, 24px Radius */}
+              <div className="h-[300px] w-full max-w-[600px] shrink-0 overflow-hidden rounded-[24px] sm:h-[450px]">
+                <img src={printingImg} alt="Commercial Fine Art Printing" className="h-full w-full object-cover" />
+              </div>
+
+            </div>
+          </section>
+
+          {/* Feature 3: Installation Services (Text Left, Image Right) | Background: White */}
+          <section className="flex w-full justify-center bg-white px-[24px] py-[64px] lg:px-[120px] lg:py-[80px]">
+            <div className="flex w-full max-w-[1200px] flex-col-reverse items-center justify-between gap-[48px] lg:flex-row lg:gap-[80px]">
+              
+              {/* Text Container: 412px Width, Vertical Flow, 12px Gap */}
+              <div className="flex w-full flex-col items-start gap-[12px] lg:w-[412px] lg:shrink-0">
+                <h2 className="text-[36px] font-semibold leading-[1.05] text-[#161616] sm:text-[48px] lg:text-[56px]">
+                  Installation Services
+                </h2>
+                <p className="text-[16px] font-normal leading-[1.5] text-[#555555]">
+                  Professional on-site installation for commercial spaces. Our team handles delivery, hanging, and placement with laser precision.
+                </p>
+                <button className="mt-[12px] inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-full bg-black px-[24px] text-[14px] font-semibold text-white transition hover:bg-neutral-800">
+                  Get a Quote
+                  <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Image Container: 600px Width, 450px Height, 24px Radius */}
+              <div className="h-[300px] w-full max-w-[600px] shrink-0 overflow-hidden rounded-[24px] sm:h-[450px]">
+                <img src={installationImg} alt="Installation Services" className="h-full w-full object-cover" />
+              </div>
+
+            </div>
+          </section>
+
+          {/* Feature 4: Project Consultation (Image Left, Text Right) | Background: Cream */}
+          <section className="flex w-full justify-center bg-[#f5f0eb] px-[24px] py-[64px] lg:px-[120px] lg:py-[80px]">
+            <div className="flex w-full max-w-[1200px] flex-col-reverse items-center justify-between gap-[48px] lg:flex-row-reverse lg:gap-[80px]">
+              
+              {/* Text Container: 412px Width, Vertical Flow, 12px Gap */}
+              <div className="flex w-full flex-col items-start gap-[12px] lg:w-[412px] lg:shrink-0">
+                <h2 className="text-[36px] font-semibold leading-[1.05] text-[#161616] sm:text-[48px] lg:text-[56px]">
+                  Project Consultation
+                </h2>
+                <p className="text-[16px] font-normal leading-[1.5] text-[#555555]">
+                  Free consultations to scope your project requirements, timeline, and budget. We work directly with your design team.
+                </p>
+                <button className="mt-[12px] inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-full bg-black px-[24px] text-[14px] font-semibold text-white transition hover:bg-neutral-800">
+                  Get a Quote
+                  <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Image Container: 600px Width, 450px Height, 24px Radius */}
+              <div className="h-[300px] w-full max-w-[600px] shrink-0 overflow-hidden rounded-[24px] sm:h-[450px]">
+                <img src={consultationImg} alt="Project Consultation" className="h-full w-full object-cover" />
+              </div>
+
+            </div>
+          </section>
+
+        </div>
 
         {/* --- 4. TRUSTED BY LOGOS --- */}
         <section className="flex w-full max-w-[1440px] flex-col items-center bg-[#161616] px-[24px] py-[80px] lg:px-[120px] lg:py-[100px]">
