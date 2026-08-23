@@ -232,48 +232,72 @@ export default function CommercialPage() {
 
         </div>
 
-        {/* --- 4. TRUSTED BY LOGOS --- */}
-        <section className="flex w-full max-w-[1440px] flex-col items-center bg-[#161616] px-[24px] py-[80px] lg:px-[120px] lg:py-[100px]">
-          <h2 className="mb-[48px] text-center text-[32px] font-bold text-white sm:text-[40px]">
-            Trusted by Leading Businesses
-          </h2>
+      {/* --- 4. TRUSTED BY LOGOS SECTION --- */}
+        {/* Figma Layout: Vertical Flow, 1440px Fill, Background: #161616, Padding: 80px Top/Bottom, 120px Left/Right, Gap 48px */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#161616] px-[24px] py-[64px] lg:gap-[48px] lg:px-[120px] lg:py-[80px]">
           
-          <div className="grid w-full max-w-[1000px] grid-cols-1 gap-[24px] sm:grid-cols-3">
-            {/* Logo 1 */}
-            <div className="flex flex-col gap-[12px]">
-              <div className="flex h-[120px] w-full items-center justify-center rounded-[12px] bg-white p-[24px]">
+          {/* Header Container: 1200px Max Width */}
+          <div className="flex w-full max-w-[1200px] flex-col items-center text-center mb-[32px] lg:mb-0">
+            {/* Heading: Host Grotesk 600 SemiBold, 56px, 105% Line Height, White */}
+            <h2 className="text-[32px] font-semibold leading-[1.05] text-white sm:text-[40px] lg:text-[56px]">
+              Trusted by Leading Businesses
+            </h2>
+          </div>
+          
+          {/* Cards Grid Container: Horizontal Flow, 1200px Max Width, 24px Gap */}
+          <div className="flex w-full max-w-[1200px] flex-col gap-[24px] lg:flex-row">
+            
+            {/* Card 1: Forbes */}
+            {/* 384px Width, Vertical Flow, 20px Gap */}
+            <div className="flex flex-1 flex-col items-start gap-[20px] lg:w-[384px]">
+              {/* Logo Container: 161px Height, 16px Radius, White BG */}
+              <div className="flex h-[161px] w-full items-center justify-center rounded-[16px] bg-white p-[24px]">
                 {/* Fallback styling for Forbes logo */}
-                <span className="font-serif text-[40px] font-bold tracking-tighter text-black">Forbes</span>
+                <span className="font-serif text-[56px] font-bold tracking-tighter text-black">Forbes</span>
               </div>
-              <div className="px-[4px]">
-                <p className="text-[10px] uppercase tracking-widest text-[#999]">Media</p>
-                <p className="text-[14px] font-medium text-white">Corporate Head Office Art Curation</p>
+              {/* Text Content */}
+              <div className="flex flex-col gap-[4px]">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-white">Forbes</p>
+                {/* Title: Host Grotesk 600 SemiBold, 20px, 140% Line Height */}
+                <h3 className="text-[18px] font-semibold leading-[1.4] text-white sm:text-[20px]">
+                  The Shelbourne Hotel Suite Refresh
+                </h3>
               </div>
             </div>
 
-            {/* Logo 2 */}
-            <div className="flex flex-col gap-[12px]">
-              <div className="flex h-[120px] w-full items-center justify-center rounded-[12px] bg-white p-[24px]">
+            {/* Card 2: ELLE DECOR */}
+            <div className="flex flex-1 flex-col items-start gap-[20px] lg:w-[384px]">
+              <div className="flex h-[161px] w-full items-center justify-center rounded-[16px] bg-white p-[24px]">
                 {/* Fallback styling for Elle Decor logo */}
-                <span className="font-serif text-[36px] font-light tracking-widest text-black">ELLE DECOR</span>
+                <span className="font-serif text-[40px] font-light tracking-widest text-[#555]">
+                  <span className="font-bold text-black">ELLE</span> DECOR
+                </span>
               </div>
-              <div className="px-[4px]">
-                <p className="text-[10px] uppercase tracking-widest text-[#999]">Hospitality</p>
-                <p className="text-[14px] font-medium text-white">The Shelbourne Hotel Suite Refresh</p>
+              <div className="flex flex-col gap-[4px]">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-white">HOSPITALITY</p>
+                <h3 className="text-[18px] font-semibold leading-[1.4] text-white sm:text-[20px]">
+                  The Shelbourne Hotel Suite Refresh
+                </h3>
               </div>
             </div>
 
-            {/* Logo 3 */}
-            <div className="flex flex-col gap-[12px]">
-              <div className="flex h-[120px] w-full items-center justify-center rounded-[12px] bg-white p-[24px]">
+            {/* Card 3: AD (Architectural Digest) */}
+            <div className="flex flex-1 flex-col items-start gap-[20px] lg:w-[384px]">
+              <div className="flex h-[161px] w-full items-center justify-center rounded-[16px] bg-white p-[24px]">
                 {/* Fallback styling for AD logo */}
-                <span className="font-serif text-[48px] font-normal tracking-tighter text-black">AD</span>
+                <div className="flex flex-col items-center">
+                   <span className="font-serif text-[64px] font-normal leading-none tracking-tighter text-black">AD</span>
+                   <span className="mt-[-4px] text-[8px] font-medium tracking-[0.2em] text-[#555]">ARCHITECTURAL DIGEST</span>
+                </div>
               </div>
-              <div className="px-[4px]">
-                <p className="text-[10px] uppercase tracking-widest text-[#999]">Hospitality</p>
-                <p className="text-[14px] font-medium text-white">The Shelbourne Hotel Suite Refresh</p>
+              <div className="flex flex-col gap-[4px]">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-white">HOSPITALITY</p>
+                <h3 className="text-[18px] font-semibold leading-[1.4] text-white sm:text-[20px]">
+                  The Shelbourne Hotel Suite Refresh
+                </h3>
               </div>
             </div>
+
           </div>
         </section>
 
