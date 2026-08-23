@@ -301,37 +301,42 @@ export default function CommercialPage() {
           </div>
         </section>
 
-        {/* --- 5. REQUEST A QUOTE FORM --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[24px] py-[80px] lg:px-[120px] lg:py-[100px]">
-          <div className="flex w-full max-w-[800px] flex-col items-center gap-[40px] rounded-[32px] bg-white p-[32px] shadow-sm sm:p-[48px] lg:p-[64px]">
+      {/* --- 5. REQUEST A QUOTE FORM --- */}
+        {/* Figma Layout: Vertical Flow, 1440px Fill, Background: #F5F0EB, Padding: 80px Top/Bottom, 120px Left/Right */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[80px] lg:px-[120px]">
+          
+          {/* Form Card Container: 900px Max Width, 32px Radius, 1px Border, 64px Padding, 40px Gap */}
+          <div className="flex w-full max-w-[900px] flex-col items-center gap-[40px] rounded-[32px] border border-[#d5d5d5] bg-white p-[32px] sm:p-[48px] lg:p-[64px]">
             
-            <h2 className="text-center text-[32px] font-bold text-[#161616] sm:text-[40px]">
+            {/* Heading: Host Grotesk 600 SemiBold, 56px, 105% Line Height */}
+            <h2 className="text-center text-[36px] font-semibold leading-[1.05] text-[#161616] sm:text-[48px] lg:text-[56px]">
               Request a Commercial Quote
             </h2>
 
-            <form className="flex w-full flex-col gap-[20px]" onSubmit={(e) => e.preventDefault()}>
+            {/* Form Inner Container: 772px Max Width, Vertical Flow, 20px Gap */}
+            <form className="flex w-full max-w-[772px] flex-col gap-[20px]" onSubmit={(e) => e.preventDefault()}>
               
-              {/* Row 1 */}
+              {/* Row 1: Company Name & Contact Name (81px Height) */}
               <div className="grid grid-cols-1 gap-[20px] sm:grid-cols-2">
-                <div className="flex flex-col gap-[8px]">
-                  <label className="text-[13px] font-bold text-[#161616]">Company Name</label>
-                  <input type="text" placeholder="e.g. O'Connor Architects" className="h-[50px] rounded-[8px] border border-[#d5d5d5] bg-white px-[16px] text-[14px] outline-none focus:border-[#295b42]" />
+                <div className="flex flex-col gap-[10px]">
+                  <label className="text-[14px] font-bold text-[#161616]">Company Name</label>
+                  <input type="text" placeholder="e.g. O'Donnell Architects" className="h-[50px] w-full rounded-[8px] border border-[#d5d5d5] bg-white px-[16px] text-[14px] outline-none transition-colors focus:border-[#295b42]" />
                 </div>
-                <div className="flex flex-col gap-[8px]">
-                  <label className="text-[13px] font-bold text-[#161616]">Contact Name</label>
-                  <input type="text" placeholder="Your Name" className="h-[50px] rounded-[8px] border border-[#d5d5d5] bg-white px-[16px] text-[14px] outline-none focus:border-[#295b42]" />
+                <div className="flex flex-col gap-[10px]">
+                  <label className="text-[14px] font-bold text-[#161616]">Contact Name</label>
+                  <input type="text" placeholder="Your Name..." className="h-[50px] w-full rounded-[8px] border border-[#d5d5d5] bg-white px-[16px] text-[14px] outline-none transition-colors focus:border-[#295b42]" />
                 </div>
               </div>
 
-              {/* Row 2 */}
+              {/* Row 2: Email Address & Project Type (81px Height) */}
               <div className="grid grid-cols-1 gap-[20px] sm:grid-cols-2">
-                <div className="flex flex-col gap-[8px]">
-                  <label className="text-[13px] font-bold text-[#161616]">Email Address</label>
-                  <input type="email" placeholder="work@company.com" className="h-[50px] rounded-[8px] border border-[#d5d5d5] bg-white px-[16px] text-[14px] outline-none focus:border-[#295b42]" />
+                <div className="flex flex-col gap-[10px]">
+                  <label className="text-[14px] font-bold text-[#161616]">Email Address</label>
+                  <input type="email" placeholder="work@email.com" className="h-[50px] w-full rounded-[8px] border border-[#d5d5d5] bg-white px-[16px] text-[14px] outline-none transition-colors focus:border-[#295b42]" />
                 </div>
-                <div className="flex flex-col gap-[8px]">
-                  <label className="text-[13px] font-bold text-[#161616]">Project Type</label>
-                  <select className="h-[50px] rounded-[8px] border border-[#d5d5d5] bg-white px-[16px] text-[14px] outline-none focus:border-[#295b42]">
+                <div className="flex flex-col gap-[10px]">
+                  <label className="text-[14px] font-bold text-[#161616]">Project Type</label>
+                  <select className="h-[50px] w-full rounded-[8px] border border-[#d5d5d5] bg-white px-[16px] text-[14px] text-[#555] outline-none transition-colors focus:border-[#295b42]">
                     <option>Select...</option>
                     <option>Bulk Framing</option>
                     <option>Fine Art Printing</option>
@@ -341,29 +346,30 @@ export default function CommercialPage() {
                 </div>
               </div>
 
-              {/* Description */}
-              <div className="flex flex-col gap-[8px]">
-                <label className="text-[13px] font-bold text-[#161616]">Project Description</label>
+              {/* Project Description (191px Height Total) */}
+              <div className="flex flex-col gap-[10px]">
+                <label className="text-[14px] font-bold text-[#161616]">Project Description</label>
                 <textarea 
-                  placeholder="Tell us about your volume, dimensions, and timeline..." 
-                  className="min-h-[120px] resize-y rounded-[8px] border border-[#d5d5d5] bg-white p-[16px] text-[14px] outline-none focus:border-[#295b42]" 
+                  placeholder="Tell us about your volume, materials, and timeline..." 
+                  className="h-[150px] w-full resize-y rounded-[8px] border border-[#d5d5d5] bg-[#fcfcfc] p-[16px] text-[14px] outline-none transition-colors focus:border-[#295b42] focus:bg-white" 
                 />
               </div>
 
-              {/* File Upload Placeholder */}
-              <div className="mt-[8px] flex h-[100px] w-full cursor-pointer flex-col items-center justify-center gap-[8px] rounded-[8px] border-2 border-dashed border-[#d5d5d5] bg-[#fcfcfc] transition hover:bg-gray-50">
-                <svg className="size-[24px] text-[#999]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+              {/* File Upload Placeholder: 111px Height, Dashed Border, 24px Padding */}
+              <div className="flex h-[111px] w-full cursor-pointer flex-col items-center justify-center gap-[10px] rounded-[8px] border border-dashed border-[#d5d5d5] bg-white p-[24px] transition-colors hover:bg-gray-50">
+                <svg className="size-[24px] text-[#295b42]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
                 </svg>
-                <p className="text-[13px] text-[#777]">Upload blueprints or project assets</p>
+                <p className="text-[14px] text-[#555]">Upload blueprints or project specs</p>
               </div>
 
-              {/* Submit */}
-              <div className="mt-[16px] flex flex-col gap-[12px]">
-                <button type="submit" className="h-[56px] w-full rounded-[8px] bg-[#295b42] text-[16px] font-bold text-white transition hover:bg-[#204834]">
+              {/* Submit Area: 113px Hug Height, 16px Top Padding, 12px Gap */}
+              <div className="mt-[4px] flex flex-col gap-[12px] pt-[16px]">
+                {/* Submit Button: 65px Height, 12px Radius, #295B42 */}
+                <button type="submit" className="flex h-[65px] w-full items-center justify-center rounded-[12px] bg-[#295b42] px-[20px] text-[16px] font-bold text-white transition-colors hover:bg-[#204834]">
                   Submit Commercial Enquiry
                 </button>
-                <p className="text-center text-[12px] text-[#777]">
+                <p className="text-[12px] text-[#555555]">
                   All enquiries sent to info@gallery23.ie. Our commercial team responds within 24 hours.
                 </p>
               </div>
