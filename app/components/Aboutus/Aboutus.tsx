@@ -386,6 +386,82 @@ export default function AboutUsComponent() {
 
           </div>
         </section>
+{/* --- FAQ SECTION --- */}
+        {/* Figma Layout: Horizontal Flow, 1440px Fill, Background: #295B42, Padding: 80px Top/Bottom/Left/Right, Gap 48px */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#295b42] px-[24px] py-[60px] lg:flex-row lg:items-stretch lg:justify-center lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
+          
+          {/* Left Image Container: 471px Width, 24px Radius */}
+          {/* Using lg:h-auto allows this container to stretch exactly to the height of the right text section */}
+          <div className="relative mb-[40px] h-[500px] w-full max-w-[471px] shrink-0 overflow-hidden rounded-[24px] sm:h-[700px] lg:mb-0 lg:h-auto">
+            <img
+              src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=85"
+              alt="Visitors at an art exhibition"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+
+          {/* Right Content Container: 761px Fill Width, Vertical Flow, 48px Gap */}
+          <div className="flex w-full max-w-[761px] flex-col gap-[48px]">
+            
+            {/* Heading: Host Grotesk 500 Medium, 56px, 105% Line Height, White */}
+            <h2 className="text-[32px] font-medium leading-[1.05] text-white sm:text-[48px] lg:text-[56px]">
+              Frequently Asked Questions
+            </h2>
+
+            {/* FAQ List Container: Vertical Flow, 16px Gap */}
+            <div className="flex flex-col gap-[16px]">
+              
+              {[
+                {
+                  q: "Do I need an appointment?",
+                  a: "Walk-ins are always welcome! However, if you'd like dedicated one-on-one time with a designer, we recommend booking a free consultation.",
+                },
+                {
+                  q: "How long does custom framing take?",
+                  a: "Most projects are completed within 2–3 weeks. Rush orders are available for an additional fee.",
+                },
+                {
+                  q: "What can you frame?",
+                  a: "Almost anything — artwork, photos, jerseys, medals, diplomas, memorabilia, shadow boxes, and more. If it's meaningful to you, we can frame it.",
+                },
+                {
+                  q: "Do you offer delivery?",
+                  a: "Yes! We offer local delivery for framed pieces. Ask about our white-glove installation service for larger works.",
+                },
+                {
+                  q: "What payment methods do you accept?",
+                  a: "We accept all major credit cards, cash, and offer payment plans for larger projects.",
+                },
+              ].map((faq, index) => (
+                /* FAQ Card: White Background, 12px Radius, 30px Padding, 16px Gap */
+                <article key={index} className="flex flex-col gap-[16px] rounded-[12px] bg-white p-[24px] sm:p-[30px]">
+                  
+                  {/* Question Row: Horizontal Flow, Space Between */}
+                  <div className="flex items-start justify-between gap-[16px]">
+                    {/* Question Text: Host Grotesk 600 SemiBold, 24px, 120% Line Height */}
+                    <h3 className="text-[20px] font-semibold leading-[1.2] text-[#161616] sm:text-[24px]">
+                      {faq.q}
+                    </h3>
+                    {/* Plus Icon: 16x16px */}
+                    <button className="mt-[6px] shrink-0 text-[#161616]">
+                      <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Answer Text: Host Grotesk 400 Regular, 16px, 150% Line Height */}
+                  <p className="text-[15px] font-normal leading-[1.5] text-[#555] sm:text-[16px]">
+                    {faq.a}
+                  </p>
+                  
+                </article>
+              ))}
+
+            </div>
+          </div>
+
+        </section>
         
 
         {/* 
