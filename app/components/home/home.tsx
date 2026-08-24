@@ -37,8 +37,8 @@ const navItems = [
 
 const rightNav = [
   { name: "About Us", href: "/about" },
-  { name: "Stores", href: "/contactus" },
-  { name: "Support", href: "/contactus" },
+  { name: "Stores", href: "/contact" },
+  { name: "Support", href: "/contact" },
 ];
 
 // Services Section Data
