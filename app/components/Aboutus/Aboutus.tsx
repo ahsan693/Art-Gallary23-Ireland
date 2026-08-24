@@ -321,12 +321,18 @@ export default function AboutUsComponent() {
         </section>
 
         {/* --- THE TEAM SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#161616] px-[24px] py-[48px] lg:gap-[64px] lg:px-[80px] lg:py-[120px]">
+     {/* --- THE TEAM SECTION --- */}
+        {/* Figma Layout: Vertical Flow, 1440px Fill, Background: #161616, Padding: 120px Top/Bottom, 80px Left/Right, Gap 64px */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#161616] px-[24px] py-[60px] lg:gap-[64px] lg:px-[80px] lg:py-[120px]">
+          
+          {/* Header Container: Horizontal Flow, 1280px Fill, Space-Between */}
           <div className="flex w-full max-w-[1280px] flex-row items-end justify-between mb-[24px] lg:mb-0">
-            <h2 className="text-[26px] font-medium leading-[1.15] text-white sm:text-[48px] sm:leading-[1.05] lg:text-[56px]">
+            {/* Heading: Host Grotesk 500 Medium, 56px, 105% Line Height */}
+            <h2 className="text-[28px] font-medium leading-[1.15] text-white sm:text-[48px] sm:leading-[1.05] lg:text-[56px]">
               The Gallery23 Team
             </h2>
 
+            {/* Nav Controls */}
             <div className="hidden pb-[12px] lg:flex lg:gap-[16px]">
               <button className="flex size-[48px] items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white/10 sm:size-[56px]">
                 <svg className="size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
@@ -341,13 +347,14 @@ export default function AboutUsComponent() {
             </div>
           </div>
 
-          <div className="grid w-full max-w-[1280px] grid-cols-2 gap-x-[12px] gap-y-[24px] lg:flex lg:gap-[24px] lg:overflow-x-auto lg:pb-[24px]">
+          {/* Team Cards Container: Exactly 1280px Width, 24px Gap, 4 Columns */}
+          <div className="flex w-full max-w-[1280px] flex-nowrap justify-between gap-[16px] overflow-x-auto pb-[16px] lg:gap-[24px] lg:overflow-visible lg:pb-0">
             {[
               {
                 name: "Greg Thompson Sr.",
                 role: "Founder & Master Craftsman",
                 desc: "Started it all in 1985 with passion and precision.",
-                img: "https://images.unsplash.com/photo-1533227260879-109010c75c81?auto=format&fit=crop&w=800&q=85",
+                img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=85",
               },
               {
                 name: "Greg Thompson Jr.",
@@ -368,51 +375,46 @@ export default function AboutUsComponent() {
                 img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85",
               },
             ].map((member, index) => (
-              <article key={index} className="flex w-full flex-col gap-[12px] sm:gap-[20px] lg:w-[302px] lg:shrink-0">
-                <div className="relative h-[180px] w-full overflow-hidden rounded-[12px] sm:h-[340px] lg:h-[402px]">
+              /* Card Container: Exact 302px Width on Desktop (25% minus gap margin) */
+              <article 
+                key={index} 
+                className="flex w-[260px] shrink-0 flex-col gap-[16px] sm:w-[280px] lg:w-[calc(25%-18px)] lg:shrink lg:gap-[20px]"
+              >
+                {/* Member Portrait: Exact 402.67px Height on Desktop, 12px Radius */}
+                <div className="relative h-[320px] w-full overflow-hidden rounded-[12px] sm:h-[360px] lg:h-[402px]">
                   <img
                     src={member.img}
                     alt={member.name}
                     className="absolute inset-0 h-full w-full object-cover"
                   />
+                  {/* Linear Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   
-                  <button className="absolute bottom-[10px] left-[10px] text-white hover:text-white/80 sm:bottom-[16px] sm:left-[16px]">
-                    <svg className="size-[18px] sm:size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                  {/* Mail Icon */}
+                  <button className="absolute bottom-[12px] left-[12px] text-white hover:text-white/80 sm:bottom-[16px] sm:left-[16px]">
+                    <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                     </svg>
                   </button>
                 </div>
 
-                <div className="flex flex-col gap-[10px] sm:gap-[16px]">
+                {/* Member Info Container: Vertical Flow, 16px Gap */}
+                <div className="flex flex-col gap-[12px] sm:gap-[16px]">
                   <div className="flex flex-col gap-[4px] sm:gap-[6px]">
-                    <h3 className="text-[16px] font-bold leading-[1.2] text-white sm:text-[20px] lg:text-[24px]">
+                    <h3 className="text-[18px] font-bold leading-[1.2] text-white sm:text-[20px] lg:text-[24px]">
                       {member.name}
                     </h3>
-                    <p className="text-[10px] font-medium uppercase leading-[1.4] tracking-[0.05em] text-[#84a59d] sm:text-[12px] sm:leading-[1.5] lg:text-[14px]">
+                    <p className="text-[11px] font-medium uppercase leading-[1.4] tracking-[0.05em] text-[#84a59d] sm:text-[12px] lg:text-[14px]">
                       {member.role}
                     </p>
                   </div>
 
-                  <p className="text-[12px] font-normal leading-[1.4] text-[#999999] sm:text-[16px] sm:leading-[1.5]">
+                  <p className="text-[13px] font-normal leading-[1.5] text-[#999999] sm:text-[15px] lg:text-[16px]">
                     {member.desc}
                   </p>
                 </div>
               </article>
             ))}
-          </div>
-
-          <div className="mt-[24px] flex items-center justify-center gap-[16px] lg:hidden">
-            <button className="flex size-[48px] items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white/10">
-              <svg className="size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button className="flex size-[48px] items-center justify-center rounded-full border border-white text-white transition-colors hover:bg-white/10">
-              <svg className="size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
           </div>
         </section>
 
