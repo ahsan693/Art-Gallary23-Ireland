@@ -242,7 +242,7 @@ export function Header() {
         </div>
 
         <a
-          href="#"
+          href="/home"
           className="absolute left-1/2 top-0 hidden h-[72px] w-[320px] -translate-x-1/2 items-center justify-center text-center text-[24px] font-bold leading-[1.2] tracking-[1px] text-[#161616] lg:flex"
         >
           Gallery 23
