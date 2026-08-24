@@ -1,16 +1,78 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Header, Footer } from "@/app/components/home/home";
 
 // ==========================================
 // DATA & CONSTANTS
 // ==========================================
 const heroImg = "https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?auto=format&fit=crop&w=1920&q=85";
-const mapImg = "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1920&q=85"; // Placeholder for the actual map screenshot or iframe
 const statsImg = "https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=1920&q=85";
 const faqImg = "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=85";
 const ctaImg = "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1920&q=85";
 
+// ==========================================
+// ANIMATED COUNTER COMPONENT
+// ==========================================
+function AnimatedCounter({ 
+  target, 
+  suffix = "", 
+  duration = 2000 
+}: { 
+  target: number; 
+  suffix?: string; 
+  duration?: number; 
+}) {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const elementRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          let startTime: number | null = null;
+
+          const step = (timestamp: number) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            
+            // Smooth ease-out quad animation curve
+            const easeOutProgress = 1 - (1 - progress) * (1 - progress);
+            
+            setCount(Math.floor(easeOutProgress * target));
+
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            } else {
+              setCount(target);
+            }
+          };
+
+          window.requestAnimationFrame(step);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [target, duration, hasAnimated]);
+
+  return (
+    <h3 ref={elementRef} className="text-[56px] font-bold leading-none sm:text-[64px]">
+      {count.toLocaleString()}{suffix}
+    </h3>
+  );
+}
+
+// ==========================================
+// MAIN CONTACT COMPONENT
+// ==========================================
 export default function ContactComponent() {
   return (
     <div className="flex min-h-screen flex-col bg-[#f5f0eb] text-[#161616]">
@@ -20,34 +82,33 @@ export default function ContactComponent() {
       <main className="flex w-full flex-1 flex-col items-center">
         
         {/* --- 1. HERO SECTION --- */}
-        <section className="relative flex h-[500px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[80px] lg:h-[600px] lg:px-[80px]">
+        <section className="relative flex h-[495px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[64px] lg:h-[600px] lg:px-[80px] lg:py-[80px]">
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url('${heroImg}')` }}
           />
-          {/* Dark Overlay */}
           <div className="absolute inset-0 z-10 bg-black/50" />
 
           <div className="relative z-20 flex w-full max-w-[800px] flex-col items-center gap-[24px] text-center text-white">
-            <h1 className="w-full text-[36px] font-bold leading-[1.1] sm:text-[48px] lg:text-[64px]">
+            <h1 className="w-full text-[36px] font-semibold leading-[1.1] sm:text-[48px] sm:font-bold lg:text-[64px]">
               Let&apos;s Start a Conversation About Your Art.
             </h1>
-            <p className="w-full max-w-[600px] text-[16px] font-medium leading-[1.5] text-white/90 sm:text-[18px]">
+            <p className="w-full max-w-[600px] text-[16px] font-normal leading-[1.5] text-white/90 sm:text-[18px] sm:font-medium">
               From curatorial advice to museum-grade preservation, our studio in the heart of Dublin is ready to assist with your next project.
             </p>
           </div>
         </section>
 
         {/* --- 2. CONTACT INFO & FORM SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-start gap-[64px] px-[24px] py-[80px] lg:flex-row lg:justify-between lg:gap-[80px] lg:px-[120px] lg:py-[100px]">
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-start gap-[48px] px-[20px] py-[56px] lg:flex-row lg:justify-between lg:gap-[80px] lg:px-[120px] lg:py-[100px]">
           
           {/* Left: Contact Info */}
           <div className="flex w-full flex-col gap-[40px] lg:max-w-[480px]">
             <div className="flex flex-col gap-[16px]">
-              <h2 className="text-[32px] font-bold leading-[1.1] text-[#161616] sm:text-[40px]">
+              <h2 className="text-[36px] font-semibold leading-[1.1] text-[#161616] sm:text-[40px] sm:font-bold">
                 Visit Our Studio
               </h2>
-              <p className="text-[16px] leading-[1.5] text-[#555]">
+              <p className="text-[16px] font-normal leading-[1.5] text-[#555]">
                 Located in a historic Georgian building overlooking Stephen&apos;s Green, Gallery23 is a dedicated space for art, framing, and conversation.
               </p>
             </div>
@@ -132,10 +193,10 @@ export default function ContactComponent() {
 
           {/* Right: Contact Form */}
           <div className="w-full lg:max-w-[600px]">
-            <div className="flex w-full flex-col gap-[32px] rounded-[24px] bg-white p-[32px] shadow-sm sm:p-[48px]">
+            <div className="flex w-full flex-col gap-[24px] rounded-[24px] bg-white p-[24px] shadow-sm sm:gap-[32px] sm:p-[48px]">
               <div className="flex flex-col gap-[8px]">
                 <h3 className="text-[24px] font-bold text-[#161616]">Send a Message</h3>
-                <p className="text-[14px] text-[#555]">Select a topic below for any inquiries or commercial projects. We'll be in touch shortly.</p>
+                <p className="text-[14px] text-[#555]">Select a topic below for any inquiries or commercial projects. We&apos;ll be in touch shortly.</p>
               </div>
 
               <form className="flex flex-col gap-[20px]" onSubmit={(e) => e.preventDefault()}>
@@ -169,11 +230,8 @@ export default function ContactComponent() {
 
         </section>
 
-      {/* --- 3. MAP SECTION --- */}
-        {/* Figma Layout: Horizontal Flow, 1440px Fill, 600px Fixed Height */}
-        <section className="relative mx-auto flex h-[600px] w-full max-w-[1440px] items-center justify-center overflow-hidden bg-[#eaf2ef]">
-          
-          {/* Functional Google Maps Embed (Centered on Dublin/Dublin Bay) */}
+        {/* --- 3. MAP SECTION --- */}
+        <section className="relative mx-auto flex h-[454px] w-full max-w-[1440px] items-center justify-center overflow-hidden bg-[#eaf2ef] lg:h-[600px]">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d152515.6930058694!2d-6.386008688537637!3d53.32432014169553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e80ea27ac2f%3A0xa00c7a9973171a0!2sDublin%2C%20Ireland!5e0!3m2!1sen!2sus!4v1714589000000!5m2!1sen!2sus" 
             className="absolute inset-0 h-full w-full border-0"
@@ -183,24 +241,14 @@ export default function ContactComponent() {
             title="Gallery 23 Map Location"
           />
 
-          {/* Floating Location Card Container */}
-          {/* Constrained to 1280px to align perfectly with the page's standard side margins */}
           <div className="pointer-events-none relative z-10 flex h-full w-full max-w-[1280px] items-start px-[24px] py-[40px] lg:px-[80px] lg:py-[80px]">
-            
-            {/* Card Body: White, 12px Radius, Drop Shadow */}
             <div className="pointer-events-auto flex flex-col gap-[8px] rounded-[12px] bg-white p-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] sm:gap-[12px] sm:p-[32px]">
-              
-              {/* Title */}
               <h3 className="text-[12px] font-bold uppercase tracking-[0.1em] text-[#555]">
                 GALLERY 23
               </h3>
-              
-              {/* Address */}
               <p className="text-[15px] font-medium text-[#161616] sm:text-[16px]">
                 23 Stephen&apos;s Green, Dublin 2
               </p>
-              
-              {/* Link */}
               <a 
                 href="https://maps.google.com" 
                 target="_blank" 
@@ -209,27 +257,18 @@ export default function ContactComponent() {
               >
                 Get Directions
               </a>
-              
             </div>
           </div>
         </section>
 
-      {/* --- 4. STATS SECTION --- */}
-        {/* Figma Layout: Horizontal Flow, 1440px Fill, Padding: 196px Top/Bottom, 64px Left/Right, 70% Black Overlay */}
-        <section className="relative flex w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[100px] lg:px-[64px] lg:py-[196px]">
-          
-          {/* Background Image */}
+        {/* --- 4. STATS SECTION (WITH ANIMATED NUMBERS) --- */}
+        <section className="relative flex w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[80px] lg:px-[64px] lg:py-[196px]">
           <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('${statsImg}')` }} />
-          
-          {/* Dark Overlay - 70% Opacity */}
           <div className="absolute inset-0 z-10 bg-black/70" />
 
-          {/* Content Container */}
-          <div className="relative z-20 flex w-full max-w-[1000px] flex-col items-center gap-[64px] text-center text-white">
-            
-            {/* Header */}
+          <div className="relative z-20 flex w-full max-w-[1000px] flex-col items-center gap-[48px] text-center text-white lg:gap-[64px]">
             <div className="flex flex-col gap-[8px]">
-              <h2 className="text-[40px] font-bold leading-[1.1] sm:text-[56px] lg:text-[64px]">
+              <h2 className="text-[36px] font-semibold leading-[1.1] sm:text-[56px] sm:font-bold lg:text-[64px]">
                 Why Visit Gallery23
               </h2>
               <p className="text-[16px] text-[#d5d5d5] sm:text-[20px]">
@@ -237,12 +276,10 @@ export default function ContactComponent() {
               </p>
             </div>
 
-            {/* Stats Grid Container */}
             <div className="grid w-full grid-cols-1 gap-[48px] sm:grid-cols-3 sm:gap-[24px]">
-              
               {/* Stat 1: 98% */}
               <div className="flex flex-col items-center gap-[8px]">
-                <h3 className="text-[56px] font-bold leading-none sm:text-[64px]">98%</h3>
+                <AnimatedCounter target={98} suffix="%" />
                 <p className="text-[12px] font-bold uppercase tracking-widest text-white">
                   Client Satisfaction
                 </p>
@@ -253,7 +290,7 @@ export default function ContactComponent() {
               
               {/* Stat 2: 3,000+ */}
               <div className="flex flex-col items-center gap-[8px]">
-                <h3 className="text-[56px] font-bold leading-none sm:text-[64px]">3,000+</h3>
+                <AnimatedCounter target={3000} suffix="+" />
                 <p className="text-[12px] font-bold uppercase tracking-widest text-white">
                   Projects Annually
                 </p>
@@ -264,7 +301,7 @@ export default function ContactComponent() {
               
               {/* Stat 3: 40 */}
               <div className="flex flex-col items-center gap-[8px]">
-                <h3 className="text-[56px] font-bold leading-none sm:text-[64px]">40</h3>
+                <AnimatedCounter target={40} />
                 <p className="text-[12px] font-bold uppercase tracking-widest text-white">
                   Years of Expertise
                 </p>
@@ -272,20 +309,18 @@ export default function ContactComponent() {
                   Two generations of master framers
                 </p>
               </div>
-
             </div>
           </div>
         </section>
 
-        {/* --- 5. FAQ SECTION (Cream Background Variation) --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[80px] lg:flex-row lg:items-stretch lg:justify-center lg:gap-[64px] lg:px-[120px] lg:py-[100px]">
-          
-          <div className="relative mb-[40px] h-[500px] w-full max-w-[480px] shrink-0 overflow-hidden rounded-[24px] sm:h-[700px] lg:mb-0 lg:h-auto">
+        {/* --- 5. FAQ SECTION --- */}
+        <section className="mx-auto flex min-h-[844px] w-full max-w-[1440px] flex-col items-center gap-[32px] bg-[#f5f0eb] px-[24px] py-[56px] lg:min-h-0 lg:flex-row lg:items-stretch lg:justify-center lg:gap-[64px] lg:px-[120px] lg:py-[100px]">
+          <div className="relative h-[220px] w-full max-w-[480px] shrink-0 overflow-hidden rounded-[24px] sm:h-[500px] lg:h-auto">
             <img src={faqImg} alt="Gallery view" className="absolute inset-0 h-full w-full object-cover" />
           </div>
 
           <div className="flex w-full max-w-[680px] flex-col gap-[40px]">
-            <h2 className="text-[32px] font-bold leading-[1.1] text-[#161616] sm:text-[40px] lg:text-[48px]">
+            <h2 className="text-[36px] font-semibold leading-[1.1] text-[#161616] sm:text-[40px] sm:font-bold lg:text-[48px]">
               Frequently Asked Questions
             </h2>
 
@@ -297,55 +332,41 @@ export default function ContactComponent() {
                 { q: "Do you offer delivery?", a: "Yes! We offer local delivery for framed pieces. Ask about our white-glove installation service for larger works." },
                 { q: "What payment methods do you accept?", a: "We accept all major credit cards, cash, and offer payment plans for larger projects." },
               ].map((faq, index) => (
-                <article key={index} className="flex flex-col gap-[16px] rounded-[12px] border border-[#d5d5d5] bg-white p-[24px] sm:p-[32px]">
+                <article key={index} className="flex flex-col gap-[16px] rounded-[12px] border border-[#d5d5d5] bg-white p-[20px] sm:p-[32px]">
                   <div className="flex items-start justify-between gap-[16px]">
-                    <h3 className="text-[18px] font-semibold leading-[1.2] text-[#161616] sm:text-[20px]">{faq.q}</h3>
+                    <h3 className="text-[17px] font-semibold leading-[1.2] text-[#161616] sm:text-[20px]">{faq.q}</h3>
                     <button className="mt-[2px] shrink-0 text-[#161616]">
                       <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg>
                     </button>
                   </div>
-                  <p className="text-[15px] font-normal leading-[1.5] text-[#555] sm:text-[16px]">{faq.a}</p>
+                  <p className="text-[16px] font-normal leading-[1.5] text-[#555]">{faq.a}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-   {/* --- 6. CTA SECTION --- */}
-        {/* Figma Layout: Vertical Flow, 1440px Fill, 565px Hug, Padding: 150px Top/Bottom, 80px Left/Right, Gap 32px */}
-        <section className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[100px] lg:h-[565px] lg:px-[80px] lg:py-[150px]">
-          
-          {/* Background Image */}
+        {/* --- 6. CTA SECTION --- */}
+        <section className="relative mx-auto flex min-h-[500px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[80px] lg:h-[565px] lg:min-h-0 lg:px-[80px] lg:py-[150px]">
           <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('${ctaImg}')` }} />
-          
-          {/* Dark Overlay - #232323 at 72% Opacity */}
           <div className="absolute inset-0 z-10 bg-[#232323]/[0.72]" />
 
-          {/* Content Container: 700px Max Width, Vertical Flow, 32px Gap */}
-          <div className="relative z-20 flex w-full max-w-[700px] flex-col items-center gap-[32px] text-center text-white">
-            
-            {/* Text Group */}
+          <div className="relative z-20 flex w-full max-w-[700px] flex-col items-center gap-[28px] text-center text-white lg:gap-[32px]">
             <div className="flex flex-col items-center gap-[16px]">
-              {/* Heading: Host Grotesk 600 SemiBold, 56px, 105% Line Height */}
               <h2 className="text-[36px] font-semibold leading-[1.05] sm:text-[48px] lg:text-[56px]">
                 Ready to Frame Something Beautiful?
               </h2>
-              
-              {/* Subtext: Host Grotesk 400 Regular, 18px, 140% Line Height, 90% Opacity */}
-              <p className="text-[16px] font-normal leading-[1.4] text-white/90 sm:text-[18px]">
+              <p className="text-[16px] font-normal leading-[1.5] text-white/90 sm:text-[18px] sm:leading-[1.4]">
                 Book your free consultation today and let our experts help you preserve what matters most.
               </p>
             </div>
 
-            {/* Button: 257px Width, 41px Height, 16px Gap, Horizontal Flow */}
-            {/* Note: In a real app, you can add an ID to the form section and use onClick to scroll there */}
             <button className="flex h-[41px] w-[257px] items-center justify-center gap-[16px] rounded-full bg-[#295b42] text-[13px] font-bold uppercase tracking-wide text-white transition hover:bg-[#204834]">
               <span>Book Free Consultation</span>
               <svg className="size-[16px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </button>
-            
           </div>
         </section>
 
