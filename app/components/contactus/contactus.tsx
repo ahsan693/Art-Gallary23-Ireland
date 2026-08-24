@@ -214,30 +214,65 @@ export default function ContactComponent() {
           </div>
         </section>
 
-        {/* --- 4. STATS SECTION --- */}
-        <section className="relative flex h-[auto] min-h-[400px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[80px] lg:px-[80px]">
+      {/* --- 4. STATS SECTION --- */}
+        {/* Figma Layout: Horizontal Flow, 1440px Fill, Padding: 196px Top/Bottom, 64px Left/Right, 70% Black Overlay */}
+        <section className="relative flex w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[100px] lg:px-[64px] lg:py-[196px]">
+          
+          {/* Background Image */}
           <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('${statsImg}')` }} />
+          
+          {/* Dark Overlay - 70% Opacity */}
           <div className="absolute inset-0 z-10 bg-black/70" />
 
+          {/* Content Container */}
           <div className="relative z-20 flex w-full max-w-[1000px] flex-col items-center gap-[64px] text-center text-white">
+            
+            {/* Header */}
             <div className="flex flex-col gap-[8px]">
-              <h2 className="text-[32px] font-bold sm:text-[48px]">Why Visit Gallery23</h2>
-              <p className="text-[16px] text-[#d5d5d5] sm:text-[18px]">Because after visiting us...</p>
+              <h2 className="text-[40px] font-bold leading-[1.1] sm:text-[56px] lg:text-[64px]">
+                Why Visit Gallery23
+              </h2>
+              <p className="text-[16px] text-[#d5d5d5] sm:text-[20px]">
+                Because after visiting us...
+              </p>
             </div>
 
+            {/* Stats Grid Container */}
             <div className="grid w-full grid-cols-1 gap-[48px] sm:grid-cols-3 sm:gap-[24px]">
+              
+              {/* Stat 1: 98% */}
               <div className="flex flex-col items-center gap-[8px]">
-                <h3 className="text-[48px] font-bold sm:text-[64px]">98%</h3>
-                <p className="text-[12px] font-bold uppercase tracking-widest text-[#d5d5d5]">Client Satisfaction</p>
+                <h3 className="text-[56px] font-bold leading-none sm:text-[64px]">98%</h3>
+                <p className="text-[12px] font-bold uppercase tracking-widest text-white">
+                  Client Satisfaction
+                </p>
+                <p className="text-[14px] text-[#d5d5d5] sm:text-[16px]">
+                  Rated 4.9 stars with 500+ reviews
+                </p>
               </div>
+              
+              {/* Stat 2: 3,000+ */}
               <div className="flex flex-col items-center gap-[8px]">
-                <h3 className="text-[48px] font-bold sm:text-[64px]">3,000+</h3>
-                <p className="text-[12px] font-bold uppercase tracking-widest text-[#d5d5d5]">Projects Annually</p>
+                <h3 className="text-[56px] font-bold leading-none sm:text-[64px]">3,000+</h3>
+                <p className="text-[12px] font-bold uppercase tracking-widest text-white">
+                  Projects Annually
+                </p>
+                <p className="text-[14px] text-[#d5d5d5] sm:text-[16px]">
+                  Family photos to corporate installs
+                </p>
               </div>
+              
+              {/* Stat 3: 40 */}
               <div className="flex flex-col items-center gap-[8px]">
-                <h3 className="text-[48px] font-bold sm:text-[64px]">40</h3>
-                <p className="text-[12px] font-bold uppercase tracking-widest text-[#d5d5d5]">Years of Expertise</p>
+                <h3 className="text-[56px] font-bold leading-none sm:text-[64px]">40</h3>
+                <p className="text-[12px] font-bold uppercase tracking-widest text-white">
+                  Years of Expertise
+                </p>
+                <p className="text-[14px] text-[#d5d5d5] sm:text-[16px]">
+                  Two generations of master framers
+                </p>
               </div>
+
             </div>
           </div>
         </section>
@@ -276,21 +311,41 @@ export default function ContactComponent() {
           </div>
         </section>
 
-        {/* --- 6. CTA SECTION --- */}
-        <section className="relative flex h-[400px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[80px] lg:h-[500px]">
+   {/* --- 6. CTA SECTION --- */}
+        {/* Figma Layout: Vertical Flow, 1440px Fill, 565px Hug, Padding: 150px Top/Bottom, 80px Left/Right, Gap 32px */}
+        <section className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[100px] lg:h-[565px] lg:px-[80px] lg:py-[150px]">
+          
+          {/* Background Image */}
           <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('${ctaImg}')` }} />
-          <div className="absolute inset-0 z-10 bg-black/60" />
+          
+          {/* Dark Overlay - #232323 at 72% Opacity */}
+          <div className="absolute inset-0 z-10 bg-[#232323]/[0.72]" />
 
-          <div className="relative z-20 flex w-full max-w-[800px] flex-col items-center gap-[24px] text-center text-white">
-            <h2 className="text-[36px] font-bold leading-[1.1] sm:text-[48px]">
-              Ready to Frame Something Beautiful?
-            </h2>
-            <p className="text-[16px] font-medium text-[#d5d5d5] sm:text-[18px]">
-              Book your free consultation today and let our experts help you preserve what matters most.
-            </p>
-            <button className="mt-[16px] rounded-full bg-[#295b42] px-[32px] py-[16px] text-[14px] font-bold uppercase tracking-[0.1em] text-white transition hover:bg-[#204834]">
-              Book Free Consultation
+          {/* Content Container: 700px Max Width, Vertical Flow, 32px Gap */}
+          <div className="relative z-20 flex w-full max-w-[700px] flex-col items-center gap-[32px] text-center text-white">
+            
+            {/* Text Group */}
+            <div className="flex flex-col items-center gap-[16px]">
+              {/* Heading: Host Grotesk 600 SemiBold, 56px, 105% Line Height */}
+              <h2 className="text-[36px] font-semibold leading-[1.05] sm:text-[48px] lg:text-[56px]">
+                Ready to Frame Something Beautiful?
+              </h2>
+              
+              {/* Subtext: Host Grotesk 400 Regular, 18px, 140% Line Height, 90% Opacity */}
+              <p className="text-[16px] font-normal leading-[1.4] text-white/90 sm:text-[18px]">
+                Book your free consultation today and let our experts help you preserve what matters most.
+              </p>
+            </div>
+
+            {/* Button: 257px Width, 41px Height, 16px Gap, Horizontal Flow */}
+            {/* Note: In a real app, you can add an ID to the form section and use onClick to scroll there */}
+            <button className="flex h-[41px] w-[257px] items-center justify-center gap-[16px] rounded-full bg-[#295b42] text-[13px] font-bold uppercase tracking-wide text-white transition hover:bg-[#204834]">
+              <span>Book Free Consultation</span>
+              <svg className="size-[16px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
             </button>
+            
           </div>
         </section>
 
