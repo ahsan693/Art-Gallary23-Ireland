@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 // Importing the reusable Header and Footer from your Home page component
 import { Header, Footer } from "@/app/components/home/home";
@@ -212,7 +212,7 @@ export default function AboutUsComponent() {
         </section>
 
         {/* --- OUR JOURNEY SECTION (WITH ANIMATED ON-SCROLL PROGRESS LINE) --- */}
-     {/* --- OUR JOURNEY SECTION (WITH ANIMATED ON-SCROLL PROGRESS LINE) --- */}
+{/* --- OUR JOURNEY SECTION (PERFECTLY SYNCHRONIZED HIGHLIGHT) --- */}
         <section ref={journeyRef} className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[48px] lg:gap-[56px] lg:px-[80px] lg:py-[80px]">
           
           {/* Heading Container */}
@@ -230,58 +230,91 @@ export default function AboutUsComponent() {
               {
                 year: "1985",
                 desc: "Greg Snr. opens Gallery 23 in Kimmage — establishing a reputation for quality.",
+                point: 0.05,
               },
               {
                 year: "1995",
                 desc: "Expansion into conservation framing and archival services for Dublin galleries.",
+                point: 0.28,
               },
               {
                 year: "2006",
                 desc: "Greg Jnr. joins, introducing digital printing and modern design.",
+                point: 0.52,
               },
               {
                 year: "2019",
                 desc: "Launch of online print shop and quote system, serving all of Ireland.",
+                point: 0.76,
               },
               {
                 year: "2024",
                 desc: "Coalmine location opens. Sustainable framing becomes core commitment.",
+                point: 0.95,
               },
-            ].map((item, index) => (
-              <div key={index} className="flex flex-col items-start gap-[16px] sm:w-[220px]">
-                
-                {/* Year */}
-                <h3 className="text-[28px] font-bold leading-[1.15] text-[#555555] sm:text-[40px]">
-                  {item.year}
-                </h3>
-                
-                {/* Timeline Dot & Graphic Row */}
-                <div className="relative flex w-full items-center">
+            ].map((item, index) => {
+              // Smoothly transition color & opacity dynamically based on line position
+              // Points slightly before and after item.point trigger a smooth gradient fade
+              const yearColor = useTransform(
+                scrollYProgress,
+                [item.point - 0.1, item.point],
+                ["#a3a3a3", "#161616"]
+              );
+
+              const descOpacity = useTransform(
+                scrollYProgress,
+                [item.point - 0.1, item.point],
+                [0.35, 1]
+              );
+
+              const descColor = useTransform(
+                scrollYProgress,
+                [item.point - 0.1, item.point],
+                ["#888888", "#555555"]
+              );
+
+              return (
+                <div key={index} className="flex flex-col items-start gap-[16px] sm:w-[220px]">
                   
-                  {/* Connected Full Track Line (Desktop Only): Spans from center of first dot to center of last dot */}
-                  {index === 0 && (
-                    <div className="absolute top-1/2 left-[6px] right-[-964px] hidden h-[4px] -translate-y-1/2 rounded-[2px] bg-[#d5d5d5] lg:block">
-                      <motion.div 
-                        className="h-full origin-left rounded-[2px] bg-[#295b42]" 
-                        style={{ scaleX }} 
-                      />
-                    </div>
-                  )}
+                  {/* Year with Synchronized Color Transformation */}
+                  <motion.h3 
+                    style={{ color: yearColor }}
+                    className="text-[28px] font-bold leading-[1.15] sm:text-[40px]"
+                  >
+                    {item.year}
+                  </motion.h3>
+                  
+                  {/* Timeline Dot & Center Line Container */}
+                  <div className="relative flex w-full items-center">
+                    
+                    {/* Full Track & Progress Line passing through exact center of dots */}
+                    {index === 0 && (
+                      <div className="absolute top-1/2 left-[6px] right-[-964px] z-0 hidden h-[4px] -translate-y-1/2 rounded-[2px] bg-[#d5d5d5] lg:block">
+                        <motion.div 
+                          className="h-full origin-left rounded-[2px] bg-[#295b42]" 
+                          style={{ scaleX }} 
+                        />
+                      </div>
+                    )}
 
-                  {/* Dot: 12x12, 6px Radius, #295B42, Z-Index above the line */}
-                  <div className="relative z-10 size-[12px] shrink-0 rounded-full bg-[#295b42]" />
+                    {/* Dot: Positioned with z-10 so the line passes through its center underneath */}
+                    <div className="relative z-10 size-[12px] shrink-0 rounded-full bg-[#295b42]" />
 
-                  {/* Mobile Line fallback */}
-                  <div className="ml-[8px] h-[4px] w-full rounded-[2px] bg-[#d5d5d5] lg:hidden" />
+                    {/* Mobile Track Line Fallback */}
+                    <div className="ml-[8px] h-[4px] w-full rounded-[2px] bg-[#d5d5d5] lg:hidden" />
+                  </div>
+
+                  {/* Description with Synchronized Opacity & Color Transformation */}
+                  <motion.p 
+                    style={{ opacity: descOpacity, color: descColor }}
+                    className="text-[14px] font-normal leading-[1.5]"
+                  >
+                    {item.desc}
+                  </motion.p>
+
                 </div>
-
-                {/* Description */}
-                <p className="text-[14px] font-normal leading-[1.5] text-[#555555]">
-                  {item.desc}
-                </p>
-
-              </div>
-            ))}
+              );
+            })}
 
           </div>
 
