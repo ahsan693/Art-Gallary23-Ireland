@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ==========================================
@@ -26,9 +27,19 @@ const images = {
   consultation: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=85",
 };
 
-// Navigation Links
-const navItems = ["Home", "Services", "Print Shop", "Commercial"];
-const rightNav = ["About Us", "Stores", "Support"];
+// Navigation Links with exact route mapping
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/Services" },
+  { name: "Print Shop", href: "/services" },
+  { name: "Commercial", href: "/commercial" },
+];
+
+const rightNav = [
+  { name: "About Us", href: "/about" },
+  { name: "Stores", href: "/contactus" },
+  { name: "Support", href: "/contactus" },
+];
 
 // Services Section Data
 const services = [
@@ -204,7 +215,7 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
 }
 
 // ==========================================
-// HEADER COMPONENT (EXPORTED)
+// HEADER COMPONENT (EXPORTED WITH UPDATED ROUTING)
 // ==========================================
 export function Header() {
   return (
@@ -223,41 +234,41 @@ export function Header() {
           <button aria-label="Open menu" className="grid size-10 place-items-center rounded-full border border-[#d5d5d5] bg-[#f5f0eb]">
             <MenuIcon />
           </button>
-          <span className="text-xl font-bold tracking-[1px]">Gallery 23</span>
+          <Link href="/" className="text-xl font-bold tracking-[1px]">Gallery 23</Link>
         </div>
 
         <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex">
           {navItems.map((item) => (
-            <a
-              key={item}
-              href="#"
+            <Link
+              key={item.name}
+              href={item.href}
               className={`relative flex h-[72px] items-center px-4 text-[13px] font-medium leading-[1.5] tracking-[0.78px] ${
-                item === "Home" ? "text-[#295b42]" : "text-[#161616]"
+                item.name === "Home" ? "text-[#295b42]" : "text-[#161616]"
               }`}
             >
-              {item}
-              {item === "Home" ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-[#295b42]" /> : null}
-            </a>
+              {item.name}
+              {item.name === "Home" ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-[#295b42]" /> : null}
+            </Link>
           ))}
         </div>
-
-        <a
-          href="/home"
+          
+        <Link
+          href="/"
           className="absolute left-1/2 top-0 hidden h-[72px] w-[320px] -translate-x-1/2 items-center justify-center text-center text-[24px] font-bold leading-[1.2] tracking-[1px] text-[#161616] lg:flex"
         >
           Gallery 23
-        </a>
+        </Link>
 
         <div className="ml-auto flex min-w-0 items-center justify-end gap-3 lg:flex-1 lg:gap-1">
           <div className="hidden items-center gap-1 lg:flex">
             {rightNav.map((item) => (
-              <a
-                key={item}
-                href="#"
+              <Link
+                key={item.name}
+                href={item.href}
                 className="flex h-[72px] items-center justify-center px-3 text-[13px] font-medium leading-[1.5] tracking-[0.78px] text-[#161616]"
               >
-                {item}
-              </a>
+                {item.name}
+              </Link>
             ))}
           </div>
           <span className="hidden h-6 w-px bg-[#d5d5d5] lg:block" />
@@ -282,7 +293,6 @@ export function FooterColumn({ title, items }: { title: string; items: string[] 
       <h3 className="text-[12px] font-bold capitalize text-white">{title}</h3>
       <ul className="mt-[16px] flex flex-col gap-[12px] text-[13px] leading-[1.5] text-[#999999] sm:mt-[24px] sm:gap-[14px]">
         {items.map((item, index) => {
-          // Identify icons based on content for the addresses column
           const isPhone = item.includes("(555)");
           const isEmail = item.includes("@");
           const isHighlight = index === 0 && (title === "North side" || title === "South side");
@@ -313,20 +323,19 @@ export function FooterColumn({ title, items }: { title: string; items: string[] 
 export function Footer() {
   return (
     <footer className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-black text-white">
-      {/* Top Section (footer-header) */}
+      {/* Top Section */}
       <div className="flex w-full items-center justify-between border-b border-[#222222] px-5 py-[28px] sm:px-[40px] lg:px-[80px] lg:py-[40px]">
-        {/* logo-group: 180px Hug Width, 65px Fixed Height, 12px Gap */}
-        <div className="flex h-[48px] items-center gap-[10px] sm:h-[65px] sm:gap-[12px]">
+        <Link href="/" className="flex h-[48px] items-center gap-[10px] sm:h-[65px] sm:gap-[12px]">
           <div className="flex size-[40px] items-center justify-center border-2 border-white text-[13px] font-bold sm:size-[48px] sm:text-[16px]">
             G23
           </div>
           <span className="text-[18px] font-semibold tracking-tight text-white sm:text-[22px]">
             Gallery 23
           </span>
-        </div>
+        </Link>
       </div>
 
-      {/* Middle Section (footer-columns) */}
+      {/* Middle Section */}
       <div className="flex w-full flex-col items-start gap-[32px] border-b border-[#222222] px-5 py-[40px] sm:grid sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[40px] sm:px-[40px] lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:px-[80px] lg:py-[56px]">
         <FooterColumn 
           title="Services" 
@@ -350,10 +359,8 @@ export function Footer() {
         />
       </div>
 
-      {/* Bottom Section (footer-bottom) */}
+      {/* Bottom Section */}
       <div className="flex w-full flex-col items-start gap-[24px] px-5 pb-[32px] pt-[24px] sm:px-[40px] lg:flex-row lg:items-start lg:justify-between lg:px-[80px] lg:pb-[40px] lg:pt-[32px]">
-        
-        {/* bottom-left: 380px Fixed Width, 68px Hug Height, 8px Gap */}
         <div className="flex w-full flex-col gap-[8px] text-[13px] leading-[1.6] text-[#999999] lg:w-[380px]">
           <p>©2024 Gallery 23. All rights reserved.</p>
           <p>
@@ -362,12 +369,8 @@ export function Footer() {
           </p>
         </div>
 
-        {/* bottom-right: 368px Hug Width, 54px Hug Height, 12px Gap */}
         <div className="flex w-full flex-col items-stretch gap-[12px] sm:w-auto sm:flex-row sm:items-center">
-          
-          {/* badge-rating: 212px Hug, 54px Hug, 10px Gap, 10px Top/Bottom & 16px Left/Right Padding */}
           <div className="flex items-center justify-center gap-[10px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px] sm:justify-start">
-            {/* Stars */}
             <div className="flex text-[#FBBF24]">
               {[...Array(5)].map((_, i) => (
                 <svg key={i} className="size-[14px]" fill="currentColor" viewBox="0 0 24 24">
@@ -375,14 +378,12 @@ export function Footer() {
                 </svg>
               ))}
             </div>
-            {/* Text */}
             <div className="flex flex-col text-[11px] font-medium leading-[1.3]">
               <span className="text-white">Rated 4.9 from</span>
               <span className="text-[#999999]">200+ customers</span>
             </div>
           </div>
 
-          {/* badge-google: 144px Hug, 38px Hug, 8px Gap, 10px Top/Bottom & 16px Left/Right Padding */}
           <a href="#" className="flex items-center justify-center gap-[8px] rounded-[100px] border border-[#333333] bg-[#161616] px-[16px] py-[10px] transition hover:bg-[#222222]">
             <svg className="size-[16px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
@@ -391,7 +392,6 @@ export function Footer() {
             </svg>
             <span className="text-[12px] font-medium text-white">Google Reviews</span>
           </a>
-
         </div>
       </div>
     </footer>
@@ -403,17 +403,13 @@ export function Footer() {
 // ==========================================
 
 export default function Home() {
-  // Array of images specifically for the showcase carousel
   const showcaseImages = [images.frameOne, images.frameTwo, images.frameThree];
-  
-  // Track the active image index
   const [activeProject, setActiveProject] = useState(0);
 
-  // Auto-play functionality: Changes image every 1 second (1000ms)
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveProject((prev) => (prev + 1) % showcaseImages.length);
-    }, 1000); // 1 second delay
+    }, 1000);
     return () => clearInterval(interval);
   }, [showcaseImages.length]);
 
@@ -477,7 +473,7 @@ export default function Home() {
             </div>
           </div>
           
-          {/* --- ANIMATED TICKER (58px Height) --- */}
+          {/* --- ANIMATED TICKER --- */}
           <div className="relative flex h-[58px] w-full items-center overflow-hidden bg-[#161616] text-[13px] font-medium text-white">
             <motion.div
               className="flex whitespace-nowrap"
@@ -531,7 +527,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- ABOUT SECTION (About - Gallery23) --- */}
+        {/* --- ABOUT SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#161616] px-5 py-14 lg:h-[704px] lg:flex-row lg:gap-[64px] lg:px-[120px] lg:py-[72px]">
           <div className="flex w-full flex-col gap-[24px] lg:w-[560px]">
             <h2 className="text-3xl font-semibold text-white sm:text-[48px] sm:leading-tight">
@@ -544,11 +540,13 @@ export default function Home() {
               Our professional framers love what they do and will happily advise you on your next custom framing project. With a wealth of knowledge and experience, our designers tailor each complimentary design session to your needs so they can create the ideal custom frame for you.
             </p>
             <div className="mt-2">
-              <Button dark>LEARN MORE</Button>
+              <Link href="/about" className="inline-flex h-12 items-center gap-2 rounded-full bg-[#295b42] px-6 text-sm font-semibold text-white transition hover:bg-[#204834]">
+                LEARN MORE <ArrowIcon />
+              </Link>
             </div>
           </div>
           <div className="relative mt-10 h-[260px] w-full shrink-0 overflow-hidden rounded-3xl lg:mt-0 lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
-            <ResponsiveImage src={images.about} alt="Gallery interior with a motorcycle and framed artwork on the wall" />
+            <ResponsiveImage src={images.about} alt="Gallery interior with framed artwork" />
           </div>
         </section>
 
@@ -595,12 +593,12 @@ export default function Home() {
               Custom Printing Made for You
             </h2>
             <p className="text-[16px] leading-[1.6] text-[#555]">
-              Print your own photos, artwork, or designs on premium fine art papers. Choose your paper, upload your file, and we'll handle the rest.
+              Print your own photos, artwork, or designs on premium fine art papers. Choose your paper, upload your file, and we&apos;ll handle the rest.
             </p>
           </div>
           <div className="flex w-full max-w-[1280px] flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_8px_32px_0_rgba(0,0,0,0.078)] lg:h-[432px] lg:flex-row">
             <div className="relative h-[300px] w-full shrink-0 lg:h-full lg:w-[554px]">
-              <ResponsiveImage src={images.print} alt="Professional fine art printing studio with a large format printer" />
+              <ResponsiveImage src={images.print} alt="Professional fine art printing studio" />
             </div>
             <div className="flex w-full flex-1 flex-col justify-between px-6 py-8 lg:pb-[36px] lg:pl-[90px] lg:pr-[36px] lg:pt-[32px]">
               <div className="flex flex-col items-start gap-[16px]">
@@ -611,7 +609,7 @@ export default function Home() {
                   Your Own Photo or Artwork
                 </h3>
                 <p className="text-[15px] leading-7 text-[#555]">
-                  Upload your personal photos, artwork, or digital files and we'll print them to museum quality on your choice of paper or canvas.
+                  Upload your personal photos, artwork, or digital files and we&apos;ll print them to museum quality on your choice of paper or canvas.
                 </p>
                 <ul className="flex flex-col gap-[8px] text-[15px] text-[#555]">
                   <li className="flex items-center gap-[10px]">
@@ -629,9 +627,9 @@ export default function Home() {
                 </ul>
               </div>
               <div className="mt-8 lg:mt-[36px]">
-                <a href="#" className="inline-flex h-[49px] items-center justify-center gap-[8px] rounded-[999px] bg-[#161616] px-[28px] py-[14px] text-[12px] font-bold uppercase tracking-[0.04em] text-white transition hover:bg-black">
+                <Link href="/services" className="inline-flex h-[49px] items-center justify-center gap-[8px] rounded-[999px] bg-[#161616] px-[28px] py-[14px] text-[12px] font-bold uppercase tracking-[0.04em] text-white transition hover:bg-black">
                   START YOUR CUSTOM PRINT <ArrowIcon />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -639,7 +637,6 @@ export default function Home() {
 
         {/* --- SHOWCASE / FEATURED FRAMING PROJECTS SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] bg-[#295b42] px-5 pb-[80px] pt-[64px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
-          
           <div className="flex w-full max-w-[1200px] items-center justify-between">
             <h2 className="w-full max-w-none text-[26px] font-semibold tracking-[0.01em] text-white sm:text-[40px] sm:leading-[1.05] lg:whitespace-nowrap lg:text-[56px]">
               Featured Framing Projects
@@ -699,9 +696,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- TESTIMONIALS SECTION (What Our Costumer Say) --- */}
+        {/* --- TESTIMONIALS SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[40px] overflow-hidden bg-[#f5f0eb] px-5 py-[64px] lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
-          
           <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
             <h2 className="w-full max-w-none text-[26px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[40px] sm:leading-[1.05] lg:whitespace-nowrap lg:text-[56px]">
               What Our Costumer Say
@@ -797,7 +793,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- WHAT WE'VE BEEN FRAMING SECTION (INSTAGRAM FEED) --- */}
+        {/* --- WHAT WE'VE BEEN FRAMING SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden bg-[#f5f0eb]">
           <div className="flex w-full flex-col items-center gap-[20px] px-5 py-[40px] sm:gap-[32px] sm:py-[56px]">
             <h2 className="w-full max-w-[697px] text-center text-[26px] font-semibold tracking-[0.01em] text-[#161616] sm:text-[40px] lg:text-[56px] lg:leading-[1.05]">
@@ -871,7 +867,9 @@ export default function Home() {
             </div>
 
             <div className="mt-[8px] text-center">
-              <Button dark>VIEW ALL FAQS</Button>
+              <Link href="/contactus" className="inline-flex h-12 items-center gap-2 rounded-full bg-[#295b42] px-6 text-sm font-semibold text-white transition hover:bg-[#204834]">
+                VIEW ALL FAQS <ArrowIcon />
+              </Link>
             </div>
           </div>
         </section>
@@ -881,7 +879,6 @@ export default function Home() {
           id="consultation"
           className="relative mx-auto flex min-h-[480px] w-full max-w-[1440px] items-center justify-center overflow-hidden px-[16px] py-[48px] sm:min-h-[578px] sm:px-[24px] sm:py-0"
         >
-          {/* Background Image (Fixed positioning bug) */}
           <div className="absolute inset-0 -z-20">
             <Image
               src={images.consultation}
@@ -892,30 +889,21 @@ export default function Home() {
             />
           </div>
 
-          {/* Dark Overlay (#000000 at 50% opacity) */}
           <div className="absolute inset-0 -z-10 bg-black/50" />
 
-          {/* Inner White Box (1050px Fixed Max Width, 12px Radius, 48px Top/Bottom Padding) */}
           <div className="flex w-full max-w-[1050px] flex-col items-center rounded-[12px] bg-white px-[20px] py-[36px] text-center shadow-lg sm:px-[24px] sm:py-[48px]">
-            
-            {/* Heading 1 (Host Grotesk 600 SemiBold, 56px, 105% Line Height, 0% Letter Spacing) */}
             <h2 className="mx-auto w-full max-w-[861px] text-[26px] font-semibold leading-[1.15] tracking-[0px] text-black sm:text-[32px] lg:text-[56px] lg:leading-[1.05]">
               Book A Free Consultation Service.
             </h2>
 
-            {/* Subtitle Container (24px Top & Bottom Padding) */}
             <div className="py-[16px] sm:py-[24px]">
               <p className="text-[14px] leading-normal text-[#161616] sm:text-[16px]">
                 Get in touch with our friendly and knowledgeable team
               </p>
             </div>
 
-            {/* Actions Container (16px Top Padding) */}
             <div className="pt-[8px] sm:pt-[16px]">
-              {/* Horizontal Flow Container (12px Gap) */}
               <div className="flex w-full flex-col items-stretch justify-center gap-[12px] sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
-                
-                {/* Phone Button (48.5px Height, 100px Radius, 24px Left/Right Padding, 10px Gap) */}
                 <a
                   href="tel:0856314964"
                   className="inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-[100px] border border-black bg-black px-[24px] text-[14px] font-semibold text-white transition hover:bg-neutral-800"
@@ -927,9 +915,8 @@ export default function Home() {
                   <span>(085) 631-4964</span>
                 </a>
 
-                {/* Email Button (48.5px Height, 100px Radius, 24px Left/Right Padding, 10px Gap) */}
-                <a
-                  href="mailto:hello@gallery23.com"
+                <Link
+                  href="/contactus"
                   className="inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-[100px] border border-black bg-black px-[24px] text-[14px] font-semibold text-white transition hover:bg-neutral-800"
                 >
                   <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -937,8 +924,7 @@ export default function Home() {
                     <polyline points="3 7 12 13 21 7" />
                   </svg>
                   <span>Send Message</span>
-                </a>
-
+                </Link>
               </div>
             </div>
           </div>
