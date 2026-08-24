@@ -6,7 +6,8 @@ import { Header, Footer } from "@/app/components/home/home";
 // ==========================================
 // DATA & CONSTANTS
 // ==========================================
-const heroImg = "https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?auto=format&fit=crop&w=1920&q=85";
+// Image assets used throughout the page (Updated verified Hero image link)
+const heroImg = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1920&q=85";   
 const statsImg = "https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=1920&q=85";
 const faqImg = "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=85";
 const ctaImg = "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1920&q=85";

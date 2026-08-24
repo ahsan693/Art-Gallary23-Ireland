@@ -1,5 +1,7 @@
 "use client";
 
+import { motion, useScroll, useSpring } from "framer-motion";
+import { useRef } from "react";
 // Importing the reusable Header and Footer from your Home page component
 import { Header, Footer } from "@/app/components/home/home";
 
@@ -7,7 +9,7 @@ import { Header, Footer } from "@/app/components/home/home";
 // DATA & CONSTANTS
 // ==========================================
 
-// Image asset for the About Us Hero section (Updated to a verified working link)
+// Image asset for the About Us Hero section
 const aboutHeroImg = "https://images.unsplash.com/photo-1500051638674-ff996a0ec29e?auto=format&fit=crop&w=1920&q=85";
 
 // ==========================================
@@ -15,6 +17,20 @@ const aboutHeroImg = "https://images.unsplash.com/photo-1500051638674-ff996a0ec2
 // ==========================================
 
 export default function AboutUsComponent() {
+  // Reference & Scroll Progress hook for the Journey section line animation
+  const journeyRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: journeyRef,
+    offset: ["start center", "end center"],
+  });
+
+  // Smooth out the scroll animation for a sleek progress fill
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
     <div className="flex min-h-screen flex-col bg-[#f7f3eb] text-[#161616]">
       
@@ -68,7 +84,6 @@ export default function AboutUsComponent() {
             />
 
             {/* Overlapping Small Image (Jr. Greg) - Width 260px, Height 320px, Radius 12px, Custom Shadow */}
-            {/* Positioned absolutely to overlap the bottom-right corner of the main image */}
             <img
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=85"
               alt="Greg Jr. portrait"
@@ -109,40 +124,27 @@ export default function AboutUsComponent() {
         </section>
 
         {/* --- WHAT WE STAND FOR SECTION --- */}
-        {/* Figma Layout: Vertical Flow, 1440px Fill, Padding: 96px Top, 120px Bottom/Left/Right, Gap 56px */}
         <section className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] pb-[56px] pt-[48px] lg:gap-[56px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
           
-          {/* Background Image (z-0) using CSS Background for bulletproof rendering */}
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url('https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1920&q=85')` }}
           />
 
-          {/* Dark Overlay (z-10) - Figma spec: #000000 at 60% opacity */}
           <div className="absolute inset-0 z-10 bg-[#000000]/[0.60]" />
 
-          {/* Header Container (z-20): 920px Max Width, Vertical Flow, 16px Gap */}
           <div className="relative z-20 flex w-full max-w-[920px] flex-col items-center gap-[12px] text-center mb-[32px] sm:gap-[16px] lg:mb-0">
-            
-            {/* Heading: Host Grotesk 700 Bold, 56px, 105% Line Height, Center Aligned */}
             <h2 className="w-full text-[28px] font-bold leading-[1.15] tracking-[0px] text-white sm:text-[48px] sm:leading-[1.05] lg:text-[56px]">
               What We Stand For
             </h2>
 
-            {/* Subtitle: Host Grotesk 400 Regular, 16px, 150% Line Height, Color #999999 */}
             <p className="w-full text-[14px] font-normal leading-[1.5] text-[#999999] sm:text-[16px]">
               Four principles that guide every frame, every material choice, and every conversation.
             </p>
-
           </div>
 
-          {/* Cards Grid Container (z-20): 1200px Max Width, Vertical Flow, 24px Gap */}
           <div className="relative z-20 flex w-full max-w-[1200px] flex-col gap-[20px] sm:gap-[24px]">
-            
-            {/* Row 1: Horizontal Flow, 24px Gap */}
             <div className="flex flex-col gap-[20px] sm:gap-[24px] lg:flex-row">
-              
-              {/* Card 1: Master Craftsmanship (588px Width) */}
               <div className="flex flex-1 flex-col items-start gap-[16px] rounded-[20px] border border-[#d5d5d5] bg-white p-[24px] sm:gap-[20px] sm:p-[32px]">
                 <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-[#161616] text-white">
                   <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -157,7 +159,6 @@ export default function AboutUsComponent() {
                 </div>
               </div>
 
-              {/* Card 2: Preservation & Conservation (588px Width) */}
               <div className="flex flex-1 flex-col items-start gap-[16px] rounded-[20px] border border-[#d5d5d5] bg-white p-[24px] sm:gap-[20px] sm:p-[32px]">
                 <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-[#161616] text-white">
                   <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -172,13 +173,9 @@ export default function AboutUsComponent() {
                   </p>
                 </div>
               </div>
-
             </div>
 
-            {/* Row 2: Horizontal Flow, 24px Gap */}
             <div className="flex flex-col gap-[20px] sm:gap-[24px] lg:flex-row">
-              
-              {/* Card 3: Sustainability (420px Width) */}
               <div className="flex flex-col items-start gap-[16px] rounded-[20px] border border-[#d5d5d5] bg-white p-[24px] sm:gap-[20px] sm:p-[32px] lg:w-[420px] lg:shrink-0">
                 <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-[#161616] text-white">
                   <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -194,7 +191,6 @@ export default function AboutUsComponent() {
                 </div>
               </div>
 
-              {/* Card 4: Client-First Service (756px Width) */}
               <div className="flex flex-1 flex-col items-start gap-[16px] rounded-[20px] border border-[#d5d5d5] bg-white p-[24px] sm:gap-[20px] sm:p-[32px]">
                 <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-[#161616] text-white">
                   <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -211,24 +207,22 @@ export default function AboutUsComponent() {
                   </p>
                 </div>
               </div>
-
             </div>
-
           </div>
         </section>
-        {/* --- OUR JOURNEY SECTION --- */}
-        {/* Figma Layout: Vertical Flow, 1440px Fill, Background: #F5F0EB, Padding: 80px Top/Bottom, Gap 56px */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[48px] lg:gap-[56px] lg:px-[80px] lg:py-[80px]">
+
+        {/* --- OUR JOURNEY SECTION (WITH ANIMATED ON-SCROLL PROGRESS LINE) --- */}
+     {/* --- OUR JOURNEY SECTION (WITH ANIMATED ON-SCROLL PROGRESS LINE) --- */}
+        <section ref={journeyRef} className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[48px] lg:gap-[56px] lg:px-[80px] lg:py-[80px]">
           
-          {/* Heading Container: 1280px Max Width */}
+          {/* Heading Container */}
           <div className="flex w-full max-w-[1280px] flex-col items-center text-center">
-            {/* Heading: Host Grotesk 500 Medium, 56px, 105% Line Height */}
             <h2 className="text-[28px] font-medium leading-[1.15] text-[#161616] sm:text-[48px] sm:leading-[1.05] lg:text-[56px]">
               Our Journey
             </h2>
           </div>
 
-          {/* Timeline Container: Horizontal Flow, 1185px Fixed Width, 24px Gap */}
+          {/* Timeline Container */}
           <div className="mt-[32px] flex w-full max-w-[1200px] flex-col gap-[32px] sm:mt-[40px] sm:flex-row sm:flex-wrap sm:justify-center lg:mt-0 lg:flex-nowrap lg:justify-between lg:gap-[24px]">
             
             {/* Timeline Items */}
@@ -254,23 +248,34 @@ export default function AboutUsComponent() {
                 desc: "Coalmine location opens. Sustainable framing becomes core commitment.",
               },
             ].map((item, index) => (
-              /* Item Container: 220px Fixed Width, Vertical Flow, 16px Gap */
               <div key={index} className="flex flex-col items-start gap-[16px] sm:w-[220px]">
                 
-                {/* Year: Host Grotesk 700 Bold, 40px, 115% Line Height, Color #555555 */}
+                {/* Year */}
                 <h3 className="text-[28px] font-bold leading-[1.15] text-[#555555] sm:text-[40px]">
                   {item.year}
                 </h3>
                 
-                {/* Timeline Graphic Container */}
-                <div className="flex w-full items-center gap-[8px]">
-                  {/* Dot: 12x12, 6px Radius, #295B42 */}
-                  <div className="size-[12px] shrink-0 rounded-full bg-[#295b42]" />
-                  {/* Line: 4px Height, 2px Radius, #D5D5D5 */}
-                  <div className="h-[4px] w-full rounded-[2px] bg-[#d5d5d5]" />
+                {/* Timeline Dot & Graphic Row */}
+                <div className="relative flex w-full items-center">
+                  
+                  {/* Connected Full Track Line (Desktop Only): Spans from center of first dot to center of last dot */}
+                  {index === 0 && (
+                    <div className="absolute top-1/2 left-[6px] right-[-964px] hidden h-[4px] -translate-y-1/2 rounded-[2px] bg-[#d5d5d5] lg:block">
+                      <motion.div 
+                        className="h-full origin-left rounded-[2px] bg-[#295b42]" 
+                        style={{ scaleX }} 
+                      />
+                    </div>
+                  )}
+
+                  {/* Dot: 12x12, 6px Radius, #295B42, Z-Index above the line */}
+                  <div className="relative z-10 size-[12px] shrink-0 rounded-full bg-[#295b42]" />
+
+                  {/* Mobile Line fallback */}
+                  <div className="ml-[8px] h-[4px] w-full rounded-[2px] bg-[#d5d5d5] lg:hidden" />
                 </div>
 
-                {/* Description: Host Grotesk 400 Regular, 14px, 150% Line Height, Color #555555 */}
+                {/* Description */}
                 <p className="text-[14px] font-normal leading-[1.5] text-[#555555]">
                   {item.desc}
                 </p>
@@ -281,19 +286,14 @@ export default function AboutUsComponent() {
           </div>
 
         </section>
+
         {/* --- THE TEAM SECTION --- */}
-        {/* Figma Layout: Vertical Flow, 1440px Fill, Background: #161616, Padding: 120px Top/Bottom, 80px Left/Right, Gap 64px */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#161616] px-[24px] py-[48px] lg:gap-[64px] lg:px-[80px] lg:py-[120px]">
-          
-          {/* Header Container: Horizontal Flow, 1280px Fill, Space-Between */}
           <div className="flex w-full max-w-[1280px] flex-row items-end justify-between mb-[24px] lg:mb-0">
-            
-            {/* Heading: Host Grotesk 500 Medium, 56px, 105% Line Height */}
             <h2 className="text-[26px] font-medium leading-[1.15] text-white sm:text-[48px] sm:leading-[1.05] lg:text-[56px]">
               The Gallery23 Team
             </h2>
 
-            {/* Nav Controls: Horizontal Flow, 112px Hug, 16px Gap, 12px Bottom Padding */}
             <div className="hidden pb-[12px] lg:flex lg:gap-[16px]">
               <button className="flex size-[48px] items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white/10 sm:size-[56px]">
                 <svg className="size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
@@ -308,10 +308,7 @@ export default function AboutUsComponent() {
             </div>
           </div>
 
-          {/* Team Grid Container: 2-col grid on mobile/tablet to match the Figma card layout; reverts to the original horizontal-scroll row at lg */}
           <div className="grid w-full max-w-[1280px] grid-cols-2 gap-x-[12px] gap-y-[24px] lg:flex lg:gap-[24px] lg:overflow-x-auto lg:pb-[24px]">
-            
-            {/* Team Members */}
             {[
               {
                 name: "Greg Thompson Sr.",
@@ -338,20 +335,15 @@ export default function AboutUsComponent() {
                 img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85",
               },
             ].map((member, index) => (
-              /* Team Card: Vertical Flow, 302px Width, 20px Gap */
               <article key={index} className="flex w-full flex-col gap-[12px] sm:gap-[20px] lg:w-[302px] lg:shrink-0">
-                
-                {/* Member Portrait: 302px Width, 402px Height, 12px Radius */}
                 <div className="relative h-[180px] w-full overflow-hidden rounded-[12px] sm:h-[340px] lg:h-[402px]">
                   <img
                     src={member.img}
                     alt={member.name}
                     className="absolute inset-0 h-full w-full object-cover"
                   />
-                  {/* Linear Gradient Overlay for text/icon readability */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   
-                  {/* Mail Icon positioned at bottom-left */}
                   <button className="absolute bottom-[10px] left-[10px] text-white hover:text-white/80 sm:bottom-[16px] sm:left-[16px]">
                     <svg className="size-[18px] sm:size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -359,34 +351,24 @@ export default function AboutUsComponent() {
                   </button>
                 </div>
 
-                {/* Member Info Container: Vertical Flow, 16px Gap */}
                 <div className="flex flex-col gap-[10px] sm:gap-[16px]">
-                  
-                  {/* Name and Role Wrapper */}
                   <div className="flex flex-col gap-[4px] sm:gap-[6px]">
-                    {/* Name: Host Grotesk Bold, White */}
                     <h3 className="text-[16px] font-bold leading-[1.2] text-white sm:text-[20px] lg:text-[24px]">
                       {member.name}
                     </h3>
-                    
-                    {/* Role: Host Grotesk 500 Medium, 14px, 150% Line Height, Uppercase, Brand/Sage Color */}
                     <p className="text-[10px] font-medium uppercase leading-[1.4] tracking-[0.05em] text-[#84a59d] sm:text-[12px] sm:leading-[1.5] lg:text-[14px]">
                       {member.role}
                     </p>
                   </div>
 
-                  {/* Description: Host Grotesk 400 Regular, 16px, 150% Line Height, #999999 */}
                   <p className="text-[12px] font-normal leading-[1.4] text-[#999999] sm:text-[16px] sm:leading-[1.5]">
                     {member.desc}
                   </p>
-                  
                 </div>
               </article>
             ))}
-
           </div>
 
-          {/* Mobile-only pagination arrows below the grid, matching the Figma mobile layout */}
           <div className="mt-[24px] flex items-center justify-center gap-[16px] lg:hidden">
             <button className="flex size-[48px] items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white/10">
               <svg className="size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
@@ -400,12 +382,9 @@ export default function AboutUsComponent() {
             </button>
           </div>
         </section>
-{/* --- FAQ SECTION --- */}
-        {/* Figma Layout: Horizontal Flow, 1440px Fill, Background: #295B42, Padding: 80px Top/Bottom/Left/Right, Gap 48px */}
+
+        {/* --- FAQ SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#295b42] px-[24px] py-[48px] lg:flex-row lg:items-stretch lg:justify-center lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
-          
-          {/* Left Image Container: 471px Width, 24px Radius */}
-          {/* Using lg:h-auto allows this container to stretch exactly to the height of the right text section */}
           <div className="relative mb-[32px] h-[320px] w-full max-w-[471px] shrink-0 overflow-hidden rounded-[24px] sm:h-[500px] lg:mb-0 lg:h-auto">
             <img
               src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=85"
@@ -414,17 +393,12 @@ export default function AboutUsComponent() {
             />
           </div>
 
-          {/* Right Content Container: 761px Fill Width, Vertical Flow, 48px Gap */}
           <div className="flex w-full max-w-[761px] flex-col gap-[32px] sm:gap-[48px]">
-            
-            {/* Heading: Host Grotesk 500 Medium, 56px, 105% Line Height, White */}
             <h2 className="text-[28px] font-medium leading-[1.15] text-white sm:text-[48px] sm:leading-[1.05] lg:text-[56px]">
               Frequently Asked Questions
             </h2>
 
-            {/* FAQ List Container: Vertical Flow, 16px Gap */}
             <div className="flex flex-col gap-[16px]">
-              
               {[
                 {
                   q: "Do I need an appointment?",
@@ -447,16 +421,11 @@ export default function AboutUsComponent() {
                   a: "We accept all major credit cards, cash, and offer payment plans for larger projects.",
                 },
               ].map((faq, index) => (
-                /* FAQ Card: White Background, 12px Radius, 30px Padding, 16px Gap */
                 <article key={index} className="flex flex-col gap-[12px] rounded-[12px] bg-white p-[20px] sm:gap-[16px] sm:p-[30px]">
-                  
-                  {/* Question Row: Horizontal Flow, Space Between */}
                   <div className="flex items-start justify-between gap-[16px]">
-                    {/* Question Text: Host Grotesk 600 SemiBold, 24px, 120% Line Height */}
                     <h3 className="text-[17px] font-semibold leading-[1.25] text-[#161616] sm:text-[24px] sm:leading-[1.2]">
                       {faq.q}
                     </h3>
-                    {/* Plus Icon: 16x16px */}
                     <button className="mt-[4px] shrink-0 text-[#161616] sm:mt-[6px]">
                       <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -464,48 +433,33 @@ export default function AboutUsComponent() {
                     </button>
                   </div>
 
-                  {/* Answer Text: Host Grotesk 400 Regular, 16px, 150% Line Height */}
                   <p className="text-[14px] font-normal leading-[1.5] text-[#555] sm:text-[16px]">
                     {faq.a}
                   </p>
-                  
                 </article>
               ))}
-
             </div>
           </div>
-
         </section>
 
         {/* --- PRESERVING MEMORIES (CTA) SECTION --- */}
-        {/* Figma Layout: Vertical Flow, 1440px Fill, Background: #F5F0EB, Padding: 80px Top/Bottom/Left/Right */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-[#f5f0eb] px-[24px] py-[56px] lg:px-[80px] lg:py-[80px]">
-          
-          {/* Content Wrapper: 854px Max Width, Vertical Flow, 48px Gap */}
           <div className="flex w-full max-w-[854px] flex-col items-center text-center gap-[32px] sm:gap-[48px]">
-            
-            {/* Headlines & Subtext Container */}
             <div className="flex flex-col items-center gap-[16px] sm:gap-[24px]">
-              {/* Headline: Host Grotesk 700 Bold, 56px, 110% Line Height, -2% Tracking */}
               <h2 className="text-[28px] font-bold leading-[1.15] tracking-[-0.02em] text-[#161616] sm:text-[48px] sm:leading-[1.1] lg:text-[56px]">
                 Preserving Memories <span className="text-[#295b42]">for Art Lovers like you</span>
               </h2>
               
-              {/* Subtext: Host Grotesk 400 Regular, 16px (scalable), 150% Line Height */}
               <p className="max-w-[700px] text-[14px] font-normal leading-[1.5] text-[#555] sm:text-[16px]">
                 From museum-quality framing to archival canvas prints, our expert team at Gallery 23 helps you protect your most treasured pieces and elevate your home with curated art.
               </p>
             </div>
 
-            {/* CTA Button: 600 SemiBold, 14px, 150% LH, 120% Letter Spacing (0.12em) */}
             <button className="w-full rounded-full bg-[#161616] px-[40px] py-[16px] text-[13px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-neutral-800 sm:w-auto sm:text-[14px]">
               Book a Consultation
             </button>
 
-            {/* Trust Indicator Container: Horizontal Flow, 16px Gap, 32px Height */}
             <div className="flex flex-row items-center justify-center gap-[16px]">
-              
-              {/* Avatars Grid: 80px Width, 32px Height (-space-x-4 achieves the exact 80px width for 4x32px avatars) */}
               <div className="flex h-[32px] w-[80px] -space-x-4">
                 <img
                   src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=85"
@@ -529,21 +483,12 @@ export default function AboutUsComponent() {
                 />
               </div>
 
-              {/* Trust Text: Host Grotesk 500 Medium, 14px, 150% Line Height */}
               <p className="text-[13px] font-medium leading-[1.4] text-[#161616] sm:text-[14px] sm:leading-[1.5]">
                 Trusted by collectors and artists across Ireland
               </p>
-
             </div>
-
           </div>
         </section>
-        
-
-        {/* 
-          Future sections (Meet the Gregs, etc.) 
-          will be placed down here in the next steps 
-        */}
 
       </main>
 
