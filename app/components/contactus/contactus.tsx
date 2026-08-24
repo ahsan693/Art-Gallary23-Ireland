@@ -169,11 +169,48 @@ export default function ContactComponent() {
 
         </section>
 
-        {/* --- 3. MAP SECTION --- */}
-        <section className="w-full max-w-[1440px]">
-          <div className="h-[400px] w-full overflow-hidden sm:h-[500px]">
-            {/* Using a placeholder image for the map, replace with an iframe or static map image later */}
-            <img src={mapImg} alt="Map of Dublin" className="h-full w-full object-cover" />
+      {/* --- 3. MAP SECTION --- */}
+        {/* Figma Layout: Horizontal Flow, 1440px Fill, 600px Fixed Height */}
+        <section className="relative mx-auto flex h-[600px] w-full max-w-[1440px] items-center justify-center overflow-hidden bg-[#eaf2ef]">
+          
+          {/* Functional Google Maps Embed (Centered on Dublin/Dublin Bay) */}
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d152515.6930058694!2d-6.386008688537637!3d53.32432014169553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e80ea27ac2f%3A0xa00c7a9973171a0!2sDublin%2C%20Ireland!5e0!3m2!1sen!2sus!4v1714589000000!5m2!1sen!2sus" 
+            className="absolute inset-0 h-full w-full border-0"
+            allowFullScreen={false} 
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Gallery 23 Map Location"
+          />
+
+          {/* Floating Location Card Container */}
+          {/* Constrained to 1280px to align perfectly with the page's standard side margins */}
+          <div className="pointer-events-none relative z-10 flex h-full w-full max-w-[1280px] items-start px-[24px] py-[40px] lg:px-[80px] lg:py-[80px]">
+            
+            {/* Card Body: White, 12px Radius, Drop Shadow */}
+            <div className="pointer-events-auto flex flex-col gap-[8px] rounded-[12px] bg-white p-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] sm:gap-[12px] sm:p-[32px]">
+              
+              {/* Title */}
+              <h3 className="text-[12px] font-bold uppercase tracking-[0.1em] text-[#555]">
+                GALLERY 23
+              </h3>
+              
+              {/* Address */}
+              <p className="text-[15px] font-medium text-[#161616] sm:text-[16px]">
+                23 Stephen&apos;s Green, Dublin 2
+              </p>
+              
+              {/* Link */}
+              <a 
+                href="https://maps.google.com" 
+                target="_blank" 
+                rel="noreferrer"
+                className="mt-[4px] text-[13px] font-bold text-[#161616] underline decoration-2 underline-offset-4 transition-colors hover:text-[#295b42]"
+              >
+                Get Directions
+              </a>
+              
+            </div>
           </div>
         </section>
 
