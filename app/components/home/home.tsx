@@ -405,7 +405,11 @@ export default function Home() {
           </div>
         </section>
 
+
+
+
         {/* --- ABOUT SECTION --- */}
+
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-primary px-5 py-14 lg:h-[704px] lg:flex-row lg:gap-[64px] lg:px-[120px] lg:py-[72px]">
           <div className="flex w-full flex-col gap-[24px] lg:w-[560px]">
             <h2 className="heading-h2 text-white">

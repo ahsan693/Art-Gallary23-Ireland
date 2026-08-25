@@ -3,11 +3,11 @@
 // ==========================================
 
 export const commercialImages = {
-  hero: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1920&q=85",
-  bulkFraming: "https://images.unsplash.com/photo-1582560475093-ba66accbc424?auto=format&fit=crop&w=800&q=85",
-  printing: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&w=800&q=85",
-  installation: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&w=800&q=85",
-  consultation: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=85",
+  hero: "/Commercial/Images/Section1.png",
+  bulkFraming: "/Commercial/Images/Section3- 01.png",
+  printing: "/Commercial/Images/Section3- 02.png",
+  installation: "/Commercial/Images/Section3- 03.png",
+  consultation: "/Commercial/Images/Section3- 04.png",
 };
 
 // Simulated Async Database Call

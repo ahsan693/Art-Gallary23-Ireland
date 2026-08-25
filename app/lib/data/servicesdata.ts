@@ -3,11 +3,14 @@
 // ==========================================
 
 export const servicesImages = {
- hero: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&w=1920&q=85",
-  framing: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=85",
-  printing: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=800&q=85",
-  commercial: "https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&w=800&q=85",
-  cta: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1920&q=85",
+  hero: "/Services/Images/Section 1.png",
+  pictureFraming: "/Services/Images/Section2- 01.png",
+  jerseyFraming: "/Services/Images/Section2- 02.png",
+  canvasPrints: "/Services/Images/Section2- 03.png",
+  shadowBox: "/Services/Images/Section2- 04.png",
+  certificate: "/Services/Images/Section2- 05.png",
+  photoRestoration: "/Services/Images/Section2- 06.png",
+  cta: "/Services/Images/Section 5.png",
 };
 
 // Simulated Async Database Call.
@@ -15,58 +18,170 @@ export const getServicesData = async () => {
   return {
     hero: {
       badge: "What We Do",
-      title: "Expert Framing & Printing Services",
-      subtitle: "From curatorial advice to museum-grade preservation, our studio is ready to assist with your next project. Explore our core services below.",
+      title: "Our Expert Framing & Printing Services",
+      subtitle:
+        "Dublin's most comprehensive range of professional framing services — every piece handcrafted by master framers with nearly 40 years of experience.",
+      image: servicesImages.hero,
     },
     offerings: [
       {
-        id: "custom-framing",
-        title: "Custom Picture Framing",
-        description: "Our professional framers thoughtfully handcraft each frame using premium, conservation-minded materials. Whether it is a cherished family photograph, a valuable original painting, or sports memorabilia, we ensure it is protected and beautifully displayed.",
+        id: "picture-framing",
+        title: "Picture Framing",
+        description:
+          "Preserve and showcase your artwork, photographs, and prints with our custom picture framing. Choose from hundreds of frame styles, mats, and glass options.",
         features: [
           "Museum-quality acid-free materials",
           "UV-filtering and anti-reflective glass",
           "Hundreds of premium frame moldings",
-          "Reversible mounting techniques"
+          "Reversible mounting techniques",
         ],
-        image: servicesImages.framing,
-        ctaText: "Book Framing Consultation",
-        ctaLink: "/contact",
+        image: servicesImages.pictureFraming,
+        ctaText: "INQUIRE NOW",
+        ctaLink: "/contactus",
       },
       {
-        id: "fine-art-printing",
-        title: "Fine Art & Photo Printing",
-        description: "Upload your high-res files and print them to museum-quality archival standards. We use the latest wide-format pigment printers to ensure accurate color reproduction and stunning clarity for photographers and artists.",
+        id: "jersey-framing",
+        title: "Jersey Framing",
+        description:
+          "Display your proud sports jerseys and memorabilia in custom-built shadow box frames. UV-protective glass keeps colors vibrant for years.",
         features: [
-          "Premium Hahnemühle & archival papers",
-          "Custom canvas printing & stretching",
-          "Sizes ranging from 4x6 to 40x60",
-          "Same-day printing options available"
+          "Custom depth for shadow box effect",
+          "Acid-free mounting to preserve fabric",
+          "UV-blocking conservation glass",
+          "Professional plaque & mat options",
         ],
-        image: servicesImages.printing,
-        ctaText: "Start Print Order",
-        ctaLink: "/printshop",
+        image: servicesImages.jerseyFraming,
+        ctaText: "INQUIRE NOW",
+        ctaLink: "/contactus",
       },
       {
-        id: "commercial-projects",
-        title: "Commercial & Gallery Installs",
-        description: "We partner with interior designers, corporate offices, and local galleries to provide large-scale framing and printing solutions. From sourcing licensed artwork to white-glove delivery and installation.",
+        id: "canvas-prints",
+        title: "Canvas Prints",
+        description:
+          "Transform your favorite photos into stunning canvas prints. We offer gallery-wrapped and framed canvas options in any size. Best offer for new visitors.",
         features: [
-          "Volume framing discounts",
-          "Licensed artwork sourcing",
-          "White-glove delivery & installation",
-          "Dedicated project management"
+          "High-grade archival cotton canvas",
+          "Custom wood stretcher bars",
+          "Gallery wrap or floating frame finish",
+          "Protective varnish coat",
         ],
-        image: servicesImages.commercial,
-        ctaText: "View Commercial Work",
-        ctaLink: "/commercial",
-      }
+        image: servicesImages.canvasPrints,
+        ctaText: "INQUIRE NOW",
+        ctaLink: "/contactus",
+      },
+      {
+        id: "shadow-box",
+        title: "Shadow Box Framing",
+        description:
+          "Create dimensional displays for 3D objects, medals, collectibles, and keepsakes in beautifully crafted shadow boxes.",
+        features: [
+          "Deep frame profile options",
+          "Custom layout & pin-mounting",
+          "Archival cloth backing options",
+          "Museum-grade UV protection glass",
+        ],
+        image: servicesImages.shadowBox,
+        ctaText: "INQUIRE NOW",
+        ctaLink: "/contactus",
+      },
+      {
+        id: "certificate-award",
+        title: "Certificate & Award Framing",
+        description:
+          "Present your diplomas, certificates, and awards with the distinction they deserve. Professional framing for any document size.",
+        features: [
+          "Conservation grade double matting",
+          "Gold and silver foil border options",
+          "Reversible non-damaging hinges",
+          "Bulk corporate volume discounts",
+        ],
+        image: servicesImages.certificate,
+        ctaText: "INQUIRE NOW",
+        ctaLink: "/contactus",
+      },
+      {
+        id: "photo-restoration",
+        title: "Photo Restoration",
+        description:
+          "Bring old or damaged photos back to life with our restoration services, then preserve them in archival-quality custom frames.",
+        features: [
+          "Digital repair of cracks & stains",
+          "Colorization of monochrome photos",
+          "High-resolution archival re-printing",
+          "Custom framing included",
+        ],
+        image: servicesImages.photoRestoration,
+        ctaText: "INQUIRE NOW",
+        ctaLink: "/contactus",
+      },
     ],
+    journey: {
+      title: "The framing journey",
+      steps: [
+        {
+          num: "1",
+          title: "Free Consultation",
+          desc: "Visit our studio for expert assessment and material recommendations.",
+        },
+        {
+          num: "2",
+          title: "Material Selection",
+          desc: "Choose from hundreds of mouldings, mats, and glazing options.",
+        },
+        {
+          num: "3",
+          title: "Expert Craftsmanship",
+          desc: "Hand-cut, joined, and finished by our master craftsmen.",
+        },
+        {
+          num: "4",
+          title: "Collection",
+          desc: "Pick up your completed piece or arrange secure local delivery.",
+        },
+      ],
+    },
+    form: {
+      title: "Inquire Now",
+      subtitle:
+        "Have questions about our services? Fill out the form below and we'll get back to you shortly.",
+      fields: {
+        services: [
+          "Select a service...",
+          "Picture Framing",
+          "Jersey Framing",
+          "Canvas Prints",
+          "Shadow Box Framing",
+          "Certificate Framing",
+          "Photo Restoration",
+        ],
+      },
+      submitText: "Submit Inquiry",
+    },
     cta: {
-      title: "Ready to start your project?",
-      subtitle: "Visit our Kimmage or Coalmine locations, or book a free online design consultation today.",
-      buttonText: "Contact Us",
-      buttonLink: "/contact"
-    }
+      title: "Book A Free Consultation Service.",
+      subtitle: "Get in touch with our friendly and knowledgeable team.",
+      buttonPhone: "(085) 631-4964",
+      buttonText: "Send Message",
+      buttonLink: "/contactus", // Fixed runtime undefined link error
+      image: servicesImages.cta,
+    },
+    features: [
+      {
+        title: "40 Years Expertise",
+        desc: "Dedicated family knowledge passed down through generations.",
+      },
+      {
+        title: "Sustainable Practices",
+        desc: "Committed to eco-friendly materials and workshop waste reduction.",
+      },
+      {
+        title: "500+ Mouldings",
+        desc: "One of Ireland's largest selections of classic and modern frames.",
+      },
+      {
+        title: "Free Consultations",
+        desc: "No appointment needed for expert design advice from our team.",
+      },
+    ],
   };
 };

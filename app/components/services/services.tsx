@@ -45,14 +45,26 @@ export default function ServicesComponent() {
 
       <main className="flex flex-col items-center">
         
-        {/* --- HERO SECTION --- */}
+     {/* --- HERO SECTION --- */}
         <section className="relative flex h-[500px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[64px] sm:h-[600px] lg:px-[80px] lg:py-[120px]">
           
-          <div className="absolute inset-0 -z-20">
-            <Image src={servicesImages.hero} alt="Gallery interior" fill priority className="object-cover" />
+          {/* 1. Image Layer (Fixed: changed -z-20 to z-0 so it doesn't hide behind the page!) */}
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src={data.hero.image} /* Best practice: use data.hero.image from your props */
+              alt="Gallery interior" 
+              fill 
+              priority 
+              className="object-cover" 
+            />
           </div>
-          <div className="absolute inset-0 -z-10 bg-black/60" />
 
+          {/* 2. Dark Overlay (Fixed: changed -z-10 to z-10) 
+              Note: I reduced it slightly to bg-black/40 so the image pops more, 
+              but keeps enough contrast so your white text remains readable. */}
+          <div className="absolute inset-0 z-10 bg-black/40" />
+
+          {/* 3. Text Content (z-20 keeps the text on the very top) */}
           <div className="relative z-20 flex w-full max-w-[900px] flex-col items-center gap-[24px] text-center text-white">
             <div className="inline-flex items-center justify-center rounded-full border border-white/40 px-[16px] py-[6px] backdrop-blur-sm">
               <span className="text-[13px] font-semibold tracking-wide text-white uppercase">
@@ -131,14 +143,25 @@ export default function ServicesComponent() {
           })}
         </section>
 
-        {/* --- CTA SECTION --- */}
+    {/* --- CTA SECTION --- */}
         <section className="relative mx-auto flex min-h-[480px] w-full max-w-[1440px] items-center justify-center overflow-hidden px-[24px] py-[80px]">
-          <div className="absolute inset-0 -z-20">
-            <Image src={servicesImages.cta} alt="Living room with art" fill className="object-cover" sizes="100vw" />
+          
+          {/* 1. Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src={data.cta.image} 
+              alt="Living room with art" 
+              fill 
+              className="object-cover" 
+              sizes="100vw" 
+            />
           </div>
-          <div className="absolute inset-0 -z-10 bg-forest-green/90" />
 
-          <div className="flex w-full max-w-[800px] flex-col items-center text-center gap-[24px]">
+          {/* 2. Color Overlay (Removed the green, using a neutral dark tint for text readability) */}
+          <div className="absolute inset-0 z-10 bg-black/40" />
+
+          {/* 3. Text Content */}
+          <div className="relative z-20 flex w-full max-w-[800px] flex-col items-center text-center gap-[24px]">
             {/* Global Token: heading-h2 */}
             <h2 className="heading-h2 text-white">
               {data.cta.title}

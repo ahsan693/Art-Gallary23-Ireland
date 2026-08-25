@@ -65,15 +65,21 @@ export default function CommercialComponent() {
     <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
       <Header />
 
-      <main className="flex w-full flex-1 flex-col items-center">
+     <main className="flex w-full flex-1 flex-col items-center">
         
         {/* --- 1. HERO SECTION --- */}
+        {/* Added max-w-[1440px] and sm:h-[600px] to match the Figma bounding box exactly */}
         <section className="relative flex h-[520px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[56px] sm:h-[600px] lg:px-[80px] lg:py-[80px]">
-          <div className="absolute inset-0 -z-20">
+          
+          {/* Background Image (Will fill the 1440x600 box perfectly) */}
+          <div className="absolute inset-0 z-0">
             <Image src={data.hero.image} alt={data.hero.title} fill priority className="object-cover" />
           </div>
-          <div className="absolute inset-0 -z-10 bg-black/60" />
 
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 z-10 bg-black/60" />
+
+          {/* Text Content (Remains perfectly centered and constrained) */}
           <div className="relative z-20 flex w-full max-w-[900px] flex-col items-center gap-[16px] text-center text-white sm:gap-[24px]">
             <h1 className="heading-display text-white w-full sm:text-[48px] lg:text-[64px]">
               {data.hero.title}
@@ -86,6 +92,8 @@ export default function CommercialComponent() {
             </Link>
           </div>
         </section>
+        
+        {/* ... Rest of your sections ... */}
 
         {/* --- 2. WHO WE SERVE SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream px-[24px] py-[48px] lg:gap-[56px] lg:px-[120px] lg:py-[80px]">
