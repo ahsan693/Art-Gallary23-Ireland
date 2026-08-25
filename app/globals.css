@@ -1,12 +1,6 @@
 @import "tailwindcss";
 
-/* ============================================================================
-   GALLERY 23 DESIGN TOKENS (Tailwind v4 Native)
-   ============================================================================ */
-
 @theme {
-  /* COLORS */
-  /* Putting these here automatically creates bg-forest-green, text-forest-green, border-forest-green, etc. */
   --color-forest-green: #295B42;
   --color-sage: #84A59D;
   --color-gold: #E8B84B;
@@ -20,13 +14,10 @@
   --color-border: #D5D5D5;
   --color-warm-border: #D1BFAD;
 
-  /* FONTS */
-  /* Automatically creates font-sans and font-mono */
   --font-sans: "Host Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
 }
 
-/* Base resets */
 @layer base {
   body {
     @apply bg-white text-primary font-sans;
@@ -34,94 +25,52 @@
 }
 
 /* ============================================================================
-   REUSABLE COMPONENT TOKENS
+   REUSABLE COMPONENT TOKENS (Fixed for Tailwind v4)
    ============================================================================ */
 
 @layer components {
   
-  /* --- TYPOGRAPHY --- */
-  
   .heading-display {
-    @apply font-sans text-[64px] font-bold leading-[1.1] text-black;
-  }
-
-  .heading-section {
-    @apply font-sans text-[48px] font-bold leading-[1.1] text-primary;
-  }
-
-  .heading-section-medium {
-    @apply font-sans text-[48px] font-medium leading-[1.1] text-primary;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #000000;
   }
 
   .heading-h2 {
-    @apply font-sans text-[56px] font-medium leading-[1.1] text-primary;
+    font-size: 56px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--color-primary);
   }
 
   .heading-h3 {
-    @apply font-sans text-[48px] font-bold leading-[1.1] text-primary;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-primary);
   }
 
   .heading-h4 {
-    @apply font-sans text-[40px] font-bold leading-[1.15] text-primary;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--color-primary);
   }
 
-  .heading-h5 {
-    @apply font-sans text-[36px] font-semibold leading-[1.15] text-primary;
-  }
-
-  .heading-h6 {
-    @apply font-sans text-[32px] font-bold leading-[1.2] text-primary;
-  }
-
-  .heading-h7 {
-    @apply font-sans text-[28px] font-bold leading-[1.2] text-primary;
-  }
-
-  .heading-h8 {
-    @apply font-sans text-[24px] font-bold leading-[1.2] text-primary;
-  }
-
-  .heading-h9 {
-    @apply font-sans text-[20px] font-bold leading-[1.4] text-primary;
-  }
-
-  .heading-mini {
-    @apply font-sans text-[18px] font-bold leading-[1.4] text-primary;
-  }
-
-  .body-emphasis {
-    @apply font-sans text-[18px] font-medium leading-[1.4] text-primary;
-  }
-
-  .body-large {
-    @apply font-sans text-[18px] font-normal leading-[1.4] text-primary;
-  }
-
-  .body-text { /* Renamed from .body to avoid conflict with HTML body tag */
-    @apply font-sans text-[16px] font-normal leading-[1.5] text-primary;
+  .body-text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-primary);
   }
 
   .body-small {
-    @apply font-sans text-[14px] font-normal leading-[1.5] text-primary;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-primary);
   }
-
-  .caption {
-    @apply font-sans text-[13px] font-normal leading-[1.5] text-secondary;
-  }
-
-  .small {
-    @apply font-sans text-[12px] font-normal leading-[1.5] text-tertiary;
-  }
-
-  .micro {
-    @apply font-sans text-[11px] font-normal leading-[1.5] text-muted;
-  }
-
-  .quote {
-    @apply font-sans text-[24px] font-normal italic leading-[1.2] text-primary;
-  }
-
-  /* --- UI COMPONENTS --- */
 
   .btn-primary {
     @apply inline-flex h-[48.5px] items-center gap-[10px] rounded-full px-[24px] text-[14px] font-semibold leading-[1.5] bg-forest-green border border-forest-green text-white transition-all hover:bg-[#204834] cursor-pointer;

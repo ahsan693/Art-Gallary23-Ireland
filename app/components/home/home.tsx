@@ -13,7 +13,8 @@ import {
   services, 
   testimonials, 
   faqs, 
-  benefitsData 
+  benefitsData,
+  trustedBrands // <--- Add this!
 } from "@/app/lib/data/homedata";
 
 // ==========================================
@@ -429,7 +430,7 @@ export default function Home() {
 
         {/* --- WHY CHOOSE OUR FRAMES SECTION --- */}
         <section className="relative isolate mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] px-5 py-[80px] lg:px-[80px]">
-          <ResponsiveImage src={images.consultation} alt="Gallery styling interior" className="absolute inset-0 -z-20" />
+          <ResponsiveImage src={images.why} alt="Gallery styling interior" className="absolute inset-0 -z-20" />
           <div className="absolute inset-0 -z-10 bg-primary/75" /> 
           <div className="flex w-full max-w-[700px] flex-col items-center gap-[16px] text-center text-white">
             <h2 className="heading-h2 text-white">
@@ -641,7 +642,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- TRUSTED BY SECTION --- */}
+    {/* --- TRUSTED BY SECTION --- */}
         <section className="section mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden px-5 py-[40px] lg:px-[80px] lg:py-[52px]">
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[20px] lg:gap-[26px]">
             <h2 className="w-full text-center heading-h2">
@@ -655,12 +656,17 @@ export default function Home() {
               >
                 {[...Array(2)].map((_, idx) => (
                   <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
-                    {["Forbes", "HUFFPOST", "ELLE DECOR", "AD", "The New York Times"].map((brand, i) => (
+                    {/* Maps through your local logo images instead of text */}
+                    {trustedBrands.map((brandImg, i) => (
                       <div 
                         key={i} 
-                        className="flex h-[64px] items-center justify-center whitespace-nowrap text-[18px] font-black tracking-tighter text-[#333] opacity-80 sm:h-[106px] sm:text-[28px]"
+                        className="flex h-[64px] items-center justify-center opacity-80 grayscale transition-all hover:grayscale-0 sm:h-[106px]"
                       >
-                        {brand}
+                        <img 
+                          src={brandImg} 
+                          alt={`Trusted Brand ${i + 1}`}
+                          className="max-h-[30px] w-auto object-contain sm:max-h-[45px]"
+                        />
                       </div>
                     ))}
                   </div>
@@ -751,61 +757,41 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- CONSULTATION / CTA SECTION --- */}
-        <section
-          id="consultation"
-          className="relative mx-auto flex min-h-[480px] w-full max-w-[1440px] items-center justify-center overflow-hidden px-[16px] py-[48px] sm:min-h-[578px] sm:px-[24px] sm:py-0"
-        >
-          <div className="absolute inset-0 -z-20">
-            <Image
-              src={images.consultation}
-              alt="Living room with art and a framed gallery wall"
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-
-          <div className="absolute inset-0 -z-10 bg-black/50" />
-
-          <div className="flex w-full max-w-[1050px] flex-col items-center rounded-[12px] bg-white px-[20px] py-[36px] text-center shadow-lg sm:px-[24px] sm:py-[48px]">
-            <h2 className="mx-auto w-full max-w-[861px] heading-h2 text-black">
-              Book A Free Consultation Service.
+   {/* --- TRUSTED BY SECTION --- */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-white px-[24px] py-[40px] sm:px-[52px] sm:py-[80px]">
+          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[24px] sm:gap-[32px]">
+            {/* Section Title */}
+            <h2 className="heading-h2 text-center text-primary">
+              Trusted By
             </h2>
 
-            <div className="py-[16px] sm:py-[24px]">
-              <p className="body-large text-black">
-                Get in touch with our friendly and knowledgeable team
-              </p>
-            </div>
-
-            <div className="pt-[8px] sm:pt-[16px]">
-              <div className="flex w-full flex-col items-stretch justify-center gap-[12px] sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
-                <a
-                  href="tel:0856314964"
-                  className="btn-primary bg-black border-black hover:bg-neutral-800"
-                >
-                  <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                    <line x1="12" y1="18" x2="12.01" y2="18" />
-                  </svg>
-                  <span>(085) 631-4964</span>
-                </a>
-
-                <Link
-                  href="/contactus"
-                  className="btn-primary bg-black border-black hover:bg-neutral-800"
-                >
-                  <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <polyline points="3 7 12 13 21 7" />
-                  </svg>
-                  <span>Send Message</span>
-                </Link>
-              </div>
+            {/* Continuous Ticker Row */}
+            <div className="relative flex h-[80px] w-full items-center overflow-hidden sm:h-[100px]">
+              <motion.div
+                className="flex w-max items-center"
+                animate={{ x: ["0%", "-50%"] }} 
+                transition={{ repeat: Infinity, ease: "linear", duration: 25 }} 
+              >
+                {[...Array(2)].map((_, idx) => (
+                  <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
+                    {trustedBrands.map((brandImg, i) => (
+                      <div 
+                        key={i} 
+                        className="flex h-[60px] sm:h-[80px] items-center justify-center shrink-0"
+                      >
+                       <img 
+  src={brandImg} 
+  alt={`Trusted Brand ${i + 1}`}
+  className="!h-[54px] !max-h-[54px] !w-auto !max-w-none object-contain"
+/>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </motion.div>
             </div>
           </div>
-        </section>
+        </section> 
       </main>
 
       <Footer />
