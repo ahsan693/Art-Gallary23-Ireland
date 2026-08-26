@@ -10,6 +10,12 @@ import { Header, Footer } from "@/app/components/home/home";
 // Importing the Data Layer
 import { getCheckoutPaperSizeData } from "@/app/lib/data/checkoutPaperSizeData";
 
+// Figma mobile assets
+const mobileBackIcon = "https://www.figma.com/api/mcp/asset/e704c3a3-0a5f-4fe0-8ac2-ed176653849c.svg";
+const mobileBagIcon = "https://www.figma.com/api/mcp/asset/217818e8-ae21-49e3-a3fe-5afa12ea8ef6.svg";
+const mobileCheckIcon = "https://www.figma.com/api/mcp/asset/36abb49d-4f00-4681-b208-cf6f99222e83.svg";
+const mobileArrowIcon = "https://www.figma.com/api/mcp/asset/da712e1a-3560-4de1-90fd-31d191491158.svg";
+
 // ==========================================
 // CHECKOUT PAPER & SIZE COMPONENT
 // ==========================================
@@ -39,16 +45,44 @@ export default function CheckoutPaperSizeComponent() {
 
     return (
         <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
-            {/* --- HEADER --- */}
-            <Header />
+            
+            {/* --- DESKTOP HEADER --- */}
+            <div className="hidden md:block">
+                <Header />
+            </div>
+
+            {/* --- MOBILE HEADER --- */}
+            <div className="md:hidden">
+                <div className="flex h-[29px] w-full items-center justify-center bg-[#295B42] px-[16px] py-[8px]">
+                    <p className="whitespace-nowrap text-center font-['Host_Grotesk'] text-[11px] font-normal leading-[1.5] tracking-[0.4px] text-white">
+                        Cash on Delivery — Pickup at Kimmage or Coalmine
+                    </p>
+                </div>
+                <div className="flex h-[56px] w-full items-center justify-between border-b border-[#D5D5D5] bg-white px-[16px]">
+                    <Link
+                        href={data.topBar.backLink}
+                        aria-label={data.topBar.backText}
+                        className="flex size-[36px] items-center justify-center -ml-[8px]"
+                    >
+                        <img src={mobileBackIcon} alt="" className="size-[18px]" />
+                    </Link>
+                    <p className="font-['Host_Grotesk'] text-[18px] font-bold uppercase leading-[1.4] tracking-[1px] text-[#232323]">
+                        Gallery 23
+                    </p>
+                    <button type="button" aria-label="Cart" className="flex size-[36px] items-center justify-center">
+                        <img src={mobileBagIcon} alt="" className="size-[20px]" />
+                    </button>
+                </div>
+            </div>
 
             {/* --- MAIN PAGE CONTENT --- */}
-            <main className="flex w-full flex-1 flex-col items-center py-[40px] sm:py-[64px]">
-                {/* Main Wrapper matching Figma's 1000px width for the content column */}
-                <div className="flex w-full max-w-[1000px] flex-col items-center px-[24px]">
+            <main className="flex w-full flex-1 flex-col items-center bg-warm-cream py-[40px] sm:py-[64px] max-md:py-0 md:bg-transparent">
+                
+                {/* Main Wrapper matching the existing desktop layout. Mobile uses the Figma 390px layout. */}
+                <div className="flex w-full max-w-[1000px] flex-col items-center px-[24px] max-md:px-0">
 
-                    {/* --- TOP PROGRESS BAR --- */}
-                    <div className="flex w-full max-w-[920px] items-center gap-[16px] pb-[48px]">
+                    {/* --- DESKTOP TOP PROGRESS BAR --- */}
+                    <div className="hidden w-full max-w-[920px] items-center gap-[16px] pb-[48px] md:flex">
                         <Link href={data.topBar.backLink} className="body-small flex items-center gap-[4px] font-medium text-secondary transition hover:text-primary">
                             <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -65,58 +99,72 @@ export default function CheckoutPaperSizeComponent() {
                         <span className="body-small font-medium text-secondary">{data.topBar.stepText}</span>
                     </div>
 
+                    {/* --- MOBILE TOP PROGRESS BAR --- */}
+                    <div className="flex w-full flex-col gap-[8px] px-[20px] pb-[8px] pt-[16px] md:hidden">
+                        <div className="flex w-full gap-[6px]">
+                            <div className="h-[4px] flex-1 rounded-full bg-[#295B42]" />
+                            <div className="h-[4px] flex-1 rounded-full bg-[#295B42]" />
+                            <div className="h-[4px] flex-1 rounded-full bg-[#D5D5D5]" />
+                            <div className="h-[4px] flex-1 rounded-full bg-[#D5D5D5]" />
+                            <div className="h-[4px] flex-1 rounded-full bg-[#D5D5D5]" />
+                        </div>
+                        <p className="font-['Host_Grotesk'] text-[12px] font-medium leading-[1.5] text-[#555]">
+                            {data.topBar.stepText}
+                        </p>
+                    </div>
+
                     {/* --- PAGE HEADING --- */}
-                    <div className="flex w-full max-w-[920px] flex-col gap-[8px] pb-[40px]">
-                        <h1 className="text-[36px] font-bold leading-[1.1] text-primary sm:text-[40px]">
+                    <div className="flex w-full max-w-[920px] flex-col gap-[8px] pb-[40px] max-md:px-[20px] max-md:pb-[16px] max-md:pt-[8px]">
+                        <h1 className="text-[36px] font-bold leading-[1.1] text-primary sm:text-[40px] max-md:text-[24px] max-md:leading-[1.2]">
                             {data.heading.title}
                         </h1>
-                        <p className="body-text text-secondary">
+                        <p className="body-text text-secondary max-md:pt-[4px] max-md:text-[14px] max-md:leading-[1.5]">
                             {data.heading.subtitle}
                         </p>
                     </div>
 
                     {/* --- PAPER TYPE SECTION --- */}
-                    <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[40px]">
-                        <h2 className="text-[20px] font-bold text-primary">{data.paperSection.title}</h2>
+                    <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[40px] max-md:h-auto max-md:px-[20px] max-md:pb-[20px] max-md:gap-0">
+                        <h2 className="text-[20px] font-bold text-primary max-md:text-[13px] max-md:font-semibold max-md:uppercase max-md:tracking-[0.5px] max-md:leading-[1.5]">
+                            {data.paperSection.title}
+                        </h2>
 
                         {/* Paper Cards Grid */}
-                        <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-4">
+                        <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-4 max-md:gap-[12px] max-md:pt-[12px]">
                             {data.paperSection.options.map((paper: any) => {
                                 const isSelected = selectedPaper === paper.id;
                                 return (
                                     <button
                                         key={paper.id}
                                         onClick={() => setSelectedPaper(paper.id)}
-                                        className={`group relative flex h-[300px] w-full flex-col overflow-hidden rounded-[16px] border-[2px] bg-white text-left transition-all ${isSelected
-                                            ? "border-primary shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
-                                            : "border-transparent shadow-sm hover:border-border"
+                                        className={`group relative flex h-[300px] w-full flex-col overflow-hidden rounded-[16px] border-[2px] bg-white text-left transition-all max-md:h-[86px] max-md:flex-row max-md:items-center max-md:gap-[12px] max-md:rounded-[16px] ${isSelected
+                                            ? "border-primary shadow-[0_8px_24px_rgba(0,0,0,0.12)] max-md:shadow-none"
+                                            : "border-transparent shadow-sm hover:border-border max-md:border-[#D5D5D5] max-md:shadow-none"
                                             }`}
                                     >
                                         {/* Top Image Area */}
-                                        <div className="relative h-[150px] w-full shrink-0 bg-gray-100">
+                                        <div className="relative h-[150px] w-full shrink-0 bg-gray-100 max-md:h-[82px] max-md:w-[80px]">
                                             <Image src={paper.img} alt={paper.name} fill className="object-cover" />
 
                                             {/* Checkmark Indicator */}
                                             <div
-                                                className={`absolute right-[12px] top-[12px] flex size-[24px] items-center justify-center rounded-full border-[1.5px] transition-all ${isSelected
+                                                className={`absolute right-[12px] top-[12px] flex size-[24px] items-center justify-center rounded-full border-[1.5px] transition-all max-md:right-[12px] max-md:top-1/2 max-md:-translate-y-1/2 max-md:size-[20px] max-md:border-2 ${isSelected
                                                     ? "border-primary bg-primary"
                                                     : "border-border bg-white shadow-sm"
                                                     }`}
                                             >
                                                 {isSelected && (
-                                                    <svg className="size-[14px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                                    </svg>
+                                                    <img src={mobileCheckIcon} alt="" className="size-[14px] max-md:size-[8px]" />
                                                 )}
                                             </div>
                                         </div>
 
                                         {/* Bottom Text Area */}
-                                        <div className="flex flex-col gap-[8px] p-[16px]">
-                                            <h3 className="text-[16px] font-bold leading-[1.2] text-primary">
+                                        <div className="flex flex-col gap-[8px] p-[16px] max-md:min-w-0 max-md:flex-1 max-md:gap-[2px] max-md:py-[12px] max-md:pr-[36px] max-md:pl-0">
+                                            <h3 className="text-[16px] font-bold leading-[1.2] text-primary max-md:whitespace-nowrap max-md:text-[16px] max-md:leading-[1.5]">
                                                 {paper.name}
                                             </h3>
-                                            <p className="text-[13px] leading-[1.5] text-secondary">
+                                            <p className="text-[13px] leading-[1.5] text-secondary max-md:text-[12px] max-md:leading-[1.5]">
                                                 {paper.desc}
                                             </p>
                                         </div>
@@ -127,27 +175,29 @@ export default function CheckoutPaperSizeComponent() {
                     </div>
 
                     {/* --- PRINT SIZE SECTION --- */}
-                    <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[24px]">
-                        <h2 className="text-[20px] font-bold text-primary">{data.sizeSection.title}</h2>
+                    <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[24px] max-md:px-[20px] max-md:pb-0 max-md:gap-0">
+                        <h2 className="text-[20px] font-bold text-primary max-md:text-[13px] max-md:font-semibold max-md:uppercase max-md:tracking-[0.5px] max-md:leading-[1.5]">
+                            {data.sizeSection.title}
+                        </h2>
 
                         {/* Sizes Grid */}
-                        <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3">
+                        <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3 max-md:grid-cols-2 max-md:gap-[8px] max-md:pt-[12px]">
                             {data.sizeSection.options.map((size: any) => {
                                 const isSelected = selectedSize === size.id;
                                 return (
                                     <button
                                         key={size.id}
                                         onClick={() => setSelectedSize(size.id)}
-                                        className={`flex flex-col items-start justify-center gap-[12px] rounded-[16px] border-[2px] bg-white p-[20px] text-left transition-all ${isSelected
-                                            ? "border-primary shadow-[0_4px_16px_rgba(0,0,0,0.08)]"
-                                            : "border-transparent shadow-sm hover:border-border"
+                                        className={`flex flex-col items-start justify-center gap-[12px] rounded-[16px] border-[2px] bg-white p-[20px] text-left transition-all max-md:h-[92px] max-md:gap-[2px] max-md:rounded-[12px] max-md:p-[12px] ${isSelected
+                                            ? "border-primary shadow-[0_4px_16px_rgba(0,0,0,0.08)] max-md:shadow-none"
+                                            : "border-transparent shadow-sm hover:border-border max-md:border-[#D5D5D5] max-md:shadow-none"
                                             }`}
                                     >
                                         <div className="flex flex-col gap-[4px]">
-                                            <h3 className="text-[18px] font-bold text-primary">{size.name}</h3>
-                                            <p className="text-[14px] text-secondary">{size.dimensions}</p>
+                                            <h3 className="text-[18px] font-bold text-primary max-md:text-[16px] max-md:leading-[1.5]">{size.name}</h3>
+                                            <p className="text-[14px] text-secondary max-md:text-[11px] max-md:leading-[1.5]">{size.dimensions}</p>
                                         </div>
-                                        <span className={`text-[16px] font-bold ${isSelected ? "text-forest-green" : "text-secondary"}`}>
+                                        <span className={`text-[16px] font-bold mt-[4px] max-md:mt-0 max-md:font-normal max-md:text-[12px] max-md:font-['IBM_Plex_Mono'] ${isSelected ? "text-forest-green" : "text-secondary"}`}>
                                             €{size.price}
                                         </span>
                                     </button>
@@ -156,25 +206,43 @@ export default function CheckoutPaperSizeComponent() {
                         </div>
                     </div>
 
-                    {/* --- BOTTOM SUMMARY BAR --- */}
-                    <div className="mt-[24px] flex min-h-[96px] w-full max-w-[920px] items-center justify-between border-t border-border pt-[24px]">
+                    {/* --- DESKTOP BOTTOM SUMMARY BAR --- */}
+                    <div className="mt-[24px] flex min-h-[96px] w-full max-w-[920px] items-center justify-between border-t border-border pt-[24px] max-md:hidden">
                         <p className="body-text text-secondary">
-                            {activePaper?.name} — {activeSize?.name} — €{activeSize?.price}
+                            {activePaper?.name} — {activeSize?.name} — <span className="font-bold text-primary">€{activeSize?.price}</span>
                         </p>
 
-                        <button className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
+                        <Link href="/checkout-details" className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
                             {data.bottomBar.nextButtonText}
                             <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
-                        </button>
+                        </Link>
+                    </div>
+
+                    {/* --- MOBILE BOTTOM SUMMARY --- */}
+                    <div className="flex w-full flex-col gap-[12px] px-[20px] pb-[32px] pt-[20px] md:hidden">
+                        <div className="flex h-[44px] w-full items-center justify-between rounded-[12px] border border-[#D5D5D5] bg-white px-[16px] py-[12px]">
+                            <p className="font-['Host_Grotesk'] text-[13px] font-normal leading-[1.5] text-[#555]">
+                                {activePaper?.name} · {activeSize?.name}
+                            </p>
+                            <p className="font-['IBM_Plex_Mono'] text-[16px] font-medium leading-[1.5] text-[#232323]">
+                                €{activeSize?.price}
+                            </p>
+                        </div>
+                        <Link href="/checkout-details" className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#232323] font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white">
+                            {data.bottomBar.nextButtonText}
+                            <img src={mobileArrowIcon} alt="" className="size-[16px] brightness-0 invert" />
+                        </Link>
                     </div>
 
                 </div>
             </main>
 
-            {/* --- FOOTER --- */}
-            <Footer />
+            {/* --- FOOTER: desktop only; the mobile Figma screen ends at the CTA --- */}
+            <div className="hidden md:block">
+                <Footer />
+            </div>
         </div>
     );
 }
