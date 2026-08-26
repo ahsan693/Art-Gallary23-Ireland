@@ -67,8 +67,8 @@ export default function CheckoutPaperSizeComponent() {
 
             {/* --- MAIN PAGE CONTENT --- */}
             <main className="flex w-full flex-1 flex-col items-center py-[40px] sm:py-[64px]">
-                {/* Main Wrapper matching Figma's 1000px width */}
-                <div className="flex w-full max-w-[1000px] flex-col px-[24px] lg:px-[40px]">
+                {/* Main Wrapper matching Figma's 1000px width for the content column */}
+                <div className="flex w-full max-w-[1000px] flex-col items-center px-[24px]">
 
                     {/* --- TOP PROGRESS BAR --- */}
                     <div className="flex w-full max-w-[920px] items-center gap-[16px] pb-[48px]">
@@ -99,7 +99,7 @@ export default function CheckoutPaperSizeComponent() {
                     </div>
 
                     {/* --- PAPER TYPE SECTION --- */}
-                    <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[56px]">
+                    <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[40px]">
                         <h2 className="text-[20px] font-bold text-primary">Paper Type</h2>
 
                         {/* Paper Cards Grid */}
@@ -111,19 +111,19 @@ export default function CheckoutPaperSizeComponent() {
                                         key={paper.id}
                                         onClick={() => setSelectedPaper(paper.id)}
                                         className={`group relative flex h-[300px] w-full flex-col overflow-hidden rounded-[16px] border-[2px] bg-white text-left transition-all ${isSelected
-                                                ? "border-primary shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
-                                                : "border-transparent shadow-sm hover:border-border"
+                                            ? "border-primary shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
+                                            : "border-transparent shadow-sm hover:border-border"
                                             }`}
                                     >
                                         {/* Top Image Area */}
-                                        <div className="relative h-[140px] w-full shrink-0 bg-gray-100">
+                                        <div className="relative h-[150px] w-full shrink-0 bg-gray-100">
                                             <Image src={paper.img} alt={paper.name} fill className="object-cover" />
 
                                             {/* Checkmark Indicator */}
                                             <div
-                                                className={`absolute right-[12px] top-[12px] flex size-[24px] items-center justify-center rounded-full border transition-all ${isSelected
-                                                        ? "border-primary bg-primary"
-                                                        : "border-white bg-white/80 shadow-sm group-hover:bg-white"
+                                                className={`absolute right-[12px] top-[12px] flex size-[24px] items-center justify-center rounded-full border-[1.5px] transition-all ${isSelected
+                                                    ? "border-primary bg-primary"
+                                                    : "border-border bg-white shadow-sm"
                                                     }`}
                                             >
                                                 {isSelected && (
@@ -150,27 +150,27 @@ export default function CheckoutPaperSizeComponent() {
                     </div>
 
                     {/* --- PRINT SIZE SECTION --- */}
-                    <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[56px]">
+                    <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[24px]">
                         <h2 className="text-[20px] font-bold text-primary">Print Size</h2>
 
                         {/* Sizes Grid */}
-                        <div className="grid w-full grid-cols-1 gap-[20px] sm:grid-cols-2 lg:grid-cols-3">
+                        <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3">
                             {printSizes.map((size) => {
                                 const isSelected = selectedSize === size.id;
                                 return (
                                     <button
                                         key={size.id}
                                         onClick={() => setSelectedSize(size.id)}
-                                        className={`flex flex-col items-start justify-center gap-[8px] rounded-[12px] border-[2px] bg-white p-[20px] text-left transition-all ${isSelected
-                                                ? "border-primary shadow-[0_4px_16px_rgba(0,0,0,0.08)]"
-                                                : "border-transparent shadow-sm hover:border-border"
+                                        className={`flex flex-col items-start justify-center gap-[12px] rounded-[16px] border-[2px] bg-white p-[20px] text-left transition-all ${isSelected
+                                            ? "border-primary shadow-[0_4px_16px_rgba(0,0,0,0.08)]"
+                                            : "border-transparent shadow-sm hover:border-border"
                                             }`}
                                     >
                                         <div className="flex flex-col gap-[4px]">
                                             <h3 className="text-[18px] font-bold text-primary">{size.name}</h3>
                                             <p className="text-[14px] text-secondary">{size.dimensions}</p>
                                         </div>
-                                        <span className={`text-[16px] font-bold mt-[4px] ${isSelected ? "text-forest-green" : "text-secondary"}`}>
+                                        <span className={`text-[16px] font-bold ${isSelected ? "text-forest-green" : "text-secondary"}`}>
                                             €{size.price}
                                         </span>
                                     </button>
@@ -180,9 +180,9 @@ export default function CheckoutPaperSizeComponent() {
                     </div>
 
                     {/* --- BOTTOM SUMMARY BAR --- */}
-                    <div className="flex w-full max-w-[920px] items-center justify-between border-t border-border pt-[24px] sm:pt-[32px]">
+                    <div className="mt-[24px] flex min-h-[96px] w-full max-w-[920px] items-center justify-between border-t border-border pt-[24px]">
                         <p className="body-text text-secondary">
-                            {activePaper?.name} — {activeSize?.name} — <span className="font-bold text-primary">€{activeSize?.price}</span>
+                            {activePaper?.name} — {activeSize?.name} — €{activeSize?.price}
                         </p>
 
                         <button className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
