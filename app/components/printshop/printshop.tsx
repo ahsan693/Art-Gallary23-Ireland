@@ -183,6 +183,46 @@ export default function PrintShopPage() {
           </div>
         </section>
 
+        {/* --- NEED HELP? SECTION --- */}
+        <section className="flex w-full max-w-[1440px] flex-col items-center justify-center px-[24px] py-[64px] lg:py-[80px]">
+          <div className="flex flex-col items-center gap-[32px] text-center">
+
+            {/* Title (32px Bold) */}
+            <h2 className="text-[32px] font-bold leading-[1.2] text-primary">
+              Need Help?
+            </h2>
+
+            {/* Subtext (18px Mixed styles) */}
+            <p className="text-[18px] leading-[1.4] text-primary">
+              Have questions about printing?{" "}
+              <Link
+                href="/faq"
+                className="underline decoration-1 underline-offset-4 transition-colors hover:text-forest-green"
+              >
+                Check our FAQ
+              </Link>{" "}
+              or contact us at{" "}
+              <a
+                href="mailto:info@g23.ie"
+                className="font-bold transition-colors hover:text-forest-green"
+              >
+                info@g23.ie
+              </a>
+            </p>
+
+          </div>
+        </section>
+
+        {/* --- DISCLAIMER BAR SECTION --- */}
+        {/* We use w-full so the dark background stretches edge-to-edge if needed, but the inner container is max-w-[1440px] */}
+        <section className="flex w-full flex-col items-center bg-primary">
+          <div className="flex w-full max-w-[1440px] items-center justify-center px-[24px] py-[32px] lg:px-[180px]">
+            <p className="body-text w-full max-w-[1080px] text-center font-medium text-white">
+              Please Note: All print orders require online payment only — no cash on delivery. Orders are for in-store pickup exclusively. You will receive an order confirmation email with estimated pickup dates.
+            </p>
+          </div>
+        </section>
+
       </main>
 
       {/* --- REUSABLE FOOTER --- */}
