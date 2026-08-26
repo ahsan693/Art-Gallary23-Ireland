@@ -76,13 +76,13 @@ export default function ContactUsComponent({ data }: { data: any }) {
       <Header />
 
       <main className="flex w-full flex-1 flex-col items-center">
-        
-        {/* --- 1. HERO SECTION --- */}
+
+        {/* --- 1. HERO SECTION (Fixed Z-Index) --- */}
         <section className="relative flex h-[495px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[64px] lg:h-[600px] lg:px-[80px] lg:py-[80px]">
-          <div className="absolute inset-0 -z-20">
+          <div className="absolute inset-0 z-0">
             <Image src={data.hero.image} alt="Studio Hero" fill priority className="object-cover" />
           </div>
-          <div className="absolute inset-0 -z-10 bg-black/50" />
+          <div className="absolute inset-0 z-10 bg-black/50" />
 
           <div className="relative z-20 flex w-full max-w-[800px] flex-col items-center gap-[24px] text-center text-white">
             <h1 className="heading-display text-white w-full sm:text-[48px] lg:text-[64px]">
@@ -96,7 +96,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
 
         {/* --- 2. CONTACT INFO & FORM SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-start gap-[48px] px-[20px] py-[56px] lg:flex-row lg:justify-between lg:gap-[80px] lg:px-[120px] lg:py-[100px] bg-warm-cream">
-          
+
           {/* Left: Contact Info */}
           <div className="flex w-full flex-col gap-[40px] lg:max-w-[480px]">
             <div className="flex flex-col gap-[16px]">
@@ -176,16 +176,16 @@ export default function ContactUsComponent({ data }: { data: any }) {
               </form>
             </div>
           </div>
-          
+
         </section>
 
         {/* --- 3. MAP SECTION --- */}
         <section className="relative mx-auto flex h-[454px] w-full max-w-[1440px] items-center justify-center overflow-hidden bg-warm-cream lg:h-[600px]">
-          <iframe 
+          <iframe
             src={data.map.embedUrl}
             className="absolute inset-0 h-full w-full border-0"
-            allowFullScreen={false} 
-            loading="lazy" 
+            allowFullScreen={false}
+            loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Gallery 23 Map Location"
           />
@@ -198,9 +198,9 @@ export default function ContactUsComponent({ data }: { data: any }) {
               <p className="body-text font-medium text-primary">
                 {data.map.address}
               </p>
-              <a 
+              <a
                 href={data.map.url}
-                target="_blank" 
+                target="_blank"
                 rel="noreferrer"
                 className="mt-[4px] caption font-bold text-primary underline decoration-2 underline-offset-4 transition-colors hover:text-forest-green"
               >
@@ -210,12 +210,12 @@ export default function ContactUsComponent({ data }: { data: any }) {
           </div>
         </section>
 
-        {/* --- 4. STATS SECTION --- */}
+        {/* --- 4. STATS SECTION (Fixed Z-Index) --- */}
         <section className="relative flex w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[80px] lg:px-[64px] lg:py-[196px]">
-          <div className="absolute inset-0 -z-20">
-             <Image src={data.stats.image} alt="Stats background" fill className="object-cover" />
+          <div className="absolute inset-0 z-0">
+            <Image src={data.stats.image} alt="Stats background" fill className="object-cover" />
           </div>
-          <div className="absolute inset-0 -z-10 bg-black/70" />
+          <div className="absolute inset-0 z-10 bg-black/70" />
 
           <div className="relative z-20 flex w-full max-w-[1000px] flex-col items-center gap-[48px] text-center text-white lg:gap-[64px]">
             <div className="flex flex-col gap-[8px]">
@@ -270,12 +270,12 @@ export default function ContactUsComponent({ data }: { data: any }) {
           </div>
         </section>
 
-        {/* --- 6. CTA SECTION --- */}
+        {/* --- 6. CTA SECTION (Fixed Z-Index) --- */}
         <section className="relative mx-auto flex min-h-[500px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[80px] lg:h-[565px] lg:min-h-0 lg:px-[80px] lg:py-[150px]">
-          <div className="absolute inset-0 -z-20">
-             <Image src={data.cta.image} alt="CTA Background" fill className="object-cover" />
+          <div className="absolute inset-0 z-0">
+            <Image src={data.cta.image} alt="CTA Background" fill className="object-cover" />
           </div>
-          <div className="absolute inset-0 -z-10 bg-dark-surface/80" />
+          <div className="absolute inset-0 z-10 bg-dark-surface/80" />
 
           <div className="relative z-20 flex w-full max-w-[700px] flex-col items-center gap-[28px] text-center text-white lg:gap-[32px]">
             <div className="flex flex-col items-center gap-[16px]">
