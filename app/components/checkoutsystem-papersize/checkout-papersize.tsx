@@ -10,12 +10,6 @@ import { Header, Footer } from "@/app/components/home/home";
 // Importing the Data Layer
 import { getCheckoutPaperSizeData } from "@/app/lib/data/checkoutPaperSizeData";
 
-// Figma mobile assets
-const mobileBackIcon = "https://www.figma.com/api/mcp/asset/e704c3a3-0a5f-4fe0-8ac2-ed176653849c.svg";
-const mobileBagIcon = "https://www.figma.com/api/mcp/asset/217818e8-ae21-49e3-a3fe-5afa12ea8ef6.svg";
-const mobileCheckIcon = "https://www.figma.com/api/mcp/asset/36abb49d-4f00-4681-b208-cf6f99222e83.svg";
-const mobileArrowIcon = "https://www.figma.com/api/mcp/asset/da712e1a-3560-4de1-90fd-31d191491158.svg";
-
 // ==========================================
 // CHECKOUT PAPER & SIZE COMPONENT
 // ==========================================
@@ -45,7 +39,6 @@ export default function CheckoutPaperSizeComponent() {
 
     return (
         <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
-            
             {/* --- DESKTOP HEADER --- */}
             <div className="hidden md:block">
                 <Header />
@@ -55,7 +48,7 @@ export default function CheckoutPaperSizeComponent() {
             <div className="md:hidden">
                 <div className="flex h-[29px] w-full items-center justify-center bg-[#295B42] px-[16px] py-[8px]">
                     <p className="whitespace-nowrap text-center font-['Host_Grotesk'] text-[11px] font-normal leading-[1.5] tracking-[0.4px] text-white">
-                        Cash on Delivery — Pickup at Kimmage or Coalmine
+                        {data.mobileHeader.bannerText}
                     </p>
                 </div>
                 <div className="flex h-[56px] w-full items-center justify-between border-b border-[#D5D5D5] bg-white px-[16px]">
@@ -64,13 +57,13 @@ export default function CheckoutPaperSizeComponent() {
                         aria-label={data.topBar.backText}
                         className="flex size-[36px] items-center justify-center -ml-[8px]"
                     >
-                        <img src={mobileBackIcon} alt="" className="size-[18px]" />
+                        <img src={data.icons.mobileBackIcon} alt="" className="size-[18px]" />
                     </Link>
                     <p className="font-['Host_Grotesk'] text-[18px] font-bold uppercase leading-[1.4] tracking-[1px] text-[#232323]">
-                        Gallery 23
+                        {data.mobileHeader.title}
                     </p>
                     <button type="button" aria-label="Cart" className="flex size-[36px] items-center justify-center">
-                        <img src={mobileBagIcon} alt="" className="size-[20px]" />
+                        <img src={data.icons.mobileBagIcon} alt="" className="size-[20px]" />
                     </button>
                 </div>
             </div>
@@ -96,20 +89,19 @@ export default function CheckoutPaperSizeComponent() {
                             <div className="h-[4px] w-[32px] rounded-full bg-border" />
                             <div className="h-[4px] w-[32px] rounded-full bg-border" />
                         </div>
-                        <span className="body-small font-medium text-secondary">{data.topBar.stepText}</span>
+                        <span className="body-small font-medium text-secondary">{data.topBar.stepTextDesktop}</span>
                     </div>
 
                     {/* --- MOBILE TOP PROGRESS BAR --- */}
                     <div className="flex w-full flex-col gap-[8px] px-[20px] pb-[8px] pt-[16px] md:hidden">
                         <div className="flex w-full gap-[6px]">
                             <div className="h-[4px] flex-1 rounded-full bg-[#295B42]" />
-                            <div className="h-[4px] flex-1 rounded-full bg-[#295B42]" />
                             <div className="h-[4px] flex-1 rounded-full bg-[#D5D5D5]" />
                             <div className="h-[4px] flex-1 rounded-full bg-[#D5D5D5]" />
                             <div className="h-[4px] flex-1 rounded-full bg-[#D5D5D5]" />
                         </div>
                         <p className="font-['Host_Grotesk'] text-[12px] font-medium leading-[1.5] text-[#555]">
-                            {data.topBar.stepText}
+                            {data.topBar.stepTextMobile}
                         </p>
                     </div>
 
@@ -154,7 +146,7 @@ export default function CheckoutPaperSizeComponent() {
                                                     }`}
                                             >
                                                 {isSelected && (
-                                                    <img src={mobileCheckIcon} alt="" className="size-[14px] max-md:size-[8px]" />
+                                                    <img src={data.icons.mobileCheckIcon} alt="" className="size-[14px] max-md:size-[8px]" />
                                                 )}
                                             </div>
                                         </div>
@@ -212,7 +204,7 @@ export default function CheckoutPaperSizeComponent() {
                             {activePaper?.name} — {activeSize?.name} — <span className="font-bold text-primary">€{activeSize?.price}</span>
                         </p>
 
-                        <Link href="/checkout-details" className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
+                        <Link href={data.bottomBar.nextButtonLink} className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
                             {data.bottomBar.nextButtonText}
                             <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -230,9 +222,9 @@ export default function CheckoutPaperSizeComponent() {
                                 €{activeSize?.price}
                             </p>
                         </div>
-                        <Link href="/checkout-details" className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#232323] font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white">
+                        <Link href={data.bottomBar.nextButtonLink} className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#232323] font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white">
                             {data.bottomBar.nextButtonText}
-                            <img src={mobileArrowIcon} alt="" className="size-[16px] brightness-0 invert" />
+                            <img src={data.icons.mobileArrowIcon} alt="" className="size-[16px] brightness-0 invert" />
                         </Link>
                     </div>
 
