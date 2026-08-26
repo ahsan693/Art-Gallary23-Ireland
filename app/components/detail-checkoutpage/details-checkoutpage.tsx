@@ -9,11 +9,6 @@ import { Header, Footer } from "@/app/components/home/home";
 // Importing the Data Layer
 import { getCheckoutDetailsData, pickupLocations } from "@/app/lib/data/checkoutDetailsData";
 
-// Figma mobile assets
-const mobileBackIcon = "https://www.figma.com/api/mcp/asset/e704c3a3-0a5f-4fe0-8ac2-ed176653849c.svg";
-const mobileBagIcon = "https://www.figma.com/api/mcp/asset/217818e8-ae21-49e3-a3fe-5afa12ea8ef6.svg";
-const mobileArrowIcon = "https://www.figma.com/api/mcp/asset/da712e1a-3560-4de1-90fd-31d191491158.svg";
-
 // ==========================================
 // CHECKOUT DETAILS COMPONENT
 // ==========================================
@@ -54,21 +49,22 @@ export default function CheckoutDetailsComponent() {
             <div className="md:hidden">
                 <div className="flex h-[29px] w-full items-center justify-center bg-[#295B42] px-[16px] py-[8px]">
                     <p className="whitespace-nowrap text-center font-['Host_Grotesk'] text-[11px] font-normal leading-[1.5] tracking-[0.4px] text-white">
-                        Cash on Delivery — Pickup at Kimmage or Coalmine
+                        {data.mobileHeader.bannerText}
                     </p>
                 </div>
                 <div className="flex h-[56px] w-full items-center justify-between border-b border-[#D5D5D5] bg-white px-[16px]">
                     <Link
                         href={data.topBar.backLink}
+                        aria-label={data.topBar.backText}
                         className="flex size-[36px] items-center justify-center -ml-[8px]"
                     >
-                        <img src={mobileBackIcon} alt="Back" className="size-[18px]" />
+                        <img src={data.icons.mobileBackIcon} alt="Back" className="size-[18px]" />
                     </Link>
                     <p className="font-['Host_Grotesk'] text-[18px] font-bold uppercase leading-[1.4] tracking-[1px] text-[#232323]">
-                        Gallery 23
+                        {data.mobileHeader.title}
                     </p>
                     <button type="button" aria-label="Cart" className="flex size-[36px] items-center justify-center">
-                        <img src={mobileBagIcon} alt="Cart" className="size-[20px]" />
+                        <img src={data.icons.mobileBagIcon} alt="Cart" className="size-[20px]" />
                     </button>
                 </div>
             </div>
@@ -86,25 +82,27 @@ export default function CheckoutDetailsComponent() {
                             {data.topBar.backText}
                         </Link>
                         <div className="flex items-center gap-[8px]">
+                            {/* Step 3 of 5 */}
                             <div className="h-[4px] w-[32px] rounded-full bg-forest-green" />
                             <div className="h-[4px] w-[32px] rounded-full bg-forest-green" />
                             <div className="h-[4px] w-[32px] rounded-full bg-forest-green" />
                             <div className="h-[4px] w-[32px] rounded-full bg-border" />
                             <div className="h-[4px] w-[32px] rounded-full bg-border" />
                         </div>
-                        <span className="body-small font-medium text-secondary">{data.topBar.stepText}</span>
+                        <span className="body-small font-medium text-secondary">{data.topBar.stepTextDesktop}</span>
                     </div>
 
                     {/* --- MOBILE TOP PROGRESS BAR --- */}
                     <div className="flex w-full flex-col gap-[8px] px-[20px] pb-[8px] pt-[16px] md:hidden">
                         <div className="flex w-full gap-[6px]">
-                            <div className="h-[4px] flex-1 rounded-full bg-[#295B42]" />
+                            {/* Step 2 of 4 on Mobile */}
                             <div className="h-[4px] flex-1 rounded-full bg-[#295B42]" />
                             <div className="h-[4px] flex-1 rounded-full bg-[#295B42]" />
                             <div className="h-[4px] flex-1 rounded-full bg-[#D5D5D5]" />
+                            <div className="h-[4px] flex-1 rounded-full bg-[#D5D5D5]" />
                         </div>
                         <p className="font-['Host_Grotesk'] text-[12px] font-medium leading-[1.5] text-[#555]">
-                            {data.topBar.stepText}
+                            {data.topBar.stepTextMobile}
                         </p>
                     </div>
 
@@ -113,7 +111,7 @@ export default function CheckoutDetailsComponent() {
                         <h1 className="text-[36px] font-bold leading-[1.1] text-primary sm:text-[40px] max-md:text-[24px] max-md:leading-[1.2]">
                             {data.heading.title}
                         </h1>
-                        <p className="body-text text-secondary max-md:pt-[4px] max-md:text-[14px] max-md:leading-[1.5]">
+                        <p className="body-text text-secondary max-md:text-[14px] max-md:leading-[1.5]">
                             {data.heading.subtitle}
                         </p>
                     </div>
@@ -177,7 +175,7 @@ export default function CheckoutDetailsComponent() {
                             </div>
                         </div>
 
-                        {/* RIGHT COLUMN: Contact Information & Pickup */}
+                        {/* RIGHT COLUMN: Contact Information */}
                         <div className="flex flex-col gap-[24px] max-md:gap-[20px]">
                             
                             <div className="flex flex-col gap-[16px] max-md:rounded-[16px] max-md:border max-md:border-border max-md:bg-white max-md:p-[16px] lg:contents">
@@ -265,7 +263,7 @@ export default function CheckoutDetailsComponent() {
                         </p>
                         <button className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#232323] font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white">
                             {data.bottomBar.nextButtonText}
-                            <img src={mobileArrowIcon} alt="" className="size-[16px] brightness-0 invert" />
+                            <img src={data.icons.mobileArrowIcon} alt="" className="size-[16px] brightness-0 invert" />
                         </button>
                     </div>
 

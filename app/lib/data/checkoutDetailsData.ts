@@ -17,10 +17,22 @@ export const pickupLocations = [
 
 export const getCheckoutDetailsData = async () => {
     return {
+        // 👇 Added External Figma Icons
+        icons: {
+            mobileBackIcon: "https://www.figma.com/api/mcp/asset/e704c3a3-0a5f-4fe0-8ac2-ed176653849c.svg",
+            mobileBagIcon: "https://www.figma.com/api/mcp/asset/217818e8-ae21-49e3-a3fe-5afa12ea8ef6.svg",
+            mobileArrowIcon: "https://www.figma.com/api/mcp/asset/da712e1a-3560-4de1-90fd-31d191491158.svg",
+        },
+        // 👇 Added Mobile Header Text
+        mobileHeader: {
+            bannerText: "Cash on Delivery — Pickup at Kimmage or Coalmine",
+            title: "Gallery 23"
+        },
         topBar: {
             backText: "Back",
             backLink: "/checkout-papersize",
-            stepText: "Step 3 of 5"
+            stepTextDesktop: "Step 3 of 5",
+            stepTextMobile: "Step 2 of 4"
         },
         heading: {
             title: "Your Details",
