@@ -248,12 +248,12 @@ export default function CheckoutDetailsComponent() {
                             {data.bottomBar.requiredText}
                         </p>
 
-                        <button className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
+                        <Link href={data.bottomBar.nextButtonLink || "/checkout-review"} className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
                             {data.bottomBar.nextButtonText}
                             <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
-                        </button>
+                        </Link>
                     </div>
 
                     {/* --- MOBILE BOTTOM SUMMARY BAR --- */}
@@ -261,10 +261,10 @@ export default function CheckoutDetailsComponent() {
                         <p className="text-center text-[13px] text-secondary">
                             {data.bottomBar.requiredText}
                         </p>
-                        <button className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#232323] font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white">
+                        <Link href={data.bottomBar.nextButtonLink || "/checkout-review"} className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#232323] font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white">
                             {data.bottomBar.nextButtonText}
                             <img src={data.icons.mobileArrowIcon} alt="" className="size-[16px] brightness-0 invert" />
-                        </button>
+                        </Link>
                     </div>
 
                 </div>
