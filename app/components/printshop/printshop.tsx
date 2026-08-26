@@ -1,25 +1,33 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 // Importing the reusable Header and Footer from your Home page component
 import { Header, Footer } from "@/app/components/home/home";
 
-// ==========================================
-// DATA & CONSTANTS
-// ==========================================
-
-// Placeholder image for the Print Shop Hero section 
-// (Replace with your actual gallery/print shop asset)
-const printShopHeroImg = "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&w=1920&q=85";
-const howItWorksBgImg = "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1920&q=85"; // Placeholder for the "How it works" background
+// Importing the Data Layer
+import { getPrintShopData } from "@/app/lib/data/printshopdata";
 
 // ==========================================
 // PRINT SHOP COMPONENT
 // ==========================================
 
 export default function PrintShopPage() {
+  const [data, setData] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const pageData = await getPrintShopData();
+      setData(pageData);
+    };
+    fetchData();
+  }, []);
+
+  // Show an empty background while data is loading to prevent layout shift
+  if (!data) return <div className="min-h-screen bg-warm-cream" />;
+
   return (
     <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
 
@@ -35,7 +43,7 @@ export default function PrintShopPage() {
           {/* Background Image (z-0) */}
           <div
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url('${printShopHeroImg}')` }}
+            style={{ backgroundImage: `url('${data.hero.image}')` }}
           />
 
           {/* Dark Overlay (z-10) for text readability */}
@@ -47,17 +55,17 @@ export default function PrintShopPage() {
             {/* Top Label (Badge) */}
             <div className="inline-flex items-center justify-center rounded-full border border-white/40 px-[16px] py-[6px] backdrop-blur-sm">
               <span className="text-[13px] font-semibold tracking-wide text-white">
-                Online Payment Only — Store Pickup at Kimmage or Coalmine
+                {data.hero.badge}
               </span>
             </div>
 
             {/* Heading & Subtitle Group */}
             <div className="flex w-full flex-col items-center gap-[16px]">
               <h1 className="w-full max-w-[900px] text-[36px] font-bold leading-[1.1] sm:text-[48px] lg:text-[64px]">
-                Gallery 23 Print Shop — Fine Art &amp; Photo Printing
+                {data.hero.title}
               </h1>
               <p className="w-full max-w-[700px] text-[16px] font-medium leading-[1.4] text-white/[0.92] sm:text-[18px] lg:text-[20px]">
-                Order gallery-quality giclée prints online for in-store pickup. Upload your own artwork or select from our licensed collection. Professional results on archival papers and canvas.
+                {data.hero.subtitle}
               </p>
             </div>
 
@@ -68,10 +76,10 @@ export default function PrintShopPage() {
         <section className="flex w-full max-w-[1440px] justify-center px-[24px] py-[64px] lg:py-[80px]">
 
           {/* Main Card Wrapper */}
-          <div className="card flex w-full max-w-[905px] flex-col items-start gap-[24px] p-[24px] sm:p-[32px]">
+          <div className="card flex w-full max-w-[905px] flex-col items-center gap-[24px] p-[24px] text-center sm:p-[32px] lg:items-start lg:text-left">
 
             {/* Icon & Title Group */}
-            <div className="flex flex-col items-start gap-[16px]">
+            <div className="flex flex-col items-center gap-[16px] lg:items-start">
               <svg
                 className="size-[32px] text-primary"
                 fill="none"
@@ -87,19 +95,19 @@ export default function PrintShopPage() {
               </svg>
 
               <h2 className="text-[32px] font-bold leading-[1.2] text-primary">
-                Custom Print
+                {data.customPrint.title}
               </h2>
             </div>
 
             <p className="body-text max-w-[841px] text-secondary">
-              Upload your own artwork, photograph, or digital file. We accept TIFF, JPEG, and PDF formats up to 100MB.
+              {data.customPrint.description}
             </p>
 
             <Link
-              href="#"
-              className="mt-[4px] inline-flex h-[46px] items-center justify-center gap-[8px] rounded-full bg-primary px-[24px] text-[13px] font-medium tracking-[0.5px] uppercase text-white transition-colors hover:bg-dark-surface"
+              href={data.customPrint.buttonLink}
+              className="mt-[4px] inline-flex h-[46px] w-full items-center justify-center gap-[8px] rounded-full bg-primary px-[24px] text-[13px] font-medium tracking-[0.5px] uppercase text-white transition-colors hover:bg-dark-surface sm:w-auto"
             >
-              Start Custom Order
+              {data.customPrint.buttonText}
               <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
@@ -114,7 +122,7 @@ export default function PrintShopPage() {
           {/* Background Image (z-0) */}
           <div className="absolute inset-0 z-0">
             <Image
-              src={howItWorksBgImg}
+              src={data.howItWorks.image}
               alt="How it works background"
               fill
               className="object-cover"
@@ -125,61 +133,32 @@ export default function PrintShopPage() {
           <div className="absolute inset-0 z-10 bg-black/60" />
 
           {/* Content Container (z-20) */}
-          <div className="relative z-20 flex w-full max-w-[1200px] flex-col items-center gap-[56px] text-white">
+          <div className="relative z-20 flex w-full max-w-[1200px] flex-col items-center gap-[40px] text-white lg:gap-[56px]">
 
             {/* Section Heading */}
             <h2 className="heading-h2 text-center text-white">
-              How it works
+              {data.howItWorks.title}
             </h2>
 
-            {/* Steps Container */}
-            <div className="flex w-full flex-col justify-between gap-[40px] lg:flex-row lg:gap-[24px]">
-
-              {/* Step 1 */}
-              <div className="flex w-full flex-col items-start gap-[24px] lg:max-w-[227px]">
-                <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-white text-[18px] font-bold text-primary">
-                  1
+            {/* Steps Container (Mapped Dynamically) */}
+            <div className="flex w-full flex-col justify-between gap-[32px] lg:flex-row lg:gap-[24px]">
+              {data.howItWorks.steps.map((step: any) => (
+                <div key={step.id} className={`flex w-full items-start gap-[16px] lg:flex-col lg:gap-[24px] ${step.maxWidth}`}>
+                  <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-white text-[18px] font-bold text-primary">
+                    {step.id}
+                  </div>
+                  <div className="flex flex-col gap-[8px]">
+                    <h3 className="text-[18px] font-bold leading-[1.2] text-white">
+                      {step.title}
+                    </h3>
+                    <p className="body-text text-white/90">
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex flex-col gap-[8px]">
-                  <h3 className="text-[18px] font-bold leading-[1.2] text-white">Select Print Type</h3>
-                  <p className="body-text text-white/90">Choose Custom (upload your file) or Licensed (select artwork by artist name).</p>
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="flex w-full flex-col items-start gap-[24px] lg:max-w-[192px]">
-                <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-white text-[18px] font-bold text-primary">
-                  2
-                </div>
-                <div className="flex flex-col gap-[8px]">
-                  <h3 className="text-[18px] font-bold leading-[1.2] text-white">Choose Paper & Size</h3>
-                  <p className="body-text text-white/90">Pick your preferred paper type and print dimensions. What you like.</p>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="flex w-full flex-col items-start gap-[24px] lg:max-w-[227px]">
-                <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-white text-[18px] font-bold text-primary">
-                  3
-                </div>
-                <div className="flex flex-col gap-[8px]">
-                  <h3 className="text-[18px] font-bold leading-[1.2] text-white">Upload & Pay</h3>
-                  <p className="body-text text-white/90">Upload high-res file and complete secure online payment. No cash on delivery.</p>
-                </div>
-              </div>
-
-              {/* Step 4 */}
-              <div className="flex w-full flex-col items-start gap-[24px] lg:max-w-[227px]">
-                <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-white text-[18px] font-bold text-primary">
-                  4
-                </div>
-                <div className="flex flex-col gap-[8px]">
-                  <h3 className="text-[18px] font-bold leading-[1.2] text-white">Store Pickup</h3>
-                  <p className="body-text text-white/90">Receive email with pickup details. Collect from Kimmage or Coalmine.</p>
-                </div>
-              </div>
-
+              ))}
             </div>
+
           </div>
         </section>
 
@@ -187,26 +166,24 @@ export default function PrintShopPage() {
         <section className="flex w-full max-w-[1440px] flex-col items-center justify-center px-[24px] py-[64px] lg:py-[80px]">
           <div className="flex flex-col items-center gap-[32px] text-center">
 
-            {/* Title (32px Bold) */}
             <h2 className="text-[32px] font-bold leading-[1.2] text-primary">
-              Need Help?
+              {data.needHelp.title}
             </h2>
 
-            {/* Subtext (18px Mixed styles) */}
             <p className="text-[18px] leading-[1.4] text-primary">
-              Have questions about printing?{" "}
+              {data.needHelp.prefix}
               <Link
-                href="/faq"
+                href={data.needHelp.faqLink}
                 className="underline decoration-1 underline-offset-4 transition-colors hover:text-forest-green"
               >
-                Check our FAQ
-              </Link>{" "}
-              or contact us at{" "}
+                {data.needHelp.faqText}
+              </Link>
+              {data.needHelp.middle}
               <a
-                href="mailto:info@g23.ie"
+                href={data.needHelp.emailLink}
                 className="font-bold transition-colors hover:text-forest-green"
               >
-                info@g23.ie
+                {data.needHelp.emailText}
               </a>
             </p>
 
@@ -214,11 +191,10 @@ export default function PrintShopPage() {
         </section>
 
         {/* --- DISCLAIMER BAR SECTION --- */}
-        {/* We use w-full so the dark background stretches edge-to-edge if needed, but the inner container is max-w-[1440px] */}
-        <section className="flex w-full flex-col items-center bg-primary">
+        <section className="hidden w-full flex-col items-center bg-primary lg:flex">
           <div className="flex w-full max-w-[1440px] items-center justify-center px-[24px] py-[32px] lg:px-[180px]">
             <p className="body-text w-full max-w-[1080px] text-center font-medium text-white">
-              Please Note: All print orders require online payment only — no cash on delivery. Orders are for in-store pickup exclusively. You will receive an order confirmation email with estimated pickup dates.
+              {data.disclaimer.text}
             </p>
           </div>
         </section>
