@@ -19,7 +19,8 @@ export const getPrintShopData = async () => {
             title: "Custom Print",
             description: "Upload your own artwork, photograph, or digital file. We accept TIFF, JPEG, and PDF formats up to 100MB.",
             buttonText: "Start Custom Order",
-            buttonLink: "#",
+            // 👇 Updated link right here!
+            buttonLink: "/checkout-papersize",
         },
         howItWorks: {
             title: "How it works",
