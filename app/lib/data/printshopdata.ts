@@ -3,8 +3,8 @@
 // ==========================================
 
 export const printShopImages = {
-    hero: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&w=1920&q=85",
-    howItWorks: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1920&q=85",
+    hero: "/Printshop/Images/Section1.png",
+    howItWorks: "/Printshop/Images/Section3.png",
 };
 
 export const getPrintShopData = async () => {
