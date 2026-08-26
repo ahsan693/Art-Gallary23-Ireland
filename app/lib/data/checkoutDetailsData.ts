@@ -60,9 +60,11 @@ export const getCheckoutDetailsData = async () => {
                 buttonText: "Choose File"
             }
         },
-        bottomBar: {
+      bottomBar: {
             requiredText: "All fields marked * are required",
-            nextButtonText: "Review Order"
+            nextButtonText: "Review Order",
+            // 👇 Add this line to link to the new review page!
+            nextButtonLink: "/checkout-reviewpage"
         }
     };
 };
