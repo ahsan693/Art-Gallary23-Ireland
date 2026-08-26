@@ -1,64 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 // Importing the reusable Header and Footer from your Home page component
 import { Header, Footer } from "@/app/components/home/home";
 
-// ==========================================
-// MOCK DATA
-// ==========================================
-
-const paperOptions = [
-    {
-        id: "art-paper",
-        name: "Art Paper",
-        desc: "Premium acid-free art paper. Available in multiple GSM weights for fine art reproduction. Ideal for giclée prints.",
-        img: "/Printshop/Images/Section3.png",
-    },
-    {
-        id: "satin-photo",
-        name: "Satin Photo Paper",
-        desc: "Semi-gloss finish with vibrant colour reproduction. Perfect for photographs and high-contrast images.",
-        img: "/Printshop/Images/Section1.png",
-    },
-    {
-        id: "matte-photo",
-        name: "Matte Photo Paper",
-        desc: "Non-reflective finish with rich, deep tones. Ideal for portraits, landscapes, and exhibition prints.",
-        img: "/Printshop/Images/Section3.png",
-    },
-    {
-        id: "canvas",
-        name: "Canvas",
-        desc: "Archival-grade canvas for stretched or framed prints. Museum-quality texture and durability.",
-        img: "/Printshop/Images/Section1.png",
-    },
-];
-
-const printSizes = [
-    { id: "a4", name: "A4", dimensions: "210 × 297 mm", price: 25 },
-    { id: "a3", name: "A3", dimensions: "297 × 420 mm", price: 40 },
-    { id: "a2", name: "A2", dimensions: "420 × 594 mm", price: 65 },
-    { id: "a1", name: "A1", dimensions: "594 × 841 mm", price: 95 },
-    { id: "12x16", name: '12" × 16"', dimensions: "305 × 406 mm", price: 50 },
-    { id: "20x24", name: '20" × 24"', dimensions: "508 × 610 mm", price: 75 },
-];
+// Importing the Data Layer
+import { getCheckoutPaperSizeData } from "@/app/lib/data/checkoutPaperSizeData";
 
 // ==========================================
 // CHECKOUT PAPER & SIZE COMPONENT
 // ==========================================
 
 export default function CheckoutPaperSizeComponent() {
+    // State for data
+    const [data, setData] = useState<any>(null);
+
     // State for selections 
     const [selectedPaper, setSelectedPaper] = useState("satin-photo");
     const [selectedSize, setSelectedSize] = useState("20x24");
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const pageData = await getCheckoutPaperSizeData();
+            setData(pageData);
+        };
+        fetchData();
+    }, []);
+
+    // Show empty background while loading
+    if (!data) return <div className="min-h-screen bg-warm-cream" />;
+
     // Derived values for the bottom summary bar
-    const activePaper = paperOptions.find((p) => p.id === selectedPaper);
-    const activeSize = printSizes.find((s) => s.id === selectedSize);
+    const activePaper = data.paperSection.options.find((p: any) => p.id === selectedPaper);
+    const activeSize = data.sizeSection.options.find((s: any) => s.id === selectedSize);
 
     return (
         <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
@@ -72,11 +49,11 @@ export default function CheckoutPaperSizeComponent() {
 
                     {/* --- TOP PROGRESS BAR --- */}
                     <div className="flex w-full max-w-[920px] items-center gap-[16px] pb-[48px]">
-                        <Link href="/printshop" className="body-small flex items-center gap-[4px] font-medium text-secondary transition hover:text-primary">
+                        <Link href={data.topBar.backLink} className="body-small flex items-center gap-[4px] font-medium text-secondary transition hover:text-primary">
                             <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                             </svg>
-                            Back
+                            {data.topBar.backText}
                         </Link>
                         <div className="flex items-center gap-[8px]">
                             <div className="h-[4px] w-[32px] rounded-full bg-forest-green" />
@@ -85,26 +62,26 @@ export default function CheckoutPaperSizeComponent() {
                             <div className="h-[4px] w-[32px] rounded-full bg-border" />
                             <div className="h-[4px] w-[32px] rounded-full bg-border" />
                         </div>
-                        <span className="body-small font-medium text-secondary">Step 2 of 5</span>
+                        <span className="body-small font-medium text-secondary">{data.topBar.stepText}</span>
                     </div>
 
                     {/* --- PAGE HEADING --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[8px] pb-[40px]">
                         <h1 className="text-[36px] font-bold leading-[1.1] text-primary sm:text-[40px]">
-                            Choose Your Paper & Size
+                            {data.heading.title}
                         </h1>
                         <p className="body-text text-secondary">
-                            Select the paper type and print dimensions.
+                            {data.heading.subtitle}
                         </p>
                     </div>
 
                     {/* --- PAPER TYPE SECTION --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[40px]">
-                        <h2 className="text-[20px] font-bold text-primary">Paper Type</h2>
+                        <h2 className="text-[20px] font-bold text-primary">{data.paperSection.title}</h2>
 
                         {/* Paper Cards Grid */}
                         <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-4">
-                            {paperOptions.map((paper) => {
+                            {data.paperSection.options.map((paper: any) => {
                                 const isSelected = selectedPaper === paper.id;
                                 return (
                                     <button
@@ -151,11 +128,11 @@ export default function CheckoutPaperSizeComponent() {
 
                     {/* --- PRINT SIZE SECTION --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[24px]">
-                        <h2 className="text-[20px] font-bold text-primary">Print Size</h2>
+                        <h2 className="text-[20px] font-bold text-primary">{data.sizeSection.title}</h2>
 
                         {/* Sizes Grid */}
                         <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3">
-                            {printSizes.map((size) => {
+                            {data.sizeSection.options.map((size: any) => {
                                 const isSelected = selectedSize === size.id;
                                 return (
                                     <button
@@ -186,7 +163,7 @@ export default function CheckoutPaperSizeComponent() {
                         </p>
 
                         <button className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
-                            Next
+                            {data.bottomBar.nextButtonText}
                             <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
