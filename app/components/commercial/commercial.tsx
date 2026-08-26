@@ -68,10 +68,9 @@ export default function CommercialComponent() {
      <main className="flex w-full flex-1 flex-col items-center">
         
         {/* --- 1. HERO SECTION --- */}
-        {/* Added max-w-[1440px] and sm:h-[600px] to match the Figma bounding box exactly */}
-        <section className="relative flex h-[520px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[56px] sm:h-[600px] lg:px-[80px] lg:py-[80px]">
+        <section className="relative flex h-[520px] w-full flex-col items-center justify-center overflow-hidden px-[24px] py-[56px] sm:h-[600px] lg:px-[80px] lg:py-[80px]">
           
-          {/* Background Image (Will fill the 1440x600 box perfectly) */}
+          {/* Background Image (Full width) */}
           <div className="absolute inset-0 z-0">
             <Image src={data.hero.image} alt={data.hero.title} fill priority className="object-cover" />
           </div>
