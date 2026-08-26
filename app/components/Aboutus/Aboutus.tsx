@@ -54,7 +54,7 @@ const getIconComponent = (iconType: string) => {
 // ==========================================
 // Now accepting `data` as a prop from the Server Component!
 export default function AboutUsComponent({ data }: { data: any }) {
-  
+
   // Scroll Progress hook for Journey section line animation
   const journeyRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -73,13 +73,13 @@ export default function AboutUsComponent({ data }: { data: any }) {
       <Header />
 
       <main className="flex w-full flex-1 flex-col items-center">
-        
-        {/* --- 1. HERO SECTION --- */}
+
+        {/* --- 1. HERO SECTION (Fixed Z-indexes) --- */}
         <section className="relative flex h-[520px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] py-[56px] sm:h-[643px] lg:px-[80px] lg:py-[80px]">
-          <div className="absolute inset-0 -z-20">
-             <Image src={data.hero.image} alt="About Us Hero" fill priority className="object-cover" />
+          <div className="absolute inset-0 z-0">
+            <Image src={data.hero.image} alt="About Us Hero" fill priority className="object-cover" />
           </div>
-          <div className="absolute inset-0 -z-10 bg-black/65" />
+          <div className="absolute inset-0 z-10 bg-black/65" />
 
           <div className="relative z-20 flex w-full max-w-[1000px] flex-col items-center gap-[12px] text-center text-white sm:gap-[16px]">
             <h1 className="heading-display text-white w-full max-w-[924px] sm:text-[48px] lg:text-[64px]">
@@ -115,12 +115,12 @@ export default function AboutUsComponent({ data }: { data: any }) {
           </div>
         </section>
 
-        {/* --- 3. WHAT WE STAND FOR SECTION --- */}
+        {/* --- 3. WHAT WE STAND FOR SECTION (Fixed Z-indexes) --- */}
         <section className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] pb-[56px] pt-[48px] lg:gap-[56px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
-          <div className="absolute inset-0 -z-20">
-             <Image src={data.whatWeStandFor.bgImage} alt="Workshop" fill className="object-cover" />
+          <div className="absolute inset-0 z-0">
+            <Image src={data.whatWeStandFor.bgImage} alt="Workshop" fill className="object-cover" />
           </div>
-          <div className="absolute inset-0 -z-10 bg-black/60" />
+          <div className="absolute inset-0 z-10 bg-black/60" />
 
           <div className="relative z-20 flex w-full max-w-[920px] flex-col items-center gap-[12px] text-center mb-[32px] sm:gap-[16px] lg:mb-0">
             <h2 className="heading-h2 text-white">
@@ -167,7 +167,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
                   <motion.h3 style={{ color: yearColor }} className="heading-h4">
                     {item.year}
                   </motion.h3>
-                  
+
                   <div className="relative flex w-full items-center">
                     {index === 0 && (
                       <div className="absolute top-1/2 left-[6px] right-[-964px] z-0 hidden h-[4px] -translate-y-1/2 rounded-[2px] bg-border lg:block">
