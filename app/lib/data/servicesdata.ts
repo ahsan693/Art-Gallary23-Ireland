@@ -29,12 +29,6 @@ export const getServicesData = async () => {
         title: "Picture Framing",
         description:
           "Preserve and showcase your artwork, photographs, and prints with our custom picture framing. Choose from hundreds of frame styles, mats, and glass options.",
-        features: [
-          "Museum-quality acid-free materials",
-          "UV-filtering and anti-reflective glass",
-          "Hundreds of premium frame moldings",
-          "Reversible mounting techniques",
-        ],
         image: servicesImages.pictureFraming,
         ctaText: "INQUIRE NOW",
         ctaLink: "/contactus",
@@ -44,12 +38,6 @@ export const getServicesData = async () => {
         title: "Jersey Framing",
         description:
           "Display your proud sports jerseys and memorabilia in custom-built shadow box frames. UV-protective glass keeps colors vibrant for years.",
-        features: [
-          "Custom depth for shadow box effect",
-          "Acid-free mounting to preserve fabric",
-          "UV-blocking conservation glass",
-          "Professional plaque & mat options",
-        ],
         image: servicesImages.jerseyFraming,
         ctaText: "INQUIRE NOW",
         ctaLink: "/contactus",
@@ -59,12 +47,6 @@ export const getServicesData = async () => {
         title: "Canvas Prints",
         description:
           "Transform your favorite photos into stunning canvas prints. We offer gallery-wrapped and framed canvas options in any size. Best offer for new visitors.",
-        features: [
-          "High-grade archival cotton canvas",
-          "Custom wood stretcher bars",
-          "Gallery wrap or floating frame finish",
-          "Protective varnish coat",
-        ],
         image: servicesImages.canvasPrints,
         ctaText: "INQUIRE NOW",
         ctaLink: "/contactus",
@@ -74,12 +56,6 @@ export const getServicesData = async () => {
         title: "Shadow Box Framing",
         description:
           "Create dimensional displays for 3D objects, medals, collectibles, and keepsakes in beautifully crafted shadow boxes.",
-        features: [
-          "Deep frame profile options",
-          "Custom layout & pin-mounting",
-          "Archival cloth backing options",
-          "Museum-grade UV protection glass",
-        ],
         image: servicesImages.shadowBox,
         ctaText: "INQUIRE NOW",
         ctaLink: "/contactus",
@@ -89,12 +65,6 @@ export const getServicesData = async () => {
         title: "Certificate & Award Framing",
         description:
           "Present your diplomas, certificates, and awards with the distinction they deserve. Professional framing for any document size.",
-        features: [
-          "Conservation grade double matting",
-          "Gold and silver foil border options",
-          "Reversible non-damaging hinges",
-          "Bulk corporate volume discounts",
-        ],
         image: servicesImages.certificate,
         ctaText: "INQUIRE NOW",
         ctaLink: "/contactus",
@@ -104,12 +74,6 @@ export const getServicesData = async () => {
         title: "Photo Restoration",
         description:
           "Bring old or damaged photos back to life with our restoration services, then preserve them in archival-quality custom frames.",
-        features: [
-          "Digital repair of cracks & stains",
-          "Colorization of monochrome photos",
-          "High-resolution archival re-printing",
-          "Custom framing included",
-        ],
         image: servicesImages.photoRestoration,
         ctaText: "INQUIRE NOW",
         ctaLink: "/contactus",
@@ -162,7 +126,7 @@ export const getServicesData = async () => {
       subtitle: "Get in touch with our friendly and knowledgeable team.",
       buttonPhone: "(085) 631-4964",
       buttonText: "Send Message",
-      buttonLink: "/contactus", // Fixed runtime undefined link error
+      buttonLink: "/contactus",
       image: servicesImages.cta,
     },
     features: [

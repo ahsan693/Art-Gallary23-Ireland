@@ -35,6 +35,15 @@ export default function ServicesComponent() {
     fetchData();
   }, []);
 
+  // Smooth scroll handler for the Inquire Now buttons
+  const handleScrollToForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const formSection = document.getElementById("inquiry-form");
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   // Render a loading state while fetching data
   if (!data) return <div className="min-h-screen bg-warm-cream" />;
 
@@ -85,24 +94,25 @@ export default function ServicesComponent() {
         </section>
 
         {/* --- DETAILED SERVICES LIST SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[80px] bg-white px-[24px] py-[80px] lg:gap-[120px] lg:px-[80px] lg:py-[120px]">
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[80px] bg-warm-cream px-[24px] py-[80px] lg:gap-[120px] lg:px-[80px] lg:py-[120px]">
 
           {data.offerings.map((service: any, index: number) => {
+            // Swapped to lg:flex-row-reverse so the 1st item (Picture Framing) has text on Left, Image on Right
             const isEven = index % 2 === 0;
 
             return (
               <div
                 key={service.id}
-                className={`flex w-full max-w-[1280px] flex-col items-center gap-[40px] lg:gap-[80px] ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+                className={`flex w-full max-w-[1280px] flex-col items-center justify-between gap-[40px] lg:gap-[80px] ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"
                   }`}
               >
                 {/* Image Side */}
-                <div className="relative h-[400px] w-full shrink-0 overflow-hidden rounded-[24px] shadow-sm sm:h-[500px] lg:h-[600px] lg:w-[580px]">
+                <div className="relative h-[400px] w-full shrink-0 overflow-hidden rounded-[24px] shadow-sm sm:h-[500px] lg:h-[570px] lg:w-[600px] xl:w-[680px]">
                   <ResponsiveImage src={service.image} alt={service.title} />
                 </div>
 
-                {/* Text Side */}
-                <div className="flex w-full flex-col items-start gap-[24px] lg:w-[540px]">
+                {/* Text Side (Removed bullets & divider) */}
+                <div className="flex w-full flex-col items-start justify-center gap-[24px] lg:w-[540px]">
                   <h2 className="heading-h3 text-primary">
                     {service.title}
                   </h2>
@@ -111,27 +121,14 @@ export default function ServicesComponent() {
                     {service.description}
                   </p>
 
-                  <div className="my-[8px] h-[1px] w-full bg-border" />
-
-                  {/* Features List */}
-                  <ul className="flex flex-col gap-[12px] body-text text-secondary">
-                    {service.features.map((feature: string, idx: number) => (
-                      <li key={idx} className="flex items-center gap-[12px]">
-                        <span className="flex size-[24px] shrink-0 items-center justify-center rounded-full bg-warm-cream text-forest-green">
-                          <svg className="size-[14px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                        </span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-[16px]">
-                    {/* 👇 Changed href to point to the form ID below */}
-                    <Link href="#inquiry-form" className="btn-primary">
+                  <div className="mt-[8px]">
+                    <a
+                      href="#inquiry-form"
+                      onClick={handleScrollToForm}
+                      className="btn-primary"
+                    >
                       {service.ctaText} <ArrowIcon />
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -165,7 +162,6 @@ export default function ServicesComponent() {
         </section>
 
         {/* --- INQUIRE NOW FORM SECTION --- */}
-        {/* Added ID here so the buttons can jump to it */}
         <section id="inquiry-form" className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[24px] py-[80px] lg:py-[120px]">
           <div className="flex w-full max-w-[900px] flex-col items-center rounded-[32px] bg-white p-[32px] shadow-sm sm:p-[48px] lg:px-[64px] lg:py-[64px]">
 
