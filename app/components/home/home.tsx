@@ -14,7 +14,8 @@ import {
   testimonials,
   faqs,
   benefitsData,
-  trustedBrands
+  trustedBrands,
+  consultationData // <-- Added consultationData import here!
 } from "@/app/lib/data/homedata";
 
 // ==========================================
@@ -92,6 +93,25 @@ export function StarIcon({ fill = "currentColor", className = "size-4" }: { fill
   );
 }
 
+// <-- Added MobilePhoneIcon for the Consultation Section -->
+export function MobilePhoneIcon() {
+  return (
+    <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01" />
+    </svg>
+  );
+}
+
+// <-- Added EnvelopeIcon for the Consultation Section -->
+export function EnvelopeIcon() {
+  return (
+    <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 2.118l-7.5 4.262a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-2.118V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25" />
+    </svg>
+  );
+}
+
 const getIconComponent = (iconType: string) => {
   switch (iconType) {
     case "globe": return <GlobeIcon />;
@@ -126,11 +146,9 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
 // HEADER COMPONENT
 // ==========================================
 export function Header() {
-  // 1. Added State to handle Mobile Menu open/close
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    // Added relative z-50 to ensure the header stays above the hero image
     <header className="relative z-50 mx-auto flex w-full max-w-[1440px] flex-col items-start border-b border-border bg-white">
       <div className="flex h-[36px] w-full items-center justify-center bg-forest-green px-4 py-2 text-center text-white">
         <span className="caption text-white">
@@ -143,13 +161,11 @@ export function Header() {
 
       <nav className="relative flex h-[72px] w-full items-center bg-white px-4 lg:px-[40px]">
         <div className="flex items-center gap-3 lg:hidden">
-          {/* 2. Added onClick handler to trigger the state toggle */}
           <button
             aria-label="Toggle menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="grid size-10 place-items-center rounded-full border border-border bg-warm-cream"
           >
-            {/* Toggles icon based on state */}
             {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
           <Link href="/" className="heading-h9">Gallery 23</Link>
@@ -197,7 +213,6 @@ export function Header() {
           </button>
         </div>
 
-        {/* 3. Added Mobile Dropdown Wrapper */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -283,8 +298,6 @@ export function Footer() {
   return (
     <footer className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-black text-white">
       <div className="flex w-full items-center justify-between border-b border-dark-surface px-5 py-[28px] sm:px-[40px] lg:px-[80px] lg:py-[40px]">
-
-        {/* --- UPDATED LOGO AREA --- */}
         <Link href="/" className="flex h-[48px] items-center sm:h-[65px]">
           <img
             src="/Homepage/Icons/Logo.svg"
@@ -292,8 +305,6 @@ export function Footer() {
             className="h-[40px] w-auto sm:h-[48px] object-contain"
           />
         </Link>
-        {/* ------------------------- */}
-
       </div>
 
       <div className="flex w-full flex-col items-start gap-[32px] border-b border-dark-surface px-5 py-[40px] sm:grid sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[40px] sm:px-[40px] lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:px-[80px] lg:py-[56px]">
@@ -814,6 +825,51 @@ export default function Home() {
               <Link href="/contactus" className="btn-primary">
                 VIEW ALL FAQS <ArrowIcon />
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* --- CONSULTATION SECTION --- */}
+        <section className="relative mx-auto flex w-full max-w-[1440px] items-center justify-center overflow-hidden px-[20px] py-[64px] sm:h-[578px] sm:px-[40px] sm:py-0 lg:px-[80px]">
+          {/* Background Image */}
+          <div className="absolute inset-0 -z-20">
+            <Image
+              src={images.consultation}
+              alt="Gallery interior for consultation"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+          {/* Subtle overlay to ensure the white card pops */}
+          <div className="absolute inset-0 -z-10 bg-black/10" />
+
+          {/* Centered White Card */}
+          <div className="relative z-10 flex w-full max-w-[1050px] flex-col items-center justify-center gap-[24px] rounded-[24px] bg-white px-[24px] py-[40px] text-center sm:gap-[32px] sm:rounded-[32px] sm:py-[64px] lg:h-[292.5px] lg:px-[80px]">
+            <div className="flex flex-col gap-[12px] sm:gap-[16px]">
+              <h2 className="heading-h2 text-primary">
+                {consultationData.title}
+              </h2>
+              <p className="body-text text-secondary">
+                {consultationData.subtitle}
+              </p>
+            </div>
+
+            <div className="flex w-full flex-col items-center justify-center gap-[12px] sm:w-auto sm:flex-row sm:gap-[16px]">
+              <a
+                href={`tel:${consultationData.phone.replace(/[^0-9]/g, '')}`}
+                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition hover:bg-dark-surface sm:w-auto"
+              >
+                <MobilePhoneIcon />
+                {consultationData.phone}
+              </a>
+              <a
+                href={consultationData.emailLink}
+                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition hover:bg-dark-surface sm:w-auto"
+              >
+                <EnvelopeIcon />
+                {consultationData.emailText}
+              </a>
             </div>
           </div>
         </section>

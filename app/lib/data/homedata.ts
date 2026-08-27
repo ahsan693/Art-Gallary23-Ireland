@@ -112,6 +112,15 @@ export const testimonials = [
   },
 ];
 
+// Consultation Section
+export const consultationData = {
+  title: "Book A Free Consultation Service.",
+  subtitle: "Get in touch with our friendly and knowledgeable team",
+  phone: "(085) 631-4964",
+  emailText: "Send Message",
+  emailLink: "mailto:hello@gallery23.com",
+};
+
 // FAQs Section
 export const faqs = [
   "What can you custom frame?",
