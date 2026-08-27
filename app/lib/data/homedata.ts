@@ -37,8 +37,8 @@ export const navItems = [
 
 export const rightNav = [
   { name: "About Us", href: "/about" },
-  { name: "Stores", href: "/contact" },
-  { name: "Support", href: "/contact" },
+  { name: "Stores", href: "/support" },
+  { name: "Support", href: "/support" },
 ];
 // Services Section
 export const services = [

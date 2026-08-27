@@ -1,6 +1,6 @@
 // Notice the updated path here! It now matches your "contactus" folder and file perfectly.
-import ContactComponent from "@/app/components/contactus/contactus";
-import { getContactData } from "@/app/lib/data/contactdata";
+import ContactComponent from "@/app/components/support/support";
+import { getContactData } from "@/app/lib/data/supportdata";
 
 export default async function ContactRoute() {
   // 1. Fetch data on the Server

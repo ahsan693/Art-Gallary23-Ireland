@@ -31,7 +31,7 @@ export const getServicesData = async () => {
           "Preserve and showcase your artwork, photographs, and prints with our custom picture framing. Choose from hundreds of frame styles, mats, and glass options.",
         image: servicesImages.pictureFraming,
         ctaText: "INQUIRE NOW",
-        ctaLink: "/contactus",
+        ctaLink: "/support",
       },
       {
         id: "jersey-framing",
@@ -40,7 +40,7 @@ export const getServicesData = async () => {
           "Display your proud sports jerseys and memorabilia in custom-built shadow box frames. UV-protective glass keeps colors vibrant for years.",
         image: servicesImages.jerseyFraming,
         ctaText: "INQUIRE NOW",
-        ctaLink: "/contactus",
+        ctaLink: "/support",
       },
       {
         id: "canvas-prints",
@@ -49,7 +49,7 @@ export const getServicesData = async () => {
           "Transform your favorite photos into stunning canvas prints. We offer gallery-wrapped and framed canvas options in any size. Best offer for new visitors.",
         image: servicesImages.canvasPrints,
         ctaText: "INQUIRE NOW",
-        ctaLink: "/contactus",
+        ctaLink: "/support",
       },
       {
         id: "shadow-box",
@@ -58,7 +58,7 @@ export const getServicesData = async () => {
           "Create dimensional displays for 3D objects, medals, collectibles, and keepsakes in beautifully crafted shadow boxes.",
         image: servicesImages.shadowBox,
         ctaText: "INQUIRE NOW",
-        ctaLink: "/contactus",
+        ctaLink: "/support",
       },
       {
         id: "certificate-award",
@@ -67,7 +67,7 @@ export const getServicesData = async () => {
           "Present your diplomas, certificates, and awards with the distinction they deserve. Professional framing for any document size.",
         image: servicesImages.certificate,
         ctaText: "INQUIRE NOW",
-        ctaLink: "/contactus",
+        ctaLink: "/support",
       },
       {
         id: "photo-restoration",
@@ -76,7 +76,7 @@ export const getServicesData = async () => {
           "Bring old or damaged photos back to life with our restoration services, then preserve them in archival-quality custom frames.",
         image: servicesImages.photoRestoration,
         ctaText: "INQUIRE NOW",
-        ctaLink: "/contactus",
+        ctaLink: "/support",
       },
     ],
     journey: {
@@ -126,7 +126,7 @@ export const getServicesData = async () => {
       subtitle: "Get in touch with our friendly and knowledgeable team.",
       buttonPhone: "(085) 631-4964",
       buttonText: "Send Message",
-      buttonLink: "/contactus",
+      buttonLink: "/support",
       image: servicesImages.cta,
     },
     features: [

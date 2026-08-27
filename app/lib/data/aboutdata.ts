@@ -152,7 +152,7 @@ export const getAboutData = async () => {
       titleHighlight: "for Art Lovers like you",
       description: "From museum-quality framing to archival canvas prints, our expert team at Gallery 23 helps you protect your most treasured pieces and elevate your home with curated art.",
       buttonText: "Book a Consultation",
-      buttonLink: "/contact",
+      buttonLink: "/support",
       trustText: "Trusted by collectors and artists across Ireland",
       avatars: aboutImages.collectors
     }

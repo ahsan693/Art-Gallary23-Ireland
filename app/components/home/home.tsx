@@ -127,7 +127,7 @@ const getIconComponent = (iconType: string) => {
 // ==========================================
 
 // 👇 UPDATE 1: Added href to the Button props, defaulting to "#consultation"
-export function Button({ children, href = "#consultation", dark = false }: { children: React.ReactNode; href?: string; dark?: boolean }) {
+export function Button({ children, href = "/support", dark = false }: { children: React.ReactNode; href?: string; dark?: boolean }) {
   return (
     <Link href={href} className={dark ? "btn-primary" : "btn-secondary"}>
       {children}
@@ -262,14 +262,18 @@ export function Header() {
 // ==========================================
 // FOOTER COMPONENTS
 // ==========================================
-export function FooterColumn({ title, items }: { title: string; items: string[] }) {
+export function FooterColumn({ title, items }: { title: string; items: (string | { label: string, href: string })[] }) {
   return (
     <div className="flex w-full flex-col items-start lg:w-auto">
       <h3 className="small font-bold capitalize text-white">{title}</h3>
       <ul className="mt-[16px] flex flex-col gap-[12px] caption text-muted sm:mt-[24px] sm:gap-[14px]">
         {items.map((item, index) => {
-          const isPhone = item.includes("(555)");
-          const isEmail = item.includes("@");
+          const isObj = typeof item === "object" && item !== null;
+          const label = isObj ? item.label : item;
+          const href = isObj ? item.href : null;
+
+          const isPhone = label.includes("(555)");
+          const isEmail = label.includes("@");
           const isHighlight = index === 0 && (title === "North side" || title === "South side");
 
           return (
@@ -284,9 +288,15 @@ export function FooterColumn({ title, items }: { title: string; items: string[] 
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               )}
-              <span className={isHighlight ? "font-bold text-white" : "hover:text-white transition-colors cursor-pointer"}>
-                {item}
-              </span>
+              {href ? (
+                <Link href={href} className={isHighlight ? "font-bold text-white" : "hover:text-white transition-colors cursor-pointer"}>
+                  {label}
+                </Link>
+              ) : (
+                <span className={isHighlight ? "font-bold text-white" : "hover:text-white transition-colors cursor-pointer"}>
+                  {label}
+                </span>
+              )}
             </li>
           );
         })}
@@ -311,15 +321,29 @@ export function Footer() {
       <div className="flex w-full flex-col items-start gap-[32px] border-b border-dark-surface px-5 py-[40px] sm:grid sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[40px] sm:px-[40px] lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:px-[80px] lg:py-[56px]">
         <FooterColumn
           title="Services"
-          items={["Picture Framing", "Canvas Prints", "Jersey Framing", "Shadow Boxes", "Certificates & Awards", "Photo Frames"]}
+          items={[
+            { label: "Picture Framing", href: "/Services" },
+            { label: "Canvas Prints", href: "/Services" },
+            { label: "Jersey Framing", href: "/Services" },
+            { label: "Shadow Boxes", href: "/Services" },
+            { label: "Certificates & Awards", href: "/Services" },
+            { label: "Photo Frames", href: "/Services" }
+          ]}
         />
         <FooterColumn
           title="Company"
-          items={["About Us", "Print Shop", "Commercial"]}
+          items={[
+            { label: "About Us", href: "/about" },
+            { label: "Print Shop", href: "/printshop" },
+            { label: "Commercial", href: "/commercial" }
+          ]}
         />
         <FooterColumn
           title="Resources"
-          items={["FAQs", "Contact Us"]}
+          items={[
+            { label: "FAQs", href: "/support" },
+            { label: "Contact Us", href: "/support" }
+          ]}
         />
         <FooterColumn
           title="North side"
@@ -416,7 +440,7 @@ export default function Home() {
                   crafted with care in the heart of Dublin.
                 </p>
                 <Link
-                  href="#consultation"
+                  href="/support"
                   className="btn-secondary text-primary border-white"
                 >
                   <span className="leading-[46px]">Book A Free Consultation</span>
@@ -790,7 +814,7 @@ export default function Home() {
             </div>
 
             <div className="mt-[8px] text-center">
-              <Link href="/contact" className="btn-primary">
+              <Link href="/support" className="btn-primary">
                 VIEW ALL FAQS <ArrowIcon />
               </Link>
             </div>

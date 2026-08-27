@@ -287,12 +287,12 @@ export default function ContactUsComponent({ data }: { data: any }) {
               </p>
             </div>
 
-            <button className="flex h-[41px] w-[257px] items-center justify-center gap-[16px] rounded-full bg-forest-green text-[13px] font-bold uppercase tracking-wide text-white transition hover:bg-[#204834]">
+            <Link href="/support" className="flex h-[41px] w-[257px] items-center justify-center gap-[16px] rounded-full bg-forest-green text-[13px] font-bold uppercase tracking-wide text-white transition hover:bg-[#204834]">
               <span>{data.cta.buttonText}</span>
               <svg className="size-[16px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
-            </button>
+            </Link>
           </div>
         </section>
 
