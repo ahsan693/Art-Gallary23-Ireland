@@ -4,8 +4,8 @@
 
 export const servicesImages = {
   hero: "/Services/Images/Section 1.png",
-  pictureFraming: "/Services/Images/Section2- 01.png",
-  jerseyFraming: "/Services/Images/Section2- 02.png",
+  pictureFraming: "/Services/Images/Section2- 02.png",
+  jerseyFraming: "/Services/Images/Section2- 01.png",
   canvasPrints: "/Services/Images/Section2- 03.png",
   shadowBox: "/Services/Images/Section2- 04.png",
   certificate: "/Services/Images/Section2- 05.png",
