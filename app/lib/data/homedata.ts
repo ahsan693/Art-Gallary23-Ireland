@@ -46,7 +46,7 @@ export const services = [
     title: "Custom Framing",
     body: "Our professional framers thoughtfully handcraft each frame using premium, conservation-minded materials.",
     cta: "Get Custom Framing",
-    href: "/services", // <-- Added link
+    href: "/Services", // <-- Added link
   },
   {
     title: "Custom Printing",
