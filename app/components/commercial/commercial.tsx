@@ -59,11 +59,27 @@ export default function CommercialComponent() {
     fetchData();
   }, []);
 
+  // 👇 ADDED SCROLL HANDLER 👇
+  const handleScrollToForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault(); // Prevents default URL hash jump
+    const formSection = document.getElementById("quote-form");
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: "smooth" }); // Smoothly scrolls to the form
+    }
+  };
+
   if (!data) return <div className="min-h-screen bg-warm-cream" />;
 
   return (
     <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
-      <Header />
+      <div className="hidden md:block">
+        <Header />
+      </div>
+
+      {/* --- MOBILE HEADER FALLBACK (If needed) --- */}
+      <div className="md:hidden">
+        <Header />
+      </div>
 
       <main className="flex w-full flex-1 flex-col items-center">
 
@@ -86,13 +102,16 @@ export default function CommercialComponent() {
             <p className="body-large w-full max-w-[750px] text-white/90">
               {data.hero.subtitle}
             </p>
-            <Link href="#quote-form" className="mt-[4px] rounded-full bg-white px-[32px] py-[14px] text-[14px] font-semibold text-primary transition-colors hover:bg-gray-100 sm:mt-[8px] sm:py-[16px]">
+            {/* 👇 UPDATED HERO BUTTON 👇 */}
+            <a
+              href="#quote-form"
+              onClick={handleScrollToForm}
+              className="mt-[4px] rounded-full bg-white px-[32px] py-[14px] text-[14px] font-semibold text-primary transition-colors hover:bg-gray-100 sm:mt-[8px] sm:py-[16px]"
+            >
               {data.hero.ctaText}
-            </Link>
+            </a>
           </div>
         </section>
-
-        {/* ... Rest of your sections ... */}
 
         {/* --- 2. WHO WE SERVE SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream px-[24px] py-[48px] lg:gap-[56px] lg:px-[120px] lg:py-[80px]">
@@ -138,12 +157,17 @@ export default function CommercialComponent() {
                   <p className="body-text text-secondary">
                     {feature.description}
                   </p>
-                  <Link href="#quote-form" className="mt-[8px] sm:mt-[12px] inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-full bg-primary px-[24px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
+                  {/* 👇 UPDATED FEATURES BUTTON 👇 */}
+                  <a
+                    href="#quote-form"
+                    onClick={handleScrollToForm}
+                    className="mt-[8px] sm:mt-[12px] inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-full bg-primary px-[24px] text-[14px] font-semibold text-white transition hover:bg-dark-surface"
+                  >
                     {feature.ctaText}
                     <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
-                  </Link>
+                  </a>
                 </div>
 
                 {/* Image Container */}
@@ -170,7 +194,7 @@ export default function CommercialComponent() {
                 {/* White Card Container */}
                 <div className="flex h-[120px] w-full items-center justify-center rounded-[16px] bg-white p-[20px] sm:h-[161px] sm:p-[24px]">
 
-                  {/* 👇 Dynamic Image Logo Rendering 👇 */}
+                  {/* Dynamic Image Logo Rendering */}
                   <img
                     src={logo.image}
                     alt={logo.label}
@@ -260,7 +284,14 @@ export default function CommercialComponent() {
 
       </main>
 
-      <Footer />
+      <div className="hidden md:block">
+        <Footer />
+      </div>
+
+      {/* --- MOBILE FOOTER FALLBACK (If needed) --- */}
+      <div className="md:hidden">
+        <Footer />
+      </div>
     </div>
   );
 }
