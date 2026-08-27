@@ -235,7 +235,7 @@ export default function ServicesComponent() {
         </section>
 
         {/* --- CTA SECTION --- */}
-        <section className="relative mx-auto flex min-h-[480px] w-full max-w-[1440px] items-center justify-center overflow-hidden px-[24px] py-[80px]">
+        <section className="relative mx-auto flex w-full max-w-[1440px] items-center justify-center overflow-hidden px-[20px] py-[64px] sm:h-[578px] sm:px-[40px] sm:py-0 lg:px-[80px]">
 
           <div className="absolute inset-0 z-0">
             <Image
@@ -247,23 +247,59 @@ export default function ServicesComponent() {
             />
           </div>
 
-          <div className="absolute inset-0 z-10 bg-black/40" />
+          {/* Very light overlay just to blend the background slightly */}
+          <div className="absolute inset-0 z-10 bg-black/10" />
 
-          <div className="relative z-20 flex w-full max-w-[800px] flex-col items-center text-center gap-[24px]">
-            <h2 className="heading-h2 text-white">
-              {data.cta.title}
-            </h2>
-            <p className="body-large text-white/90 max-w-[600px]">
-              {data.cta.subtitle}
-            </p>
-            <div className="mt-[16px]">
-              <Link href={data.cta.buttonLink} className="btn-secondary">
-                {data.cta.buttonText} <ArrowIcon />
-              </Link>
+          {/* Centered White Card */}
+          <div className="relative z-20 flex w-full max-w-[1050px] flex-col items-center justify-center gap-[24px] rounded-[24px] bg-white px-[24px] py-[40px] text-center sm:gap-[32px] sm:rounded-[32px] sm:py-[64px] lg:h-[292.5px] lg:px-[80px]">
+            <div className="flex flex-col gap-[12px] sm:gap-[16px]">
+              <h2 className="heading-h2 text-primary">
+                {data.cta.title}
+              </h2>
+              <p className="body-text text-secondary">
+                {data.cta.subtitle}
+              </p>
+            </div>
+
+            <div className="flex w-full flex-col items-center justify-center gap-[12px] sm:w-auto sm:flex-row sm:gap-[16px]">
+              <a
+                href={`tel:${data.cta.buttonPhone.replace(/[^0-9]/g, '')}`}
+                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition hover:bg-dark-surface sm:w-auto"
+              >
+                <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01" />
+                </svg>
+                {data.cta.buttonPhone}
+              </a>
+              <a
+                href={data.cta.buttonLink}
+                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition hover:bg-dark-surface sm:w-auto"
+              >
+                <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 2.118l-7.5 4.262a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-2.118V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25" />
+                </svg>
+                {data.cta.buttonText}
+              </a>
             </div>
           </div>
         </section>
 
+        {/* --- FEATURES SECTION (Below CTA as per Figma) --- */}
+        <section className="mx-auto flex w-full max-w-[1440px] items-center justify-center bg-white px-[24px] py-[64px] lg:px-[80px] lg:py-[80px]">
+          <div className="grid w-full max-w-[1280px] grid-cols-1 gap-[32px] sm:grid-cols-2 lg:grid-cols-4 lg:gap-[40px]">
+            {data.features.map((feature: any, index: number) => (
+              <div key={index} className="flex flex-col items-start gap-[8px]">
+                <h3 className="text-[16px] font-bold text-forest-green">
+                  {feature.title}
+                </h3>
+                <p className="text-[13px] leading-[1.5] text-secondary">
+                  {feature.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
 
       {/* --- REUSABLE FOOTER --- */}
