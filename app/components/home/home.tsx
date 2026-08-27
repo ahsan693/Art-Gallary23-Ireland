@@ -6,15 +6,15 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Import Data Layer
-import { 
-  images, 
-  navItems, 
-  rightNav, 
-  services, 
-  testimonials, 
-  faqs, 
+import {
+  images,
+  navItems,
+  rightNav,
+  services,
+  testimonials,
+  faqs,
   benefitsData,
-  trustedBrands // <--- Add this!
+  trustedBrands
 } from "@/app/lib/data/homedata";
 
 // ==========================================
@@ -33,6 +33,15 @@ export function MenuIcon() {
   return (
     <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeWidth="1.8" d="M4 7h16M4 12h16M4 17h16" />
+    </svg>
+  );
+}
+
+// Added Close Icon for the mobile menu toggle
+export function CloseIcon() {
+  return (
+    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M6 18L18 6M6 6l12 12" />
     </svg>
   );
 }
@@ -83,7 +92,6 @@ export function StarIcon({ fill = "currentColor", className = "size-4" }: { fill
   );
 }
 
-// Map the string iconType from data layer to UI Component
 const getIconComponent = (iconType: string) => {
   switch (iconType) {
     case "globe": return <GlobeIcon />;
@@ -118,8 +126,12 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
 // HEADER COMPONENT
 // ==========================================
 export function Header() {
+  // 1. Added State to handle Mobile Menu open/close
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <header className="mx-auto flex w-full max-w-[1440px] flex-col items-start border-b border-border bg-white">
+    // Added relative z-50 to ensure the header stays above the hero image
+    <header className="relative z-50 mx-auto flex w-full max-w-[1440px] flex-col items-start border-b border-border bg-white">
       <div className="flex h-[36px] w-full items-center justify-center bg-forest-green px-4 py-2 text-center text-white">
         <span className="caption text-white">
           Now Trending!{" "}
@@ -131,8 +143,14 @@ export function Header() {
 
       <nav className="relative flex h-[72px] w-full items-center bg-white px-4 lg:px-[40px]">
         <div className="flex items-center gap-3 lg:hidden">
-          <button aria-label="Open menu" className="grid size-10 place-items-center rounded-full border border-border bg-warm-cream">
-            <MenuIcon />
+          {/* 2. Added onClick handler to trigger the state toggle */}
+          <button
+            aria-label="Toggle menu"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="grid size-10 place-items-center rounded-full border border-border bg-warm-cream"
+          >
+            {/* Toggles icon based on state */}
+            {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
           <Link href="/" className="heading-h9">Gallery 23</Link>
         </div>
@@ -142,16 +160,15 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className={`relative flex h-[72px] items-center px-4 button-small ${
-                item.name === "Home" ? "text-forest-green" : "text-primary"
-              }`}
+              className={`relative flex h-[72px] items-center px-4 button-small ${item.name === "Home" ? "text-forest-green" : "text-primary"
+                }`}
             >
               {item.name}
               {item.name === "Home" ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-forest-green" /> : null}
             </Link>
           ))}
         </div>
-          
+
         <Link
           href="/"
           className="absolute left-1/2 top-0 hidden h-[72px] w-[320px] -translate-x-1/2 items-center justify-center text-center heading-h8 lg:flex"
@@ -179,6 +196,48 @@ export function Header() {
             <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-5" />
           </button>
         </div>
+
+        {/* 3. Added Mobile Dropdown Wrapper */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="absolute left-0 top-[72px] z-50 w-full overflow-hidden border-t border-border bg-white shadow-lg lg:hidden"
+            >
+              <div className="flex flex-col gap-6 px-5 py-6">
+                <div className="flex flex-col gap-4">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`text-[18px] font-bold ${item.name === "Home" ? "text-forest-green" : "text-primary"
+                        }`}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+                <div className="h-px w-full bg-border" />
+                <div className="flex flex-col gap-4">
+                  {rightNav.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-[16px] font-medium text-secondary"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </nav>
     </header>
   );
@@ -235,25 +294,25 @@ export function Footer() {
       </div>
 
       <div className="flex w-full flex-col items-start gap-[32px] border-b border-dark-surface px-5 py-[40px] sm:grid sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[40px] sm:px-[40px] lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:px-[80px] lg:py-[56px]">
-        <FooterColumn 
-          title="Services" 
-          items={["Picture Framing", "Canvas Prints", "Jersey Framing", "Shadow Boxes", "Certificates & Awards", "Photo Frames"]} 
+        <FooterColumn
+          title="Services"
+          items={["Picture Framing", "Canvas Prints", "Jersey Framing", "Shadow Boxes", "Certificates & Awards", "Photo Frames"]}
         />
-        <FooterColumn 
-          title="Company" 
-          items={["About Us", "Print Shop", "Commercial"]} 
+        <FooterColumn
+          title="Company"
+          items={["About Us", "Print Shop", "Commercial"]}
         />
-        <FooterColumn 
-          title="Resources" 
-          items={["FAQs", "Contact Us"]} 
+        <FooterColumn
+          title="Resources"
+          items={["FAQs", "Contact Us"]}
         />
-        <FooterColumn 
-          title="North side" 
-          items={["Gallery 23 Downtown", "Unit 4 Coolport Porters Road, Coolmine Blanchardstown D15DX3D", "(555) 123-4567", "hello@gallery23.com"]} 
+        <FooterColumn
+          title="North side"
+          items={["Gallery 23 Downtown", "Unit 4 Coolport Porters Road, Coolmine Blanchardstown D15DX3D", "(555) 123-4567", "hello@gallery23.com"]}
         />
-        <FooterColumn 
-          title="South side" 
-          items={["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"]} 
+        <FooterColumn
+          title="South side"
+          items={["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"]}
         />
       </div>
 
@@ -350,7 +409,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
+
           {/* --- ANIMATED TICKER --- */}
           <div className="relative flex h-[58px] w-full items-center overflow-hidden bg-primary text-[13px] font-medium text-white">
             <motion.div
@@ -405,11 +464,7 @@ export default function Home() {
           </div>
         </section>
 
-
-
-
         {/* --- ABOUT SECTION --- */}
-
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-primary px-5 py-14 lg:h-[704px] lg:flex-row lg:gap-[64px] lg:px-[120px] lg:py-[72px]">
           <div className="flex w-full flex-col gap-[24px] lg:w-[560px]">
             <h2 className="heading-h2 text-white">
@@ -435,7 +490,7 @@ export default function Home() {
         {/* --- WHY CHOOSE OUR FRAMES SECTION --- */}
         <section className="relative isolate mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] px-5 py-[80px] lg:px-[80px]">
           <ResponsiveImage src={images.why} alt="Gallery styling interior" className="absolute inset-0 -z-20" />
-          <div className="absolute inset-0 -z-10 bg-primary/75" /> 
+          <div className="absolute inset-0 -z-10 bg-primary/75" />
           <div className="flex w-full max-w-[700px] flex-col items-center gap-[16px] text-center text-white">
             <h2 className="heading-h2 text-white">
               Why Choose Our Frames
@@ -446,8 +501,8 @@ export default function Home() {
           </div>
           <div className="flex w-full max-w-[1280px] flex-col gap-[24px] lg:flex-row lg:justify-between">
             {benefitsData.map((item) => (
-              <article 
-                key={item.title} 
+              <article
+                key={item.title}
                 className="card flex-1 lg:max-w-[302px] flex flex-col p-[36px]"
               >
                 <div className="flex h-[64px] w-full items-start justify-between">
@@ -547,9 +602,8 @@ export default function Home() {
                 <button
                   key={index}
                   onClick={() => setActiveProject(index)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    index === activeProject ? "w-6 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80"
-                  }`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${index === activeProject ? "w-6 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80"
+                    }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
@@ -562,11 +616,10 @@ export default function Home() {
                   <div
                     key={index}
                     onClick={() => setActiveProject(index)}
-                    className={`relative flex h-[140px] w-[220px] shrink-0 cursor-pointer items-center justify-center transition-all duration-300 sm:h-[200px] sm:w-[380px] ${
-                      isActive
-                        ? "rounded-[20px] border-2 border-white bg-[#336a4c] p-[6px] sm:rounded-[24px] sm:p-[8px]" 
-                        : "rounded-[20px] border-2 border-transparent bg-transparent opacity-60 hover:opacity-100 sm:rounded-[24px]" 
-                    }`}
+                    className={`relative flex h-[140px] w-[220px] shrink-0 cursor-pointer items-center justify-center transition-all duration-300 sm:h-[200px] sm:w-[380px] ${isActive
+                        ? "rounded-[20px] border-2 border-white bg-[#336a4c] p-[6px] sm:rounded-[24px] sm:p-[8px]"
+                        : "rounded-[20px] border-2 border-transparent bg-transparent opacity-60 hover:opacity-100 sm:rounded-[24px]"
+                      }`}
                   >
                     <div className={`relative h-full w-full overflow-hidden ${isActive ? "rounded-[14px] sm:rounded-[16px]" : "rounded-[20px] sm:rounded-[24px]"}`}>
                       <ResponsiveImage src={src} alt={`Thumbnail ${index + 1}`} />
@@ -615,8 +668,8 @@ export default function Home() {
           <div className="relative w-full max-w-[1440px] overflow-hidden">
             <motion.div
               className="flex w-max gap-[16px] pb-[16px] sm:gap-[24px] lg:gap-[32px]"
-              animate={{ x: ["0%", "-50%"] }} 
-              transition={{ repeat: Infinity, ease: "linear", duration: 35 }} 
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
             >
               {[...testimonials, ...testimonials].map((item, index) => (
                 <article
@@ -646,7 +699,7 @@ export default function Home() {
           </div>
         </section>
 
-    {/* --- TRUSTED BY SECTION --- */}
+        {/* --- TRUSTED BY SECTION --- */}
         <section className="section mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden px-5 py-[40px] lg:px-[80px] lg:py-[52px]">
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[20px] lg:gap-[26px]">
             <h2 className="w-full text-center heading-h2">
@@ -655,19 +708,19 @@ export default function Home() {
             <div className="relative flex h-[64px] w-full items-center overflow-hidden sm:h-[106px]">
               <motion.div
                 className="flex w-max items-center"
-                animate={{ x: ["0%", "-50%"] }} 
-                transition={{ repeat: Infinity, ease: "linear", duration: 25 }} 
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
               >
                 {[...Array(2)].map((_, idx) => (
                   <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
                     {/* Maps through your local logo images instead of text */}
                     {trustedBrands.map((brandImg, i) => (
-                      <div 
-                        key={i} 
+                      <div
+                        key={i}
                         className="flex h-[64px] items-center justify-center opacity-80 grayscale transition-all hover:grayscale-0 sm:h-[106px]"
                       >
-                        <img 
-                          src={brandImg} 
+                        <img
+                          src={brandImg}
                           alt={`Trusted Brand ${i + 1}`}
                           className="max-h-[30px] w-auto object-contain sm:max-h-[45px]"
                         />
@@ -699,8 +752,8 @@ export default function Home() {
           <div className="relative flex h-[420px] w-full pl-[20px] sm:h-[581px] lg:pl-[40px]">
             <motion.div
               className="flex w-max"
-              animate={{ x: ["0%", "-50%"] }} 
-              transition={{ repeat: Infinity, ease: "linear", duration: 35 }} 
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
             >
               {[
                 { title: "19th Century Portrait in Ornate Gold", handle: "@vintagelover_ny", img: images.instagramOne },
@@ -761,7 +814,7 @@ export default function Home() {
           </div>
         </section>
 
-   {/* --- TRUSTED BY SECTION --- */}
+        {/* --- TRUSTED BY SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-white px-[24px] py-[40px] sm:px-[52px] sm:py-[80px]">
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[24px] sm:gap-[32px]">
             {/* Section Title */}
@@ -773,21 +826,21 @@ export default function Home() {
             <div className="relative flex h-[80px] w-full items-center overflow-hidden sm:h-[100px]">
               <motion.div
                 className="flex w-max items-center"
-                animate={{ x: ["0%", "-50%"] }} 
-                transition={{ repeat: Infinity, ease: "linear", duration: 25 }} 
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
               >
                 {[...Array(2)].map((_, idx) => (
                   <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
                     {trustedBrands.map((brandImg, i) => (
-                      <div 
-                        key={i} 
+                      <div
+                        key={i}
                         className="flex h-[60px] sm:h-[80px] items-center justify-center shrink-0"
                       >
-                       <img 
-  src={brandImg} 
-  alt={`Trusted Brand ${i + 1}`}
-  className="!h-[54px] !max-h-[54px] !w-auto !max-w-none object-contain"
-/>
+                        <img
+                          src={brandImg}
+                          alt={`Trusted Brand ${i + 1}`}
+                          className="!h-[54px] !max-h-[54px] !w-auto !max-w-none object-contain"
+                        />
                       </div>
                     ))}
                   </div>
@@ -795,7 +848,7 @@ export default function Home() {
               </motion.div>
             </div>
           </div>
-        </section> 
+        </section>
       </main>
 
       <Footer />
