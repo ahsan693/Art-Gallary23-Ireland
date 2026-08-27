@@ -53,7 +53,8 @@ export const getCheckoutReviewData = async () => {
         },
         bottomBar: {
             agreementText: "By confirming, you agree to pay €55 cash at pickup.",
-            confirmButtonText: "Confirm Order" // <-- Single variable for both!
+            confirmButtonText: "Confirm Order",
+            confirmButtonlink: "/checkout-confirmed"
         }
     };
 };

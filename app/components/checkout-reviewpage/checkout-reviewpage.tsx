@@ -195,21 +195,21 @@ export default function CheckoutReviewComponent() {
                             {data.bottomBar.agreementText}
                         </p>
 
-                        <button className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-forest-green px-[32px] text-[14px] font-bold text-white transition hover:bg-[#1f4733]">
+                        <Link href={data.bottomBar.confirmButtonlink} className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-forest-green px-[32px] text-[14px] font-bold text-white transition hover:bg-[#1f4733]">
                             {data.bottomBar.confirmButtonText}
                             <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
-                        </button>
+                        </Link>
                     </div>
 
                     {/* --- MOBILE BOTTOM SUMMARY AREA --- */}
                     <div className="flex w-full flex-col items-center gap-[16px] px-[20px] pb-[40px] pt-[8px] md:hidden">
                         {/* Notice the "uppercase" class here makes it CONFIRM ORDER automatically! */}
-                        <button className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-forest-green font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white transition hover:bg-[#1f4733]">
+                        <Link href={data.bottomBar.confirmButtonlink} className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-forest-green font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white transition hover:bg-[#1f4733]">
                             {data.bottomBar.confirmButtonText}
                             <img src={data.icons.mobileArrowIcon} alt="" className="size-[16px] brightness-0 invert" />
-                        </button>
+                        </Link>
 
                         <p className="text-center text-[12px] leading-[1.5] text-secondary">
                             {data.cashOnDelivery.footerTextMobile}
