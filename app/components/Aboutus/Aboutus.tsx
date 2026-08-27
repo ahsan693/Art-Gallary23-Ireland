@@ -79,7 +79,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
           <div className="absolute inset-0 z-0">
             <Image src={data.hero.image} alt="About Us Hero" fill priority className="object-cover" />
           </div>
-          <div className="absolute inset-0 z-10 bg-black/65" />
+          <div className="absolute inset-0 z-10 bg-black/10" />
 
           <div className="relative z-20 flex w-full max-w-[1000px] flex-col items-center gap-[12px] text-center text-white sm:gap-[16px]">
             <h1 className="heading-display text-white w-full max-w-[924px] sm:text-[48px] lg:text-[64px]">
@@ -120,7 +120,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
           <div className="absolute inset-0 z-0">
             <Image src={data.whatWeStandFor.bgImage} alt="Workshop" fill className="object-cover" />
           </div>
-          <div className="absolute inset-0 z-10 bg-black/60" />
+          <div className="absolute inset-0 z-10 bg-black/10" />
 
           <div className="relative z-20 flex w-full max-w-[920px] flex-col items-center gap-[12px] text-center mb-[32px] sm:gap-[16px] lg:mb-0">
             <h2 className="heading-h2 text-white">

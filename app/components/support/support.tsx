@@ -82,7 +82,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
           <div className="absolute inset-0 z-0">
             <Image src={data.hero.image} alt="Studio Hero" fill priority className="object-cover" />
           </div>
-          <div className="absolute inset-0 z-10 bg-black/50" />
+          <div className="absolute inset-0 z-10 bg-black/10" />
 
           <div className="relative z-20 flex w-full max-w-[800px] flex-col items-center gap-[24px] text-center text-white">
             <h1 className="heading-display text-white w-full sm:text-[48px] lg:text-[64px]">
@@ -215,7 +215,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
           <div className="absolute inset-0 z-0">
             <Image src={data.stats.image} alt="Stats background" fill className="object-cover" />
           </div>
-          <div className="absolute inset-0 z-10 bg-black/70" />
+          <div className="absolute inset-0 z-10 bg-black/10" />
 
           <div className="relative z-20 flex w-full max-w-[1000px] flex-col items-center gap-[48px] text-center text-white lg:gap-[64px]">
             <div className="flex flex-col gap-[8px]">
@@ -275,7 +275,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
           <div className="absolute inset-0 z-0">
             <Image src={data.cta.image} alt="CTA Background" fill className="object-cover" />
           </div>
-          <div className="absolute inset-0 z-10 bg-dark-surface/80" />
+          <div className="absolute inset-0 z-10 bg-black/10" />
 
           <div className="relative z-20 flex w-full max-w-[700px] flex-col items-center gap-[28px] text-center text-white lg:gap-[32px]">
             <div className="flex flex-col items-center gap-[16px]">

@@ -130,7 +130,7 @@ export default function PrintShopPage() {
           </div>
 
           {/* Dark Overlay (z-10) */}
-          <div className="absolute inset-0 z-10 bg-black/60" />
+          <div className="absolute inset-0 z-10 bg-black/10" />
 
           {/* Content Container (z-20) */}
           <div className="relative z-20 flex w-full max-w-[1200px] flex-col items-center gap-[40px] text-white lg:gap-[56px]">

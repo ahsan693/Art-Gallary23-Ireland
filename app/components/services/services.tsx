@@ -74,7 +74,7 @@ export default function ServicesComponent() {
             />
           </div>
 
-          <div className="absolute inset-0 z-10 bg-black/40" />
+          <div className="absolute inset-0 z-10 bg-black/10" />
 
           <div className="relative z-20 flex w-full max-w-[900px] flex-col items-center gap-[24px] text-center text-white">
             <div className="inline-flex items-center justify-center rounded-full border border-white/40 px-[16px] py-[6px] backdrop-blur-sm">

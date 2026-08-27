@@ -425,7 +425,7 @@ export default function Home() {
                 className="absolute left-0 top-[-70%] h-[220%] w-full max-w-none object-cover sm:top-[-82%] sm:h-[240%] lg:top-[-89.25%] lg:h-[249.94%]"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 from-[18.54%] to-black/40 to-[68.99%]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/20 from-[18.54%] to-transparent to-[68.99%]" />
             <div className="relative mx-auto flex h-full max-w-[1280px] items-center px-5 py-20 sm:px-[42px] sm:py-8">
               <div className="mx-auto flex w-full max-w-[620px] flex-col items-center gap-8 py-12 text-center text-white sm:py-20 lg:mx-0 lg:items-start lg:text-left">
                 <h1 className="heading-display text-white sm:text-[56px] lg:text-[64px]">

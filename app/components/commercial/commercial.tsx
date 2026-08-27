@@ -92,7 +92,7 @@ export default function CommercialComponent() {
           </div>
 
           {/* Dark Overlay */}
-          <div className="absolute inset-0 z-10 bg-black/60" />
+          <div className="absolute inset-0 z-10 bg-black/10" />
 
           {/* Text Content (Remains perfectly centered and constrained) */}
           <div className="relative z-20 flex w-full max-w-[900px] flex-col items-center gap-[16px] text-center text-white sm:gap-[24px]">
