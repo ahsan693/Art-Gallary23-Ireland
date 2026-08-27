@@ -414,7 +414,7 @@ export default function Home() {
                   crafted with care in the heart of Dublin.
                 </p>
                 <Link
-                  href="#consultation"
+                  href="/contact"
                   className="btn-secondary text-primary border-white"
                 >
                   <span className="leading-[46px]">Book A Free Consultation</span>
