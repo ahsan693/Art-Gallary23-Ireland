@@ -115,7 +115,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
           </div>
         </section>
 
-        {/* --- 3. WHAT WE STAND FOR SECTION (Fixed Z-indexes) --- */}
+        {/* --- 3. WHAT WE STAND FOR SECTION (Figma Exact Match) --- */}
         <section className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[24px] pb-[56px] pt-[48px] lg:gap-[56px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
           <div className="absolute inset-0 z-0">
             <Image src={data.whatWeStandFor.bgImage} alt="Workshop" fill className="object-cover" />
@@ -131,21 +131,69 @@ export default function AboutUsComponent({ data }: { data: any }) {
             </p>
           </div>
 
-          <div className="relative z-20 flex w-full max-w-[1200px] flex-wrap justify-center gap-[20px] sm:gap-[24px]">
-            {data.whatWeStandFor.principles.map((principle: any, idx: number) => (
-              <div key={idx} className="card flex flex-1 flex-col items-start gap-[16px] min-w-[280px] lg:minw-[400px]">
-                <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-primary text-white">
-                  {getIconComponent(principle.iconType)}
+          {(() => {
+            const renderFigmaIcon = (title: string) => {
+              if (title.includes("Craftsmanship")) {
+                return (
+                  <svg className="size-[26px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75a4.5 4.5 0 01-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 11-3.586-3.586l8.684-7.152c.833-.686 1.036-1.874.945-2.95a4.5 4.5 0 014.484-4.884c.83-.07 1.614.464 1.83 1.258l-.612.612a.75.75 0 000 1.06l1.59 1.59a.75.75 0 001.06 0l.612-.612c.794.216 1.328 1 1.258 1.83z" />
+                  </svg>
+                );
+              }
+              if (title.includes("Preservation")) {
+                return (
+                  <svg className="size-[26px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
+                );
+              }
+              if (title.includes("Sustainability")) {
+                return (
+                  <svg className="size-[26px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.75 19.25c9-1 14.5-6.5 15.5-14.5-9.5 1-15.5 5.5-15.5 14.5z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.5 14.5c2.5-2.5 5-5 8-7.5" />
+                  </svg>
+                );
+              }
+              return (
+                <svg className="size-[26px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                </svg>
+              );
+            };
+
+            const Card = ({ principle, className = "" }: { principle: any; className?: string }) => (
+              <div className={`flex flex-col items-start gap-[20px] rounded-[20px] border border-[#D5D5D5] bg-white p-[32px] sm:p-[40px] ${className}`}>
+                <div className="flex size-[54px] shrink-0 items-center justify-center rounded-full bg-[#181818] text-white">
+                  {renderFigmaIcon(principle.title)}
                 </div>
                 <div className="flex flex-col gap-[8px]">
-                  <h3 className="heading-h9">{principle.title}</h3>
-                  <p className="body-small text-secondary">
+                  <h3 className="text-[20px] font-bold text-primary sm:text-[22px]">{principle.title}</h3>
+                  <p className="text-[14px] leading-[1.6] text-secondary sm:text-[15px]">
                     {principle.description}
                   </p>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+
+            const principles = data.whatWeStandFor.principles;
+
+            return (
+              <div className="relative z-20 flex w-full max-w-[1200px] flex-col gap-[24px]">
+                {/* Row 1: equal 588 / 588 split */}
+                <div className="flex flex-col gap-[24px] sm:flex-row">
+                  <Card principle={principles[0]} className="w-full sm:flex-1" />
+                  <Card principle={principles[1]} className="w-full sm:flex-1" />
+                </div>
+
+                {/* Row 2: fixed 420 (hug) + fill remaining (756) */}
+                <div className="flex flex-col gap-[24px] sm:flex-row">
+                  <Card principle={principles[2]} className="w-full sm:w-[420px] sm:shrink-0" />
+                  <Card principle={principles[3]} className="w-full sm:flex-1" />
+                </div>
+              </div>
+            );
+          })()}
         </section>
 
         {/* --- 4. OUR JOURNEY SECTION --- */}

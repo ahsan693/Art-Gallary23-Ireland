@@ -49,42 +49,53 @@ export function CloseIcon() {
 
 export function GlobeIcon() {
   return (
-    <svg className="size-[48px] text-forest-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3v18" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-2.5 0-4.5-4-4.5-9S9.5 3 12 3s4.5 4 4.5 9-2 9-4.5 9Z" />
+    <svg className="size-[54px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
+      <circle cx="12" cy="12" r="9.5" />
+      <path d="M12 2.5c2.5 0 4.5 4.2 4.5 9.5s-2 9.5-4.5 9.5-4.5-4.2-4.5-9.5 2-9.5 4.5-9.5z" />
+      <path d="M2.5 12h19" />
+      <path d="M4.5 7h15" />
+      <path d="M4.5 17h15" />
     </svg>
   );
 }
 
 export function LightbulbIcon() {
   return (
-    <svg className="size-[48px] text-forest-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9.6 20.4h4.8m-2.4 3v-3m-6-8.4a6 6 0 1 1 12 0c0 2.4-1.8 4.2-3 5.4H9c-1.2-1.2-3-3-3-5.4Z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v1.2m-3.6.6.6.6m5.4 0-.6.6" />
+    <svg className="size-[54px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
+      <path d="M9.5 17.5A6.5 6.5 0 1 1 14.5 17.5" />
+      <path d="M9.5 17.5h5" />
+      <path d="M10 20h4" />
+      <path d="M10 17.5v2.5" />
+      <path d="M14 17.5v2.5" />
+      <path d="M10.5 20v1.5h3V20" />
+      <path d="M12 15v-4l-1.5-1.5m1.5 1.5l1.5-1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 2v2m-8 6h2m12 0h2M6.5 4.5l1.5 1.5m8.5-1.5l-1.5 1.5" strokeLinecap="round" />
     </svg>
   );
 }
 
 export function FrameOutlineIcon() {
   return (
-    <svg className="size-[48px] text-forest-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v18H3V3Z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M7.2 7.2h9.6v9.6H7.2V7.2Z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 3l4.2 4.2M21 3l-4.2 4.2M3 21l4.2-4.2M21 21l-4.2-4.2" />
+    <svg className="size-[54px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
+      <rect x="5.5" y="5.5" width="13" height="13" />
+      <rect x="7.5" y="7.5" width="9" height="9" />
+      <rect x="2.5" y="2.5" width="1.5" height="1.5" fill="currentColor" stroke="none" />
+      <rect x="20" y="2.5" width="1.5" height="1.5" fill="currentColor" stroke="none" />
+      <rect x="2.5" y="20" width="1.5" height="1.5" fill="currentColor" stroke="none" />
+      <rect x="20" y="20" width="1.5" height="1.5" fill="currentColor" stroke="none" />
     </svg>
   );
 }
 
 export function BadgeIcon() {
   return (
-    <svg className="size-[48px] text-forest-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9.6 12.6 11.4 14.4 15.6 9.6M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 22.8c-1.1 0-2.2-.4-3-1.1L7.1 20H4.8c-.7 0-1.2-.5-1.2-1.2v-2.3l-1.7-1.9c-.7-.8-.7-1.9 0-2.7L3.6 10V7.7c0-.7.5-1.2 1.2-1.2H7l1.9-1.7c.8-.7 1.9-.7 2.7 0L13.4 6h2.3c.7 0 1.2.5 1.2 1.2V9.6l1.7 1.9c.7.8.7 1.9 0 2.7l-1.7 1.9v2.3c0 .7-.5 1.2-1.2 1.2h-2.3l-1.9 1.7c-.7.8-1.9.8-2.7.1Z" />
+    <svg className="size-[54px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
+      <path d="M12 2.5a2.5 2.5 0 0 1 2.3 1.1 2.5 2.5 0 0 0 2.4.9 2.5 2.5 0 0 1 1.8 2 2.5 2.5 0 0 0 1.6 2 2.5 2.5 0 0 1 .4 2.6 2.5 2.5 0 0 0-.4 2.6 2.5 2.5 0 0 1-1.6 2 2.5 2.5 0 0 0-1.8 2 2.5 2.5 0 0 1-2.4.9 2.5 2.5 0 0 0-2.3 1.1 2.5 2.5 0 0 1-2.6 0 2.5 2.5 0 0 0-2.3-1.1 2.5 2.5 0 0 1-2.4-.9 2.5 2.5 0 0 0-1.8-2 2.5 2.5 0 0 1-1.6-2 2.5 2.5 0 0 0-.4-2.6 2.5 2.5 0 0 1 .4-2.6 2.5 2.5 0 0 0 1.6-2 2.5 2.5 0 0 1 1.8-2 2.5 2.5 0 0 0 2.4-.9 2.5 2.5 0 0 1 2.3-1.1z" strokeLinejoin="round" />
+      <circle cx="12" cy="12" r="5.5" />
+      <path d="M9.5 12.5l1.5 1.5 3.5-3.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
-
 export function StarIcon({ fill = "currentColor", className = "size-4" }: { fill?: string; className?: string }) {
   return (
     <svg className={className} fill={fill} viewBox="0 0 24 24" stroke="none">
@@ -546,8 +557,9 @@ export default function Home() {
                 key={item.title}
                 className="card flex-1 lg:max-w-[302px] flex flex-col p-[36px]"
               >
-                <div className="flex h-[64px] w-full items-start justify-between">
-                  <div className="flex size-[64px] items-center justify-center rounded-full bg-warm-cream">
+                <div className="flex h-[72px] w-full items-start justify-between">
+                  {/* 👇 Increased size to 72px and applied matching colors 👇 */}
+                  <div className="flex size-[72px] items-center justify-center rounded-full bg-forest-green text-[#F4F0EB]">
                     {getIconComponent(item.iconType)}
                   </div>
                 </div>
