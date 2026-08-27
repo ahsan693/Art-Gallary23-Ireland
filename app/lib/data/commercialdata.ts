@@ -8,6 +8,10 @@ export const commercialImages = {
   printing: "/Commercial/Images/Section3- 02.png",
   installation: "/Commercial/Images/Section3- 03.png",
   consultation: "/Commercial/Images/Section3- 04.png",
+  // Added new logo image paths
+  trustedLogo1: "/Commercial/Images/Section4- 03.png",
+  trustedLogo2: "/Commercial/Images/Section4- 02.png",
+  trustedLogo3: "/Commercial/Images/Section4- 01.png",
 };
 
 // Simulated Async Database Call
@@ -83,9 +87,24 @@ export const getCommercialData = async () => {
     trustedBy: {
       title: "Trusted by Leading Businesses",
       logos: [
-        { id: "forbes", type: "text", name: "Forbes", label: "Forbes", project: "The Shelbourne Hotel Suite Refresh" },
-        { id: "elle", type: "elle", name: "ELLE DECOR", label: "HOSPITALITY", project: "The Shelbourne Hotel Suite Refresh" },
-        { id: "ad", type: "ad", name: "AD", subname: "ARCHITECTURAL DIGEST", label: "HOSPITALITY", project: "The Shelbourne Hotel Suite Refresh" }
+        {
+          id: "logo-1",
+          image: commercialImages.trustedLogo1,
+          label: "Forbes",
+          project: "The Shelbourne Hotel Suite Refresh"
+        },
+        {
+          id: "logo-2",
+          image: commercialImages.trustedLogo2,
+          label: "HOSPITALITY",
+          project: "The Shelbourne Hotel Suite Refresh"
+        },
+        {
+          id: "logo-3",
+          image: commercialImages.trustedLogo3,
+          label: "HOSPITALITY",
+          project: "The Shelbourne Hotel Suite Refresh"
+        }
       ]
     },
     form: {

@@ -65,11 +65,11 @@ export default function CommercialComponent() {
     <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
       <Header />
 
-     <main className="flex w-full flex-1 flex-col items-center">
-        
+      <main className="flex w-full flex-1 flex-col items-center">
+
         {/* --- 1. HERO SECTION --- */}
         <section className="relative flex h-[520px] w-full flex-col items-center justify-center overflow-hidden px-[24px] py-[56px] sm:h-[600px] lg:px-[80px] lg:py-[80px]">
-          
+
           {/* Background Image (Full width) */}
           <div className="absolute inset-0 z-0">
             <Image src={data.hero.image} alt={data.hero.title} fill priority className="object-cover" />
@@ -91,7 +91,7 @@ export default function CommercialComponent() {
             </Link>
           </div>
         </section>
-        
+
         {/* ... Rest of your sections ... */}
 
         {/* --- 2. WHO WE SERVE SECTION --- */}
@@ -99,7 +99,7 @@ export default function CommercialComponent() {
           <h2 className="heading-h2 mb-[32px] text-center lg:mb-0">
             {data.whoWeServe.title}
           </h2>
-          
+
           <div className="flex w-full max-w-[1200px] flex-col gap-[20px] sm:gap-[24px] lg:flex-row">
             {data.whoWeServe.cards.map((card: any) => (
               <div key={card.id} className="card flex flex-1 flex-col items-start gap-[16px] bg-warm-cream p-[24px] sm:gap-[20px] sm:p-[32px] lg:p-[40px]">
@@ -120,18 +120,16 @@ export default function CommercialComponent() {
         {/* --- 3. ALTERNATING FEATURES --- */}
         <div className="flex w-full flex-col items-center">
           {data.features.map((feature: any) => (
-            <section 
-              key={feature.id} 
-              className={`flex w-full justify-center px-[24px] py-[48px] lg:px-[120px] lg:py-[80px] ${
-                feature.bgType === "white" ? "bg-white" : "bg-warm-cream"
-              }`}
-            >
-              <div 
-                className={`flex w-full max-w-[1200px] flex-col-reverse items-center justify-between gap-[32px] lg:gap-[80px] ${
-                  feature.align === "left" ? "lg:flex-row" : "lg:flex-row-reverse"
+            <section
+              key={feature.id}
+              className={`flex w-full justify-center px-[24px] py-[48px] lg:px-[120px] lg:py-[80px] ${feature.bgType === "white" ? "bg-white" : "bg-warm-cream"
                 }`}
+            >
+              <div
+                className={`flex w-full max-w-[1200px] flex-col-reverse items-center justify-between gap-[32px] lg:gap-[80px] ${feature.align === "left" ? "lg:flex-row" : "lg:flex-row-reverse"
+                  }`}
               >
-                
+
                 {/* Text Container */}
                 <div className="flex w-full flex-col items-start gap-[12px] lg:w-[412px] lg:shrink-0">
                   <h2 className="heading-h2">
@@ -165,27 +163,19 @@ export default function CommercialComponent() {
               {data.trustedBy.title}
             </h2>
           </div>
-          
+
           <div className="flex w-full max-w-[1200px] flex-col gap-[20px] sm:gap-[24px] lg:flex-row">
             {data.trustedBy.logos.map((logo: any) => (
               <div key={logo.id} className="flex flex-1 flex-col items-start gap-[16px] sm:gap-[20px] lg:w-[384px]">
+                {/* White Card Container */}
                 <div className="flex h-[120px] w-full items-center justify-center rounded-[16px] bg-white p-[20px] sm:h-[161px] sm:p-[24px]">
-                  
-                  {/* Dynamic Logo Rendering */}
-                  {logo.type === "text" && (
-                    <span className="font-serif text-[42px] font-bold tracking-tighter text-black sm:text-[56px]">{logo.name}</span>
-                  )}
-                  {logo.type === "elle" && (
-                    <span className="font-serif text-[28px] font-light tracking-widest text-[#555] sm:text-[40px]">
-                      <span className="font-bold text-black">ELLE</span> DECOR
-                    </span>
-                  )}
-                  {logo.type === "ad" && (
-                    <div className="flex flex-col items-center">
-                       <span className="font-serif text-[48px] font-normal leading-none tracking-tighter text-black sm:text-[64px]">{logo.name}</span>
-                       <span className="mt-[-4px] text-[7px] font-medium tracking-[0.2em] text-[#555] sm:text-[8px]">{logo.subname}</span>
-                    </div>
-                  )}
+
+                  {/* 👇 Dynamic Image Logo Rendering 👇 */}
+                  <img
+                    src={logo.image}
+                    alt={logo.label}
+                    className="h-full w-full object-contain"
+                  />
 
                 </div>
                 <div className="flex flex-col gap-[4px]">
@@ -202,13 +192,13 @@ export default function CommercialComponent() {
         {/* --- 5. REQUEST A QUOTE FORM --- */}
         <section id="quote-form" className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream px-[16px] py-[56px] sm:px-[24px] lg:px-[120px] lg:py-[80px]">
           <div className="card flex w-full max-w-[900px] flex-col items-center gap-[28px] p-[20px] sm:gap-[40px] sm:rounded-[32px] sm:p-[48px] lg:p-[64px]">
-            
+
             <h2 className="heading-h2 text-center">
               {data.form.title}
             </h2>
 
             <form className="flex w-full max-w-[772px] flex-col gap-[20px]" onSubmit={(e) => e.preventDefault()}>
-              
+
               {/* Row 1 */}
               <div className="grid grid-cols-1 gap-[20px] sm:grid-cols-2">
                 <div className="flex flex-col gap-[10px]">
@@ -240,9 +230,9 @@ export default function CommercialComponent() {
               {/* Project Description */}
               <div className="flex flex-col gap-[10px]">
                 <label className="body-small font-bold">Project Description</label>
-                <textarea 
-                  placeholder="Tell us about your volume, materials, and timeline..." 
-                  className="h-[150px] w-full resize-y rounded-[8px] border border-border bg-[#fcfcfc] p-[16px] body-small outline-none transition-colors focus:border-forest-green focus:bg-white" 
+                <textarea
+                  placeholder="Tell us about your volume, materials, and timeline..."
+                  className="h-[150px] w-full resize-y rounded-[8px] border border-border bg-[#fcfcfc] p-[16px] body-small outline-none transition-colors focus:border-forest-green focus:bg-white"
                 />
               </div>
 
