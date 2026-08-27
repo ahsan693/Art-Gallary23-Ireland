@@ -581,7 +581,7 @@ export default function Home() {
                 </ul>
               </div>
               <div className="mt-8 lg:mt-[36px]">
-                <Link href="/services" className="btn-primary bg-primary border-primary">
+                <Link href="/printshop" className="btn-primary bg-primary border-primary">
                   START YOUR CUSTOM PRINT <ArrowIcon />
                 </Link>
               </div>
@@ -790,7 +790,7 @@ export default function Home() {
             </div>
 
             <div className="mt-[8px] text-center">
-              <Link href="/contactus" className="btn-primary">
+              <Link href="/contact" className="btn-primary">
                 VIEW ALL FAQS <ArrowIcon />
               </Link>
             </div>
