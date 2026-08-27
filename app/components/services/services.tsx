@@ -37,10 +37,10 @@ export default function ServicesComponent() {
 
   // Smooth scroll handler for the Inquire Now buttons
   const handleScrollToForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevents default URL hash jump
     const formSection = document.getElementById("inquiry-form");
     if (formSection) {
-      formSection.scrollIntoView({ behavior: "smooth" });
+      formSection.scrollIntoView({ behavior: "smooth" }); // Smoothly scrolls to the form
     }
   };
 
@@ -94,47 +94,53 @@ export default function ServicesComponent() {
         </section>
 
         {/* --- DETAILED SERVICES LIST SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[80px] bg-warm-cream px-[24px] py-[80px] lg:gap-[120px] lg:px-[80px] lg:py-[120px]">
+        <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center">
 
           {data.offerings.map((service: any, index: number) => {
-            // Swapped to lg:flex-row-reverse so the 1st item (Picture Framing) has text on Left, Image on Right
+            // Even numbers (0, 2, 4...) will be Picture Framing, Canvas Prints, etc.
             const isEven = index % 2 === 0;
 
             return (
-              <div
+              <section
                 key={service.id}
-                className={`flex w-full max-w-[1280px] flex-col items-center justify-between gap-[40px] lg:gap-[80px] ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"
+                // 👇 Alternating Background Colors! 👇
+                className={`flex w-full justify-center px-[24px] py-[64px] sm:py-[80px] lg:px-[80px] lg:py-[120px] ${isEven ? "bg-white" : "bg-warm-cream"
                   }`}
               >
-                {/* Image Side */}
-                <div className="relative h-[400px] w-full shrink-0 overflow-hidden rounded-[24px] shadow-sm sm:h-[500px] lg:h-[570px] lg:w-[600px] xl:w-[680px]">
-                  <ResponsiveImage src={service.image} alt={service.title} />
-                </div>
+                <div
+                  className={`flex w-full max-w-[1280px] flex-col items-center justify-between gap-[40px] lg:gap-[80px] ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"
+                    }`}
+                >
+                  {/* Image Side */}
+                  <div className="relative h-[400px] w-full shrink-0 overflow-hidden rounded-[24px] shadow-sm sm:h-[500px] lg:h-[570px] lg:w-[600px] xl:w-[680px]">
+                    <ResponsiveImage src={service.image} alt={service.title} />
+                  </div>
 
-                {/* Text Side (Removed bullets & divider) */}
-                <div className="flex w-full flex-col items-start justify-center gap-[24px] lg:w-[540px]">
-                  <h2 className="heading-h3 text-primary">
-                    {service.title}
-                  </h2>
+                  {/* Text Side (Removed bullets & divider) */}
+                  <div className="flex w-full flex-col items-start justify-center gap-[24px] lg:w-[540px]">
+                    <h2 className="heading-h3 text-primary">
+                      {service.title}
+                    </h2>
 
-                  <p className="body-text text-secondary">
-                    {service.description}
-                  </p>
+                    <p className="body-text text-secondary">
+                      {service.description}
+                    </p>
 
-                  <div className="mt-[8px]">
-                    <a
-                      href="#inquiry-form"
-                      onClick={handleScrollToForm}
-                      className="btn-primary"
-                    >
-                      {service.ctaText} <ArrowIcon />
-                    </a>
+                    <div className="mt-[8px]">
+                      <a
+                        href="#inquiry-form"
+                        onClick={handleScrollToForm}
+                        className="btn-primary"
+                      >
+                        {service.ctaText} <ArrowIcon />
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </section>
             );
           })}
-        </section>
+        </div>
 
         {/* --- THE FRAMING JOURNEY SECTION --- */}
         <section className="w-full bg-[#131313] px-[24px] py-[80px] lg:py-[100px]">
