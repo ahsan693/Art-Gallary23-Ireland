@@ -740,6 +740,42 @@ export default function Home() {
           </div>
         </section>
 
+        {/* --- TRUSTED BY SECTION --- */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-white px-[24px] py-[40px] sm:px-[52px] sm:py-[80px]">
+          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[24px] sm:gap-[32px]">
+            {/* Section Title */}
+            <h2 className="heading-h2 text-center text-primary">
+              Trusted By
+            </h2>
+
+            {/* Continuous Ticker Row */}
+            <div className="relative flex h-[80px] w-full items-center overflow-hidden sm:h-[100px]">
+              <motion.div
+                className="flex w-max items-center"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+              >
+                {[...Array(2)].map((_, idx) => (
+                  <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
+                    {trustedBrands.map((brandImg, i) => (
+                      <div
+                        key={i}
+                        className="flex h-[60px] sm:h-[80px] items-center justify-center shrink-0"
+                      >
+                        <img
+                          src={brandImg}
+                          alt={`Trusted Brand ${i + 1}`}
+                          className="!h-[54px] !max-h-[54px] !w-auto !max-w-none object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         {/* --- WHAT WE'VE BEEN FRAMING SECTION --- */}
         <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden p-0">
           <div className="flex w-full flex-col items-center gap-[20px] px-5 py-[40px] sm:gap-[32px] sm:py-[56px]">
@@ -867,44 +903,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* --- TRUSTED BY SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-white px-[24px] py-[40px] sm:px-[52px] sm:py-[80px]">
-          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[24px] sm:gap-[32px]">
-            {/* Section Title */}
-            <h2 className="heading-h2 text-center text-primary">
-              Trusted By
-            </h2>
-
-            {/* Continuous Ticker Row */}
-            <div className="relative flex h-[80px] w-full items-center overflow-hidden sm:h-[100px]">
-              <motion.div
-                className="flex w-max items-center"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
-              >
-                {[...Array(2)].map((_, idx) => (
-                  <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
-                    {trustedBrands.map((brandImg, i) => (
-                      <div
-                        key={i}
-                        className="flex h-[60px] sm:h-[80px] items-center justify-center shrink-0"
-                      >
-                        <img
-                          src={brandImg}
-                          alt={`Trusted Brand ${i + 1}`}
-                          className="!h-[54px] !max-h-[54px] !w-auto !max-w-none object-contain"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        </section>
       </main>
-
       <Footer />
     </div>
   );
