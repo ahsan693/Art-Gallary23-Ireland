@@ -138,7 +138,7 @@ export function Button({ children, href = "/support", dark = false }: { children
 export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
   return (
     <span className={`relative block h-full w-full overflow-hidden ${className}`}>
-      <Image src={src} alt={alt} fill sizes="100vw" className="object-cover" />
+      <Image src={src} alt={alt} fill sizes="100vw" className={`object-cover ${className}`} />
     </span>
   );
 }
@@ -524,7 +524,7 @@ export default function Home() {
             </div>
           </div>
           <div className="relative mt-10 h-[260px] w-full shrink-0 overflow-hidden rounded-3xl lg:mt-0 lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
-            <ResponsiveImage src={images.about} alt="Gallery interior with framed artwork" />
+            <ResponsiveImage src={images.about} alt="Gallery interior with framed artwork" className="rounded-3xl lg:rounded-[32px]" />
           </div>
         </section>
 
