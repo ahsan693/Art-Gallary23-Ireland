@@ -831,8 +831,9 @@ export default function Home() {
 
         {/* --- CONSULTATION SECTION --- */}
         <section className="relative mx-auto flex w-full max-w-[1440px] items-center justify-center overflow-hidden px-[20px] py-[64px] sm:h-[578px] sm:px-[40px] sm:py-0 lg:px-[80px]">
-          {/* Background Image */}
-          <div className="absolute inset-0 -z-20">
+
+          {/* 1. Background Image (Changed to z-0) */}
+          <div className="absolute inset-0 z-0">
             <Image
               src={images.consultation}
               alt="Gallery interior for consultation"
@@ -841,11 +842,12 @@ export default function Home() {
               sizes="100vw"
             />
           </div>
-          {/* Subtle overlay to ensure the white card pops */}
-          <div className="absolute inset-0 -z-10 bg-black/10" />
 
-          {/* Centered White Card */}
-          <div className="relative z-10 flex w-full max-w-[1050px] flex-col items-center justify-center gap-[24px] rounded-[24px] bg-white px-[24px] py-[40px] text-center sm:gap-[32px] sm:rounded-[32px] sm:py-[64px] lg:h-[292.5px] lg:px-[80px]">
+          {/* 2. Subtle overlay (Changed to z-10) */}
+          <div className="absolute inset-0 z-10 bg-black/10" />
+
+          {/* 3. Centered White Card (Changed to relative z-20) */}
+          <div className="relative z-20 flex w-full max-w-[1050px] flex-col items-center justify-center gap-[24px] rounded-[24px] bg-white px-[24px] py-[40px] text-center sm:gap-[32px] sm:rounded-[32px] sm:py-[64px] lg:h-[292.5px] lg:px-[80px]">
             <div className="flex flex-col gap-[12px] sm:gap-[16px]">
               <h2 className="heading-h2 text-primary">
                 {consultationData.title}
