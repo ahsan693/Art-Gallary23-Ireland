@@ -126,9 +126,10 @@ const getIconComponent = (iconType: string) => {
 // REUSABLE UI COMPONENTS
 // ==========================================
 
-export function Button({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+// 👇 UPDATE 1: Added href to the Button props, defaulting to "#consultation"
+export function Button({ children, href = "#consultation", dark = false }: { children: React.ReactNode; href?: string; dark?: boolean }) {
   return (
-    <Link href="#consultation" className={dark ? "btn-primary" : "btn-secondary"}>
+    <Link href={href} className={dark ? "btn-primary" : "btn-secondary"}>
       {children}
     </Link>
   );
@@ -365,6 +366,7 @@ export function Footer() {
     </footer>
   );
 }
+
 // ==========================================
 // MAIN PAGE COMPONENT
 // ==========================================
@@ -414,7 +416,7 @@ export default function Home() {
                   crafted with care in the heart of Dublin.
                 </p>
                 <Link
-                  href="/contact"
+                  href="#consultation"
                   className="btn-secondary text-primary border-white"
                 >
                   <span className="leading-[46px]">Book A Free Consultation</span>
@@ -468,7 +470,9 @@ export default function Home() {
                     <h3 className="heading-h8">{service.title}</h3>
                     <p className="body-small text-secondary">{service.body}</p>
                     <div className="mt-2">
-                      <Button dark>{service.cta}</Button>
+                      {/* 👇 UPDATE 2: Pass href dynamically */}
+                      {/* @ts-ignore - Assuming href exists in service object now */}
+                      <Button href={(service as any).href} dark>{service.cta}</Button>
                     </div>
                   </article>
                 ))}
@@ -630,8 +634,8 @@ export default function Home() {
                     key={index}
                     onClick={() => setActiveProject(index)}
                     className={`relative flex h-[140px] w-[220px] shrink-0 cursor-pointer items-center justify-center transition-all duration-300 sm:h-[200px] sm:w-[380px] ${isActive
-                      ? "rounded-[20px] border-2 border-white bg-[#336a4c] p-[6px] sm:rounded-[24px] sm:p-[8px]"
-                      : "rounded-[20px] border-2 border-transparent bg-transparent opacity-60 hover:opacity-100 sm:rounded-[24px]"
+                        ? "rounded-[20px] border-2 border-white bg-[#336a4c] p-[6px] sm:rounded-[24px] sm:p-[8px]"
+                        : "rounded-[20px] border-2 border-transparent bg-transparent opacity-60 hover:opacity-100 sm:rounded-[24px]"
                       }`}
                   >
                     <div className={`relative h-full w-full overflow-hidden ${isActive ? "rounded-[14px] sm:rounded-[16px]" : "rounded-[20px] sm:rounded-[24px]"}`}>
@@ -709,42 +713,6 @@ export default function Home() {
                 </article>
               ))}
             </motion.div>
-          </div>
-        </section>
-
-        {/* --- TRUSTED BY SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-white px-[24px] py-[40px] sm:px-[52px] sm:py-[80px]">
-          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[24px] sm:gap-[32px]">
-            {/* Section Title */}
-            <h2 className="heading-h2 text-center text-primary">
-              Trusted By
-            </h2>
-
-            {/* Continuous Ticker Row */}
-            <div className="relative flex h-[80px] w-full items-center overflow-hidden sm:h-[100px]">
-              <motion.div
-                className="flex w-max items-center"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
-              >
-                {[...Array(2)].map((_, idx) => (
-                  <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
-                    {trustedBrands.map((brandImg, i) => (
-                      <div
-                        key={i}
-                        className="flex h-[60px] sm:h-[80px] items-center justify-center shrink-0"
-                      >
-                        <img
-                          src={brandImg}
-                          alt={`Trusted Brand ${i + 1}`}
-                          className="!h-[54px] !max-h-[54px] !w-auto !max-w-none object-contain"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </motion.div>
-            </div>
           </div>
         </section>
 
@@ -872,6 +840,42 @@ export default function Home() {
                 <EnvelopeIcon />
                 {consultationData.emailText}
               </a>
+            </div>
+          </div>
+        </section>
+
+        {/* --- TRUSTED BY SECTION --- */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-white px-[24px] py-[40px] sm:px-[52px] sm:py-[80px]">
+          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[24px] sm:gap-[32px]">
+            {/* Section Title */}
+            <h2 className="heading-h2 text-center text-primary">
+              Trusted By
+            </h2>
+
+            {/* Continuous Ticker Row */}
+            <div className="relative flex h-[80px] w-full items-center overflow-hidden sm:h-[100px]">
+              <motion.div
+                className="flex w-max items-center"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+              >
+                {[...Array(2)].map((_, idx) => (
+                  <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
+                    {trustedBrands.map((brandImg, i) => (
+                      <div
+                        key={i}
+                        className="flex h-[60px] sm:h-[80px] items-center justify-center shrink-0"
+                      >
+                        <img
+                          src={brandImg}
+                          alt={`Trusted Brand ${i + 1}`}
+                          className="!h-[54px] !max-h-[54px] !w-auto !max-w-none object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </motion.div>
             </div>
           </div>
         </section>

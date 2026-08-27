@@ -40,23 +40,25 @@ export const rightNav = [
   { name: "Stores", href: "/contact" },
   { name: "Support", href: "/contact" },
 ];
-
 // Services Section
 export const services = [
   {
     title: "Custom Framing",
     body: "Our professional framers thoughtfully handcraft each frame using premium, conservation-minded materials.",
     cta: "Get Custom Framing",
+    href: "/services", // <-- Added link
   },
   {
     title: "Custom Printing",
     body: "Upload your high-res files and print them with museum-quality archival standards.",
     cta: "Start Print Order",
+    href: "/printshop", // <-- Added link
   },
   {
     title: "Licensed Artwork",
     body: "Access and browse directly from our extensive database of licensed prints and fine art collections.",
     cta: "Browse Artwork",
+    href: "/printshop", // <-- Added link
   },
 ];
 
