@@ -283,14 +283,17 @@ export function Footer() {
   return (
     <footer className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-black text-white">
       <div className="flex w-full items-center justify-between border-b border-dark-surface px-5 py-[28px] sm:px-[40px] lg:px-[80px] lg:py-[40px]">
-        <Link href="/" className="flex h-[48px] items-center gap-[10px] sm:h-[65px] sm:gap-[12px]">
-          <div className="flex size-[40px] items-center justify-center border-2 border-white text-[13px] font-bold sm:size-[48px] sm:text-[16px]">
-            G23
-          </div>
-          <span className="heading-h9 text-white sm:text-[22px]">
-            Gallery 23
-          </span>
+
+        {/* --- UPDATED LOGO AREA --- */}
+        <Link href="/" className="flex h-[48px] items-center sm:h-[65px]">
+          <img
+            src="/Homepage/Icons/Logo.svg"
+            alt="Gallery 23 Logo"
+            className="h-[40px] w-auto sm:h-[48px] object-contain"
+          />
         </Link>
+        {/* ------------------------- */}
+
       </div>
 
       <div className="flex w-full flex-col items-start gap-[32px] border-b border-dark-surface px-5 py-[40px] sm:grid sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[40px] sm:px-[40px] lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:px-[80px] lg:py-[56px]">
@@ -351,7 +354,6 @@ export function Footer() {
     </footer>
   );
 }
-
 // ==========================================
 // MAIN PAGE COMPONENT
 // ==========================================
