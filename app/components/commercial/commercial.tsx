@@ -59,12 +59,11 @@ export default function CommercialComponent() {
     fetchData();
   }, []);
 
-  // 👇 ADDED SCROLL HANDLER 👇
   const handleScrollToForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault(); // Prevents default URL hash jump
+    e.preventDefault();
     const formSection = document.getElementById("quote-form");
     if (formSection) {
-      formSection.scrollIntoView({ behavior: "smooth" }); // Smoothly scrolls to the form
+      formSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -72,21 +71,14 @@ export default function CommercialComponent() {
 
   return (
     <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
-      <div className="hidden md:block">
-        <Header />
-      </div>
-
-      {/* --- MOBILE HEADER FALLBACK (If needed) --- */}
-      <div className="md:hidden">
-        <Header />
-      </div>
+      <Header />
 
       <main className="flex w-full flex-1 flex-col items-center">
 
         {/* --- 1. HERO SECTION --- */}
-        <section className="relative flex h-[520px] w-full flex-col items-center justify-center overflow-hidden px-[24px] py-[56px] sm:h-[600px] lg:px-[80px] lg:py-[80px]">
+        <section className="relative flex h-[500px] sm:h-[600px] w-full flex-col items-center justify-center overflow-hidden px-[20px] py-[64px] sm:px-[24px] sm:py-[56px] lg:px-[80px] lg:py-[80px]">
 
-          {/* Background Image (Full width) */}
+          {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image src={data.hero.image} alt={data.hero.title} fill priority className="object-cover" />
           </div>
@@ -94,38 +86,40 @@ export default function CommercialComponent() {
           {/* Dark Overlay */}
           <div className="absolute inset-0 z-10 bg-black/10" />
 
-          {/* Text Content (Remains perfectly centered and constrained) */}
+          {/* Text Content */}
           <div className="relative z-20 flex w-full max-w-[900px] flex-col items-center gap-[16px] text-center text-white sm:gap-[24px]">
-            <h1 className="heading-display text-white w-full sm:text-[48px] lg:text-[64px]">
+            <h1 className="heading-display text-white w-full">
               {data.hero.title}
             </h1>
             <p className="body-large w-full max-w-[750px] text-white/90">
               {data.hero.subtitle}
             </p>
-            {/* 👇 UPDATED HERO BUTTON 👇 */}
             <a
               href="#quote-form"
               onClick={handleScrollToForm}
-              className="mt-[4px] rounded-full bg-white px-[32px] py-[14px] text-[14px] font-semibold text-primary transition-colors hover:bg-gray-100 sm:mt-[8px] sm:py-[16px]"
+              aria-label="Request a Commercial Quote"
+              className="btn-secondary mt-[8px] bg-white text-primary border-white transition-colors hover:bg-gray-100"
             >
-              {data.hero.ctaText}
+              <span className="flex items-center gap-[8px]">
+                {data.hero.ctaText} <ArrowIcon />
+              </span>
             </a>
           </div>
         </section>
 
         {/* --- 2. WHO WE SERVE SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream px-[24px] py-[48px] lg:gap-[56px] lg:px-[120px] lg:py-[80px]">
-          <h2 className="heading-h2 mb-[32px] text-center lg:mb-0">
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream px-[20px] py-[64px] sm:px-[24px] sm:py-[48px] lg:gap-[56px] lg:px-[120px] lg:py-[80px]">
+          <h2 className="heading-h2 mb-[24px] text-center sm:mb-[32px] lg:mb-0">
             {data.whoWeServe.title}
           </h2>
 
           <div className="flex w-full max-w-[1200px] flex-col gap-[20px] sm:gap-[24px] lg:flex-row">
             {data.whoWeServe.cards.map((card: any) => (
               <div key={card.id} className="card flex flex-1 flex-col items-start gap-[16px] bg-warm-cream p-[24px] sm:gap-[20px] sm:p-[32px] lg:p-[40px]">
-                <div className="flex size-[56px] shrink-0 items-center justify-center rounded-[28px] bg-forest-green text-white sm:size-[64px] sm:rounded-[32px]">
+                <div className="flex size-[48px] shrink-0 items-center justify-center rounded-[24px] bg-forest-green text-white sm:size-[64px] sm:rounded-[32px]">
                   {getIconComponent(card.iconType)}
                 </div>
-                <h3 className="heading-h8">
+                <h3 className="heading-h8 font-bold">
                   {card.title}
                 </h3>
                 <p className="body-text text-secondary">
@@ -136,43 +130,42 @@ export default function CommercialComponent() {
           </div>
         </section>
 
-        {/* --- 3. ALTERNATING FEATURES --- */}
+        {/* --- 3. ALTERNATING FEATURES SECTION --- */}
         <div className="flex w-full flex-col items-center">
           {data.features.map((feature: any) => (
             <section
               key={feature.id}
-              className={`flex w-full justify-center px-[24px] py-[48px] lg:px-[120px] lg:py-[80px] ${feature.bgType === "white" ? "bg-white" : "bg-warm-cream"
+              className={`flex w-full justify-center px-[20px] py-[64px] sm:px-[24px] sm:py-[48px] lg:px-[120px] lg:py-[80px] ${feature.bgType === "white" ? "bg-white" : "bg-warm-cream"
                 }`}
             >
               <div
-                className={`flex w-full max-w-[1200px] flex-col-reverse items-center justify-between gap-[32px] lg:gap-[80px] ${feature.align === "left" ? "lg:flex-row" : "lg:flex-row-reverse"
+                className={`flex w-full max-w-[1200px] flex-col gap-[24px] sm:gap-[32px] lg:gap-[80px] ${feature.align === "left" ? "lg:flex-row" : "lg:flex-row-reverse"
                   }`}
               >
 
+                {/* Mobile: Image on Top / Desktop: Alternating order */}
+                <div className="h-[220px] w-full shrink-0 overflow-hidden rounded-[16px] sm:h-[450px] sm:rounded-[24px] lg:w-[600px]">
+                  <ResponsiveImage src={feature.image} alt={feature.title} />
+                </div>
+
                 {/* Text Container */}
-                <div className="flex w-full flex-col items-start gap-[12px] lg:w-[412px] lg:shrink-0">
+                <div className="flex w-full flex-col items-start gap-[12px] lg:w-[412px] lg:shrink-0 lg:justify-center">
                   <h2 className="heading-h2">
                     {feature.title}
                   </h2>
                   <p className="body-text text-secondary">
                     {feature.description}
                   </p>
-                  {/* 👇 UPDATED FEATURES BUTTON 👇 */}
                   <a
                     href="#quote-form"
                     onClick={handleScrollToForm}
-                    className="mt-[8px] sm:mt-[12px] inline-flex h-[48.5px] items-center justify-center gap-[10px] rounded-full bg-primary px-[24px] text-[14px] font-semibold text-white transition hover:bg-dark-surface"
+                    aria-label={`Get a quote for ${feature.title}`}
+                    className="btn-primary mt-[8px] bg-primary border-primary hover:bg-dark-surface"
                   >
-                    {feature.ctaText}
-                    <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
+                    <span className="flex items-center gap-[8px]">
+                      {feature.ctaText} <ArrowIcon />
+                    </span>
                   </a>
-                </div>
-
-                {/* Image Container */}
-                <div className="h-[220px] w-full max-w-[600px] shrink-0 overflow-hidden rounded-[20px] sm:h-[450px] sm:rounded-[24px]">
-                  <ResponsiveImage src={feature.image} alt={feature.title} />
                 </div>
 
               </div>
@@ -181,29 +174,26 @@ export default function CommercialComponent() {
         </div>
 
         {/* --- 4. TRUSTED BY LOGOS SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-primary px-[24px] py-[48px] lg:gap-[48px] lg:px-[120px] lg:py-[80px]">
-          <div className="flex w-full max-w-[1200px] flex-col items-center text-center mb-[24px] lg:mb-0">
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-primary px-[20px] py-[64px] sm:px-[24px] sm:py-[48px] lg:gap-[48px] lg:px-[120px] lg:py-[80px]">
+          <div className="flex w-full max-w-[1200px] flex-col items-start text-left mb-[24px] sm:items-center sm:text-center lg:mb-0">
             <h2 className="heading-h2 text-white">
               {data.trustedBy.title}
             </h2>
           </div>
 
-          <div className="flex w-full max-w-[1200px] flex-col gap-[20px] sm:gap-[24px] lg:flex-row">
+          <div className="flex w-full max-w-[1200px] flex-col gap-[24px] sm:gap-[24px] lg:flex-row">
             {data.trustedBy.logos.map((logo: any) => (
-              <div key={logo.id} className="flex flex-1 flex-col items-start gap-[16px] sm:gap-[20px] lg:w-[384px]">
-                {/* White Card Container */}
-                <div className="flex h-[120px] w-full items-center justify-center rounded-[16px] bg-white p-[20px] sm:h-[161px] sm:p-[24px]">
-
-                  {/* Dynamic Image Logo Rendering */}
+              <div key={logo.id} className="flex flex-1 flex-col items-start gap-[12px] sm:gap-[20px] lg:w-[384px]">
+                {/* White Logo Card Container */}
+                <div className="flex h-[140px] w-full items-center justify-center rounded-[16px] bg-white p-[20px] sm:h-[161px] sm:p-[24px]">
                   <img
                     src={logo.image}
                     alt={logo.label}
                     className="h-full w-full object-contain"
                   />
-
                 </div>
                 <div className="flex flex-col gap-[4px]">
-                  <p className="micro font-bold uppercase tracking-widest text-white">{logo.label}</p>
+                  <p className="micro font-bold uppercase tracking-widest text-[#999999]">{logo.label}</p>
                   <h3 className="heading-mini text-white">
                     {logo.project}
                   </h3>
@@ -213,9 +203,9 @@ export default function CommercialComponent() {
           </div>
         </section>
 
-        {/* --- 5. REQUEST A QUOTE FORM --- */}
-        <section id="quote-form" className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream px-[16px] py-[56px] sm:px-[24px] lg:px-[120px] lg:py-[80px]">
-          <div className="card flex w-full max-w-[900px] flex-col items-center gap-[28px] p-[20px] sm:gap-[40px] sm:rounded-[32px] sm:p-[48px] lg:p-[64px]">
+        {/* --- 5. REQUEST A QUOTE FORM SECTION --- */}
+        <section id="quote-form" className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream px-[20px] py-[64px] sm:px-[24px] lg:px-[120px] lg:py-[80px]">
+          <div className="card flex w-full max-w-[900px] flex-col items-center gap-[24px] p-[20px] sm:gap-[40px] sm:rounded-[32px] sm:p-[48px] lg:p-[64px]">
 
             <h2 className="heading-h2 text-center">
               {data.form.title}
@@ -223,57 +213,58 @@ export default function CommercialComponent() {
 
             <form className="flex w-full max-w-[772px] flex-col gap-[20px]" onSubmit={(e) => e.preventDefault()}>
 
-              {/* Row 1 */}
-              <div className="grid grid-cols-1 gap-[20px] sm:grid-cols-2">
-                <div className="flex flex-col gap-[10px]">
-                  <label className="body-small font-bold">Company Name</label>
-                  <input type="text" placeholder="e.g. O'Donnell Architects" className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] body-small outline-none transition-colors focus:border-forest-green" />
-                </div>
-                <div className="flex flex-col gap-[10px]">
-                  <label className="body-small font-bold">Contact Name</label>
-                  <input type="text" placeholder="Your Name..." className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] body-small outline-none transition-colors focus:border-forest-green" />
-                </div>
+              {/* Company Name */}
+              <div className="flex flex-col gap-[8px]">
+                <label className="body-small font-bold">Company Name</label>
+                <input type="text" placeholder="e.g. O'Donnell Architects" className="input-field" />
               </div>
 
-              {/* Row 2 */}
-              <div className="grid grid-cols-1 gap-[20px] sm:grid-cols-2">
-                <div className="flex flex-col gap-[10px]">
-                  <label className="body-small font-bold">Email Address</label>
-                  <input type="email" placeholder="work@email.com" className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] body-small outline-none transition-colors focus:border-forest-green" />
-                </div>
-                <div className="flex flex-col gap-[10px]">
-                  <label className="body-small font-bold">Project Type</label>
-                  <select className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] body-small text-secondary outline-none transition-colors focus:border-forest-green">
-                    {data.form.projectTypes.map((type: string, i: number) => (
-                      <option key={i}>{type}</option>
-                    ))}
-                  </select>
-                </div>
+              {/* Contact Name */}
+              <div className="flex flex-col gap-[8px]">
+                <label className="body-small font-bold">Contact Name</label>
+                <input type="text" placeholder="Your Name..." className="input-field" />
+              </div>
+
+              {/* Email Address */}
+              <div className="flex flex-col gap-[8px]">
+                <label className="body-small font-bold">Email Address</label>
+                <input type="email" placeholder="work@email.com" className="input-field" />
+              </div>
+
+              {/* Project Type */}
+              <div className="flex flex-col gap-[8px]">
+                <label className="body-small font-bold">Project Type</label>
+                <select className="input-field text-secondary">
+                  <option value="">Select...</option>
+                  {data.form.projectTypes.map((type: string, i: number) => (
+                    <option key={i} value={type}>{type}</option>
+                  ))}
+                </select>
               </div>
 
               {/* Project Description */}
-              <div className="flex flex-col gap-[10px]">
+              <div className="flex flex-col gap-[8px]">
                 <label className="body-small font-bold">Project Description</label>
                 <textarea
                   placeholder="Tell us about your volume, materials, and timeline..."
-                  className="h-[150px] w-full resize-y rounded-[8px] border border-border bg-[#fcfcfc] p-[16px] body-small outline-none transition-colors focus:border-forest-green focus:bg-white"
+                  className="textarea-field h-[120px]"
                 />
               </div>
 
-              {/* File Upload */}
-              <div className="flex h-[100px] w-full cursor-pointer flex-col items-center justify-center gap-[8px] rounded-[8px] border border-dashed border-border bg-white p-[20px] transition-colors hover:bg-gray-50 sm:h-[111px] sm:gap-[10px] sm:p-[24px]">
+              {/* File Upload Container */}
+              <div className="flex h-[110px] w-full cursor-pointer flex-col items-center justify-center gap-[8px] rounded-[12px] border border-dashed border-[#D5D5D5] bg-white p-[16px] transition-colors hover:bg-gray-50 sm:h-[111px] sm:gap-[10px] sm:p-[24px]">
                 <svg className="size-[22px] text-forest-green sm:size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
                 </svg>
-                <p className="caption text-center sm:text-[14px]">Upload blueprints or project specs</p>
+                <p className="caption text-center">Upload blueprints or project specs</p>
               </div>
 
-              {/* Submit Area */}
-              <div className="mt-[4px] flex flex-col gap-[12px] pt-[16px]">
-                <button type="submit" className="flex h-[58px] w-full items-center justify-center rounded-[12px] bg-forest-green px-[20px] text-[15px] font-bold text-white transition-colors hover:bg-[#204834] sm:h-[65px] sm:text-[16px]">
+              {/* Submit Button & Disclaimer */}
+              <div className="mt-[8px] flex flex-col gap-[12px] text-center">
+                <button type="submit" className="btn-primary w-full h-[52px] bg-forest-green text-white border-forest-green hover:bg-[#204834]">
                   {data.form.submitText}
                 </button>
-                <p className="small text-secondary">
+                <p className="caption text-secondary">
                   {data.form.disclaimer}
                 </p>
               </div>
@@ -284,14 +275,7 @@ export default function CommercialComponent() {
 
       </main>
 
-      <div className="hidden md:block">
-        <Footer />
-      </div>
-
-      {/* --- MOBILE FOOTER FALLBACK (If needed) --- */}
-      <div className="md:hidden">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }
