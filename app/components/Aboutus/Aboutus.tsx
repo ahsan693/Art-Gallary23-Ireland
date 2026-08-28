@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
@@ -14,37 +14,6 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
     </span>
   );
 }
-
-const getIconComponent = (iconType: string) => {
-  switch (iconType) {
-    case "craftsmanship":
-      return (
-        <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-        </svg>
-      );
-    case "preservation":
-      return (
-        <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4" />
-        </svg>
-      );
-    case "sustainability":
-      return (
-        <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M11 20A7 7 0 014 13c0-3.866 3.134-7 7-7h1a7 7 0 017 7c0 3.866-3.134 7-7 7v0zM11 20v-5" />
-        </svg>
-      );
-    case "service":
-      return (
-        <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
-        </svg>
-      );
-    default:
-      return null;
-  }
-};
 
 // --- Extracted "What We Stand For" Sub-components ---
 const renderFigmaIcon = (title: string) => {
@@ -104,7 +73,7 @@ function MilestoneItem({ item, index, scrollYProgress, scaleX }: { item: any, in
           {item.year}
         </motion.h3>
 
-        {/* 👇 Mobile: Exact Figma Match (Dot with horizontal line) 👇 */}
+        {/* Mobile: Exact Figma Match (Dot with horizontal line) */}
         <div className="flex w-full items-center sm:hidden">
           <div className="relative z-10 size-[12px] shrink-0 rounded-full bg-forest-green" />
           <div className="h-[2px] w-full bg-[#D5D5D5]" />
@@ -142,6 +111,17 @@ export default function AboutUsComponent({ data }: { data: any }) {
     restDelta: 0.001,
   });
 
+  // 👇 STATE FOR MOBILE TEAM CAROUSEL 👇
+  const [teamStartIndex, setTeamStartIndex] = useState(0);
+
+  const handleNextTeam = () => {
+    setTeamStartIndex((prev) => (prev + 2) % data.team.members.length);
+  };
+
+  const handlePrevTeam = () => {
+    setTeamStartIndex((prev) => (prev - 2 + data.team.members.length) % data.team.members.length);
+  };
+
   return (
     <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
       <Header />
@@ -154,7 +134,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
           </div>
           <div className="absolute inset-0 z-10 bg-black/10 lg:h-full" />
 
-          {/* 👇 Mobile text-left & items-start to match Figma 👇 */}
+          {/* Mobile text-left & items-start to match Figma */}
           <div className="relative z-20 flex w-full max-w-[1000px] flex-col items-start gap-[16px] text-left text-white sm:items-center sm:text-center lg:items-center lg:text-center">
             <h1 className="heading-display text-white w-full max-w-[924px]">
               {data.hero.title}
@@ -252,33 +232,49 @@ export default function AboutUsComponent({ data }: { data: any }) {
           </div>
 
           <div className="grid w-full max-w-[1280px] grid-cols-2 gap-[16px] lg:flex lg:flex-nowrap lg:justify-between lg:gap-[24px] lg:overflow-visible lg:pb-0">
-            {data.team.members.map((member: any, index: number) => (
-              <article key={index} className={`flex w-full min-w-0 flex-col gap-[16px] lg:w-[calc(25%-18px)] lg:shrink lg:gap-[20px] ${index > 1 ? "hidden lg:flex" : ""}`}>
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[12px] lg:h-[402px] lg:aspect-auto">
-                  <ResponsiveImage src={member.img} alt={member.name} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <button className="absolute bottom-[12px] left-[12px] text-white hover:text-white/80 sm:bottom-[16px] sm:left-[16px]">
-                    <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                    </svg>
-                  </button>
-                </div>
-                <div className="flex flex-col gap-[12px] sm:gap-[16px]">
-                  <div className="flex flex-col gap-[6px] sm:gap-[6px]">
-                    <h3 className="heading-h8 text-white">{member.name}</h3>
-                    <p className="micro font-bold uppercase tracking-[0.05em] text-sage">{member.role}</p>
+            {data.team.members.map((member: any, index: number) => {
+              // Mobile visibility logic: Show 2 items at a time
+              const isVisibleOnMobile = index === teamStartIndex || index === (teamStartIndex + 1) % data.team.members.length;
+
+              return (
+                <article
+                  key={index}
+                  className={`w-full min-w-0 flex-col gap-[16px] lg:w-[calc(25%-18px)] lg:shrink lg:gap-[20px] lg:flex ${isVisibleOnMobile ? "flex" : "hidden"}`}
+                >
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[12px] lg:h-[402px] lg:aspect-auto">
+                    <ResponsiveImage src={member.img} alt={member.name} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <button className="absolute bottom-[12px] left-[12px] text-white hover:text-white/80 sm:bottom-[16px] sm:left-[16px]">
+                      <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                      </svg>
+                    </button>
                   </div>
-                  <p className="body-small text-muted">{member.desc}</p>
-                </div>
-              </article>
-            ))}
+                  <div className="flex flex-col gap-[12px] sm:gap-[16px]">
+                    <div className="flex flex-col gap-[6px] sm:gap-[6px]">
+                      <h3 className="heading-h8 text-white">{member.name}</h3>
+                      <p className="micro font-bold uppercase tracking-[0.05em] text-sage">{member.role}</p>
+                    </div>
+                    <p className="body-small text-muted">{member.desc}</p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
 
           <div className="mt-[8px] flex w-full items-center justify-center gap-[12px] lg:hidden">
-            <button className="flex size-[40px] items-center justify-center rounded-full border border-white/30 text-white" aria-label="Previous team member">
+            <button
+              onClick={handlePrevTeam}
+              className="flex size-[40px] items-center justify-center rounded-full border border-white/30 text-white transition-colors active:bg-white/10"
+              aria-label="Previous team member"
+            >
               <span className="rotate-180"><ArrowIcon /></span>
             </button>
-            <button className="flex size-[40px] items-center justify-center rounded-full border border-white/30 text-white" aria-label="Next team member">
+            <button
+              onClick={handleNextTeam}
+              className="flex size-[40px] items-center justify-center rounded-full border border-white/30 text-white transition-colors active:bg-white/10"
+              aria-label="Next team member"
+            >
               <ArrowIcon />
             </button>
           </div>
@@ -286,7 +282,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
 
         {/* --- 6. FAQ SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-forest-green px-[20px] py-[64px] sm:px-[24px] lg:flex-row lg:items-stretch lg:justify-center lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
-          {/* 👇 Mobile: Image on top (order-1) matching Figma 👇 */}
+          {/* Mobile: Image on top (order-1) matching Figma */}
           <div className="order-1 relative mb-[32px] h-[320px] w-full max-w-[471px] shrink-0 overflow-hidden rounded-[24px] lg:order-none lg:mb-0 lg:h-auto">
             <ResponsiveImage src={data.faq.image} alt="Visitors at an art exhibition" />
           </div>
