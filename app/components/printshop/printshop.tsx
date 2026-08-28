@@ -147,8 +147,6 @@ export default function PrintShopPage() {
           </div>
         </section>
 
-
-
         {/* --- 4. HOW IT WORKS SECTION (Matching Figma Image 5) --- */}
         <section className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[20px] py-[64px] sm:px-[24px] sm:py-[80px] lg:px-[120px] lg:py-[157px]">
 
