@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Import Data Layer
@@ -159,6 +160,7 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
 // ==========================================
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="relative z-50 mx-auto flex w-full max-w-[1440px] flex-col items-start border-b border-border bg-white">
@@ -184,17 +186,20 @@ export function Header() {
         </div>
 
         <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`relative flex h-[72px] items-center px-4 button-small ${item.name === "Home" ? "text-forest-green" : "text-primary"
-                }`}
-            >
-              {item.name}
-              {item.name === "Home" ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-forest-green" /> : null}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`relative flex h-[72px] items-center px-4 button-small ${isActive ? "text-forest-green" : "text-primary"
+                  }`}
+              >
+                {item.name}
+                {isActive ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-forest-green" /> : null}
+              </Link>
+            );
+          })}
         </div>
 
         <Link
@@ -235,17 +240,20 @@ export function Header() {
             >
               <div className="flex flex-col gap-6 px-5 py-6">
                 <div className="flex flex-col gap-4">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={`text-[18px] font-bold ${item.name === "Home" ? "text-forest-green" : "text-primary"
-                        }`}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                  {navItems.map((item) => {
+                    const isActive = pathname === item.href;
+                    return (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`text-[18px] font-bold ${isActive ? "text-forest-green" : "text-primary"
+                          }`}
+                      >
+                        {item.name}
+                      </Link>
+                    );
+                  })}
                 </div>
                 <div className="h-px w-full bg-border" />
                 <div className="flex flex-col gap-4">
