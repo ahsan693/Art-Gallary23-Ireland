@@ -160,7 +160,7 @@ export function Header() {
 
   return (
     <header className="relative z-50 mx-auto flex w-full max-w-[1440px] flex-col items-start border-b border-border bg-white">
-      {/* Mobile Top Banner */}
+      {/* Top Banner */}
       <div className="flex h-auto min-h-[36px] w-full items-center justify-center bg-forest-green px-[20px] py-[8px] text-center text-white sm:px-[40px]">
         <span className="caption text-white">
           Now Trending!{" "}
@@ -170,23 +170,38 @@ export function Header() {
         </span>
       </div>
 
-      {/* Mobile Navbar */}
+      {/* Navbar */}
       <nav className="relative flex h-[72px] w-full items-center justify-between bg-white px-[20px] sm:px-[40px] lg:px-[40px]">
-        {/* Left Side: Hamburger Menu (Mobile Only) */}
+        {/* Left Side: Hamburger Menu */}
         <div className="flex items-center lg:hidden">
           <button
             aria-label="Toggle menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex items-center justify-center p-2 -ml-2"
+            className="flex items-center justify-center p-0"
           >
-            {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+            {isMobileMenuOpen ? (
+              <CloseIcon />
+            ) : (
+              <svg
+                className="w-[30px] h-[22.5px]"
+                fill="none"
+                viewBox="0 0 30 22.5"
+                stroke="currentColor"
+                strokeWidth="2.2"
+              >
+                <path strokeLinecap="round" d="M0 2h30M0 11.25h30M0 20.5h20" />
+              </svg>
+            )}
           </button>
         </div>
 
-        {/* Center: Logo / Brand Name */}
+        {/* Center: Logo (Single-Line Fixed with whitespace-nowrap & w-auto) */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:static lg:translate-x-0 lg:translate-y-0">
-          <Link href="/" className="heading-h9 lg:heading-h8 uppercase tracking-widest lg:tracking-normal">
-            Gallery 23
+          <Link
+            href="/"
+            className="flex items-center justify-center w-auto h-auto whitespace-nowrap font-bold uppercase tracking-widest text-[16px] lg:text-auto lg:heading-h8 lg:tracking-normal"
+          >
+            GALLERY 23
           </Link>
         </div>
 
@@ -223,17 +238,17 @@ export function Header() {
           </div>
           <span className="hidden h-6 w-px bg-border lg:block" />
 
-          <div className="flex items-center gap-[12px] lg:gap-1">
-            <button aria-label="Search" className="flex items-center justify-center lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
-              <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-[24px] lg:size-5" />
+          <div className="flex items-center gap-[12px] h-[20px] lg:h-auto lg:gap-1">
+            <button aria-label="Search" className="flex items-center justify-center p-0 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
+              <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
             </button>
-            <button aria-label="Cart" className="flex items-center justify-center lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
-              <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-[24px] lg:size-5" />
+            <button aria-label="Cart" className="flex items-center justify-center p-0 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
+              <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
             </button>
           </div>
         </div>
 
-        {/* 👇 UPDATED Mobile Dropdown Menu 👇 */}
+        {/* Mobile Dropdown Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -242,41 +257,21 @@ export function Header() {
               exit={{ height: 0, opacity: 0 }}
               className="absolute left-0 top-[72px] z-50 w-full overflow-hidden border-t border-border bg-white shadow-xl lg:hidden"
             >
-              <div className="flex flex-col px-[20px] py-[32px] sm:px-[40px]">
-                {/* Main Nav Items */}
-                <div className="flex flex-col gap-1">
-                  {navItems.map((item) => {
-                    const isActive = pathname === item.href;
-                    return (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block py-3 text-[18px] font-bold tracking-tight transition-colors ${isActive ? "text-forest-green" : "text-primary hover:text-forest-green"
-                          }`}
-                      >
-                        {item.name}
-                      </Link>
-                    );
-                  })}
-                </div>
-
-                {/* Divider with proper spacing */}
-                <div className="my-[24px] h-px w-full bg-border" />
-
-                {/* Secondary Nav Items */}
-                <div className="flex flex-col gap-1">
-                  {rightNav.map((item) => (
+              <div className="flex flex-col gap-1 px-[20px] py-[32px] sm:px-[40px]">
+                {[...navItems, ...rightNav].map((item) => {
+                  const isActive = pathname === item.href;
+                  return (
                     <Link
                       key={item.name}
                       href={item.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 text-[16px] font-medium text-secondary transition-colors hover:text-primary"
+                      className={`block py-3 text-[18px] font-bold tracking-tight transition-colors ${isActive ? "text-forest-green" : "text-primary hover:text-forest-green"
+                        }`}
                     >
                       {item.name}
                     </Link>
-                  ))}
-                </div>
+                  );
+                })}
               </div>
             </motion.div>
           )}
