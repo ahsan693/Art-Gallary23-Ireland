@@ -277,9 +277,12 @@ export function Header() {
 // ==========================================
 // FOOTER COMPONENTS
 // ==========================================
-export function FooterColumn({ title, items }: { title: string; items: (string | { label: string, href: string })[] }) {
+// ==========================================
+// FOOTER COMPONENTS
+// ==========================================
+export function FooterColumn({ title, items, className = "" }: { title: string; items: (string | { label: string, href: string })[], className?: string }) {
   return (
-    <div className="flex w-full flex-col items-start lg:w-auto">
+    <div className={`flex w-full flex-col items-start lg:w-auto ${className}`}>
       <h3 className="small font-bold capitalize text-white">{title}</h3>
       <ul className="mt-[16px] flex flex-col gap-[12px] caption text-muted sm:mt-[24px] sm:gap-[14px]">
         {items.map((item, index) => {
@@ -323,7 +326,8 @@ export function FooterColumn({ title, items }: { title: string; items: (string |
 export function Footer() {
   return (
     <footer className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-black text-white">
-      <div className="flex w-full items-center justify-between border-b border-dark-surface px-5 py-[28px] sm:px-[40px] lg:px-[80px] lg:py-[40px]">
+      {/* 👇 Updated Logo Section Padding 👇 */}
+      <div className="flex w-full items-center justify-between border-b border-dark-surface px-[20px] py-[24px] sm:px-[40px] sm:py-[28px] lg:px-[80px] lg:py-[40px]">
         <Link href="/" className="flex h-[48px] items-center sm:h-[65px]">
           <img
             src="/Homepage/Icons/Logo.svg"
@@ -333,44 +337,57 @@ export function Footer() {
         </Link>
       </div>
 
-      <div className="flex w-full flex-col items-start gap-[32px] border-b border-dark-surface px-5 py-[40px] sm:grid sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[40px] sm:px-[40px] lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:px-[80px] lg:py-[56px]">
-        <FooterColumn
-          title="Services"
-          items={[
-            { label: "Picture Framing", href: "/Services" },
-            { label: "Canvas Prints", href: "/Services" },
-            { label: "Jersey Framing", href: "/Services" },
-            { label: "Shadow Boxes", href: "/Services" },
-            { label: "Certificates & Awards", href: "/Services" },
-            { label: "Photo Frames", href: "/Services" }
-          ]}
-        />
-        <FooterColumn
-          title="Company"
-          items={[
-            { label: "About Us", href: "/about" },
-            { label: "Print Shop", href: "/printshop" },
-            { label: "Commercial", href: "/commercial" }
-          ]}
-        />
-        <FooterColumn
-          title="Resources"
-          items={[
-            { label: "FAQs", href: "/support" },
-            { label: "Contact Us", href: "/support" }
-          ]}
-        />
-        <FooterColumn
-          title="North side"
-          items={["Gallery 23 Downtown", "Unit 4 Coolport Porters Road, Coolmine Blanchardstown D15DX3D", "(555) 123-4567", "hello@gallery23.com"]}
-        />
-        <FooterColumn
-          title="South side"
-          items={["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"]}
-        />
+      {/* 👇 Grouped Mobile Sections with lg:contents for flawless Desktop fallback 👇 */}
+      <div className="flex w-full flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:border-b lg:border-dark-surface lg:px-[80px] lg:py-[56px]">
+
+        {/* Mobile: 3 columns, 16px gap, 32px padding, bottom border */}
+        <div className="grid w-full grid-cols-3 gap-[16px] border-b border-dark-surface px-[20px] py-[32px] sm:gap-[32px] sm:px-[40px] lg:contents">
+          <FooterColumn
+            title="Services"
+            items={[
+              { label: "Picture Framing", href: "/services" },
+              { label: "Canvas Prints", href: "/services" },
+              { label: "Jersey Framing", href: "/services" },
+              { label: "Shadow Boxes", href: "/services" },
+              { label: "Certificates & Awards", href: "/services" },
+              { label: "Photo Frames", href: "/services" }
+            ]}
+          />
+          <FooterColumn
+            title="Company"
+            items={[
+              { label: "About Us", href: "/about" },
+              { label: "Print Shop", href: "/printshop" },
+              { label: "Commercial", href: "/commercial" }
+            ]}
+          />
+          <FooterColumn
+            title="Resources"
+            items={[
+              { label: "FAQs", href: "/support" },
+              { label: "Contact Us", href: "/support" }
+            ]}
+          />
+        </div>
+
+        {/* Mobile: Stacked addresses, 28px gap, 28px padding, bottom border */}
+        <div className="flex w-full flex-col gap-[28px] border-b border-dark-surface px-[20px] py-[28px] sm:flex-row sm:gap-[40px] sm:px-[40px] lg:contents">
+          <FooterColumn
+            title="North side"
+            items={["Gallery 23 Downtown", "Unit 4 Coolport Porters Road, Coolmine Blanchardstown D15DX3D", "(555) 123-4567", "hello@gallery23.com"]}
+          />
+          <FooterColumn
+            title="South side"
+            items={["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"]}
+          />
+        </div>
+
       </div>
 
-      <div className="flex w-full flex-col items-start gap-[24px] px-5 pb-[32px] pt-[24px] sm:px-[40px] lg:flex-row lg:items-start lg:justify-between lg:px-[80px] lg:pb-[40px] lg:pt-[32px]">
+      {/* 👇 Updated Bottom Mobile Section (16px gap, 24px pad) 👇 */}
+      <div className="flex w-full flex-col items-start gap-[16px] px-[20px] py-[24px] sm:gap-[24px] sm:px-[40px] sm:py-[32px] lg:flex-row lg:items-start lg:justify-between lg:px-[80px] lg:pb-[40px] lg:pt-[32px]">
+
+        {/* Left Side: Copyright and Description */}
         <div className="flex w-full flex-col gap-[8px] caption text-muted lg:w-[380px]">
           <p>©2024 Gallery 23. All rights reserved.</p>
           <p>
@@ -379,8 +396,10 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="flex w-full flex-col items-stretch gap-[12px] sm:w-auto sm:flex-row sm:items-center">
-          <div className="flex items-center justify-center gap-[10px] rounded-[100px] border border-dark-surface bg-primary px-[16px] py-[10px] sm:justify-start">
+        {/* Right Side: Trust Badges */}
+        <div className="flex flex-row flex-wrap items-center gap-[12px] sm:w-auto">
+
+          <div className="flex w-max items-center justify-start gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] sm:gap-[10px] sm:px-[16px] sm:py-[10px]">
             <div className="flex text-gold">
               {[...Array(5)].map((_, i) => (
                 <StarIcon key={i} className="size-[14px]" />
@@ -392,7 +411,7 @@ export function Footer() {
             </div>
           </div>
 
-          <a href="#" className="flex items-center justify-center gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[16px] py-[10px] transition hover:bg-dark-surface">
+          <a href="#" className="flex w-max items-center justify-center gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] transition hover:bg-dark-surface sm:gap-[10px] sm:px-[16px] sm:py-[10px]">
             <svg className="size-[16px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3v18" />
@@ -400,6 +419,7 @@ export function Footer() {
             </svg>
             <span className="small font-medium text-white">Google Reviews</span>
           </a>
+
         </div>
       </div>
     </footer>
