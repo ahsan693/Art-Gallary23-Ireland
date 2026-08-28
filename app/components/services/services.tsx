@@ -144,17 +144,19 @@ export default function ServicesComponent() {
           })}
         </div>
 
+        {/* --- THE FRAMING JOURNEY SECTION --- */}{/* --- THE FRAMING JOURNEY SECTION --- */}
         {/* --- THE FRAMING JOURNEY SECTION --- */}
-        <section className="w-full bg-[#131313] px-[24px] py-[80px] lg:py-[100px]">
-          <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-[48px] lg:gap-[64px]">
-            {/* Mobile: 24px, Tablet: 40px (unchanged from original sm value) */}
+        <section className="w-full bg-[#131313] px-[24px] py-[48px] lg:py-[100px]">
+          <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-[40px] lg:gap-[64px]">
             <h2 className="text-center text-[24px] font-bold tracking-tight text-white sm:text-[40px]">
               {data.journey.title}
             </h2>
 
-            <div className="grid w-full grid-cols-1 gap-[40px] sm:grid-cols-2 lg:grid-cols-4 lg:gap-[32px]">
+            <div className="grid w-full grid-cols-2 gap-x-[20px] gap-y-[40px] lg:grid-cols-4 lg:gap-[32px]">
               {data.journey.steps.map((step: any, index: number) => (
-                <div key={index} className="flex flex-col items-center text-center gap-[16px]">
+
+                <div key={index} className="flex flex-col items-center text-center gap-[12px] lg:gap-[16px]">
+                  {/* Updated Mobile Item Gap: 12px applied to parent container above */}
                   <div className="flex size-[40px] items-center justify-center rounded-full bg-forest-green text-[16px] font-bold text-white">
                     {step.num}
                   </div>
@@ -165,6 +167,7 @@ export default function ServicesComponent() {
                     {step.desc}
                   </p>
                 </div>
+
               ))}
             </div>
           </div>
@@ -309,6 +312,6 @@ export default function ServicesComponent() {
 
       {/* --- REUSABLE FOOTER --- */}
       <Footer />
-    </div>
+    </div >
   );
 }
