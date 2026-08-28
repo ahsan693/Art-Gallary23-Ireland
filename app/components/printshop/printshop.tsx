@@ -147,75 +147,7 @@ export default function PrintShopPage() {
           </div>
         </section>
 
-        {/* --- 3. CHOOSE YOUR PAPER SECTION (From Figma Images 3 & 4) --- */}
-        <section className="flex w-full max-w-[1440px] justify-center px-[20px] py-[64px] sm:px-[24px] lg:py-[80px]">
-          <div className="flex w-full max-w-[905px] flex-col gap-[24px]">
-            <div className="flex flex-col gap-[4px]">
-              <span className="micro font-bold uppercase tracking-widest text-secondary">
-                STEP 2 OF 4
-              </span>
-              <h2 className="heading-h2 text-primary">
-                Choose Your Paper
-              </h2>
-            </div>
 
-            {/* Paper Selection Cards */}
-            <div className="flex flex-col gap-[16px]">
-              {paperOptions.map((paper) => {
-                const isSelected = selectedPaper === paper.id;
-                return (
-                  <div
-                    key={paper.id}
-                    onClick={() => setSelectedPaper(paper.id)}
-                    className={`relative flex flex-col gap-[16px] rounded-[20px] border p-[20px] cursor-pointer transition-all ${isSelected
-                      ? "border-primary bg-white shadow-sm"
-                      : "border-border bg-white/60 hover:bg-white"
-                      }`}
-                  >
-                    {/* Paper Image Preview with Radio/Check Badge */}
-                    <div className="relative h-[120px] w-full overflow-hidden rounded-[12px] bg-warm-cream">
-                      {/* Image Fallback/Src */}
-                      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${paper.img}')` }} />
-
-                      {/* Check mark indicator */}
-                      <div className="absolute right-[12px] top-[12px] flex size-[24px] items-center justify-center rounded-full bg-primary text-white">
-                        {isSelected ? (
-                          <svg className="size-[14px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                            <polyline points="20 6 9 17 4 12" />
-                          </svg>
-                        ) : (
-                          <div className="size-[8px] rounded-full bg-white/40" />
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Paper Details */}
-                    <div className="flex flex-col gap-[8px]">
-                      <h3 className="heading-h8 font-bold text-primary">
-                        {paper.title}
-                      </h3>
-                      <p className="body-small text-secondary">
-                        {paper.desc}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Bottom Row Navigation */}
-            <div className="flex items-center justify-between pt-[8px]">
-              <span className="body-small text-secondary">
-                Selected: <span className="font-bold text-primary">{selectedPaper}</span>
-              </span>
-              <button className="btn-primary bg-primary border-primary hover:bg-dark-surface">
-                <span className="flex items-center gap-[6px]">
-                  Next <svg className="size-[14px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                </span>
-              </button>
-            </div>
-          </div>
-        </section>
 
         {/* --- 4. HOW IT WORKS SECTION (Matching Figma Image 5) --- */}
         <section className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-[20px] py-[64px] sm:px-[24px] sm:py-[80px] lg:px-[120px] lg:py-[157px]">
