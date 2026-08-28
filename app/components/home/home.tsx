@@ -447,7 +447,8 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-r from-black/20 from-[18.54%] to-transparent to-[68.99%]" />
             <div className="relative mx-auto flex h-full max-w-[1280px] items-center px-5 py-20 sm:px-[42px] sm:py-8">
               <div className="mx-auto flex w-full max-w-[620px] flex-col items-center gap-8 py-12 text-center text-white sm:py-20 lg:mx-0 lg:items-start lg:text-left">
-                <h1 className="heading-display text-white sm:text-[56px] lg:text-[64px]">
+                {/* Mobile: 34px, Tablet: 56px, Desktop: 64px (unchanged) */}
+                <h1 className="heading-display text-[34px] leading-[1.15] text-white sm:text-[56px] sm:leading-[1.1] lg:text-[64px]">
                   Dublin&apos;s Premier
                   <br />
                   Custom Framing &amp;
@@ -493,7 +494,8 @@ export default function Home() {
         <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center py-[80px]">
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[32px] px-5 py-[40px] lg:flex-row lg:gap-[80px] lg:px-[64px]">
             <div className="flex w-full flex-col items-center gap-[12px] text-center lg:hidden">
-              <h2 className="heading-h2">
+              {/* Mobile-only heading: 28px -> 36px, hidden at lg so no lg override needed */}
+              <h2 className="heading-h2 text-[28px] sm:text-[36px]">
                 Our Services
               </h2>
               <p className="max-w-[320px] body-small text-secondary">
@@ -527,7 +529,8 @@ export default function Home() {
         {/* --- ABOUT SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-primary px-5 py-14 lg:h-[704px] lg:flex-row lg:gap-[64px] lg:px-[120px] lg:py-[72px]">
           <div className="flex w-full flex-col gap-[24px] lg:w-[560px]">
-            <h2 className="heading-h2 text-white">
+            {/* Mobile: 28px, Tablet: 36px, Desktop: 56px (unchanged) */}
+            <h2 className="heading-h2 text-[28px] text-white sm:text-[36px] lg:text-[56px]">
               About Gallery23
             </h2>
             <p className="body-large text-white/75">
@@ -552,7 +555,8 @@ export default function Home() {
           <ResponsiveImage src={images.why} alt="Gallery styling interior" className="absolute inset-0 -z-20" />
           <div className="absolute inset-0 -z-10 bg-primary/75" />
           <div className="flex w-full max-w-[700px] flex-col items-center gap-[16px] text-center text-white">
-            <h2 className="heading-h2 text-white">
+            {/* Mobile: 28px, Tablet: 36px, Desktop: 56px (unchanged) */}
+            <h2 className="heading-h2 text-[28px] text-white sm:text-[36px] lg:text-[56px]">
               Why Choose Our Frames
             </h2>
             <p className="body-text text-white/90">
@@ -587,7 +591,8 @@ export default function Home() {
         {/* --- CUSTOM PRINTING SECTION --- */}
         <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[48px] px-5 py-[80px] lg:px-[80px]">
           <div className="flex w-full max-w-[802px] flex-col items-center gap-[12px] text-center">
-            <h2 className="heading-h2">
+            {/* Mobile: 28px, Tablet: 36px, Desktop: 56px (unchanged) */}
+            <h2 className="heading-h2 text-[28px] sm:text-[36px] lg:text-[56px]">
               Custom Printing Made for You
             </h2>
             <p className="body-text text-secondary">
@@ -636,7 +641,8 @@ export default function Home() {
         {/* --- SHOWCASE / FEATURED FRAMING PROJECTS SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] bg-forest-green px-5 pb-[80px] pt-[64px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
           <div className="flex w-full max-w-[1200px] items-center justify-between">
-            <h2 className="w-full max-w-none heading-h2 text-white lg:whitespace-nowrap">
+            {/* Mobile: 28px, Tablet: 36px, Desktop: 56px (unchanged) */}
+            <h2 className="w-full max-w-none heading-h2 text-[28px] text-white sm:text-[36px] lg:text-[56px] lg:whitespace-nowrap">
               Featured Framing Projects
             </h2>
           </div>
@@ -695,7 +701,8 @@ export default function Home() {
         {/* --- TESTIMONIALS SECTION --- */}
         <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[40px] overflow-hidden px-5 py-[64px] lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
           <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
-            <h2 className="w-full max-w-none heading-h2 lg:whitespace-nowrap">
+            {/* Mobile: 28px, Tablet: 36px, Desktop: 56px (unchanged) */}
+            <h2 className="w-full max-w-none heading-h2 text-[28px] sm:text-[36px] lg:text-[56px] lg:whitespace-nowrap">
               What Our Costumer Say
             </h2>
 
@@ -763,8 +770,8 @@ export default function Home() {
         {/* --- TRUSTED BY SECTION --- */}
         <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-white px-[24px] py-[40px] sm:px-[52px] sm:py-[80px]">
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[24px] sm:gap-[32px]">
-            {/* Section Title */}
-            <h2 className="heading-h2 text-center text-primary">
+            {/* Section Title — Mobile: 28px, Tablet: 36px, Desktop: 56px (unchanged) */}
+            <h2 className="heading-h2 text-[28px] text-center text-primary sm:text-[36px] lg:text-[56px]">
               Trusted By
             </h2>
 
@@ -799,7 +806,8 @@ export default function Home() {
         {/* --- WHAT WE'VE BEEN FRAMING SECTION --- */}
         <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden p-0">
           <div className="flex w-full flex-col items-center gap-[20px] px-5 py-[40px] sm:gap-[32px] sm:py-[56px]">
-            <h2 className="w-full max-w-[697px] text-center heading-h2">
+            {/* Mobile: 28px, Tablet: 36px, Desktop: 56px (unchanged) */}
+            <h2 className="w-full max-w-[697px] text-center heading-h2 text-[28px] sm:text-[36px] lg:text-[56px]">
               What We&apos;ve Been Framing
             </h2>
             <div className="flex items-center gap-[8px] caption font-medium text-primary">
@@ -849,7 +857,8 @@ export default function Home() {
         {/* --- FAQS SECTION --- */}
         <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center px-[16px] py-[56px] sm:px-[24px] lg:py-[80px]">
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[32px] rounded-[12px] p-0 sm:gap-[40px] sm:p-[32px]">
-            <h2 className="text-center heading-h2">
+            {/* Mobile: 28px, Tablet: 36px, Desktop: 56px (unchanged) */}
+            <h2 className="text-center heading-h2 text-[28px] sm:text-[36px] lg:text-[56px]">
               FAQs
             </h2>
 
@@ -897,7 +906,8 @@ export default function Home() {
           {/* 3. Centered White Card (Changed to relative z-20) */}
           <div className="relative z-20 flex w-full max-w-[1050px] flex-col items-center justify-center gap-[24px] rounded-[24px] bg-white px-[24px] py-[40px] text-center sm:gap-[32px] sm:rounded-[32px] sm:py-[64px] lg:h-[292.5px] lg:px-[80px]">
             <div className="flex flex-col gap-[12px] sm:gap-[16px]">
-              <h2 className="heading-h2 text-primary">
+              {/* Mobile: 28px, Tablet: 36px, Desktop: 56px (unchanged) */}
+              <h2 className="heading-h2 text-[28px] text-primary sm:text-[36px] lg:text-[56px]">
                 {consultationData.title}
               </h2>
               <p className="body-text text-secondary">
