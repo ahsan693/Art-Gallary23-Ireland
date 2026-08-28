@@ -160,7 +160,8 @@ export function Header() {
 
   return (
     <header className="relative z-50 mx-auto flex w-full max-w-[1440px] flex-col items-start border-b border-border bg-white">
-      <div className="flex h-[36px] w-full items-center justify-center bg-forest-green px-4 py-2 text-center text-white">
+      {/* Mobile Top Banner */}
+      <div className="flex h-auto min-h-[36px] w-full items-center justify-center bg-forest-green px-[20px] py-[8px] text-center text-white sm:px-[40px]">
         <span className="caption text-white">
           Now Trending!{" "}
           <span className="font-semibold underline decoration-solid underline-offset-2">
@@ -169,19 +170,28 @@ export function Header() {
         </span>
       </div>
 
-      <nav className="relative flex h-[72px] w-full items-center bg-white px-4 lg:px-[40px]">
-        <div className="flex items-center gap-3 lg:hidden">
+      {/* Mobile Navbar */}
+      <nav className="relative flex h-[72px] w-full items-center justify-between bg-white px-[20px] sm:px-[40px] lg:px-[40px]">
+        {/* Left Side: Hamburger Menu (Mobile Only) */}
+        <div className="flex items-center lg:hidden">
           <button
             aria-label="Toggle menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="grid size-10 place-items-center rounded-full border border-border bg-warm-cream"
+            className="flex items-center justify-center p-2 -ml-2"
           >
             {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
-          <Link href="/" className="heading-h9">Gallery 23</Link>
         </div>
 
-        <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex">
+        {/* Center: Logo / Brand Name */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:static lg:translate-x-0 lg:translate-y-0">
+          <Link href="/" className="heading-h9 lg:heading-h8 uppercase tracking-widest lg:tracking-normal">
+            Gallery 23
+          </Link>
+        </div>
+
+        {/* Desktop Navigation Links */}
+        <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex lg:ml-[40px]">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -198,14 +208,8 @@ export function Header() {
           })}
         </div>
 
-        <Link
-          href="/"
-          className="absolute left-1/2 top-0 hidden h-[72px] w-[320px] -translate-x-1/2 items-center justify-center text-center heading-h8 lg:flex"
-        >
-          Gallery 23
-        </Link>
-
-        <div className="ml-auto flex min-w-0 items-center justify-end gap-3 lg:flex-1 lg:gap-1">
+        {/* Right Side: Icons & Desktop Links */}
+        <div className="flex items-center justify-end gap-3 lg:flex-1 lg:gap-1">
           <div className="hidden items-center gap-1 lg:flex">
             {rightNav.map((item) => (
               <Link
@@ -218,24 +222,29 @@ export function Header() {
             ))}
           </div>
           <span className="hidden h-6 w-px bg-border lg:block" />
-          <button aria-label="Search" className="grid size-10 place-items-center rounded-full border border-border bg-warm-cream">
-            <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-5" />
-          </button>
-          <button aria-label="Cart" className="grid size-10 place-items-center rounded-full border border-border bg-warm-cream">
-            <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-5" />
-          </button>
+
+          <div className="flex items-center gap-[12px] lg:gap-1">
+            <button aria-label="Search" className="flex items-center justify-center lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
+              <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-[24px] lg:size-5" />
+            </button>
+            <button aria-label="Cart" className="flex items-center justify-center lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
+              <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-[24px] lg:size-5" />
+            </button>
+          </div>
         </div>
 
+        {/* 👇 UPDATED Mobile Dropdown Menu 👇 */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="absolute left-0 top-[72px] z-50 w-full overflow-hidden border-t border-border bg-white shadow-lg lg:hidden"
+              className="absolute left-0 top-[72px] z-50 w-full overflow-hidden border-t border-border bg-white shadow-xl lg:hidden"
             >
-              <div className="flex flex-col gap-6 px-5 py-6">
-                <div className="flex flex-col gap-4">
+              <div className="flex flex-col px-[20px] py-[32px] sm:px-[40px]">
+                {/* Main Nav Items */}
+                <div className="flex flex-col gap-1">
                   {navItems.map((item) => {
                     const isActive = pathname === item.href;
                     return (
@@ -243,7 +252,7 @@ export function Header() {
                         key={item.name}
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`text-[18px] font-bold ${isActive ? "text-forest-green" : "text-primary"
+                        className={`block py-3 text-[18px] font-bold tracking-tight transition-colors ${isActive ? "text-forest-green" : "text-primary hover:text-forest-green"
                           }`}
                       >
                         {item.name}
@@ -251,14 +260,18 @@ export function Header() {
                     );
                   })}
                 </div>
-                <div className="h-px w-full bg-border" />
-                <div className="flex flex-col gap-4">
+
+                {/* Divider with proper spacing */}
+                <div className="my-[24px] h-px w-full bg-border" />
+
+                {/* Secondary Nav Items */}
+                <div className="flex flex-col gap-1">
                   {rightNav.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-[16px] font-medium text-secondary"
+                      className="block py-2 text-[16px] font-medium text-secondary transition-colors hover:text-primary"
                     >
                       {item.name}
                     </Link>
@@ -273,7 +286,6 @@ export function Header() {
     </header>
   );
 }
-
 // ==========================================
 // FOOTER COMPONENTS
 // ==========================================
