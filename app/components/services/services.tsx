@@ -83,7 +83,8 @@ export default function ServicesComponent() {
               </span>
             </div>
 
-            <h1 className="heading-display text-white sm:text-[56px] lg:text-[64px]">
+            {/* Mobile: 30px, Tablet: 56px, Desktop: 64px (unchanged) */}
+            <h1 className="heading-display text-[30px] leading-[1.2] text-white sm:text-[56px] sm:leading-[1.1] lg:text-[64px]">
               {data.hero.title}
             </h1>
 
@@ -118,7 +119,8 @@ export default function ServicesComponent() {
 
                   {/* Text Side (Removed bullets & divider) */}
                   <div className="flex w-full flex-col items-start justify-center gap-[24px] lg:w-[540px]">
-                    <h2 className="heading-h3 text-primary">
+                    {/* Mobile: 28px, Tablet: 36px, Desktop: 48px (unchanged) */}
+                    <h2 className="heading-h3 text-[28px] text-primary sm:text-[36px] lg:text-[48px]">
                       {service.title}
                     </h2>
 
@@ -145,7 +147,8 @@ export default function ServicesComponent() {
         {/* --- THE FRAMING JOURNEY SECTION --- */}
         <section className="w-full bg-[#131313] px-[24px] py-[80px] lg:py-[100px]">
           <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-[48px] lg:gap-[64px]">
-            <h2 className="text-center text-[32px] font-bold tracking-tight text-white sm:text-[40px]">
+            {/* Mobile: 24px, Tablet: 40px (unchanged from original sm value) */}
+            <h2 className="text-center text-[24px] font-bold tracking-tight text-white sm:text-[40px]">
               {data.journey.title}
             </h2>
 
@@ -172,7 +175,8 @@ export default function ServicesComponent() {
           <div className="flex w-full max-w-[900px] flex-col items-center rounded-[32px] bg-white p-[32px] shadow-sm sm:p-[48px] lg:px-[64px] lg:py-[64px]">
 
             <div className="mb-[40px] flex flex-col items-center text-center gap-[12px]">
-              <h2 className="heading-h2 text-primary">{data.form.title}</h2>
+              {/* Mobile: 26px, Tablet: 36px, Desktop: 56px (unchanged) */}
+              <h2 className="heading-h2 text-[26px] text-primary sm:text-[36px] lg:text-[56px]">{data.form.title}</h2>
               <p className="body-text text-secondary">{data.form.subtitle}</p>
             </div>
 
@@ -253,7 +257,8 @@ export default function ServicesComponent() {
           {/* Centered White Card */}
           <div className="relative z-20 flex w-full max-w-[1050px] flex-col items-center justify-center gap-[24px] rounded-[24px] bg-white px-[24px] py-[40px] text-center sm:gap-[32px] sm:rounded-[32px] sm:py-[64px] lg:h-[292.5px] lg:px-[80px]">
             <div className="flex flex-col gap-[12px] sm:gap-[16px]">
-              <h2 className="heading-h2 text-primary">
+              {/* Mobile: 26px, Tablet: 36px, Desktop: 56px (unchanged) */}
+              <h2 className="heading-h2 text-[26px] text-primary sm:text-[36px] lg:text-[56px]">
                 {data.cta.title}
               </h2>
               <p className="body-text text-secondary">
