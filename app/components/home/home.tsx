@@ -659,17 +659,17 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- SHOWCASE / FEATURED FRAMING PROJECTS SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] bg-forest-green px-5 pb-[80px] pt-[64px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
-          <div className="flex w-full max-w-[1200px] items-center justify-between">
-            {/* Mobile: 26px, Tablet: 36px, Desktop: 56px (unchanged) */}
-            <h2 className="w-full max-w-none heading-h2 text-[26px] text-white sm:text-[36px] lg:text-[56px] lg:whitespace-nowrap">
+       {/* --- SHOWCASE / FEATURED FRAMING PROJECTS SECTION --- */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[32px] bg-forest-green px-[20px] py-[64px] lg:gap-[56px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
+          <div className="flex w-full max-w-[1200px] items-start justify-start lg:items-center lg:justify-between">
+            <h2 className="w-full max-w-none heading-h2 text-left text-white lg:whitespace-nowrap">
               Featured Framing Projects
             </h2>
           </div>
 
-          <div className="flex w-full max-w-[1200px] flex-col items-center gap-[24px]">
-            <div className="relative h-[240px] w-full shrink-0 overflow-hidden rounded-[24px] sm:h-[300px] lg:h-[558px] lg:w-[1200px] lg:rounded-[46px]">
+          <div className="flex w-full max-w-[1200px] flex-col items-center gap-[20px] lg:gap-[24px]">
+            {/* 👇 Mobile: 284px height & 20px radius (Figma Exact) 👇 */}
+            <div className="relative h-[284px] w-full shrink-0 overflow-hidden rounded-[20px] sm:h-[300px] lg:h-[558px] lg:w-[1200px] lg:rounded-[46px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeProject}
@@ -682,34 +682,38 @@ export default function Home() {
                   <ResponsiveImage src={showcaseImages[activeProject]} alt={`Featured framing project ${activeProject + 1}`} />
                 </motion.div>
               </AnimatePresence>
-              <div className="pointer-events-none absolute inset-0 z-10 rounded-[24px] shadow-[inset_0_4px_8px_rgba(0,0,0,0.40)] lg:rounded-[46px]" />
+              <div className="pointer-events-none absolute inset-0 z-10 rounded-[20px] shadow-[inset_0_4px_8px_rgba(0,0,0,0.40)] lg:rounded-[46px]" />
             </div>
 
-            <div className="flex items-center gap-2">
+            {/* 👇 Mobile: 20px wrapper height (Figma Exact) 👇 */}
+            <div className="flex h-[20px] items-center justify-center gap-[8px]">
               {showcaseImages.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveProject(index)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${index === activeProject ? "w-6 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80"
-                    }`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    index === activeProject ? "w-6 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80"
+                  }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>
 
-            <div className="flex w-full gap-[16px] overflow-x-auto pb-2 sm:flex-row sm:gap-[32px] lg:overflow-visible">
+            {/* 👇 Mobile: 12px gap & centered thumbnails (Figma Exact) 👇 */}
+            <div className="flex w-full justify-center gap-[12px] overflow-x-auto pb-2 sm:gap-[32px] lg:overflow-visible">
               {showcaseImages.map((src, index) => {
                 const isActive = index === activeProject;
                 return (
                   <div
                     key={index}
                     onClick={() => setActiveProject(index)}
-                    className={`relative flex h-[140px] w-[220px] shrink-0 cursor-pointer items-center justify-center transition-all duration-300 sm:h-[200px] sm:w-[380px] ${isActive
-                      ? "rounded-[20px] border-2 border-white bg-[#336a4c] p-[6px] sm:rounded-[24px] sm:p-[8px]"
-                      : "rounded-[20px] border-2 border-transparent bg-transparent opacity-60 hover:opacity-100 sm:rounded-[24px]"
-                      }`}
+                    className={`relative flex h-[70px] w-[100px] shrink-0 cursor-pointer items-center justify-center transition-all duration-300 sm:h-[200px] sm:w-[380px] ${
+                      isActive
+                        ? "rounded-[8px] border-[1.5px] border-white bg-transparent p-[3px] sm:rounded-[24px] sm:border-2 sm:bg-[#336a4c] sm:p-[8px]"
+                        : "rounded-[8px] border-[1.5px] border-transparent bg-transparent opacity-60 hover:opacity-100 sm:rounded-[24px] sm:border-2"
+                    }`}
                   >
-                    <div className={`relative h-full w-full overflow-hidden ${isActive ? "rounded-[14px] sm:rounded-[16px]" : "rounded-[20px] sm:rounded-[24px]"}`}>
+                    <div className={`relative h-full w-full overflow-hidden ${isActive ? "rounded-[5px] sm:rounded-[16px]" : "rounded-[8px] sm:rounded-[24px]"}`}>
                       <ResponsiveImage src={src} alt={`Thumbnail ${index + 1}`} />
                     </div>
                   </div>
@@ -718,7 +722,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         {/* --- TESTIMONIALS SECTION --- */}
         <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[40px] overflow-hidden px-5 py-[64px] lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
           <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
