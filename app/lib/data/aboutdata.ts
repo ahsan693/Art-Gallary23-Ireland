@@ -3,11 +3,12 @@
 // ==========================================
 
 export const aboutImages = {
-  hero: "https://images.unsplash.com/photo-1500051638674-ff996a0ec29e?auto=format&fit=crop&w=1920&q=85",
-  founderSr: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=85",
-  founderJr: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=85",
-  standForBg: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1920&q=85",
-  faqImg: "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=800&q=85",
+  hero: "/About Us/Images/Section1- img 1.png",
+  founderSr: "/About Us/Images/Section2-img01.png",
+  founderJr: "/About Us/Images/Section2-img02.png",
+  standForBg: "/About Us/Images/Section3.png",
+  faqImg: "/About Us/Images/Section6.png",
+  // Keeping placeholders for avatars as they were not in the provided folder screenshot
   collectors: [
     "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=85",
     "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&q=85",
@@ -99,13 +100,13 @@ export const getAboutData = async () => {
           name: "Greg Thompson Sr.",
           role: "Founder & Master Craftsman",
           desc: "Started it all in 1985 with passion and precision.",
-          img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=85",
+          img: aboutImages.founderSr,
         },
         {
           name: "Greg Thompson Jr.",
           role: "Co-Owner & Lead Designer",
           desc: "Carrying the family legacy into the modern era.",
-          img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=85",
+          img: aboutImages.founderJr,
         },
         {
           name: "David Chen",
