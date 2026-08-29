@@ -151,7 +151,7 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
   );
 }
 
-// ==========================================
+/// ==========================================
 // HEADER COMPONENT
 // ==========================================
 export function Header() {
@@ -172,7 +172,7 @@ export function Header() {
 
       {/* Navbar */}
       <nav className="relative flex h-[72px] w-full items-center justify-between bg-white px-[20px] sm:px-[40px] lg:px-[40px]">
-        {/* Left Side: Hamburger Menu */}
+        {/* Left Side: Hamburger Menu (Mobile Only) */}
         <div className="flex items-center lg:hidden">
           <button
             aria-label="Toggle menu"
@@ -195,26 +195,17 @@ export function Header() {
           </button>
         </div>
 
-        {/* Center: Logo (Single-Line Fixed with whitespace-nowrap & w-auto) */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:static lg:translate-x-0 lg:translate-y-0">
-          <Link
-            href="/"
-            className="flex items-center justify-center w-auto h-auto whitespace-nowrap font-bold uppercase tracking-widest text-[16px] lg:text-auto lg:heading-h8 lg:tracking-normal"
-          >
-            GALLERY 23
-          </Link>
-        </div>
-
-        {/* Desktop Navigation Links */}
-        <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex lg:ml-[40px]">
+        {/* Desktop Navigation Links (Aligned Left) */}
+        <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative flex h-[72px] items-center px-4 button-small ${isActive ? "text-forest-green" : "text-primary"
-                  }`}
+                className={`relative flex h-[72px] items-center px-4 button-small ${
+                  isActive ? "text-forest-green" : "text-primary"
+                }`}
               >
                 {item.name}
                 {isActive ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-forest-green" /> : null}
@@ -223,7 +214,17 @@ export function Header() {
           })}
         </div>
 
-        {/* Right Side: Icons & Desktop Links */}
+        {/* Center: Logo (Centered on Desktop & Mobile) */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <Link
+            href="/"
+            className="flex items-center justify-center w-auto h-auto whitespace-nowrap font-bold uppercase tracking-widest text-[16px] lg:heading-h8 lg:tracking-normal"
+          >
+            GALLERY 23
+          </Link>
+        </div>
+
+        {/* Right Side: Icons & Right Desktop Links */}
         <div className="flex items-center justify-end gap-3 lg:flex-1 lg:gap-1">
           <div className="hidden items-center gap-1 lg:flex">
             {rightNav.map((item) => (
@@ -248,7 +249,7 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Menu (Untouched) */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -265,8 +266,9 @@ export function Header() {
                       key={item.name}
                       href={item.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`block py-3 text-[18px] font-bold tracking-tight transition-colors ${isActive ? "text-forest-green" : "text-primary hover:text-forest-green"
-                        }`}
+                      className={`block py-3 text-[18px] font-bold tracking-tight transition-colors ${
+                        isActive ? "text-forest-green" : "text-primary hover:text-forest-green"
+                      }`}
                     >
                       {item.name}
                     </Link>
