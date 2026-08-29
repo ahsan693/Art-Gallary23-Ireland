@@ -722,42 +722,47 @@ export default function Home() {
             </div>
           </div>
         </section>
-        {/* --- TESTIMONIALS SECTION --- */}
-        <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[40px] overflow-hidden px-5 py-[64px] lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
-          <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
-            {/* Mobile: 26px, Tablet: 36px, Desktop: 56px (unchanged) */}
-            <h2 className="w-full max-w-none heading-h2 text-[26px] sm:text-[36px] lg:text-[56px] lg:whitespace-nowrap">
-              What Our Costumer Say
-            </h2>
+   {/* --- TESTIMONIALS SECTION --- */}
+        <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[40px] overflow-hidden py-[64px] lg:gap-[48px] lg:py-[80px]">
+          
+          {/* Top content wrapper - Maintains mobile px-5 and desktop px-[80px] */}
+          <div className="flex w-full justify-center px-5 lg:px-[80px]">
+            <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
+              {/* Mobile: 26px, Tablet: 36px, Desktop: 56px (unchanged) */}
+              <h2 className="w-full max-w-none heading-h2 text-[26px] sm:text-[36px] lg:text-[56px] lg:whitespace-nowrap">
+                What Our Costumer Say
+              </h2>
 
-            <div className="flex h-auto w-full max-w-[1200px] flex-col items-stretch gap-3 rounded-[20px] bg-white p-[20px] sm:h-[82px] sm:flex-row sm:items-center sm:justify-between sm:rounded-[27px] sm:py-0 sm:pl-[32px] sm:pr-[24px]">
-              <div className="flex flex-col items-start justify-center">
-                <div className="text-[22px] font-bold tracking-tighter sm:text-[26px]">
-                  <span className="text-[#4285F4]">G</span>
-                  <span className="text-[#EA4335]">o</span>
-                  <span className="text-[#FBBC05]">o</span>
-                  <span className="text-[#4285F4]">g</span>
-                  <span className="text-[#34A853]">l</span>
-                  <span className="text-[#EA4335]">e</span>
-                </div>
-                <div className="flex items-center gap-[6px] text-[12px] font-bold text-primary sm:text-[14px]">
-                  4.9
-                  <div className="flex text-gold">
-                    {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="size-[14px]" />
-                    ))}
+              <div className="flex h-auto w-full max-w-[1200px] flex-col items-stretch gap-3 rounded-[20px] bg-white p-[20px] sm:h-[82px] sm:flex-row sm:items-center sm:justify-between sm:rounded-[27px] sm:py-0 sm:pl-[32px] sm:pr-[24px]">
+                <div className="flex flex-col items-start justify-center">
+                  <div className="text-[22px] font-bold tracking-tighter sm:text-[26px]">
+                    <span className="text-[#4285F4]">G</span>
+                    <span className="text-[#EA4335]">o</span>
+                    <span className="text-[#FBBC05]">o</span>
+                    <span className="text-[#4285F4]">g</span>
+                    <span className="text-[#34A853]">l</span>
+                    <span className="text-[#EA4335]">e</span>
                   </div>
-                  <span className="font-normal text-[#777]">(264)</span>
+                  <div className="flex items-center gap-[6px] text-[12px] font-bold text-primary sm:text-[14px]">
+                    4.9
+                    <div className="flex text-gold">
+                      {[...Array(5)].map((_, i) => (
+                        <StarIcon key={i} className="size-[14px]" />
+                      ))}
+                    </div>
+                    <span className="font-normal text-[#777]">(264)</span>
+                  </div>
                 </div>
-              </div>
 
-              <a href="#" className="btn-primary">
-                Review us on Google <ArrowIcon />
-              </a>
+                <a href="#" className="btn-primary">
+                  Review us on Google <ArrowIcon />
+                </a>
+              </div>
             </div>
           </div>
 
-          <div className="relative w-full max-w-[1440px] overflow-hidden">
+          {/* Ticker wrapper - Maintains mobile px-5, but expands to full width on desktop (lg:px-0) */}
+          <div className="relative w-full max-w-[1440px] overflow-hidden px-5 lg:px-0">
             <motion.div
               className="flex w-max gap-[16px] pb-[16px] sm:gap-[24px] lg:gap-[32px]"
               animate={{ x: ["0%", "-50%"] }}
