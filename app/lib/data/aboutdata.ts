@@ -3,7 +3,7 @@
 // ==========================================
 
 export const aboutImages = {
-  hero: "/About Us/Images/Section1- img 1.png",
+  hero: "/About Us/Images/Section1.png",
   founderSr: "/About Us/Images/Section2-img01.png",
   founderJr: "/About Us/Images/Section2-img02.png",
   standForBg: "/About Us/Images/Section3.png",
