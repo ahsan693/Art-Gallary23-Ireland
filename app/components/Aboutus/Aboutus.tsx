@@ -99,17 +99,6 @@ function MilestoneItem({ item, index, scrollYProgress, scaleX }: { item: any, in
 }
 
 export default function AboutUsComponent({ data }: { data: any }) {
-  const journeyRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: journeyRef,
-    offset: ["start center", "end center"],
-  });
-
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
 
   // 👇 STATE FOR MOBILE TEAM CAROUSEL 👇
   const [teamStartIndex, setTeamStartIndex] = useState(0);
@@ -197,23 +186,36 @@ export default function AboutUsComponent({ data }: { data: any }) {
           </div>
         </section>
 
-        {/* --- 4. OUR JOURNEY SECTION --- */}
-        <section ref={journeyRef} className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream px-[20px] py-[64px] sm:px-[24px] lg:gap-[56px] lg:px-[80px] lg:py-[80px]">
-          <div className="flex w-full max-w-[1280px] flex-col items-center text-center">
+    {/* --- 4. OUR JOURNEY SECTION --- */}
+        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream px-[20px] py-[64px] sm:px-[24px] lg:px-[80px] lg:py-[80px]">
+          <div className="flex w-full max-w-[1280px] flex-col items-center text-center mb-[40px] lg:mb-[64px]">
             <h2 className="heading-h2 text-primary">
               {data.journey.title}
             </h2>
           </div>
 
-          <div className="relative mt-[32px] flex w-full max-w-[1200px] flex-col gap-[24px] lg:mt-0 lg:flex-nowrap lg:justify-between lg:gap-[24px]">
+          {/* Container exactly matching Figma width and gaps */}
+          <div className="flex w-full max-w-[1185px] flex-col gap-[40px] lg:flex-row lg:justify-between lg:gap-[24px]">
             {data.journey.milestones.map((item: any, index: number) => (
-              <MilestoneItem
-                key={index}
-                item={item}
-                index={index}
-                scrollYProgress={scrollYProgress}
-                scaleX={scaleX}
-              />
+              <div key={index} className="flex w-full flex-col items-start gap-[12px] lg:flex-1 lg:gap-[16px]">
+                
+                {/* Year */}
+                <h3 className="heading-h4 text-forest-green">
+                  {item.year}
+                </h3>
+
+                {/* Dot and Line matching Figma */}
+                <div className="flex w-full items-center">
+                  <div className="relative z-10 size-[12px] shrink-0 rounded-full bg-forest-green" />
+                  <div className="h-[2px] w-full bg-[#D5D5D5]" />
+                </div>
+
+                {/* Description */}
+                <p className="body-small text-secondary text-left">
+                  {item.desc}
+                </p>
+                
+              </div>
             ))}
           </div>
         </section>
