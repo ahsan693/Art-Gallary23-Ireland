@@ -89,10 +89,13 @@ export function FrameOutlineIcon() {
 
 export function BadgeIcon() {
   return (
-    <svg className="size-[54px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
-      <path d="M12 2.5a2.5 2.5 0 0 1 2.3 1.1 2.5 2.5 0 0 0 2.4.9 2.5 2.5 0 0 1 1.8 2 2.5 2.5 0 0 0 1.6 2 2.5 2.5 0 0 1 .4 2.6 2.5 2.5 0 0 0-.4 2.6 2.5 2.5 0 0 1-1.6 2 2.5 2.5 0 0 0-1.8 2 2.5 2.5 0 0 1-2.4.9 2.5 2.5 0 0 0-2.3 1.1 2.5 2.5 0 0 1-2.6 0 2.5 2.5 0 0 0-2.3-1.1 2.5 2.5 0 0 1-2.4-.9 2.5 2.5 0 0 0-1.8-2 2.5 2.5 0 0 1-1.6-2 2.5 2.5 0 0 0-.4-2.6 2.5 2.5 0 0 1 .4-2.6 2.5 2.5 0 0 0 1.6-2 2.5 2.5 0 0 1 1.8-2 2.5 2.5 0 0 0 2.4-.9 2.5 2.5 0 0 1 2.3-1.1z" strokeLinejoin="round" />
+    <svg className="size-[42px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {/* Flawless 8-scallop outer badge */}
+      <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+      {/* Perfectly balanced inner circle */}
       <circle cx="12" cy="12" r="5.5" />
-      <path d="M9.5 12.5l1.5 1.5 3.5-3.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Sharp, clean checkmark */}
+      <path d="M8.5 12.5L11 15l4.5-4.5" />
     </svg>
   );
 }
