@@ -5,7 +5,7 @@
 export const images = {
   hero: "/Homepage/Images/hero.png",
   services: "/Homepage/Images/services.png", // Section 2 (Services)
-  about: "/Homepage/Images/Section 3.png", // Section 3 (About Gallery23)
+  about: "/Homepage/Images/image-card.png", // Section 3 (About Gallery23)
   why: "/Homepage/Images/Section 4.png", // Section 4 (Why Choose Us Background)
   print: "/Homepage/Images/Section 5.png", // Section 5 (Custom Printing)
   frameOne: "/Homepage/Images/Section6-01.png", // Section 6 (Showcase Slide 1)
