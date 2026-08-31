@@ -96,7 +96,6 @@ export function BadgeIcon() {
     </svg>
   );
 }
-
 export function StarIcon({ fill = "currentColor", className = "size-4" }: { fill?: string; className?: string }) {
   return (
     <svg className={className} fill={fill} viewBox="0 0 24 24" stroke="none">
@@ -140,10 +139,10 @@ export function Button({ children, href = "/support", dark = false }: { children
   return (
     <Link 
       href={href} 
-      className={`group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95 ${
+      className={`group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:-translate-y-0 active:scale-95 ${
         dark 
-          ? "btn-primary hover:bg-primary hover:border-primary hover:text-white" 
-          : "btn-secondary hover:bg-warm-cream hover:text-forest-green hover:border-forest-green"
+          ? "btn-primary hover:bg-primary hover:border-primary hover:text-white active:bg-primary active:border-primary active:text-white" 
+          : "btn-secondary hover:bg-warm-cream hover:text-forest-green hover:border-forest-green active:bg-warm-cream active:text-forest-green active:border-forest-green"
       }`}
     >
       {children}
@@ -159,7 +158,7 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
         alt={alt} 
         fill 
         sizes="100vw" 
-        className={`object-cover transition-transform duration-700 ease-out group-hover/image:scale-105 ${className}`} 
+        className={`object-cover transition-transform duration-700 ease-out group-hover/image:scale-105 group-active/image:scale-105 ${className}`} 
       />
     </span>
   );
@@ -175,10 +174,10 @@ export function Header() {
   return (
     <header className="relative z-50 mx-auto flex w-full max-w-[1440px] flex-col items-start border-b border-border bg-white">
       {/* Top Banner */}
-      <div className="flex h-auto min-h-[36px] w-full items-center justify-center bg-forest-green px-[20px] py-[8px] text-center text-white sm:px-[40px] transition-colors duration-300 hover:bg-[#204834]">
+      <div className="flex h-auto min-h-[36px] w-full items-center justify-center bg-forest-green px-[20px] py-[8px] text-center text-white sm:px-[40px] transition-colors duration-300 hover:bg-[#204834] active:bg-[#1a3a2a]">
         <span className="caption text-white cursor-default">
           Now Trending!{" "}
-          <span className="font-semibold underline decoration-solid underline-offset-2 transition-colors duration-300 hover:text-[#E8B84B] cursor-pointer">
+          <span className="font-semibold underline decoration-solid underline-offset-2 transition-colors duration-300 hover:text-[#E8B84B] active:text-[#E8B84B] cursor-pointer">
             Custom Gallery Walls &rarr;
           </span>
         </span>
@@ -191,7 +190,7 @@ export function Header() {
           <button
             aria-label="Toggle menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex items-center justify-center p-0 transition-transform duration-300 active:scale-95 hover:text-forest-green"
+            className="flex items-center justify-center p-0 transition-transform duration-300 active:scale-90 hover:text-forest-green active:text-forest-green"
           >
             {isMobileMenuOpen ? (
               <CloseIcon />
@@ -217,7 +216,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative flex h-[72px] items-center px-4 button-small transition-colors duration-300 hover:text-forest-green ${
+                className={`relative flex h-[72px] items-center px-4 button-small transition-colors duration-300 hover:text-forest-green active:text-forest-green ${
                   isActive ? "text-forest-green" : "text-primary"
                 }`}
               >
@@ -232,7 +231,7 @@ export function Header() {
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <Link
             href="/"
-            className="flex items-center justify-center w-auto h-auto whitespace-nowrap font-bold uppercase tracking-widest text-[16px] transition-transform duration-300 hover:scale-105 lg:heading-h8 lg:tracking-normal"
+            className="flex items-center justify-center w-auto h-auto whitespace-nowrap font-bold uppercase tracking-widest text-[16px] transition-transform duration-300 hover:scale-105 active:scale-95 lg:heading-h8 lg:tracking-normal"
           >
             GALLERY 23
           </Link>
@@ -245,7 +244,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="flex h-[72px] items-center justify-center px-3 button-small transition-colors duration-300 hover:text-forest-green"
+                className="flex h-[72px] items-center justify-center px-3 button-small transition-colors duration-300 hover:text-forest-green active:text-forest-green"
               >
                 {item.name}
               </Link>
@@ -254,10 +253,10 @@ export function Header() {
           <span className="hidden h-6 w-px bg-border lg:block" />
 
           <div className="flex items-center gap-[12px] h-[20px] lg:h-auto lg:gap-1">
-            <button aria-label="Search" className="flex items-center justify-center p-0 transition-all duration-300 hover:bg-[#84A59D]/10 hover:border-[#84A59D] active:scale-95 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
+            <button aria-label="Search" className="flex items-center justify-center p-0 transition-all duration-300 hover:bg-[#84A59D]/10 hover:border-[#84A59D] active:scale-90 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
               <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
             </button>
-            <button aria-label="Cart" className="flex items-center justify-center p-0 transition-all duration-300 hover:bg-[#84A59D]/10 hover:border-[#84A59D] active:scale-95 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
+            <button aria-label="Cart" className="flex items-center justify-center p-0 transition-all duration-300 hover:bg-[#84A59D]/10 hover:border-[#84A59D] active:scale-90 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
               <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
             </button>
           </div>
@@ -280,7 +279,7 @@ export function Header() {
                       key={item.name}
                       href={item.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`block py-3 text-[18px] font-bold tracking-tight transition-colors duration-300 ${
+                      className={`block origin-left py-3 text-[18px] font-bold tracking-tight transition-all duration-300 active:scale-95 active:text-forest-green ${
                         isActive ? "text-forest-green" : "text-primary hover:text-forest-green"
                       }`}
                     >
@@ -318,21 +317,21 @@ export function FooterColumn({ title, items, className = "" }: { title: string; 
           return (
             <li key={index} className="group flex max-w-[260px] items-start gap-[8px] sm:max-w-[200px]">
               {isPhone && (
-                <svg className="mt-[2px] size-[14px] shrink-0 transition-colors duration-300 group-hover:text-[#84A59D]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <svg className="mt-[2px] size-[14px] shrink-0 transition-colors duration-300 group-hover:text-[#84A59D] group-active:text-[#84A59D]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               )}
               {isEmail && (
-                <svg className="mt-[2px] size-[14px] shrink-0 transition-colors duration-300 group-hover:text-[#84A59D]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <svg className="mt-[2px] size-[14px] shrink-0 transition-colors duration-300 group-hover:text-[#84A59D] group-active:text-[#84A59D]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               )}
               {href ? (
-                <Link href={href} className={`transition-colors duration-300 cursor-pointer ${isHighlight ? "font-bold text-white hover:text-[#84A59D]" : "hover:text-[#84A59D]"}`}>
+                <Link href={href} className={`transition-colors duration-300 cursor-pointer ${isHighlight ? "font-bold text-white hover:text-[#84A59D] active:text-[#84A59D]" : "hover:text-[#84A59D] active:text-[#84A59D]"}`}>
                   {label}
                 </Link>
               ) : (
-                <span className={`transition-colors duration-300 cursor-pointer ${isHighlight ? "font-bold text-white hover:text-[#84A59D]" : "hover:text-[#84A59D]"}`}>
+                <span className={`transition-colors duration-300 cursor-pointer ${isHighlight ? "font-bold text-white hover:text-[#84A59D] active:text-[#84A59D]" : "hover:text-[#84A59D] active:text-[#84A59D]"}`}>
                   {label}
                 </span>
               )}
@@ -348,12 +347,10 @@ export function Footer() {
   return (
     <footer className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-black text-white">
       <div className="flex w-full items-center justify-between border-b border-dark-surface px-[20px] py-[24px] sm:px-[40px] sm:py-[28px] lg:px-[80px] lg:py-[40px]">
-        <Link href="/" className="flex h-[48px] items-center transition-transform duration-300 hover:scale-105 sm:h-[65px]">
-          <Image
+        <Link href="/" className="flex h-[48px] items-center transition-transform duration-300 hover:scale-105 active:scale-95 sm:h-[65px]">
+          <img
             src="/Homepage/Icons/Logo.svg"
             alt="Gallery 23 Logo"
-            width={200}
-            height={48}
             className="h-[40px] w-auto sm:h-[48px] object-contain"
           />
         </Link>
@@ -411,25 +408,25 @@ export function Footer() {
         </div>
 
         <div className="flex flex-row flex-wrap items-center gap-[12px] sm:w-auto">
-          <div className="group flex w-max items-center justify-start gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] transition-colors duration-300 hover:border-[#E8B84B] sm:gap-[10px] sm:px-[16px] sm:py-[10px] cursor-default">
-            <div className="flex text-gold transition-transform duration-300 group-hover:scale-105">
+          <div className="group flex w-max items-center justify-start gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] transition-colors duration-300 hover:border-[#E8B84B] active:border-[#E8B84B] sm:gap-[10px] sm:px-[16px] sm:py-[10px] cursor-default">
+            <div className="flex text-gold transition-transform duration-300 group-hover:scale-105 group-active:scale-105">
               {[...Array(5)].map((_, i) => (
                 <StarIcon key={i} className="size-[14px]" />
               ))}
             </div>
             <div className="flex flex-col small font-medium leading-[1.3]">
               <span className="text-white">Rated 4.9 from</span>
-              <span className="text-muted transition-colors duration-300 group-hover:text-white/80">200+ customers</span>
+              <span className="text-muted transition-colors duration-300 group-hover:text-white/80 group-active:text-white/80">200+ customers</span>
             </div>
           </div>
 
-          <a href="#" className="flex w-max items-center justify-center gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] transition-all duration-300 hover:bg-[#232323] hover:-translate-y-1 hover:shadow-lg hover:border-[#84A59D] active:scale-95 sm:gap-[10px] sm:px-[16px] sm:py-[10px]">
+          <a href="#" className="flex w-max items-center justify-center gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] transition-all duration-300 hover:bg-[#232323] hover:-translate-y-1 hover:shadow-lg hover:border-[#84A59D] active:scale-95 active:bg-[#232323] active:border-[#84A59D] sm:gap-[10px] sm:px-[16px] sm:py-[10px]">
             <svg className="size-[16px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3v18" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-2.5 0-4.5-4-4.5-9S9.5 3 12 3s4.5 4 4.5 9-2 9-4.5 9Z" />
             </svg>
-            <span className="small font-medium text-white transition-colors duration-300 hover:text-[#84A59D]">Google Reviews</span>
+            <span className="small font-medium text-white transition-colors duration-300 hover:text-[#84A59D] active:text-[#84A59D]">Google Reviews</span>
           </a>
         </div>
       </div>
@@ -458,7 +455,7 @@ export default function Home() {
 
       <main>
         {/* --- HERO SECTION --- */}
-        <section className="group mx-auto flex w-full max-w-[1440px] flex-col items-start">
+        <section className="group mx-auto flex w-full max-w-[1440px] flex-col items-start cursor-default">
           <div className="relative h-[620px] w-full overflow-hidden lg:h-[760px]">
             <div className="absolute inset-0 overflow-hidden">
               <Image
@@ -468,10 +465,10 @@ export default function Home() {
                 height={3840}
                 priority
                 sizes="100vw"
-                className="absolute left-0 top-[-70%] h-[220%] w-full max-w-none object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 sm:top-[-82%] sm:h-[240%] lg:top-[-89.25%] lg:h-[249.94%]"
+                className="absolute left-0 top-[-70%] h-[220%] w-full max-w-none object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 group-active:scale-105 sm:top-[-82%] sm:h-[240%] lg:top-[-89.25%] lg:h-[249.94%]"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/20 from-[18.54%] to-transparent to-[68.99%] transition-colors duration-[2s] group-hover:from-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/20 from-[18.54%] to-transparent to-[68.99%] transition-colors duration-[2s] group-hover:from-black/40 group-active:from-black/40" />
             <div className="relative mx-auto flex h-full max-w-[1280px] items-center px-5 py-20 sm:px-[42px] sm:py-8">
               <div className="mx-auto flex w-full max-w-[620px] flex-col items-center gap-8 py-12 text-center text-white sm:py-20 lg:mx-0 lg:items-start lg:text-left">
                 <h1 className="heading-display text-[30px] leading-[1.2] text-white sm:text-[56px] sm:leading-[1.1] lg:text-[64px]">
@@ -487,7 +484,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/support"
-                  className="btn-secondary group/btn border-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg active:scale-95 text-primary"
+                  className="btn-secondary group/btn border-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg active:scale-95 active:bg-primary active:text-white active:border-primary text-primary"
                 >
                   <span className="leading-[46px]">Book A Free Consultation</span>
                 </Link>
@@ -504,11 +501,11 @@ export default function Home() {
             >
               {[...Array(2)].map((_, index) => (
                 <div key={index} className="flex items-center gap-[7.8px] pl-[23.41px] pr-[7.81px]">
-                  <span className="leading-[58px] transition-colors duration-300 hover:text-[#E8B84B] cursor-default">Get Free Consultation</span>
+                  <span className="leading-[58px] transition-colors duration-300 hover:text-[#E8B84B] active:text-[#E8B84B] cursor-pointer">Get Free Consultation</span>
                   <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
-                  <span className="leading-[58px] transition-colors duration-300 hover:text-[#E8B84B] cursor-default">Explore Services</span>
+                  <span className="leading-[58px] transition-colors duration-300 hover:text-[#E8B84B] active:text-[#E8B84B] cursor-pointer">Explore Services</span>
                   <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
-                  <span className="leading-[58px] transition-colors duration-300 hover:text-[#E8B84B] cursor-default">Shop Prints Now&nbsp;&nbsp;&nbsp;&nbsp;&bull;</span>
+                  <span className="leading-[58px] transition-colors duration-300 hover:text-[#E8B84B] active:text-[#E8B84B] cursor-pointer">Shop Prints Now&nbsp;&nbsp;&nbsp;&nbsp;&bull;</span>
                   <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
                 </div>
               ))}
@@ -536,8 +533,8 @@ export default function Home() {
               </h2>
               <div className="flex flex-col divide-y divide-border border-y border-border">
                 {services.map((service) => (
-                  <article key={service.title} className="group flex flex-col items-start justify-center gap-4 py-[32px] transition-all duration-300 hover:bg-white hover:shadow-md hover:rounded-[16px] px-4 -mx-4 cursor-default">
-                    <h3 className="heading-h8 transition-colors duration-300 group-hover:text-forest-green">{service.title}</h3>
+                  <article key={service.title} className="group flex flex-col items-start justify-center gap-4 py-[32px] transition-all duration-300 hover:bg-white hover:shadow-md hover:rounded-[16px] active:bg-white active:scale-[0.98] px-4 -mx-4 cursor-pointer">
+                    <h3 className="heading-h8 transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">{service.title}</h3>
                     <p className="body-small text-secondary">{service.body}</p>
                     <div className="mt-2">
                       <Button href={service.href} dark>{service.cta}</Button>
@@ -562,8 +559,8 @@ export default function Home() {
               Our professional framers love what they do and will happily advise you on your next custom framing project. With a wealth of knowledge and experience, our designers tailor each complimentary design session to your needs so they can create the ideal custom frame for you.
             </p>
             <div className="mt-2">
-              <Link href="/about" className="group flex w-max items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-white hover:text-white hover:shadow-lg active:scale-95">
-                LEARN MORE <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+              <Link href="/about" className="group/btn flex w-max items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-white hover:text-white hover:shadow-lg active:scale-95 active:bg-primary active:border-white active:text-white">
+                LEARN MORE <ArrowIcon className="transition-transform duration-300 group-hover/btn:translate-x-1 group-active/btn:translate-x-1" />
               </Link>
             </div>
           </div>
@@ -588,15 +585,15 @@ export default function Home() {
             {benefitsData.map((item) => (
               <article
                 key={item.title}
-                className="group card flex-1 lg:max-w-[302px] flex flex-col p-[36px] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-[#84A59D]"
+                className="group card flex-1 lg:max-w-[302px] flex flex-col p-[36px] cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-[#84A59D] active:scale-[0.98] active:border-[#84A59D]"
               >
                 <div className="flex h-[72px] w-full items-start justify-between">
-                  <div className="flex size-[72px] items-center justify-center rounded-full bg-forest-green text-[#F4F0EB] transition-all duration-500 group-hover:scale-110 group-hover:bg-primary group-hover:shadow-md">
+                  <div className="flex size-[72px] items-center justify-center rounded-full bg-forest-green text-[#F4F0EB] transition-all duration-500 group-hover:scale-110 group-hover:bg-primary group-active:scale-110 group-active:bg-primary">
                     {getIconComponent(item.iconType)}
                   </div>
                 </div>
                 <div className="flex flex-col justify-center gap-[12px] py-[24px]">
-                  <h3 className="heading-h9 transition-colors duration-300 group-hover:text-forest-green">
+                  <h3 className="heading-h9 transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">
                     {item.title}
                   </h3>
                   <p className="body-small text-secondary">
@@ -618,13 +615,13 @@ export default function Home() {
               Print your own photos, artwork, or designs on premium fine art papers. Choose your paper, upload your file, and we&apos;ll handle the rest.
             </p>
           </div>
-          <div className="group flex w-full max-w-[1280px] flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_8px_32px_0_rgba(0,0,0,0.078)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.12)] lg:h-[432px] lg:flex-row">
+          <div className="group flex w-full max-w-[1280px] flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_8px_32px_0_rgba(0,0,0,0.078)] cursor-pointer transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.12)] active:scale-[0.99] lg:h-[432px] lg:flex-row">
             <div className="relative h-[300px] w-full shrink-0 overflow-hidden lg:h-full lg:w-[554px]">
-              <Image src={images.print} alt="Professional fine art printing studio" fill className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" />
+              <Image src={images.print} alt="Professional fine art printing studio" fill className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105 group-active:scale-105" />
             </div>
             <div className="flex w-full flex-1 flex-col justify-between px-6 py-8 lg:pb-[36px] lg:pl-[90px] lg:pr-[36px] lg:pt-[32px]">
               <div className="flex flex-col items-start gap-[16px]">
-                <span className="inline-flex h-[27px] items-center justify-center rounded-[100px] bg-forest-green px-[14px] py-[6px] micro font-bold text-white transition-colors duration-300 hover:bg-primary">
+                <span className="inline-flex h-[27px] items-center justify-center rounded-[100px] bg-forest-green px-[14px] py-[6px] micro font-bold text-white transition-colors duration-300 group-hover:bg-primary group-active:bg-primary">
                   Custom Print
                 </span>
                 <h3 className="heading-h7">
@@ -649,8 +646,8 @@ export default function Home() {
                 </ul>
               </div>
               <div className="mt-8 lg:mt-[36px]">
-                <Link href="/printshop" className="group/btn flex w-max items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-lg active:scale-95">
-                  START YOUR CUSTOM PRINT <ArrowIcon className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+                <Link href="/printshop" className="group/btn flex w-max items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-lg active:scale-95 active:bg-primary active:border-primary active:text-white">
+                  START YOUR CUSTOM PRINT <ArrowIcon className="transition-transform duration-300 group-hover/btn:translate-x-1 group-active/btn:translate-x-1" />
                 </Link>
               </div>
             </div>
@@ -688,7 +685,7 @@ export default function Home() {
                   key={index}
                   onClick={() => setActiveProject(index)}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
-                    index === activeProject ? "w-6 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80 hover:scale-110"
+                    index === activeProject ? "w-6 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80 active:scale-110"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -705,7 +702,7 @@ export default function Home() {
                     className={`relative flex h-[70px] w-[100px] shrink-0 cursor-pointer items-center justify-center transition-all duration-300 sm:h-[200px] sm:w-[380px] ${
                       isActive
                         ? "rounded-[8px] border-[1.5px] border-white bg-transparent p-[3px] sm:rounded-[24px] sm:border-2 sm:bg-[#336a4c] sm:p-[8px]"
-                        : "rounded-[8px] border-[1.5px] border-transparent bg-transparent opacity-60 hover:opacity-100 hover:scale-105 hover:shadow-lg sm:rounded-[24px] sm:border-2"
+                        : "rounded-[8px] border-[1.5px] border-transparent bg-transparent opacity-60 hover:opacity-100 active:scale-95 sm:rounded-[24px] sm:border-2"
                     }`}
                   >
                     <div className={`relative h-full w-full overflow-hidden ${isActive ? "rounded-[5px] sm:rounded-[16px]" : "rounded-[8px] sm:rounded-[24px]"}`}>
@@ -727,7 +724,7 @@ export default function Home() {
                 What Our Costumer Say
               </h2>
 
-              <div className="group flex h-auto w-full max-w-[1200px] flex-col items-stretch gap-3 rounded-[20px] bg-white p-[20px] transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:h-[82px] sm:flex-row sm:items-center sm:justify-between sm:rounded-[27px] sm:py-0 sm:pl-[32px] sm:pr-[24px]">
+              <div className="group flex h-auto w-full max-w-[1200px] flex-col items-stretch gap-3 rounded-[20px] bg-white p-[20px] transition-all duration-300 hover:-translate-y-1 hover:shadow-md active:scale-[0.99] sm:h-[82px] sm:flex-row sm:items-center sm:justify-between sm:rounded-[27px] sm:py-0 sm:pl-[32px] sm:pr-[24px]">
                 <div className="flex flex-col items-start justify-center">
                   <div className="text-[22px] font-bold tracking-tighter sm:text-[26px]">
                     <span className="text-[#4285F4]">G</span>
@@ -748,8 +745,8 @@ export default function Home() {
                   </div>
                 </div>
 
-                <a href="#" className="group/btn flex items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-md active:scale-95">
-                  Review us on Google <ArrowIcon className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+                <a href="#" className="group/btn flex items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-md active:scale-95 active:bg-primary active:border-primary active:text-white">
+                  Review us on Google <ArrowIcon className="transition-transform duration-300 group-hover/btn:translate-x-1 group-active/btn:translate-x-1" />
                 </a>
               </div>
             </div>
@@ -764,14 +761,14 @@ export default function Home() {
               {[...testimonials, ...testimonials].map((item, index) => (
                 <article
                   key={index}
-                  className="card group flex h-[400px] w-[260px] shrink-0 flex-col gap-[16px] p-[20px] transition-all duration-300 hover:-translate-y-2 hover:border-[#84A59D] hover:shadow-xl cursor-pointer sm:h-[440px] sm:w-[360px] sm:gap-[20px] sm:p-[32px]"
+                  className="card group flex h-[400px] w-[260px] shrink-0 flex-col gap-[16px] p-[20px] transition-all duration-300 hover:-translate-y-2 hover:border-[#84A59D] hover:shadow-xl active:scale-[0.98] active:-translate-y-2 cursor-pointer sm:h-[440px] sm:w-[360px] sm:gap-[20px] sm:p-[32px]"
                 >
                   <div className="flex items-center gap-[12px]">
-                    <div className="relative size-[48px] shrink-0 overflow-hidden rounded-full transition-transform duration-300 group-hover:scale-105">
+                    <div className="relative size-[48px] shrink-0 overflow-hidden rounded-full transition-transform duration-300 group-hover:scale-105 group-active:scale-105">
                       <Image src={item.avatar} alt={item.name} fill className="object-cover" />
                     </div>
                     <div className="flex flex-col">
-                      <h3 className="body-text font-bold transition-colors duration-300 group-hover:text-forest-green">{item.name}</h3>
+                      <h3 className="body-text font-bold transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">{item.name}</h3>
                       <p className="small">{item.date}</p>
                     </div>
                   </div>
@@ -807,7 +804,7 @@ export default function Home() {
                     {trustedBrands.map((brandImg, i) => (
                       <div
                         key={i}
-                        className="flex h-[60px] sm:h-[80px] items-center justify-center shrink-0 opacity-70 grayscale transition-all duration-300 hover:scale-110 hover:opacity-100 hover:grayscale-0 cursor-pointer"
+                        className="flex h-[60px] sm:h-[80px] items-center justify-center shrink-0 opacity-70 grayscale transition-all duration-300 hover:scale-110 hover:opacity-100 hover:grayscale-0 active:scale-110 active:opacity-100 active:grayscale-0 cursor-pointer"
                       >
                         <img
                           src={brandImg}
@@ -829,13 +826,13 @@ export default function Home() {
             <h2 className="w-full max-w-[697px] text-center heading-h2 text-[26px] sm:text-[36px] lg:text-[56px]">
               What We&apos;ve Been Framing
             </h2>
-            <Link href="https://instagram.com" target="_blank" className="group flex items-center gap-[8px] caption font-medium text-primary cursor-pointer transition-colors duration-300 hover:text-forest-green">
+            <Link href="https://instagram.com" target="_blank" className="group flex items-center gap-[8px] caption font-medium text-primary cursor-pointer transition-colors duration-300 hover:text-forest-green active:text-forest-green">
               <svg className="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
               </svg>
-              Follow us <span className="text-forest-green transition-colors duration-300 group-hover:text-[#84A59D]">@gallery23framing</span>
+              Follow us <span className="text-forest-green transition-colors duration-300 group-hover:text-[#84A59D] group-active:text-[#84A59D]">@gallery23framing</span>
             </Link>
           </div>
 
@@ -855,15 +852,15 @@ export default function Home() {
                 { title: "Abstract Minimalism in Matte Black", handle: "@modern_nest", img: images.instagramThree },
                 { title: "Championship Jersey Shadow Box", handle: "@sportscollector_88", img: images.instagramFour },
               ].map((item, index) => (
-                <article key={index} className="group flex w-[250px] shrink-0 flex-col items-start cursor-pointer sm:w-[350px]">
+                <article key={index} className="group flex w-[250px] shrink-0 flex-col items-start cursor-pointer transition-transform duration-300 active:scale-95 sm:w-[350px]">
                   <div className="relative h-[290px] w-[190px] overflow-hidden rounded-[8px] sm:h-[400px] sm:w-[270px]">
-                    <Image src={item.img} alt={item.title} fill sizes="100vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                    <Image src={item.img} alt={item.title} fill sizes="100vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-active:scale-105" />
                   </div>
                   <div className="mt-[12px] flex w-[190px] flex-col gap-[4px] sm:mt-[16px] sm:w-[270px]">
-                    <h3 className="truncate body-small font-semibold transition-colors duration-300 group-hover:text-forest-green">
+                    <h3 className="truncate body-small font-semibold transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">
                       {item.title}
                     </h3>
-                    <p className="caption transition-colors duration-300 group-hover:text-[#84A59D]">
+                    <p className="caption transition-colors duration-300 group-hover:text-[#84A59D] group-active:text-[#84A59D]">
                       {item.handle}
                     </p>
                   </div>
@@ -882,10 +879,10 @@ export default function Home() {
 
             <div className="flex w-full max-w-[752px] flex-col gap-[6px] pb-[6px]">
               {faqs.map((question, index) => (
-                <details key={index} className="card group/faq w-full p-[20px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md cursor-pointer sm:p-[30px]">
+                <details key={index} className="card group/faq w-full p-[20px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md active:scale-[0.98] active:border-[#84A59D] cursor-pointer sm:p-[30px]">
                   <summary className="flex items-center justify-between gap-4 list-none heading-h8 font-normal [&::-webkit-details-marker]:hidden">
-                    <span className="transition-colors duration-300 group-hover/faq:text-forest-green">{question}</span>
-                    <svg className="size-[20px] shrink-0 text-primary transition-all duration-300 group-open/faq:rotate-45 group-hover/faq:text-forest-green sm:size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <span className="transition-colors duration-300 group-hover/faq:text-forest-green group-active/faq:text-forest-green">{question}</span>
+                    <svg className="size-[20px] shrink-0 text-primary transition-all duration-300 group-open/faq:rotate-45 group-hover/faq:text-forest-green group-active/faq:text-forest-green sm:size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" />
                     </svg>
                   </summary>
@@ -897,8 +894,8 @@ export default function Home() {
             </div>
 
             <div className="mt-[8px] text-center">
-              <Link href="/support" className="group flex items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-lg active:scale-95">
-                VIEW ALL FAQS <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+              <Link href="/support" className="group/btn flex items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-lg active:scale-95 active:bg-primary active:border-primary active:text-white">
+                VIEW ALL FAQS <ArrowIcon className="transition-transform duration-300 group-hover/btn:translate-x-1 group-active/btn:translate-x-1" />
               </Link>
             </div>
           </div>
@@ -919,7 +916,7 @@ export default function Home() {
 
           <div className="absolute inset-0 z-10 bg-black/10" />
 
-          <div className="relative z-20 flex w-full max-w-[1050px] flex-col items-center justify-center gap-[24px] rounded-[24px] bg-white px-[24px] py-[40px] text-center transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.15)] sm:gap-[32px] sm:rounded-[32px] sm:py-[64px] lg:h-[292.5px] lg:px-[80px]">
+          <div className="relative z-20 flex w-full max-w-[1050px] flex-col items-center justify-center gap-[24px] rounded-[24px] bg-white px-[24px] py-[40px] text-center transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.15)] active:scale-[0.99] sm:gap-[32px] sm:rounded-[32px] sm:py-[64px] lg:h-[292.5px] lg:px-[80px]">
             <div className="flex flex-col gap-[12px] sm:gap-[16px]">
               <h2 className="heading-h2 text-[26px] text-primary sm:text-[36px] lg:text-[56px]">
                 {consultationData.title}
@@ -932,14 +929,14 @@ export default function Home() {
             <div className="flex w-full flex-col items-center justify-center gap-[12px] sm:w-auto sm:flex-row sm:gap-[16px]">
               <a
                 href={`tel:${consultationData.phone.replace(/[^0-9]/g, '')}`}
-                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-md active:scale-95 sm:w-auto"
+                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-md active:scale-95 active:bg-forest-green active:border-forest-green sm:w-auto"
               >
                 <MobilePhoneIcon />
                 {consultationData.phone}
               </a>
               <a
                 href={consultationData.emailLink}
-                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-md active:scale-95 sm:w-auto"
+                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-md active:scale-95 active:bg-forest-green active:border-forest-green sm:w-auto"
               >
                 <EnvelopeIcon />
                 {consultationData.emailText}
