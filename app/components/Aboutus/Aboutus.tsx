@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
+// Import Header, Footer, and Shared Icons from home
 import { Header, Footer, ArrowIcon } from "@/app/components/home/home";
 
 export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
@@ -60,7 +61,7 @@ const PrincipleCard = ({ principle, className = "" }: { principle: any; classNam
   </div>
 );
 
-// --- Extracted "Our Journey" Sub-component to fix React Rule of Hooks ---
+// --- Extracted "Our Journey" Sub-component ---
 function MilestoneItem({ item, index, scrollYProgress, scaleX }: { item: any, index: number, scrollYProgress: any, scaleX: any }) {
   const yearColor = useTransform(scrollYProgress, [item.point - 0.1, item.point], ["#a3a3a3", "#161616"]);
   const descOpacity = useTransform(scrollYProgress, [item.point - 0.1, item.point], [0.35, 1]);
@@ -112,251 +113,266 @@ export default function AboutUsComponent({ data }: { data: any }) {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
+    <div className="flex min-h-screen flex-col bg-warm-cream text-primary overflow-x-hidden">
       <Header />
 
       <main className="flex w-full flex-1 flex-col items-center">
+        
         {/* --- 1. HERO SECTION --- */}
-        <section className="relative flex h-[500px] w-full max-w-[1440px] flex-col items-start justify-center overflow-hidden px-[20px] py-[64px] sm:items-center sm:px-[24px] lg:h-[643px] lg:items-center lg:px-[80px] lg:py-[80px]">
-          <div className="absolute inset-0 z-0 h-full lg:h-full">
-            <Image src={data.hero.image} alt="About Us Hero" fill priority className="object-cover" />
+        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden h-[500px] lg:h-[643px]">
+          {/* Infinite Background Image */}
+          <div className="absolute inset-0 z-0 h-full w-full">
+            <Image src={data.hero.image} alt="About Us Hero" fill priority className="object-cover" sizes="100vw" />
           </div>
-          <div className="absolute inset-0 z-10 bg-black/10 lg:h-full" />
+          <div className="absolute inset-0 z-10 bg-black/10" />
 
-          {/* Mobile text-left & items-start to match Figma */}
-          <div className="relative z-20 flex w-full max-w-[1000px] flex-col items-start gap-[16px] text-left text-white sm:items-center sm:text-center lg:items-center lg:text-center">
-            <h1 className="heading-display text-white w-full max-w-[924px]">
-              {data.hero.title}
-            </h1>
-            <p className="body-large w-full max-w-[700px] text-white/80">
-              {data.hero.subtitle}
-            </p>
+          {/* Constrained Text Container */}
+          <div className="relative z-20 mx-auto flex w-full max-w-[1440px] flex-col items-start gap-[16px] px-[20px] text-left text-white sm:items-center sm:text-center sm:px-[24px] lg:px-[80px]">
+            <div className="flex w-full max-w-[1000px] flex-col items-start gap-[16px] text-left text-white sm:items-center sm:text-center lg:items-center lg:text-center">
+              <h1 className="heading-display text-white w-full max-w-[924px]">
+                {data.hero.title}
+              </h1>
+              <p className="body-large w-full max-w-[700px] text-white/80">
+                {data.hero.subtitle}
+              </p>
+            </div>
           </div>
         </section>
 
         {/* --- 2. MEET THE GREGS SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream px-[20px] py-[64px] sm:px-[24px] lg:flex-row lg:items-center lg:justify-center lg:gap-[64px] lg:px-[80px] lg:py-[80px]">
-          <div className="relative h-[278px] w-full max-w-[340px] shrink-0 lg:mb-0 lg:h-[567px] lg:max-w-[480px] lg:w-[480px]">
-            <img src={data.meetTheGregs.imgSr} alt="Greg Sr" className="absolute left-0 top-0 h-[320px] w-[240px] rounded-[12px] object-cover lg:h-full lg:w-full" />
-            <img src={data.meetTheGregs.imgJr} alt="Greg Jr" className="absolute bottom-0 right-0 h-[200px] w-[160px] rounded-[12px] object-cover shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] lg:bottom-[-40px] lg:right-[-40px] lg:h-[320px] lg:w-[260px]" />
-          </div>
-
-          <div className="flex w-full max-w-[736px] flex-col gap-[24px] lg:gap-[32px] mt-[48px] lg:mt-0">
-            <h2 className="heading-h3 tracking-[-0.015em]">
-              {data.meetTheGregs.title}
-            </h2>
-            <div className="flex flex-col gap-[16px] body-text text-primary">
-              {data.meetTheGregs.paragraphs.map((para: string, i: number) => (
-                <p key={i}>{para}</p>
-              ))}
+        <section className="w-full bg-warm-cream flex justify-center">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] py-[64px] sm:px-[24px] lg:flex-row lg:items-center lg:justify-center lg:gap-[64px] lg:px-[80px] lg:py-[80px]">
+            <div className="relative h-[278px] w-full max-w-[340px] shrink-0 lg:mb-0 lg:h-[567px] lg:max-w-[480px] lg:w-[480px]">
+              <img src={data.meetTheGregs.imgSr} alt="Greg Sr" className="absolute left-0 top-0 h-[320px] w-[240px] rounded-[12px] object-cover lg:h-full lg:w-full" />
+              <img src={data.meetTheGregs.imgJr} alt="Greg Jr" className="absolute bottom-0 right-0 h-[200px] w-[160px] rounded-[12px] object-cover shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] lg:bottom-[-40px] lg:right-[-40px] lg:h-[320px] lg:w-[260px]" />
             </div>
-            <div className="border-l-[4px] border-forest-green pl-[16px] sm:pl-[24px]">
-              <p className="body-text italic text-secondary">
-                {data.meetTheGregs.quote}
-              </p>
+
+            <div className="flex w-full max-w-[736px] flex-col gap-[24px] lg:gap-[32px] mt-[48px] lg:mt-0">
+              <h2 className="heading-h3 tracking-[-0.015em]">
+                {data.meetTheGregs.title}
+              </h2>
+              <div className="flex flex-col gap-[16px] body-text text-primary">
+                {data.meetTheGregs.paragraphs.map((para: string, i: number) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
+              <div className="border-l-[4px] border-forest-green pl-[16px] sm:pl-[24px]">
+                <p className="body-text italic text-secondary">
+                  {data.meetTheGregs.quote}
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* --- 3. WHAT WE STAND FOR SECTION --- */}
-        <section className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center gap-[40px] overflow-hidden px-[20px] py-[64px] sm:px-[24px] lg:gap-[56px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
-          <div className="absolute inset-0 z-0">
-            <Image src={data.whatWeStandFor.bgImage} alt="Workshop" fill className="object-cover" />
+        <section className="relative w-full flex flex-col items-center justify-center overflow-hidden py-[64px] lg:pb-[120px] lg:pt-[96px]">
+          {/* Infinite Background Image */}
+          <div className="absolute inset-0 z-0 h-full w-full">
+            <Image src={data.whatWeStandFor.bgImage} alt="Workshop" fill className="object-cover" sizes="100vw" />
           </div>
           <div className="absolute inset-0 z-10 bg-black/10" />
 
-          <div className="relative z-20 flex w-full max-w-[920px] flex-col items-center gap-[12px] text-center lg:mb-0">
-            <h2 className="heading-h2 text-white">
-              {data.whatWeStandFor.title}
-            </h2>
-            <p className="body-text text-[#999999]">
-              {data.whatWeStandFor.subtitle}
-            </p>
-          </div>
-
-          <div className="relative z-20 flex w-full max-w-[1200px] flex-col gap-[16px] sm:gap-[24px]">
-            <div className="flex flex-col gap-[16px] sm:flex-row sm:gap-[24px]">
-              <PrincipleCard principle={data.whatWeStandFor.principles[0]} className="w-full sm:flex-1" />
-              <PrincipleCard principle={data.whatWeStandFor.principles[1]} className="w-full sm:flex-1" />
+          {/* Constrained Container */}
+          <div className="relative z-20 mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center gap-[40px] px-[20px] sm:px-[24px] lg:gap-[56px] lg:px-[120px]">
+            <div className="flex w-full max-w-[920px] flex-col items-center gap-[12px] text-center lg:mb-0">
+              <h2 className="heading-h2 text-white">
+                {data.whatWeStandFor.title}
+              </h2>
+              <p className="body-text text-[#999999]">
+                {data.whatWeStandFor.subtitle}
+              </p>
             </div>
-            <div className="flex flex-col gap-[16px] sm:flex-row sm:gap-[24px]">
-              <PrincipleCard principle={data.whatWeStandFor.principles[2]} className="w-full sm:w-[420px] sm:shrink-0" />
-              <PrincipleCard principle={data.whatWeStandFor.principles[3]} className="w-full sm:flex-1" />
+
+            <div className="flex w-full max-w-[1200px] flex-col gap-[16px] sm:gap-[24px]">
+              <div className="flex flex-col gap-[16px] sm:flex-row sm:gap-[24px]">
+                <PrincipleCard principle={data.whatWeStandFor.principles[0]} className="w-full sm:flex-1" />
+                <PrincipleCard principle={data.whatWeStandFor.principles[1]} className="w-full sm:flex-1" />
+              </div>
+              <div className="flex flex-col gap-[16px] sm:flex-row sm:gap-[24px]">
+                <PrincipleCard principle={data.whatWeStandFor.principles[2]} className="w-full sm:w-[420px] sm:shrink-0" />
+                <PrincipleCard principle={data.whatWeStandFor.principles[3]} className="w-full sm:flex-1" />
+              </div>
             </div>
           </div>
         </section>
 
-    {/* --- 4. OUR JOURNEY SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream px-[20px] py-[64px] sm:px-[24px] lg:px-[80px] lg:py-[80px]">
-          <div className="flex w-full max-w-[1280px] flex-col items-center text-center mb-[40px] lg:mb-[64px]">
-            <h2 className="heading-h2 text-primary">
-              {data.journey.title}
-            </h2>
-          </div>
+        {/* --- 4. OUR JOURNEY SECTION --- */}
+        <section className="w-full bg-warm-cream flex justify-center">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] py-[64px] sm:px-[24px] lg:px-[80px] lg:py-[80px]">
+            <div className="flex w-full max-w-[1280px] flex-col items-center text-center mb-[40px] lg:mb-[64px]">
+              <h2 className="heading-h2 text-primary">
+                {data.journey.title}
+              </h2>
+            </div>
 
-          {/* Container exactly matching Figma width and gaps */}
-          <div className="flex w-full max-w-[1185px] flex-col gap-[40px] lg:flex-row lg:justify-between lg:gap-[24px]">
-            {data.journey.milestones.map((item: any, index: number) => (
-              <div key={index} className="flex w-full flex-col items-start gap-[12px] lg:flex-1 lg:gap-[16px]">
-                
-                {/* Year */}
-                <h3 className="heading-h4 text-forest-green">
-                  {item.year}
-                </h3>
+            <div className="flex w-full max-w-[1185px] flex-col gap-[40px] lg:flex-row lg:justify-between lg:gap-[24px]">
+              {data.journey.milestones.map((item: any, index: number) => (
+                <div key={index} className="flex w-full flex-col items-start gap-[12px] lg:flex-1 lg:gap-[16px]">
+                  <h3 className="heading-h4 text-forest-green">
+                    {item.year}
+                  </h3>
 
-                {/* Dot and Line matching Figma */}
-                <div className="flex w-full items-center">
-                  <div className="relative z-10 size-[12px] shrink-0 rounded-full bg-forest-green" />
-                  <div className="h-[2px] w-full bg-[#D5D5D5]" />
+                  <div className="flex w-full items-center">
+                    <div className="relative z-10 size-[12px] shrink-0 rounded-full bg-forest-green" />
+                    <div className="h-[2px] w-full bg-[#D5D5D5]" />
+                  </div>
+
+                  <p className="body-small text-secondary text-left">
+                    {item.desc}
+                  </p>
                 </div>
-
-                {/* Description */}
-                <p className="body-small text-secondary text-left">
-                  {item.desc}
-                </p>
-                
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
         {/* --- 5. THE TEAM SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-primary gap-[32px] px-[20px] py-[64px] sm:px-[24px] lg:gap-[64px] lg:px-[80px] lg:py-[120px]">
-          <div className="flex w-full max-w-[1280px] flex-row items-end justify-between lg:mb-0">
-            <h2 className="heading-h2 text-white">
-              {data.team.title}
-            </h2>
-            <div className="hidden pb-[12px] lg:flex lg:gap-[16px]">
-              <button className="flex size-[48px] items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white/10 sm:size-[56px]">
-                <ArrowIcon />
+        <section className="w-full bg-primary flex justify-center">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[32px] px-[20px] py-[64px] sm:px-[24px] lg:gap-[64px] lg:px-[80px] lg:py-[120px]">
+            <div className="flex w-full max-w-[1280px] flex-row items-end justify-between lg:mb-0">
+              <h2 className="heading-h2 text-white">
+                {data.team.title}
+              </h2>
+              {/* Working Desktop Buttons */}
+              <div className="hidden pb-[12px] lg:flex lg:gap-[16px]">
+                <button aria-label="Previous team member" className="group flex size-[48px] items-center justify-center rounded-full border border-white/30 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-lg active:scale-95 sm:size-[56px]">
+                  <span className="rotate-180"><ArrowIcon className="transition-transform duration-300 group-hover:-translate-x-1" /></span>
+                </button>
+                <button aria-label="Next team member" className="group flex size-[48px] items-center justify-center rounded-full border border-white/30 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-lg active:scale-95 sm:size-[56px]">
+                  <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+                </button>
+              </div>
+            </div>
+
+            <div className="grid w-full max-w-[1280px] grid-cols-2 gap-[16px] lg:flex lg:flex-nowrap lg:justify-between lg:gap-[24px] lg:overflow-visible lg:pb-0">
+              {data.team.members.map((member: any, index: number) => {
+                const isVisibleOnMobile = index === teamStartIndex || index === (teamStartIndex + 1) % data.team.members.length;
+
+                return (
+                  <article
+                    key={index}
+                    className={`w-full min-w-0 flex-col gap-[16px] lg:w-[calc(25%-18px)] lg:shrink lg:gap-[20px] lg:flex ${isVisibleOnMobile ? "flex" : "hidden"}`}
+                  >
+                    <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[12px] lg:h-[402px] lg:aspect-auto">
+                      <ResponsiveImage src={member.img} alt={member.name} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    </div>
+                    <div className="flex flex-col gap-[12px] sm:gap-[16px]">
+                      <div className="flex flex-col gap-[6px] sm:gap-[6px]">
+                        <h3 className="heading-h8 text-white">{member.name}</h3>
+                        <p className="micro font-bold uppercase tracking-[0.05em] text-sage">{member.role}</p>
+                      </div>
+                      <p className="body-small text-muted">{member.desc}</p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+
+            {/* Working Mobile Buttons */}
+            <div className="mt-[8px] flex w-full items-center justify-center gap-[12px] lg:hidden">
+              <button
+                onClick={handlePrevTeam}
+                className="group flex size-[40px] items-center justify-center rounded-full border border-white/30 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-lg active:scale-95"
+                aria-label="Previous team member"
+              >
+                <span className="rotate-180"><ArrowIcon className="transition-transform duration-300 group-hover:-translate-x-1" /></span>
+              </button>
+              <button
+                onClick={handleNextTeam}
+                className="group flex size-[40px] items-center justify-center rounded-full border border-white/30 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-lg active:scale-95"
+                aria-label="Next team member"
+              >
+                <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </div>
-          </div>
-
-          <div className="grid w-full max-w-[1280px] grid-cols-2 gap-[16px] lg:flex lg:flex-nowrap lg:justify-between lg:gap-[24px] lg:overflow-visible lg:pb-0">
-            {data.team.members.map((member: any, index: number) => {
-              // Mobile visibility logic: Show 2 items at a time
-              const isVisibleOnMobile = index === teamStartIndex || index === (teamStartIndex + 1) % data.team.members.length;
-
-              return (
-                <article
-                  key={index}
-                  className={`w-full min-w-0 flex-col gap-[16px] lg:w-[calc(25%-18px)] lg:shrink lg:gap-[20px] lg:flex ${isVisibleOnMobile ? "flex" : "hidden"}`}
-                >
-                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[12px] lg:h-[402px] lg:aspect-auto">
-                    <ResponsiveImage src={member.img} alt={member.name} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    <button className="absolute bottom-[12px] left-[12px] text-white hover:text-white/80 sm:bottom-[16px] sm:left-[16px]">
-                      <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="flex flex-col gap-[12px] sm:gap-[16px]">
-                    <div className="flex flex-col gap-[6px] sm:gap-[6px]">
-                      <h3 className="heading-h8 text-white">{member.name}</h3>
-                      <p className="micro font-bold uppercase tracking-[0.05em] text-sage">{member.role}</p>
-                    </div>
-                    <p className="body-small text-muted">{member.desc}</p>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-
-          <div className="mt-[8px] flex w-full items-center justify-center gap-[12px] lg:hidden">
-            <button
-              onClick={handlePrevTeam}
-              className="flex size-[40px] items-center justify-center rounded-full border border-white/30 text-white transition-colors active:bg-white/10"
-              aria-label="Previous team member"
-            >
-              <span className="rotate-180"><ArrowIcon /></span>
-            </button>
-            <button
-              onClick={handleNextTeam}
-              className="flex size-[40px] items-center justify-center rounded-full border border-white/30 text-white transition-colors active:bg-white/10"
-              aria-label="Next team member"
-            >
-              <ArrowIcon />
-            </button>
           </div>
         </section>
 
         {/* --- 6. FAQ SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-forest-green px-[20px] py-[64px] sm:px-[24px] lg:flex-row lg:items-stretch lg:justify-center lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
-          {/* Mobile: Image on top (order-1) matching Figma */}
-          <div className="order-1 relative mb-[32px] h-[320px] w-full max-w-[471px] shrink-0 overflow-hidden rounded-[24px] lg:order-none lg:mb-0 lg:h-auto">
-            <ResponsiveImage src={data.faq.image} alt="Visitors at an art exhibition" />
-          </div>
-
-          <div className="order-2 flex w-full max-w-[761px] flex-col gap-[32px] lg:order-none lg:gap-[48px]">
-            <h2 className="heading-h2 text-white">
-              {data.faq.title}
-            </h2>
-
-            <div className="flex flex-col gap-[12px] lg:hidden">
-              {data.faq.questions.map((faq: any, index: number) => (
-                <div key={index} className="flex flex-col gap-[12px] rounded-[12px] bg-white p-[20px]">
-                  <div className="flex items-start justify-between gap-[16px]">
-                    <p className="heading-h8 font-semibold text-primary">{faq.q}</p>
-                    <svg className="size-[16px] shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" />
-                    </svg>
-                  </div>
-                  <p className="body-text text-secondary">{faq.a}</p>
-                </div>
-              ))}
+        <section className="w-full bg-forest-green flex justify-center">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] py-[64px] sm:px-[24px] lg:flex-row lg:items-stretch lg:justify-center lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
+            {/* Image Side */}
+            <div className="order-1 relative mb-[32px] h-[320px] w-full max-w-[471px] shrink-0 overflow-hidden rounded-[24px] lg:order-none lg:mb-0 lg:h-auto">
+              <ResponsiveImage src={data.faq.image} alt="Visitors at an art exhibition" />
             </div>
 
-            <div className="hidden flex-col gap-[12px] sm:gap-[16px] lg:flex">
-              {data.faq.questions.map((faq: any, index: number) => (
-                <details key={index} className="card group flex flex-col gap-[12px] p-[20px] sm:gap-[16px] sm:p-[30px] cursor-pointer">
-                  <summary className="flex items-start justify-between gap-[16px] list-none heading-h8 font-semibold [&::-webkit-details-marker]:hidden">
-                    {faq.q}
-                    <svg className="size-[20px] shrink-0 text-primary transition-transform duration-300 group-open:rotate-45 sm:size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" />
-                    </svg>
-                  </summary>
-                  <p className="mt-[12px] body-text text-secondary sm:mt-[16px]">
-                    {faq.a}
-                  </p>
-                </details>
-              ))}
+            {/* Text & Accordions Side */}
+            <div className="order-2 flex w-full max-w-[761px] flex-col gap-[32px] lg:order-none lg:gap-[48px]">
+              <h2 className="heading-h2 text-white">
+                {data.faq.title}
+              </h2>
+
+              {/* Mobile FAQs */}
+              <div className="flex flex-col gap-[12px] lg:hidden">
+                {data.faq.questions.map((faq: any, index: number) => (
+                  <details key={index} className="group card flex flex-col gap-[12px] rounded-[12px] bg-white p-[20px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md active:scale-[0.98] active:border-[#84A59D] cursor-pointer">
+                    <summary className="flex items-start justify-between gap-[16px] list-none [&::-webkit-details-marker]:hidden">
+                      <span className="heading-h8 font-semibold text-primary transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">{faq.q}</span>
+                      <svg className="size-[20px] shrink-0 text-primary transition-all duration-300 group-open:rotate-45 group-hover:text-forest-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" />
+                      </svg>
+                    </summary>
+                    <p className="mt-[12px] body-text text-secondary opacity-0 transition-opacity duration-300 group-open:opacity-100">{faq.a}</p>
+                  </details>
+                ))}
+              </div>
+
+              {/* Desktop FAQs */}
+              <div className="hidden flex-col gap-[12px] sm:gap-[16px] lg:flex">
+                {data.faq.questions.map((faq: any, index: number) => (
+                  <details key={index} className="group card flex flex-col gap-[12px] p-[20px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md active:scale-[0.98] active:border-[#84A59D] cursor-pointer sm:gap-[16px] sm:p-[30px]">
+                    <summary className="flex items-start justify-between gap-[16px] list-none heading-h8 font-semibold [&::-webkit-details-marker]:hidden">
+                      <span className="transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">{faq.q}</span>
+                      <svg className="size-[20px] shrink-0 text-primary transition-all duration-300 group-open:rotate-45 group-hover:text-forest-green sm:size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" />
+                      </svg>
+                    </summary>
+                    <p className="mt-[12px] body-text text-secondary opacity-0 transition-opacity duration-300 group-open:opacity-100 sm:mt-[16px]">
+                      {faq.a}
+                    </p>
+                  </details>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* --- 7. PRESERVING MEMORIES (CTA) SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-warm-cream gap-[32px] px-[20px] py-[64px] sm:px-[24px] lg:gap-0 lg:px-[80px] lg:py-[80px]">
-          <div className="flex w-full max-w-[854px] flex-col items-center gap-[32px] text-center lg:gap-[48px]">
-            <div className="flex flex-col items-center gap-[16px] text-center lg:gap-[24px]">
-              <h2 className="heading-h2 tracking-[-0.02em]">
-                {data.cta.titlePrefix} <br className="sm:hidden" /><span className="text-forest-green">{data.cta.titleHighlight}</span>
-              </h2>
-              <p className="max-w-[700px] body-text text-secondary">
-                {data.cta.description}
-              </p>
-            </div>
-
-            <Link href={data.cta.buttonLink} className="btn-primary bg-primary border-primary hover:bg-dark-surface uppercase tracking-[0.12em] w-full sm:w-auto">
-              {data.cta.buttonText}
-            </Link>
-
-            <div className="flex flex-col items-center gap-[12px] text-center sm:flex-row sm:items-center sm:justify-center sm:gap-[16px]">
-              <div className="flex h-[36px] w-[84px] -space-x-3">
-                {data.cta.avatars.map((img: string, idx: number) => (
-                  <img
-                    key={idx}
-                    src={img}
-                    alt={`Collector ${idx + 1}`}
-                    className="relative size-[36px] rounded-full border-[2px] border-warm-cream object-cover"
-                    style={{ zIndex: (idx + 1) * 10 }}
-                  />
-                ))}
+        <section className="w-full bg-warm-cream flex justify-center">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[32px] px-[20px] py-[64px] sm:px-[24px] lg:gap-0 lg:px-[80px] lg:py-[80px]">
+            <div className="flex w-full max-w-[854px] flex-col items-center gap-[32px] text-center lg:gap-[48px]">
+              <div className="flex flex-col items-center gap-[16px] text-center lg:gap-[24px]">
+                <h2 className="heading-h2 tracking-[-0.02em]">
+                  {data.cta.titlePrefix} <br className="sm:hidden" /><span className="text-forest-green">{data.cta.titleHighlight}</span>
+                </h2>
+                <p className="max-w-[700px] body-text text-secondary">
+                  {data.cta.description}
+                </p>
               </div>
-              <p className="caption font-medium text-primary">
-                {data.cta.trustText}
-              </p>
+
+              {/* Working Button with Hover Effect (Black -> Green) */}
+              <Link href={data.cta.buttonLink} className="group flex w-full sm:w-max items-center justify-center gap-[8px] btn-primary bg-primary border-primary transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-lg active:scale-95 uppercase tracking-[0.12em]">
+                {data.cta.buttonText} <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+
+              <div className="flex flex-col items-center gap-[12px] text-center sm:flex-row sm:items-center sm:justify-center sm:gap-[16px]">
+                <div className="flex h-[36px] w-[84px] -space-x-3">
+                  {data.cta.avatars.map((img: string, idx: number) => (
+                    <img
+                      key={idx}
+                      src={img}
+                      alt={`Collector ${idx + 1}`}
+                      className="relative size-[36px] rounded-full border-[2px] border-warm-cream object-cover"
+                      style={{ zIndex: (idx + 1) * 10 }}
+                    />
+                  ))}
+                </div>
+                <p className="caption font-medium text-primary">
+                  {data.cta.trustText}
+                </p>
+              </div>
             </div>
           </div>
         </section>
