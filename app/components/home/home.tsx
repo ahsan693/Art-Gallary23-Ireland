@@ -572,11 +572,21 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- WHY CHOOSE OUR FRAMES SECTION --- */}
-        <section className="relative isolate mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] px-5 py-[80px] lg:px-[80px]">
-          <ResponsiveImage src={images.why} alt="Gallery styling interior" className="absolute inset-0 -z-20" />
-          <div className="absolute inset-0 -z-10 bg-primary/75" />
-          <div className="flex w-full max-w-[700px] flex-col items-center gap-[16px] text-center text-white">
+    {/* --- WHY CHOOSE OUR FRAMES SECTION --- */}
+        <section className="relative mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] overflow-hidden px-5 py-[80px] lg:px-[80px]">
+          
+          {/* Background Image - Set to z-0 */}
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src={images.why} 
+              alt="Gallery styling interior" 
+              fill 
+              className="object-cover" 
+            />
+          </div>
+          
+          {/* Content Top - Set to relative z-10 */}
+          <div className="relative z-10 flex w-full max-w-[700px] flex-col items-center gap-[16px] text-center text-white">
             <h2 className="heading-h2 text-[26px] text-white sm:text-[36px] lg:text-[56px]">
               Why Choose Our Frames
             </h2>
@@ -584,7 +594,9 @@ export default function Home() {
               From independent craftsmanship to personalized design services, we bring passion and expertise to every frame we create.
             </p>
           </div>
-          <div className="flex w-full max-w-[1280px] flex-col gap-[24px] lg:flex-row lg:justify-between">
+          
+          {/* Content Grid - Set to relative z-10 */}
+          <div className="relative z-10 flex w-full max-w-[1280px] flex-col gap-[24px] lg:flex-row lg:justify-between">
             {benefitsData.map((item) => (
               <article
                 key={item.title}
