@@ -96,6 +96,7 @@ export function BadgeIcon() {
     </svg>
   );
 }
+
 export function StarIcon({ fill = "currentColor", className = "size-4" }: { fill?: string; className?: string }) {
   return (
     <svg className={className} fill={fill} viewBox="0 0 24 24" stroke="none">
@@ -141,7 +142,7 @@ export function Button({ children, href = "/support", dark = false }: { children
       href={href} 
       className={`group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95 ${
         dark 
-          ? "btn-primary hover:bg-[#204834] hover:border-[#204834]" 
+          ? "btn-primary hover:bg-primary hover:border-primary hover:text-white" 
           : "btn-secondary hover:bg-warm-cream hover:text-forest-green hover:border-forest-green"
       }`}
     >
@@ -348,9 +349,11 @@ export function Footer() {
     <footer className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-black text-white">
       <div className="flex w-full items-center justify-between border-b border-dark-surface px-[20px] py-[24px] sm:px-[40px] sm:py-[28px] lg:px-[80px] lg:py-[40px]">
         <Link href="/" className="flex h-[48px] items-center transition-transform duration-300 hover:scale-105 sm:h-[65px]">
-          <img
+          <Image
             src="/Homepage/Icons/Logo.svg"
             alt="Gallery 23 Logo"
+            width={200}
+            height={48}
             className="h-[40px] w-auto sm:h-[48px] object-contain"
           />
         </Link>
@@ -484,7 +487,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/support"
-                  className="btn-secondary group/btn border-white transition-all duration-300 hover:-translate-y-1 hover:bg-white/90 hover:text-forest-green hover:shadow-lg active:scale-95 text-primary"
+                  className="btn-secondary group/btn border-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg active:scale-95 text-primary"
                 >
                   <span className="leading-[46px]">Book A Free Consultation</span>
                 </Link>
@@ -537,8 +540,7 @@ export default function Home() {
                     <h3 className="heading-h8 transition-colors duration-300 group-hover:text-forest-green">{service.title}</h3>
                     <p className="body-small text-secondary">{service.body}</p>
                     <div className="mt-2">
-                      {/* @ts-ignore */}
-                      <Button href={(service as any).href} dark>{service.cta}</Button>
+                      <Button href={service.href} dark>{service.cta}</Button>
                     </div>
                   </article>
                 ))}
@@ -560,7 +562,7 @@ export default function Home() {
               Our professional framers love what they do and will happily advise you on your next custom framing project. With a wealth of knowledge and experience, our designers tailor each complimentary design session to your needs so they can create the ideal custom frame for you.
             </p>
             <div className="mt-2">
-              <Link href="/about" className="group flex w-max items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:-translate-y-1 hover:bg-[#204834] hover:shadow-lg active:scale-95">
+              <Link href="/about" className="group flex w-max items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-white hover:text-white hover:shadow-lg active:scale-95">
                 LEARN MORE <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
@@ -589,7 +591,7 @@ export default function Home() {
                 className="group card flex-1 lg:max-w-[302px] flex flex-col p-[36px] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-[#84A59D]"
               >
                 <div className="flex h-[72px] w-full items-start justify-between">
-                  <div className="flex size-[72px] items-center justify-center rounded-full bg-forest-green text-[#F4F0EB] transition-all duration-500 group-hover:scale-110 group-hover:bg-[#204834] group-hover:shadow-md">
+                  <div className="flex size-[72px] items-center justify-center rounded-full bg-forest-green text-[#F4F0EB] transition-all duration-500 group-hover:scale-110 group-hover:bg-primary group-hover:shadow-md">
                     {getIconComponent(item.iconType)}
                   </div>
                 </div>
@@ -622,7 +624,7 @@ export default function Home() {
             </div>
             <div className="flex w-full flex-1 flex-col justify-between px-6 py-8 lg:pb-[36px] lg:pl-[90px] lg:pr-[36px] lg:pt-[32px]">
               <div className="flex flex-col items-start gap-[16px]">
-                <span className="inline-flex h-[27px] items-center justify-center rounded-[100px] bg-forest-green px-[14px] py-[6px] micro font-bold text-white transition-colors duration-300 group-hover:bg-[#204834]">
+                <span className="inline-flex h-[27px] items-center justify-center rounded-[100px] bg-forest-green px-[14px] py-[6px] micro font-bold text-white transition-colors duration-300 hover:bg-primary">
                   Custom Print
                 </span>
                 <h3 className="heading-h7">
@@ -647,7 +649,7 @@ export default function Home() {
                 </ul>
               </div>
               <div className="mt-8 lg:mt-[36px]">
-                <Link href="/printshop" className="group/btn flex w-max items-center justify-center gap-[8px] btn-primary bg-primary border-primary transition-all duration-300 hover:-translate-y-1 hover:bg-[#204834] hover:border-[#204834] hover:shadow-lg active:scale-95">
+                <Link href="/printshop" className="group/btn flex w-max items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-lg active:scale-95">
                   START YOUR CUSTOM PRINT <ArrowIcon className="transition-transform duration-300 group-hover/btn:translate-x-1" />
                 </Link>
               </div>
@@ -746,7 +748,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <a href="#" className="group/btn flex items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:bg-[#204834] hover:shadow-md active:scale-95">
+                <a href="#" className="group/btn flex items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-md active:scale-95">
                   Review us on Google <ArrowIcon className="transition-transform duration-300 group-hover/btn:translate-x-1" />
                 </a>
               </div>
@@ -895,7 +897,7 @@ export default function Home() {
             </div>
 
             <div className="mt-[8px] text-center">
-              <Link href="/support" className="group flex items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:-translate-y-1 hover:bg-[#204834] hover:shadow-lg active:scale-95">
+              <Link href="/support" className="group flex items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-lg active:scale-95">
                 VIEW ALL FAQS <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
@@ -930,14 +932,14 @@ export default function Home() {
             <div className="flex w-full flex-col items-center justify-center gap-[12px] sm:w-auto sm:flex-row sm:gap-[16px]">
               <a
                 href={`tel:${consultationData.phone.replace(/[^0-9]/g, '')}`}
-                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#204834] hover:shadow-md active:scale-95 sm:w-auto"
+                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-md active:scale-95 sm:w-auto"
               >
                 <MobilePhoneIcon />
                 {consultationData.phone}
               </a>
               <a
                 href={consultationData.emailLink}
-                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#204834] hover:shadow-md active:scale-95 sm:w-auto"
+                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-md active:scale-95 sm:w-auto"
               >
                 <EnvelopeIcon />
                 {consultationData.emailText}
