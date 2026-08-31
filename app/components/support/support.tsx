@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Header, Footer } from "@/app/components/home/home";
+import { getContactData } from "@/app/lib/data/supportdata";
+
+type ContactData = Awaited<ReturnType<typeof getContactData>>;
 
 // ==========================================
 // SVGS & HELPERS
@@ -116,19 +118,18 @@ function AnimatedCounter({ target, suffix = "", duration = 2000 }: { target: num
 // ==========================================
 // MAIN CONTACT COMPONENT
 // ==========================================
-export default function ContactUsComponent({ data }: { data: any }) {
+export default function ContactUsComponent({ data }: { data: ContactData }) {
   if (!data) return <div className="min-h-screen bg-warm-cream" />;
 
   return (
     <div className="flex min-h-screen flex-col bg-warm-cream text-primary overflow-x-hidden">
-      <Header />
 
       <main className="flex w-full flex-1 flex-col items-center">
 
         {/* --- 1. HERO SECTION --- */}
         <section className="relative flex h-[495px] w-full flex-col items-center justify-center overflow-hidden lg:h-[600px]">
           <div className="absolute inset-0 z-0 w-full h-full">
-            <Image src={data.hero.image} alt="Studio Hero" fill priority className="object-cover" sizes="100vw" />
+            <Image src={data.hero.image} alt={data.hero.imageAlt} fill priority className="object-cover" sizes="100vw" />
           </div>
           <div className="absolute inset-0 z-10 bg-black/10" />
 
@@ -159,7 +160,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
               </div>
 
               <div className="flex flex-col gap-[32px]">
-                {data.contactInfo.details.map((detail: any, i: number) => (
+                {data.contactInfo.details.map((detail, i) => (
                   <div key={i} className="flex items-start gap-[16px]">
                     <div className="mt-[4px] shrink-0 text-forest-green">
                       <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -167,7 +168,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
                       </svg>
                     </div>
                     <div className="flex flex-col gap-[16px]">
-                      {detail.items.map((item: any, idx: number) => (
+                      {detail.items.map((item, idx) => (
                         <div key={idx}>
                           <p className="body-small font-bold text-primary uppercase">{item.label}</p>
                           <p className="body-small text-secondary whitespace-pre-line">{item.value}</p>
@@ -180,9 +181,9 @@ export default function ContactUsComponent({ data }: { data: any }) {
 
               {/* Social Icons with Interactive Hover Effects */}
               <div className="flex flex-col gap-[12px]">
-                <p className="micro font-bold uppercase tracking-widest text-primary">Follow Us</p>
+                <p className="micro font-bold uppercase tracking-widest text-primary">{data.contactInfo.socialHeading}</p>
                 <div className="flex gap-[16px]">
-                  {data.contactInfo.socials.map((social: any, i: number) => (
+                  {data.contactInfo.socials.map((social, i) => (
                     <Link key={i} href={social.url} className="group flex size-[48px] items-center justify-center rounded-full border border-[#D5D5D5] bg-white text-forest-green transition-all duration-300 hover:-translate-y-1 hover:border-forest-green hover:bg-forest-green hover:text-white hover:shadow-md active:scale-95">
                       {getSocialIcon(social.label)}
                     </Link>
@@ -201,15 +202,15 @@ export default function ContactUsComponent({ data }: { data: any }) {
 
                 <form className="flex flex-col gap-[20px]" onSubmit={(e) => e.preventDefault()}>
                   <div className="flex flex-col gap-[8px]">
-                    <label className="caption font-bold text-primary">Your Name</label>
-                    <input type="text" placeholder="John Doe" className="h-[50px] rounded-[8px] border border-border px-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white" />
+                    <label className="caption font-bold text-primary">{data.form.fields.name.label}</label>
+                    <input type="text" placeholder={data.form.fields.name.placeholder} className="h-[50px] rounded-[8px] border border-border px-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white" />
                   </div>
                   <div className="flex flex-col gap-[8px]">
-                    <label className="caption font-bold text-primary">Email Address</label>
-                    <input type="email" placeholder="john.doe@email.com" className="h-[50px] rounded-[8px] border border-border px-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white" />
+                    <label className="caption font-bold text-primary">{data.form.fields.email.label}</label>
+                    <input type="email" placeholder={data.form.fields.email.placeholder} className="h-[50px] rounded-[8px] border border-border px-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white" />
                   </div>
                   <div className="flex flex-col gap-[8px]">
-                    <label className="caption font-bold text-primary">Subject</label>
+                    <label className="caption font-bold text-primary">{data.form.fields.subject.label}</label>
                     <select className="h-[50px] rounded-[8px] border border-border px-[16px] body-small text-secondary outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white cursor-pointer appearance-none">
                       {data.form.subjects.map((subject: string, idx: number) => (
                         <option key={idx}>{subject}</option>
@@ -217,8 +218,8 @@ export default function ContactUsComponent({ data }: { data: any }) {
                     </select>
                   </div>
                   <div className="flex flex-col gap-[8px]">
-                    <label className="caption font-bold text-primary">Message</label>
-                    <textarea placeholder="Tell us more about your project..." className="h-[120px] resize-y rounded-[8px] border border-border p-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white" />
+                    <label className="caption font-bold text-primary">{data.form.fields.message.label}</label>
+                    <textarea placeholder={data.form.fields.message.placeholder} className="h-[120px] resize-y rounded-[8px] border border-border p-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white" />
                   </div>
                   {/* Form Submit Button (Green -> Black) */}
                   <button type="submit" className="mt-[8px] h-[56px] w-full rounded-[12px] bg-forest-green body-text font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:shadow-lg active:scale-95">
@@ -239,7 +240,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
             allowFullScreen={false}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Gallery 23 Map Location"
+            title={data.map.embedTitle}
           />
 
           <div className="pointer-events-none relative z-10 mx-auto flex h-full w-full max-w-[1440px] items-start px-[24px] py-[40px] lg:px-[120px] lg:py-[80px]">
@@ -265,7 +266,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
         {/* --- 4. STATS SECTION --- */}
         <section className="relative flex w-full flex-col items-center justify-center overflow-hidden py-[80px] lg:py-[196px]">
           <div className="absolute inset-0 z-0">
-            <Image src={data.stats.image} alt="Stats background" fill className="object-cover" sizes="100vw" />
+            <Image src={data.stats.image} alt={data.stats.imageAlt} fill className="object-cover" sizes="100vw" />
           </div>
           <div className="absolute inset-0 z-10 bg-black/10" />
 
@@ -281,7 +282,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
             </div>
 
             <div className="grid w-full max-w-[1000px] grid-cols-1 gap-[48px] sm:grid-cols-3 sm:gap-[24px]">
-              {data.stats.metrics.map((metric: any, i: number) => (
+              {data.stats.metrics.map((metric, i) => (
                 <div key={i} className="flex flex-col items-center gap-[8px]">
                   <AnimatedCounter target={metric.target} suffix={metric.suffix} />
                   <p className="micro font-bold uppercase tracking-widest text-white">
@@ -300,7 +301,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
         <section className="w-full bg-warm-cream flex justify-center py-[56px] lg:py-[100px]">
           <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[32px] px-[24px] lg:flex-row lg:items-stretch lg:justify-center lg:gap-[64px] lg:px-[120px]">
             <div className="relative h-[220px] w-full max-w-[480px] shrink-0 overflow-hidden rounded-[24px] sm:h-[500px] lg:h-auto">
-              <ResponsiveImage src={data.faq.image} alt="Gallery view" />
+              <ResponsiveImage src={data.faq.image} alt={data.faq.imageAlt} />
             </div>
 
             <div className="flex w-full max-w-[680px] flex-col gap-[40px]">
@@ -309,7 +310,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
               </h2>
 
               <div className="flex flex-col gap-[16px]">
-                {data.faq.questions.map((faq: any, index: number) => (
+                {data.faq.questions.map((faq, index) => (
                   <details key={index} className="card group flex flex-col gap-[16px] p-[20px] sm:p-[32px] cursor-pointer transition-all duration-300 hover:border-[#84A59D] active:scale-[0.99]">
                     <summary className="flex items-start justify-between gap-[16px] list-none [&::-webkit-details-marker]:hidden">
                       <h3 className="heading-h9 font-semibold text-primary transition-colors duration-300 group-hover:text-forest-green">{faq.q}</h3>
@@ -328,7 +329,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
         {/* --- 6. CTA SECTION --- */}
         <section className="relative w-full flex min-h-[500px] flex-col items-center justify-center overflow-hidden py-[80px] lg:h-[565px] lg:min-h-0 lg:py-[150px]">
           <div className="absolute inset-0 z-0">
-            <Image src={data.cta.image} alt="CTA Background" fill className="object-cover" sizes="100vw" />
+            <Image src={data.cta.image} alt={data.cta.imageAlt} fill className="object-cover" sizes="100vw" />
           </div>
           <div className="absolute inset-0 z-10 bg-black/10" />
 
@@ -343,7 +344,7 @@ export default function ContactUsComponent({ data }: { data: any }) {
             </div>
 
             {/* Interactive Button (Green -> Black) */}
-            <Link href="/support" className="group flex h-[48px] w-max px-[32px] items-center justify-center gap-[12px] rounded-full bg-forest-green text-[13px] font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:shadow-lg active:scale-95">
+            <Link href={data.cta.buttonLink} className="group flex h-[48px] w-max px-[32px] items-center justify-center gap-[12px] rounded-full bg-forest-green text-[13px] font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:shadow-lg active:scale-95">
               <span>{data.cta.buttonText}</span>
               <svg className="size-[16px] shrink-0 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -354,7 +355,6 @@ export default function ContactUsComponent({ data }: { data: any }) {
 
       </main>
 
-      <Footer />
     </div>
   );
 }

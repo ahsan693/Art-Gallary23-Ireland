@@ -129,3 +129,88 @@ export const faqs = [
   "What are my framing options?",
   "How do design consultations work?",
 ];
+
+export const homePageData = {
+  hero: {
+    title: ["Dublin's Premier", "Custom Framing &", "Archival Printing"],
+    description: "Experience the art of preservation with our expert framing and museum-quality archival printing services, crafted with care in the heart of Dublin.",
+    cta: "Book A Free Consultation",
+    href: "/support",
+    imageAlt: "Gallery interior with framed artwork on display",
+  },
+  ticker: ["Get Free Consultation", "Explore Our Fine Art Collection", "Explore Services", "Shop Prints Now"],
+  services: {
+    title: "Our Services",
+    description: "Expert solutions tailored to showcase and preserve your most valued pieces.",
+    imageAlt: "Custom framing tools and artwork in a studio",
+  },
+  about: {
+    title: "About Gallery23",
+    eyebrow: "A space for art, framing, and conversation.",
+    description: "Our professional framers love what they do and will happily advise you on your next custom framing project. With a wealth of knowledge and experience, our designers tailor each complimentary design session to your needs so they can create the ideal custom frame for you.",
+    cta: "LEARN MORE",
+    href: "/about",
+    imageAlt: "Gallery interior with framed artwork",
+  },
+  benefits: {
+    title: "Why Choose Our Frames",
+    description: "From independent craftsmanship to personalized design services, we bring passion and expertise to every frame we create.",
+    imageAlt: "Gallery styling interior",
+  },
+  printing: {
+    title: "Custom Printing Made for You",
+    description: "Print your own photos, artwork, or designs on premium fine art papers. Choose your paper, upload your file, and we'll handle the rest.",
+    badge: "Custom Print",
+    cardTitle: "Your Own Photo or Artwork",
+    cardDescription: "Upload your personal photos, artwork, or digital files and we'll print them to museum quality on your choice of paper or canvas.",
+    features: ["Available in multiple sizes from 4x6 to 40x60", "Perfect for photographs and digital art", "Same-day options available in store"],
+    cta: "START YOUR CUSTOM PRINT",
+    href: "/printshop",
+    imageAlt: "Professional fine art printing studio",
+  },
+  showcase: {
+    title: "Featured Framing Projects",
+    imageAlt: "Featured framing project",
+    thumbnailAlt: "Framing project thumbnail",
+  },
+  testimonials: {
+    title: "What Our Costumer Say",
+    platform: [
+      { letter: "G", color: "text-[#4285F4]" },
+      { letter: "o", color: "text-[#EA4335]" },
+      { letter: "o", color: "text-[#FBBC05]" },
+      { letter: "g", color: "text-[#4285F4]" },
+      { letter: "l", color: "text-[#34A853]" },
+      { letter: "e", color: "text-[#EA4335]" },
+    ],
+    rating: "4.9",
+    reviewCount: "(264)",
+    cta: "Review us on Google",
+    href: "#",
+  },
+  trusted: {
+    title: "Trusted By",
+    imageAlt: "Trusted brand",
+  },
+  instagram: {
+    title: "What We've Been Framing",
+    href: "https://instagram.com",
+    ctaPrefix: "Follow us",
+    handle: "@gallery23framing",
+    items: [
+      { title: "19th Century Portrait in Ornate Gold", handle: "@vintagelover_ny", img: images.instagramOne },
+      { title: "Botanical Series in Natural Oak", handle: "@botanical_living", img: images.instagramTwo },
+      { title: "Abstract Minimalism in Matte Black", handle: "@modern_nest", img: images.instagramThree },
+      { title: "Championship Jersey Shadow Box", handle: "@sportscollector_88", img: images.instagramFour },
+    ],
+  },
+  faq: {
+    title: "FAQs",
+    answer: "Bring the piece, dimensions, or a photo of the room. Our team will walk you through materials, finish, glass, and timeline.",
+    cta: "VIEW ALL FAQS",
+    href: "/support",
+  },
+  consultation: {
+    imageAlt: "Gallery interior for consultation",
+  },
+};

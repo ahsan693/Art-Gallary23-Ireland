@@ -3,10 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-// Importing the reusable Header and Footer from your Home page component
-import { Header, Footer } from "@/app/components/home/home";
-
-// Importing the Data Layer
+// Importing the page data layer
 import { getCheckoutConfirmedData } from "@/app/lib/data/checkoutConfirmedData";
 
 // ==========================================
@@ -14,7 +11,8 @@ import { getCheckoutConfirmedData } from "@/app/lib/data/checkoutConfirmedData";
 // ==========================================
 
 export default function CheckoutConfirmedComponent() {
-    const [data, setData] = useState<any>(null);
+    type CheckoutConfirmedData = Awaited<ReturnType<typeof getCheckoutConfirmedData>>;
+    const [data, setData] = useState<CheckoutConfirmedData | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,12 +27,7 @@ export default function CheckoutConfirmedComponent() {
     return (
         <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
 
-            {/* --- DESKTOP HEADER --- */}
-            <div className="hidden md:block">
-                <Header />
-            </div>
-
-            {/* --- MOBILE HEADER --- */}
+            {/* The shared Header/Footer are rendered by the root layout. */}
             <div className="md:hidden">
                 <div className="flex h-[29px] w-full items-center justify-center bg-[#295B42] px-[16px] py-[8px]">
                     <p className="whitespace-nowrap text-center font-['Host_Grotesk'] text-[11px] font-normal leading-[1.5] tracking-[0.4px] text-white">
@@ -44,16 +37,16 @@ export default function CheckoutConfirmedComponent() {
                 <div className="flex h-[56px] w-full items-center justify-between border-b border-[#D5D5D5] bg-white px-[16px]">
                     <Link
                         href={data.mobileHeader.backLink}
-                        aria-label="Back"
+                        aria-label={data.mobileHeader.backLabel}
                         className="flex size-[36px] items-center justify-center -ml-[8px]"
                     >
-                        <img src={data.icons.mobileBackIcon} alt="Back" className="size-[18px]" />
+                        <img src={data.icons.mobileBackIcon} alt={data.icons.mobileBackAlt} className="size-[18px]" />
                     </Link>
                     <p className="font-['Host_Grotesk'] text-[18px] font-bold uppercase leading-[1.4] tracking-[1px] text-[#232323]">
                         {data.mobileHeader.title}
                     </p>
-                    <button type="button" aria-label="Cart" className="flex size-[36px] items-center justify-center">
-                        <img src={data.icons.mobileBagIcon} alt="Cart" className="size-[20px]" />
+                    <button type="button" aria-label={data.mobileHeader.cartLabel} className="flex size-[36px] items-center justify-center">
+                        <img src={data.icons.mobileBagIcon} alt={data.icons.mobileBagAlt} className="size-[20px]" />
                     </button>
                 </div>
             </div>
@@ -95,7 +88,7 @@ export default function CheckoutConfirmedComponent() {
                         </h2>
 
                         <div className="flex flex-col gap-[20px] max-md:gap-[16px]">
-                            {data.nextSteps.steps.map((step: string, index: number) => (
+                            {data.nextSteps.steps.map((step, index) => (
                                 <div key={index} className="flex items-start gap-[16px]">
                                     <div className="flex size-[28px] shrink-0 items-center justify-center rounded-full bg-[#F0F0F0] text-[13px] font-bold text-primary max-md:size-[24px] max-md:text-[12px]">
                                         {index + 1}
@@ -129,10 +122,6 @@ export default function CheckoutConfirmedComponent() {
                 </div>
             </main>
 
-            {/* --- DESKTOP FOOTER --- */}
-            <div className="hidden md:block">
-                <Footer />
-            </div>
         </div>
     );
 }

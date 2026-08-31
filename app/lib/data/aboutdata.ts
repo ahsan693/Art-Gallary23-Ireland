@@ -24,6 +24,7 @@ export const getAboutData = async () => {
       title: "Our Lineage: Dublin's Framing Legacy Since 1985",
       subtitle: "For nearly four decades, Gallery 23 has been at the heart of Dublin's art and framing community. What began as a small family workshop in Kimmage has grown into one of Ireland's most respected custom framing studios.",
       image: aboutImages.hero,
+      imageAlt: "Gallery23 framing studio",
     },
     meetTheGregs: {
       title: "Meet the Gregs – Father & Son",
@@ -35,11 +36,14 @@ export const getAboutData = async () => {
       quote: "\"My father taught me that a great frame doesn't just hold art – it becomes part of the story. That's what we carry forward every day.\" – Greg Jr.",
       imgSr: aboutImages.founderSr,
       imgJr: aboutImages.founderJr,
+      imgSrAlt: "Greg Thompson Sr. in the Gallery23 workshop",
+      imgJrAlt: "Greg Thompson Jr. in the Gallery23 workshop",
     },
     whatWeStandFor: {
       title: "What We Stand For",
       subtitle: "Four principles that guide every frame, every material choice, and every conversation.",
       bgImage: aboutImages.standForBg,
+      bgImageAlt: "Gallery23 workshop",
       principles: [
         {
           title: "Master Craftsmanship",
@@ -101,30 +105,35 @@ export const getAboutData = async () => {
           role: "Founder & Master Craftsman",
           desc: "Started it all in 1985 with passion and precision.",
           img: aboutImages.founderSr,
+          imageAlt: "Greg Thompson Sr.",
         },
         {
           name: "Greg Thompson Jr.",
           role: "Co-Owner & Lead Designer",
           desc: "Carrying the family legacy into the modern era.",
           img: aboutImages.founderJr,
+          imageAlt: "Greg Thompson Jr.",
         },
         {
           name: "David Chen",
           role: "Restoration Specialist",
           desc: "With us for 15 years, a true artisan.",
           img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=85",
+          imageAlt: "David Chen",
         },
         {
           name: "Emma Rodriguez",
           role: "Customer Experience",
           desc: "Making every visit feel like family.",
           img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85",
+          imageAlt: "Emma Rodriguez",
         }
       ]
     },
     faq: {
       title: "Frequently Asked Questions",
       image: aboutImages.faqImg,
+      imageAlt: "Visitors at an art exhibition",
       questions: [
         {
           q: "Do I need an appointment?",
@@ -155,6 +164,9 @@ export const getAboutData = async () => {
       buttonText: "Book a Consultation",
       buttonLink: "/support",
       trustText: "Trusted by collectors and artists across Ireland",
+      avatarAlt: "Collector",
+      previousTeamLabel: "Previous team member",
+      nextTeamLabel: "Next team member",
       avatars: aboutImages.collectors
     }
   };

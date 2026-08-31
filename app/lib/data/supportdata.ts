@@ -15,6 +15,7 @@ export const getContactData = async () => {
       title: "Let's Start a Conversation About Your Art.",
       subtitle: "From curatorial advice to museum-grade preservation, our studio in the heart of Dublin is ready to assist with your next project.",
       image: contactImages.hero,
+      imageAlt: "Gallery23 contact studio",
     },
     contactInfo: {
       title: "Visit Our Studio",
@@ -54,11 +55,18 @@ export const getContactData = async () => {
         { label: "IG", url: "#" },
         { label: "FB", url: "#" },
         { label: "IN", url: "#" }
-      ]
+      ],
+      socialHeading: "Follow Us"
     },
     form: {
       title: "Send a Message",
       description: "Select a topic below for any inquiries or commercial projects. We'll be in touch shortly.",
+      fields: {
+        name: { label: "Your Name", placeholder: "John Doe" },
+        email: { label: "Email Address", placeholder: "john.doe@email.com" },
+        subject: { label: "Subject" },
+        message: { label: "Message", placeholder: "Tell us more about your project..." },
+      },
       subjects: [
         "Inquiry about Custom Framing",
         "Fine Art Printing",
@@ -71,6 +79,7 @@ export const getContactData = async () => {
       title: "GALLERY 23",
       address: "23 Stephen's Green, Dublin 2",
       linkText: "Get Directions",
+      embedTitle: "Gallery 23 Map Location",
       url: "https://maps.google.com",
       embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d152515.6930058694!2d-6.386008688537637!3d53.32432014169553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e80ea27ac2f%3A0xa00c7a9973171a0!2sDublin%2C%20Ireland!5e0!3m2!1sen!2sus!4v1714589000000!5m2!1sen!2sus"
     },
@@ -78,6 +87,7 @@ export const getContactData = async () => {
       title: "Why Visit Gallery23",
       subtitle: "Because after visiting us...",
       image: contactImages.stats,
+      imageAlt: "Gallery23 studio and framing workshop",
       metrics: [
         { target: 98, suffix: "%", title: "Client Satisfaction", desc: "Rated 4.9 stars with 500+ reviews" },
         { target: 3000, suffix: "+", title: "Projects Annually", desc: "Family photos to corporate installs" },
@@ -87,6 +97,7 @@ export const getContactData = async () => {
     faq: {
       title: "Frequently Asked Questions",
       image: contactImages.faq,
+      imageAlt: "Gallery23 framing studio view",
       questions: [
         { q: "Do I need an appointment?", a: "Walk-ins are always welcome! However, if you'd like dedicated one-on-one time with a designer, we recommend booking a free consultation." },
         { q: "How long does custom framing take?", a: "Most projects are completed within 2–3 weeks. Rush orders are available for an additional fee." },
@@ -99,7 +110,9 @@ export const getContactData = async () => {
       title: "Ready to Frame Something Beautiful?",
       subtitle: "Book your free consultation today and let our experts help you preserve what matters most.",
       buttonText: "Book Free Consultation",
+      buttonLink: "/support",
       image: contactImages.cta,
+      imageAlt: "Gallery23 framed artwork",
     }
   };
 };

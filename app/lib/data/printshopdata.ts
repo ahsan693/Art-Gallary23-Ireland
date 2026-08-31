@@ -14,6 +14,7 @@ export const getPrintShopData = async () => {
             title: "Gallery 23 Print Shop — Fine Art & Photo Printing",
             subtitle: "Order gallery-quality giclée prints online for in-store pickup. Upload your own artwork or select from our licensed collection. Professional results on archival papers and canvas.",
             image: printShopImages.hero,
+            imageAlt: "Gallery23 fine art print shop",
         },
         customPrint: {
             title: "Custom Print",
@@ -25,6 +26,7 @@ export const getPrintShopData = async () => {
         howItWorks: {
             title: "How it works",
             image: printShopImages.howItWorks,
+            imageAlt: "Gallery23 print shop process",
             steps: [
                 {
                     id: 1,

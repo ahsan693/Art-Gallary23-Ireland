@@ -15,6 +15,10 @@ export const pickupLocations = [
     }
 ];
 
+export const checkoutDetailsDefaults = {
+    pickupLocation: "kimmage",
+};
+
 export const getCheckoutDetailsData = async () => {
     return {
         // 👇 Added External Figma Icons
@@ -22,12 +26,16 @@ export const getCheckoutDetailsData = async () => {
             mobileBackIcon: "https://www.figma.com/api/mcp/asset/e704c3a3-0a5f-4fe0-8ac2-ed176653849c.svg",
             mobileBagIcon: "https://www.figma.com/api/mcp/asset/217818e8-ae21-49e3-a3fe-5afa12ea8ef6.svg",
             mobileArrowIcon: "https://www.figma.com/api/mcp/asset/da712e1a-3560-4de1-90fd-31d191491158.svg",
+            mobileBackAlt: "Back",
+            mobileBagAlt: "Cart",
         },
         // 👇 Added Mobile Header Text
         mobileHeader: {
             bannerText: "Cash on Delivery — Pickup at Kimmage or Coalmine",
-            title: "Gallery 23"
+            title: "Gallery 23",
+            cartLabel: "Cart",
         },
+        pickupLocations,
         topBar: {
             backText: "Back",
             backLink: "/checkout-papersize",
@@ -47,9 +55,13 @@ export const getCheckoutDetailsData = async () => {
                 instructions: "Special Instructions",
                 instructionsPlaceholder: "Any specific requirements, crop instructions, colour preferences...",
                 firstName: "First Name *",
+                firstNamePlaceholder: "Jane",
                 lastName: "Last Name *",
+                lastNamePlaceholder: "Smith",
                 email: "Email Address *",
+                emailPlaceholder: "jane@example.com",
                 phone: "Phone Number *",
+                phonePlaceholder: "+353 87 000 0000",
                 pickupTitle: "Preferred Pickup Location *",
             },
             upload: {

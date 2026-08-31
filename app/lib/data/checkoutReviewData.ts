@@ -9,10 +9,13 @@ export const getCheckoutReviewData = async () => {
             mobileBackIcon: "https://www.figma.com/api/mcp/asset/e704c3a3-0a5f-4fe0-8ac2-ed176653849c.svg",
             mobileBagIcon: "https://www.figma.com/api/mcp/asset/217818e8-ae21-49e3-a3fe-5afa12ea8ef6.svg",
             mobileArrowIcon: "https://www.figma.com/api/mcp/asset/da712e1a-3560-4de1-90fd-31d191491158.svg",
+            mobileBackAlt: "Back",
+            mobileBagAlt: "Cart",
         },
         mobileHeader: {
             bannerText: "Cash on Delivery — Pickup at Kimmage or Coalmine",
-            title: "Gallery 23"
+            title: "Gallery 23",
+            cartLabel: "Cart",
         },
         topBar: {
             backText: "Back",
@@ -20,8 +23,15 @@ export const getCheckoutReviewData = async () => {
             stepTextDesktop: "Step 4 of 5",
             stepTextMobile: "Step 3 of 4"
         },
+        heading: {
+            titleDesktop: "Review Your Order",
+            titleMobile: "Review Order",
+            descriptionDesktop: "Please check all details before confirming.",
+            descriptionMobile: "Check everything before confirming.",
+        },
         orderSummary: {
             title: "Order Summary",
+            totalLabel: "Total",
             items: [
                 { label: "Print Type", value: "Custom Print" },
                 { label: "Paper", value: "Art Paper" },

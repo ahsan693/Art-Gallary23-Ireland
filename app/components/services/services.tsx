@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
-// 1. Import Header, Footer, and Shared Icons
-import { Header, Footer, ArrowIcon } from "@/app/components/home/home";
+// 1. Import Shared Icons
+import { ArrowIcon } from "@/app/components/home/home";
 
 // 2. Import Data Layer
 import { getServicesData } from "@/app/lib/data/servicesdata";
+
+type ServicesData = Awaited<ReturnType<typeof getServicesData>>;
 
 // Reusable Next.js Image Component
 export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
@@ -24,7 +25,7 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
 // ==========================================
 
 export default function ServicesComponent() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<ServicesData | null>(null);
 
   // Fetch data from the Data Layer when component mounts
   useEffect(() => {
@@ -50,15 +51,6 @@ export default function ServicesComponent() {
   return (
     <div className="min-h-screen bg-warm-cream text-primary overflow-x-hidden">
       {/* --- REUSABLE HEADER --- */}
-      <div className="hidden md:block">
-        <Header />
-      </div>
-
-      {/* --- MOBILE HEADER FALLBACK (If needed) --- */}
-      <div className="md:hidden">
-        <Header />
-      </div>
-
       <main className="flex flex-col items-center w-full">
 
         {/* --- HERO SECTION --- */}
@@ -66,7 +58,7 @@ export default function ServicesComponent() {
           <div className="absolute inset-0 z-0">
             <Image
               src={data.hero.image}
-              alt="Gallery interior"
+              alt={data.hero.imageAlt}
               fill
               priority
               className="object-cover"
@@ -100,7 +92,7 @@ export default function ServicesComponent() {
         {/* --- DETAILED SERVICES LIST SECTION --- */}
         <div className="flex w-full flex-col items-center">
 
-          {data.offerings.map((service: any, index: number) => {
+          {data.offerings.map((service, index) => {
             // Even numbers (0, 2, 4...) will be Picture Framing, Canvas Prints, etc.
             const isEven = index % 2 === 0;
 
@@ -118,7 +110,7 @@ export default function ServicesComponent() {
                 >
                   {/* Image Side */}
                   <div className="relative h-[400px] w-full max-w-[680px] shrink-0 overflow-hidden rounded-[24px] shadow-sm sm:h-[500px] lg:h-[570px] lg:w-[600px] xl:w-[680px]">
-                    <ResponsiveImage src={service.image} alt={service.title} />
+                    <ResponsiveImage src={service.image} alt={service.imageAlt} />
                   </div>
 
                   {/* Text Side (Removed bullets & divider) */}
@@ -156,7 +148,7 @@ export default function ServicesComponent() {
             </h2>
 
             <div className="grid w-full max-w-[1280px] grid-cols-2 gap-x-[20px] gap-y-[40px] lg:grid-cols-4 lg:gap-[32px]">
-              {data.journey.steps.map((step: any, index: number) => (
+              {data.journey.steps.map((step, index) => (
                 <div key={index} className="flex flex-col items-center text-center gap-[12px] lg:gap-[16px]">
                   {/* Updated Mobile Item Gap: 12px applied to parent container above */}
                   <div className="flex size-[40px] items-center justify-center rounded-full bg-forest-green text-[16px] font-bold text-white">
@@ -189,25 +181,25 @@ export default function ServicesComponent() {
                 <div className="grid w-full grid-cols-1 gap-[24px] sm:grid-cols-2">
                   {/* Full Name */}
                   <div className="flex flex-col gap-[8px]">
-                    <label className="text-[13px] font-bold text-primary">Full Name</label>
-                    <input type="text" placeholder="Enter your full name" className="h-[50px] w-full rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
+                    <label className="text-[13px] font-bold text-primary">{data.form.fields.fullName.label}</label>
+                    <input type="text" placeholder={data.form.fields.fullName.placeholder} className="h-[50px] w-full rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
                   </div>
 
                   {/* Email Address */}
                   <div className="flex flex-col gap-[8px]">
-                    <label className="text-[13px] font-bold text-primary">Email Address</label>
-                    <input type="email" placeholder="Enter your email address" className="h-[50px] w-full rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
+                    <label className="text-[13px] font-bold text-primary">{data.form.fields.email.label}</label>
+                    <input type="email" placeholder={data.form.fields.email.placeholder} className="h-[50px] w-full rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
                   </div>
 
                   {/* Phone Number */}
                   <div className="flex flex-col gap-[8px]">
-                    <label className="text-[13px] font-bold text-primary">Phone Number</label>
-                    <input type="tel" placeholder="Enter your phone number" className="h-[50px] w-full rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
+                    <label className="text-[13px] font-bold text-primary">{data.form.fields.phone.label}</label>
+                    <input type="tel" placeholder={data.form.fields.phone.placeholder} className="h-[50px] w-full rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
                   </div>
 
                   {/* Service of Interest (Select) */}
                   <div className="flex flex-col gap-[8px]">
-                    <label className="text-[13px] font-bold text-primary">Service of Interest</label>
+                    <label className="text-[13px] font-bold text-primary">{data.form.fields.service.label}</label>
                     <div className="relative">
                       <select className="h-[50px] w-full appearance-none rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D] cursor-pointer">
                         {data.form.fields.services.map((opt: string, i: number) => (
@@ -225,8 +217,8 @@ export default function ServicesComponent() {
 
                 {/* Message */}
                 <div className="flex flex-col gap-[8px]">
-                  <label className="text-[13px] font-bold text-primary">Message</label>
-                  <textarea placeholder="Tell us about your project..." className="h-[120px] w-full resize-y rounded-[8px] border border-border bg-[#F9F9F9] p-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
+                  <label className="text-[13px] font-bold text-primary">{data.form.fields.message.label}</label>
+                  <textarea placeholder={data.form.fields.message.placeholder} className="h-[120px] w-full resize-y rounded-[8px] border border-border bg-[#F9F9F9] p-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
                 </div>
 
                 {/* Submit & Footer Text */}
@@ -235,7 +227,7 @@ export default function ServicesComponent() {
                     {data.form.submitText}
                   </button>
                   <p className="text-center text-[12px] text-secondary">
-                    All enquiries sent to info@g23.ie. Our commercial team responds within 24 hours.
+                    {data.form.responseNote}
                   </p>
                 </div>
               </form>
@@ -248,7 +240,7 @@ export default function ServicesComponent() {
           <div className="absolute inset-0 z-0">
             <Image
               src={data.cta.image}
-              alt="Living room with art"
+              alt={data.cta.imageAlt}
               fill
               className="object-cover"
               sizes="100vw"
@@ -300,7 +292,7 @@ export default function ServicesComponent() {
         <section className="w-full bg-white flex justify-center py-[64px] lg:py-[80px]">
           <div className="mx-auto flex w-full max-w-[1440px] items-center justify-center px-[24px] lg:px-[80px]">
             <div className="grid w-full max-w-[1280px] grid-cols-1 gap-[32px] sm:grid-cols-2 lg:grid-cols-4 lg:gap-[40px]">
-              {data.features.map((feature: any, index: number) => (
+              {data.features.map((feature, index) => (
                 <div key={index} className="flex flex-col items-start gap-[8px]">
                   <h3 className="text-[16px] font-bold text-forest-green">
                     {feature.title}
@@ -316,7 +308,6 @@ export default function ServicesComponent() {
       </main>
 
       {/* --- REUSABLE FOOTER --- */}
-      <Footer />
     </div >
   );
 }

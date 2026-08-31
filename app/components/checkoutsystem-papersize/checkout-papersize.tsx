@@ -5,10 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Importing the reusable Header and Footer from your Home page component
-import { Header, Footer } from "@/app/components/home/home";
 
 // Importing the Data Layer
-import { getCheckoutPaperSizeData } from "@/app/lib/data/checkoutPaperSizeData";
+import { checkoutDefaults, getCheckoutPaperSizeData } from "@/app/lib/data/checkoutPaperSizeData";
+
+type CheckoutPaperSizeData = Awaited<ReturnType<typeof getCheckoutPaperSizeData>>;
 
 // ==========================================
 // CHECKOUT PAPER & SIZE COMPONENT
@@ -16,11 +17,11 @@ import { getCheckoutPaperSizeData } from "@/app/lib/data/checkoutPaperSizeData";
 
 export default function CheckoutPaperSizeComponent() {
     // State for data
-    const [data, setData] = useState<any>(null);
+    const [data, setData] = useState<CheckoutPaperSizeData | null>(null);
 
     // State for selections 
-    const [selectedPaper, setSelectedPaper] = useState("satin-photo");
-    const [selectedSize, setSelectedSize] = useState("20x24");
+    const [selectedPaper, setSelectedPaper] = useState(checkoutDefaults.selectedPaper);
+    const [selectedSize, setSelectedSize] = useState(checkoutDefaults.selectedSize);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,14 +35,13 @@ export default function CheckoutPaperSizeComponent() {
     if (!data) return <div className="min-h-screen bg-warm-cream" />;
 
     // Derived values for the bottom summary bar
-    const activePaper = data.paperSection.options.find((p: any) => p.id === selectedPaper);
-    const activeSize = data.sizeSection.options.find((s: any) => s.id === selectedSize);
+    const activePaper = data.paperSection.options.find((paper) => paper.id === selectedPaper);
+    const activeSize = data.sizeSection.options.find((size) => size.id === selectedSize);
 
     return (
         <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
             {/* --- DESKTOP HEADER --- */}
             <div className="hidden md:block">
-                <Header />
             </div>
 
             {/* --- MOBILE HEADER --- */}
@@ -62,7 +62,7 @@ export default function CheckoutPaperSizeComponent() {
                     <p className="font-['Host_Grotesk'] text-[18px] font-bold uppercase leading-[1.4] tracking-[1px] text-[#232323]">
                         {data.mobileHeader.title}
                     </p>
-                    <button type="button" aria-label="Cart" className="flex size-[36px] items-center justify-center">
+                    <button type="button" aria-label={data.mobileHeader.cartLabel} className="flex size-[36px] items-center justify-center">
                         <img src={data.icons.mobileBagIcon} alt="" className="size-[20px]" />
                     </button>
                 </div>
@@ -123,7 +123,7 @@ export default function CheckoutPaperSizeComponent() {
 
                         {/* Paper Cards Grid */}
                         <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-4 max-md:gap-[12px] max-md:pt-[12px]">
-                            {data.paperSection.options.map((paper: any) => {
+                            {data.paperSection.options.map((paper) => {
                                 const isSelected = selectedPaper === paper.id;
                                 return (
                                     <button
@@ -136,7 +136,7 @@ export default function CheckoutPaperSizeComponent() {
                                     >
                                         {/* Top Image Area */}
                                         <div className="relative h-[150px] w-full shrink-0 bg-gray-100 max-md:h-[82px] max-md:w-[80px]">
-                                            <Image src={paper.img} alt={paper.name} fill className="object-cover" />
+                                            <Image src={paper.img} alt={paper.imageAlt} fill className="object-cover" />
 
                                             {/* Checkmark Indicator */}
                                             <div
@@ -174,7 +174,7 @@ export default function CheckoutPaperSizeComponent() {
 
                         {/* Sizes Grid */}
                         <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3 max-md:grid-cols-2 max-md:gap-[8px] max-md:pt-[12px]">
-                            {data.sizeSection.options.map((size: any) => {
+                            {data.sizeSection.options.map((size) => {
                                 const isSelected = selectedSize === size.id;
                                 return (
                                     <button
@@ -233,7 +233,6 @@ export default function CheckoutPaperSizeComponent() {
 
             {/* --- FOOTER: desktop only; the mobile Figma screen ends at the CTA --- */}
             <div className="hidden md:block">
-                <Footer />
             </div>
         </div>
     );

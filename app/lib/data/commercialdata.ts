@@ -21,7 +21,9 @@ export const getCommercialData = async () => {
       title: "Commercial Framing & Printing for Professionals",
       subtitle: "A dedicated portal for architects, interior designers, and corporate clients. Gallery 23 partners with Dublin's leading businesses and institutions for large-scale framing, printing, and installation projects.",
       ctaText: "Request a Commercial Quote →",
+      ctaAriaLabel: "Request a Commercial Quote",
       image: commercialImages.hero,
+      imageAlt: "Commercial framing and printing project",
     },
     whoWeServe: {
       title: "Who We Serve",
@@ -52,7 +54,9 @@ export const getCommercialData = async () => {
         title: "Bulk Custom Framing",
         description: "Large volume orders with consistent quality across hundreds of frames. Ideal for hotel chains, office fit-outs, and property developments.",
         image: commercialImages.bulkFraming,
+        imageAlt: "Bulk custom framing project",
         ctaText: "Get a Quote",
+        ctaAriaLabel: "Get a quote for Bulk Custom Framing",
         bgType: "white",
         align: "left", // Text left, Image right
       },
@@ -61,7 +65,9 @@ export const getCommercialData = async () => {
         title: "Commercial Fine Art Printing",
         description: "High-volume giclée printing on archival papers and canvas. Perfect for interior design schemes and corporate art programmes.",
         image: commercialImages.printing,
+        imageAlt: "Commercial fine art printing project",
         ctaText: "Get a Quote",
+        ctaAriaLabel: "Get a quote for Commercial Fine Art Printing",
         bgType: "cream",
         align: "right", // Text right, Image left
       },
@@ -70,7 +76,9 @@ export const getCommercialData = async () => {
         title: "Installation Services",
         description: "Professional on-site installation for commercial spaces. Our team handles delivery, hanging, and placement with laser precision.",
         image: commercialImages.installation,
+        imageAlt: "Commercial artwork installation project",
         ctaText: "Get a Quote",
+        ctaAriaLabel: "Get a quote for Installation Services",
         bgType: "white",
         align: "left",
       },
@@ -79,7 +87,9 @@ export const getCommercialData = async () => {
         title: "Project Consultation",
         description: "Free consultations to scope your project requirements, timeline, and budget. We work directly with your design team.",
         image: commercialImages.consultation,
+        imageAlt: "Commercial project consultation",
         ctaText: "Get a Quote",
+        ctaAriaLabel: "Get a quote for Project Consultation",
         bgType: "cream",
         align: "right",
       }
@@ -91,24 +101,50 @@ export const getCommercialData = async () => {
           id: "logo-1",
           image: commercialImages.trustedLogo1,
           label: "Forbes",
+          imageAlt: "Forbes logo",
           project: "The Shelbourne Hotel Suite Refresh"
         },
         {
           id: "logo-2",
           image: commercialImages.trustedLogo2,
           label: "HOSPITALITY",
+          imageAlt: "Hospitality partner logo",
           project: "The Shelbourne Hotel Suite Refresh"
         },
         {
           id: "logo-3",
           image: commercialImages.trustedLogo3,
           label: "HOSPITALITY",
+          imageAlt: "Hospitality partner logo",
           project: "The Shelbourne Hotel Suite Refresh"
         }
       ]
     },
     form: {
       title: "Request a Commercial Quote",
+      fields: {
+        companyName: {
+          label: "Company Name",
+          placeholder: "e.g. O'Donnell Architects",
+        },
+        contactName: {
+          label: "Contact Name",
+          placeholder: "Your Name...",
+        },
+        email: {
+          label: "Email Address",
+          placeholder: "work@email.com",
+        },
+        projectType: {
+          label: "Project Type",
+          placeholder: "Select...",
+        },
+        description: {
+          label: "Project Description",
+          placeholder: "Tell us about your volume, materials, and timeline...",
+        },
+        upload: "Upload blueprints or project specs",
+      },
       projectTypes: [
         "Select...",
         "Bulk Framing",

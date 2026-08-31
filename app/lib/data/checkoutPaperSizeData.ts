@@ -8,24 +8,28 @@ export const paperOptions = [
         name: "Art Paper",
         desc: "Premium acid-free art paper. Available in multiple GSM weights for fine art reproduction. Ideal for giclée prints.",
         img: "/Printshop/Images/Section3.png",
+        imageAlt: "Art paper print sample",
     },
     {
         id: "satin-photo",
         name: "Satin Photo Paper",
         desc: "Semi-gloss finish with vibrant colour reproduction. Perfect for photographs and high-contrast images.",
         img: "/Printshop/Images/Section1.png",
+        imageAlt: "Satin photo paper print sample",
     },
     {
         id: "matte-photo",
         name: "Matte Photo Paper",
         desc: "Non-reflective finish with rich, deep tones. Ideal for portraits, landscapes, and exhibition prints.",
         img: "/Printshop/Images/Section3.png",
+        imageAlt: "Matte photo paper print sample",
     },
     {
         id: "canvas",
         name: "Canvas",
         desc: "Archival-grade canvas for stretched or framed prints. Museum-quality texture and durability.",
         img: "/Printshop/Images/Section1.png",
+        imageAlt: "Canvas print sample",
     },
 ];
 
@@ -37,6 +41,11 @@ export const printSizes = [
     { id: "12x16", name: '12" × 16"', dimensions: "305 × 406 mm", price: 50 },
     { id: "20x24", name: '20" × 24"', dimensions: "508 × 610 mm", price: 75 },
 ];
+
+export const checkoutDefaults = {
+    selectedPaper: "satin-photo",
+    selectedSize: "20x24",
+};
 
 export const getCheckoutPaperSizeData = async () => {
     return {
@@ -50,7 +59,8 @@ export const getCheckoutPaperSizeData = async () => {
         // 👇 Added Mobile Header Text
         mobileHeader: {
             bannerText: "Cash on Delivery — Pickup at Kimmage or Coalmine",
-            title: "Gallery 23"
+            title: "Gallery 23",
+            cartLabel: "Cart",
         },
         topBar: {
             backText: "Back",

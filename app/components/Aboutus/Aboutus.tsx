@@ -1,12 +1,16 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Import Header, Footer, and Shared Icons from home
-import { Header, Footer, ArrowIcon } from "@/app/components/home/home";
+import { ArrowIcon } from "@/app/components/home/home";
+import { getAboutData } from "@/app/lib/data/aboutdata";
+
+type AboutData = Awaited<ReturnType<typeof getAboutData>>;
+type Principle = AboutData["whatWeStandFor"]["principles"][number];
 
 export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
   return (
@@ -47,7 +51,7 @@ const renderFigmaIcon = (title: string) => {
   );
 };
 
-const PrincipleCard = ({ principle, className = "" }: { principle: any; className?: string }) => (
+const PrincipleCard = ({ principle, className = "" }: { principle: Principle; className?: string }) => (
   <div className={`flex flex-col items-start gap-[16px] rounded-[16px] border border-[#D5D5D5] bg-white p-[24px] shadow-[0_18px_20px_rgba(0,0,0,0.07),0_2px_4px_rgba(0,0,0,0.05)] sm:gap-[20px] sm:rounded-[20px] sm:p-[40px] ${className}`}>
     <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-[#181818] text-white sm:size-[54px]">
       {renderFigmaIcon(principle.title)}
@@ -61,45 +65,7 @@ const PrincipleCard = ({ principle, className = "" }: { principle: any; classNam
   </div>
 );
 
-// --- Extracted "Our Journey" Sub-component ---
-function MilestoneItem({ item, index, scrollYProgress, scaleX }: { item: any, index: number, scrollYProgress: any, scaleX: any }) {
-  const yearColor = useTransform(scrollYProgress, [item.point - 0.1, item.point], ["#a3a3a3", "#161616"]);
-  const descOpacity = useTransform(scrollYProgress, [item.point - 0.1, item.point], [0.35, 1]);
-  const descColor = useTransform(scrollYProgress, [item.point - 0.1, item.point], ["#888888", "#555555"]);
-
-  return (
-    <div className="relative flex w-full flex-col items-start gap-[16px] bg-transparent p-0 sm:w-[220px] sm:gap-[24px]">
-      <div className="flex w-full flex-col gap-[12px] sm:gap-[16px]">
-        <motion.h3 style={{ color: yearColor }} className="heading-h4">
-          {item.year}
-        </motion.h3>
-
-        {/* Mobile: Exact Figma Match (Dot with horizontal line) */}
-        <div className="flex w-full items-center sm:hidden">
-          <div className="relative z-10 size-[12px] shrink-0 rounded-full bg-forest-green" />
-          <div className="h-[2px] w-full bg-[#D5D5D5]" />
-        </div>
-
-        {/* Desktop: Top Line + Dot */}
-        <div className="relative hidden w-full items-center sm:flex">
-          {index === 0 && (
-            <div className="absolute top-1/2 left-[6px] right-[-964px] z-0 hidden h-[4px] -translate-y-1/2 rounded-[2px] bg-border lg:block">
-              <motion.div className="h-full origin-left rounded-[2px] bg-forest-green" style={{ scaleX }} />
-            </div>
-          )}
-          <div className="relative z-10 size-[12px] shrink-0 rounded-full bg-forest-green" />
-          <div className="ml-[8px] h-[4px] w-full rounded-[2px] bg-border lg:hidden" />
-        </div>
-
-        <motion.p style={{ opacity: descOpacity, color: descColor }} className="body-small text-left">
-          {item.desc}
-        </motion.p>
-      </div>
-    </div>
-  );
-}
-
-export default function AboutUsComponent({ data }: { data: any }) {
+export default function AboutUsComponent({ data }: { data: AboutData }) {
 
   // 👇 STATE FOR MOBILE TEAM CAROUSEL 👇
   const [teamStartIndex, setTeamStartIndex] = useState(0);
@@ -114,7 +80,6 @@ export default function AboutUsComponent({ data }: { data: any }) {
 
   return (
     <div className="flex min-h-screen flex-col bg-warm-cream text-primary overflow-x-hidden">
-      <Header />
 
       <main className="flex w-full flex-1 flex-col items-center">
         
@@ -122,7 +87,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
         <section className="relative flex w-full flex-col items-center justify-center overflow-hidden h-[500px] lg:h-[643px]">
           {/* Infinite Background Image */}
           <div className="absolute inset-0 z-0 h-full w-full">
-            <Image src={data.hero.image} alt="About Us Hero" fill priority className="object-cover" sizes="100vw" />
+            <Image src={data.hero.image} alt={data.hero.imageAlt} fill priority className="object-cover" sizes="100vw" />
           </div>
           <div className="absolute inset-0 z-10 bg-black/10" />
 
@@ -143,8 +108,8 @@ export default function AboutUsComponent({ data }: { data: any }) {
         <section className="w-full bg-warm-cream flex justify-center">
           <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] py-[64px] sm:px-[24px] lg:flex-row lg:items-center lg:justify-center lg:gap-[64px] lg:px-[80px] lg:py-[80px]">
             <div className="relative h-[278px] w-full max-w-[340px] shrink-0 lg:mb-0 lg:h-[567px] lg:max-w-[480px] lg:w-[480px]">
-              <img src={data.meetTheGregs.imgSr} alt="Greg Sr" className="absolute left-0 top-0 h-[320px] w-[240px] rounded-[12px] object-cover lg:h-full lg:w-full" />
-              <img src={data.meetTheGregs.imgJr} alt="Greg Jr" className="absolute bottom-0 right-0 h-[200px] w-[160px] rounded-[12px] object-cover shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] lg:bottom-[-40px] lg:right-[-40px] lg:h-[320px] lg:w-[260px]" />
+              <img src={data.meetTheGregs.imgSr} alt={data.meetTheGregs.imgSrAlt} className="absolute left-0 top-0 h-[320px] w-[240px] rounded-[12px] object-cover lg:h-full lg:w-full" />
+              <img src={data.meetTheGregs.imgJr} alt={data.meetTheGregs.imgJrAlt} className="absolute bottom-0 right-0 h-[200px] w-[160px] rounded-[12px] object-cover shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] lg:bottom-[-40px] lg:right-[-40px] lg:h-[320px] lg:w-[260px]" />
             </div>
 
             <div className="flex w-full max-w-[736px] flex-col gap-[24px] lg:gap-[32px] mt-[48px] lg:mt-0">
@@ -169,7 +134,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
         <section className="relative w-full flex flex-col items-center justify-center overflow-hidden py-[64px] lg:pb-[120px] lg:pt-[96px]">
           {/* Infinite Background Image */}
           <div className="absolute inset-0 z-0 h-full w-full">
-            <Image src={data.whatWeStandFor.bgImage} alt="Workshop" fill className="object-cover" sizes="100vw" />
+            <Image src={data.whatWeStandFor.bgImage} alt={data.whatWeStandFor.bgImageAlt} fill className="object-cover" sizes="100vw" />
           </div>
           <div className="absolute inset-0 z-10 bg-black/10" />
 
@@ -207,7 +172,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
             </div>
 
             <div className="flex w-full max-w-[1185px] flex-col gap-[40px] lg:flex-row lg:justify-between lg:gap-[24px]">
-              {data.journey.milestones.map((item: any, index: number) => (
+              {data.journey.milestones.map((item, index) => (
                 <div key={index} className="flex w-full flex-col items-start gap-[12px] lg:flex-1 lg:gap-[16px]">
                   <h3 className="heading-h4 text-forest-green">
                     {item.year}
@@ -236,17 +201,17 @@ export default function AboutUsComponent({ data }: { data: any }) {
               </h2>
               {/* Working Desktop Buttons */}
               <div className="hidden pb-[12px] lg:flex lg:gap-[16px]">
-                <button aria-label="Previous team member" className="group flex size-[48px] items-center justify-center rounded-full border border-white/30 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-lg active:scale-95 sm:size-[56px]">
+                <button aria-label={data.cta.previousTeamLabel} className="group flex size-[48px] items-center justify-center rounded-full border border-white/30 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-lg active:scale-95 sm:size-[56px]">
                   <span className="rotate-180"><ArrowIcon className="transition-transform duration-300 group-hover:-translate-x-1" /></span>
                 </button>
-                <button aria-label="Next team member" className="group flex size-[48px] items-center justify-center rounded-full border border-white/30 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-lg active:scale-95 sm:size-[56px]">
+                <button aria-label={data.cta.nextTeamLabel} className="group flex size-[48px] items-center justify-center rounded-full border border-white/30 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-lg active:scale-95 sm:size-[56px]">
                   <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </div>
             </div>
 
             <div className="grid w-full max-w-[1280px] grid-cols-2 gap-[16px] lg:flex lg:flex-nowrap lg:justify-between lg:gap-[24px] lg:overflow-visible lg:pb-0">
-              {data.team.members.map((member: any, index: number) => {
+              {data.team.members.map((member, index) => {
                 const isVisibleOnMobile = index === teamStartIndex || index === (teamStartIndex + 1) % data.team.members.length;
 
                 return (
@@ -255,7 +220,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
                     className={`w-full min-w-0 flex-col gap-[16px] lg:w-[calc(25%-18px)] lg:shrink lg:gap-[20px] lg:flex ${isVisibleOnMobile ? "flex" : "hidden"}`}
                   >
                     <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[12px] lg:h-[402px] lg:aspect-auto">
-                      <ResponsiveImage src={member.img} alt={member.name} />
+                      <ResponsiveImage src={member.img} alt={member.imageAlt} />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     </div>
                     <div className="flex flex-col gap-[12px] sm:gap-[16px]">
@@ -275,14 +240,14 @@ export default function AboutUsComponent({ data }: { data: any }) {
               <button
                 onClick={handlePrevTeam}
                 className="group flex size-[40px] items-center justify-center rounded-full border border-white/30 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-lg active:scale-95"
-                aria-label="Previous team member"
+                aria-label={data.cta.previousTeamLabel}
               >
                 <span className="rotate-180"><ArrowIcon className="transition-transform duration-300 group-hover:-translate-x-1" /></span>
               </button>
               <button
                 onClick={handleNextTeam}
                 className="group flex size-[40px] items-center justify-center rounded-full border border-white/30 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-lg active:scale-95"
-                aria-label="Next team member"
+                aria-label={data.cta.nextTeamLabel}
               >
                 <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
               </button>
@@ -295,7 +260,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
           <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] py-[64px] sm:px-[24px] lg:flex-row lg:items-stretch lg:justify-center lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
             {/* Image Side */}
             <div className="order-1 relative mb-[32px] h-[320px] w-full max-w-[471px] shrink-0 overflow-hidden rounded-[24px] lg:order-none lg:mb-0 lg:h-auto">
-              <ResponsiveImage src={data.faq.image} alt="Visitors at an art exhibition" />
+              <ResponsiveImage src={data.faq.image} alt={data.faq.imageAlt} />
             </div>
 
             {/* Text & Accordions Side */}
@@ -306,7 +271,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
 
               {/* Mobile FAQs */}
               <div className="flex flex-col gap-[12px] lg:hidden">
-                {data.faq.questions.map((faq: any, index: number) => (
+                {data.faq.questions.map((faq, index) => (
                   <details key={index} className="group card flex flex-col gap-[12px] rounded-[12px] bg-white p-[20px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md active:scale-[0.98] active:border-[#84A59D] cursor-pointer">
                     <summary className="flex items-start justify-between gap-[16px] list-none [&::-webkit-details-marker]:hidden">
                       <span className="heading-h8 font-semibold text-primary transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">{faq.q}</span>
@@ -321,7 +286,7 @@ export default function AboutUsComponent({ data }: { data: any }) {
 
               {/* Desktop FAQs */}
               <div className="hidden flex-col gap-[12px] sm:gap-[16px] lg:flex">
-                {data.faq.questions.map((faq: any, index: number) => (
+                {data.faq.questions.map((faq, index) => (
                   <details key={index} className="group card flex flex-col gap-[12px] p-[20px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md active:scale-[0.98] active:border-[#84A59D] cursor-pointer sm:gap-[16px] sm:p-[30px]">
                     <summary className="flex items-start justify-between gap-[16px] list-none heading-h8 font-semibold [&::-webkit-details-marker]:hidden">
                       <span className="transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">{faq.q}</span>
@@ -359,11 +324,11 @@ export default function AboutUsComponent({ data }: { data: any }) {
 
               <div className="flex flex-col items-center gap-[12px] text-center sm:flex-row sm:items-center sm:justify-center sm:gap-[16px]">
                 <div className="flex h-[36px] w-[84px] -space-x-3">
-                  {data.cta.avatars.map((img: string, idx: number) => (
+                  {data.cta.avatars.map((img, idx) => (
                     <img
                       key={idx}
                       src={img}
-                      alt={`Collector ${idx + 1}`}
+                      alt={`${data.cta.avatarAlt} ${idx + 1}`}
                       className="relative size-[36px] rounded-full border-[2px] border-warm-cream object-cover"
                       style={{ zIndex: (idx + 1) * 10 }}
                     />
@@ -378,7 +343,6 @@ export default function AboutUsComponent({ data }: { data: any }) {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

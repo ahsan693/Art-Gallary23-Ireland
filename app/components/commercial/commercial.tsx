@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 // 1. Import Shared Components
-import { Header, Footer, ArrowIcon } from "@/app/components/home/home";
+import { ArrowIcon } from "@/app/components/home/home";
 
 // 2. Import Data Layer
 import { getCommercialData } from "@/app/lib/data/commercialdata";
+
+type CommercialData = Awaited<ReturnType<typeof getCommercialData>>;
 
 // Reusable Image Component
 export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
@@ -49,7 +50,7 @@ const getIconComponent = (iconType: string) => {
 // COMMERCIAL PAGE COMPONENT
 // ==========================================
 export default function CommercialComponent() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<CommercialData | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,7 +72,6 @@ export default function CommercialComponent() {
 
   return (
     <div className="flex min-h-screen flex-col bg-warm-cream text-primary overflow-x-hidden">
-      <Header />
 
       <main className="flex w-full flex-1 flex-col items-center">
 
@@ -80,7 +80,7 @@ export default function CommercialComponent() {
 
           {/* Background Image - Absolute to Section for full stretching */}
           <div className="absolute inset-0 z-0">
-            <Image src={data.hero.image} alt={data.hero.title} fill priority className="object-cover" sizes="100vw" />
+            <Image src={data.hero.image} alt={data.hero.imageAlt} fill priority className="object-cover" sizes="100vw" />
           </div>
 
           {/* Dark Overlay - Absolute to Section */}
@@ -99,7 +99,7 @@ export default function CommercialComponent() {
               <a
                 href="#quote-form"
                 onClick={handleScrollToForm}
-                aria-label="Request a Commercial Quote"
+                aria-label={data.hero.ctaAriaLabel}
                 className="btn-secondary group mt-[8px] flex w-max items-center justify-center gap-[8px] bg-white text-primary border-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-lg active:scale-95 sm:w-auto"
               >
                 <span className="flex items-center gap-[8px]">
@@ -118,7 +118,7 @@ export default function CommercialComponent() {
             </h2>
 
             <div className="flex w-full max-w-[1200px] flex-col gap-[20px] sm:gap-[24px] lg:flex-row">
-              {data.whoWeServe.cards.map((card: any) => (
+              {data.whoWeServe.cards.map((card) => (
                 <div key={card.id} className="card flex flex-1 flex-col items-start gap-[16px] bg-warm-cream p-[24px] sm:gap-[20px] sm:p-[32px] lg:p-[40px]">
                   <div className="flex size-[48px] shrink-0 items-center justify-center rounded-[24px] bg-forest-green text-white sm:size-[64px] sm:rounded-[32px]">
                     {getIconComponent(card.iconType)}
@@ -137,7 +137,7 @@ export default function CommercialComponent() {
 
         {/* --- 3. ALTERNATING FEATURES SECTION --- */}
         <div className="flex w-full flex-col items-center">
-          {data.features.map((feature: any) => (
+          {data.features.map((feature) => (
             <section
               key={feature.id}
               // Background stretches full width
@@ -150,7 +150,7 @@ export default function CommercialComponent() {
 
                 {/* Mobile: Image on Top / Desktop: Alternating order */}
                 <div className="h-[220px] w-full shrink-0 overflow-hidden rounded-[16px] sm:h-[450px] sm:rounded-[24px] lg:w-[600px]">
-                  <ResponsiveImage src={feature.image} alt={feature.title} />
+                  <ResponsiveImage src={feature.image} alt={feature.imageAlt} />
                 </div>
 
                 {/* Text Container */}
@@ -165,7 +165,7 @@ export default function CommercialComponent() {
                   <a
                     href="#quote-form"
                     onClick={handleScrollToForm}
-                    aria-label={`Get a quote for ${feature.title}`}
+                    aria-label={feature.ctaAriaLabel}
                     className="btn-primary group mt-[8px] flex w-max items-center justify-center gap-[8px] bg-forest-green border-forest-green text-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:shadow-lg active:scale-95 sm:w-auto"
                   >
                     <span className="flex items-center gap-[8px]">
@@ -189,14 +189,16 @@ export default function CommercialComponent() {
             </div>
 
             <div className="flex w-full max-w-[1200px] flex-col gap-[24px] sm:gap-[24px] lg:flex-row">
-              {data.trustedBy.logos.map((logo: any) => (
+              {data.trustedBy.logos.map((logo) => (
                 <div key={logo.id} className="flex flex-1 flex-col items-start gap-[12px] sm:gap-[20px] lg:w-[384px]">
                   {/* White Logo Card Container */}
-                  <div className="flex h-[140px] w-full items-center justify-center rounded-[16px] bg-white p-[20px] sm:h-[161px] sm:p-[24px]">
-                    <img
+                  <div className="relative flex h-[140px] w-full items-center justify-center rounded-[16px] bg-white p-[20px] sm:h-[161px] sm:p-[24px]">
+                    <Image
                       src={logo.image}
-                      alt={logo.label}
-                      className="h-full w-full object-contain"
+                      alt={logo.imageAlt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 384px"
+                      className="object-contain p-[20px] sm:p-[24px]"
                     />
                   </div>
                   <div className="flex flex-col gap-[4px]">
@@ -224,28 +226,28 @@ export default function CommercialComponent() {
 
                 {/* Company Name */}
                 <div className="flex flex-col gap-[8px]">
-                  <label className="body-small font-bold">Company Name</label>
-                  <input type="text" placeholder="e.g. O'Donnell Architects" className="input-field" />
+                    <label className="body-small font-bold">{data.form.fields.companyName.label}</label>
+                    <input type="text" placeholder={data.form.fields.companyName.placeholder} className="input-field" />
                 </div>
 
                 {/* Contact Name */}
                 <div className="flex flex-col gap-[8px]">
-                  <label className="body-small font-bold">Contact Name</label>
-                  <input type="text" placeholder="Your Name..." className="input-field" />
+                    <label className="body-small font-bold">{data.form.fields.contactName.label}</label>
+                    <input type="text" placeholder={data.form.fields.contactName.placeholder} className="input-field" />
                 </div>
 
                 {/* Email Address */}
                 <div className="flex flex-col gap-[8px]">
-                  <label className="body-small font-bold">Email Address</label>
-                  <input type="email" placeholder="work@email.com" className="input-field" />
+                    <label className="body-small font-bold">{data.form.fields.email.label}</label>
+                    <input type="email" placeholder={data.form.fields.email.placeholder} className="input-field" />
                 </div>
 
                 {/* Project Type */}
                 <div className="flex flex-col gap-[8px]">
-                  <label className="body-small font-bold">Project Type</label>
+                    <label className="body-small font-bold">{data.form.fields.projectType.label}</label>
                   <div className="relative">
                     <select className="h-[50px] w-full appearance-none rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white cursor-pointer hover:border-[#84A59D]">
-                      <option value="">Select...</option>
+                      <option value="">{data.form.fields.projectType.placeholder}</option>
                       {data.form.projectTypes.map((type: string, i: number) => (
                         <option key={i} value={type}>{type}</option>
                       ))}
@@ -260,9 +262,9 @@ export default function CommercialComponent() {
 
                 {/* Project Description */}
                 <div className="flex flex-col gap-[8px]">
-                  <label className="body-small font-bold">Project Description</label>
+                  <label className="body-small font-bold">{data.form.fields.description.label}</label>
                   <textarea
-                    placeholder="Tell us about your volume, materials, and timeline..."
+                    placeholder={data.form.fields.description.placeholder}
                     className="textarea-field h-[120px] bg-[#F9F9F9] hover:border-[#84A59D]"
                   />
                 </div>
@@ -272,7 +274,7 @@ export default function CommercialComponent() {
                   <svg className="size-[22px] text-forest-green sm:size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
                   </svg>
-                  <p className="caption text-center">Upload blueprints or project specs</p>
+                  <p className="caption text-center">{data.form.fields.upload}</p>
                 </div>
 
                 {/* Submit Button & Disclaimer (Green -> Black) */}
@@ -292,7 +294,6 @@ export default function CommercialComponent() {
 
       </main>
 
-      <Footer />
     </div>
   );
 }

@@ -4,19 +4,17 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// Importing the reusable Header and Footer from your Home page component
-import { Header, Footer } from "@/app/components/home/home";
-
 // Importing the Data Layer
 import { getPrintShopData } from "@/app/lib/data/printshopdata";
+
+type PrintShopData = Awaited<ReturnType<typeof getPrintShopData>>;
 
 // ==========================================
 // PRINT SHOP COMPONENT
 // ==========================================
 
 export default function PrintShopPage() {
-  const [data, setData] = useState<any>(null);
-  const [selectedPaper, setSelectedPaper] = useState<string>("Art Paper");
+  const [data, setData] = useState<PrintShopData | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,39 +27,10 @@ export default function PrintShopPage() {
   // Show an empty background while data is loading to prevent layout shift
   if (!data) return <div className="min-h-screen bg-warm-cream" />;
 
-  // Sample Paper Options array based on Figma Images 3 & 4
-  const paperOptions = [
-    {
-      id: "Art Paper",
-      title: "Art Paper",
-      desc: "Premium acid-free art paper. Available in multiple GSM weights for fine art reproduction. Ideal for giclée prints and limited editions.",
-      img: "/Printshop/paper-art.jpg",
-    },
-    {
-      id: "Satin Photo Paper",
-      title: "Satin Photo Paper",
-      desc: "Semi-gloss finish with vibrant colour reproduction. Perfect for photographs and high-contrast images.",
-      img: "/Printshop/paper-satin.jpg",
-    },
-    {
-      id: "Matte Photo Paper",
-      title: "Matte Photo Paper",
-      desc: "Non-reflective finish with rich, deep tones. Ideal for portraits, landscapes, and exhibition prints.",
-      img: "/Printshop/paper-matte.jpg",
-    },
-    {
-      id: "Canvas",
-      title: "Canvas",
-      desc: "Archival-grade canvas for stretched or framed prints. Museum-quality texture and durability.",
-      img: "/Printshop/paper-canvas.jpg",
-    },
-  ];
-
   return (
     <div className="flex min-h-screen flex-col bg-warm-cream text-primary overflow-x-hidden">
 
       {/* --- REUSABLE HEADER --- */}
-      <Header />
 
       {/* --- MAIN PAGE CONTENT --- */}
       <main className="flex w-full flex-1 flex-col items-center">
@@ -157,7 +126,7 @@ export default function PrintShopPage() {
           <div className="absolute inset-0 z-0 h-full w-full">
             <Image
               src={data.howItWorks.image}
-              alt="How it works background"
+              alt={data.howItWorks.imageAlt}
               fill
               className="object-cover"
               sizes="100vw"
@@ -177,7 +146,7 @@ export default function PrintShopPage() {
 
             {/* Steps Container (Stacked on Mobile) */}
             <div className="flex w-full max-w-[1200px] flex-col justify-between gap-[28px] lg:flex-row lg:gap-[24px]">
-              {data.howItWorks.steps.map((step: any) => (
+              {data.howItWorks.steps.map((step) => (
                 <div key={step.id} className={`flex w-full items-start gap-[16px] lg:flex-col lg:gap-[24px] ${step.maxWidth}`}>
                   <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-white text-[18px] font-bold text-primary">
                     {step.id}
@@ -237,7 +206,6 @@ export default function PrintShopPage() {
       </main>
 
       {/* --- REUSABLE FOOTER --- */}
-      <Footer />
 
     </div>
   );

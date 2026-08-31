@@ -3,20 +3,18 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Import Data Layer
 import {
   images,
-  navItems,
-  rightNav,
   services,
   testimonials,
   faqs,
   benefitsData,
   trustedBrands,
-  consultationData
+  consultationData,
+  homePageData
 } from "@/app/lib/data/homedata";
 
 // ==========================================
@@ -165,283 +163,6 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
   );
 }
 
-/// ==========================================
-// HEADER COMPONENT
-// ==========================================
-export function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
-
-  return (
-    <header className="relative z-50 w-full flex flex-col items-center border-b border-border bg-white">
-      {/* Top Banner - Full Width Background */}
-      <div className="w-full bg-forest-green transition-colors duration-300 hover:bg-[#204834] active:bg-[#1a3a2a]">
-        <div className="mx-auto flex h-auto min-h-[36px] w-full max-w-[1440px] items-center justify-center px-[20px] py-[8px] text-center text-white sm:px-[40px]">
-          <span className="caption text-white cursor-default">
-            Now Trending!{" "}
-            <span className="font-semibold underline decoration-solid underline-offset-2 transition-colors duration-300 hover:text-[#E8B84B] active:text-[#E8B84B] cursor-pointer">
-              Custom Gallery Walls &rarr;
-            </span>
-          </span>
-        </div>
-      </div>
-
-      {/* Navbar - Full Width Background */}
-      <div className="relative w-full flex justify-center bg-white">
-        <nav className="flex h-[72px] w-full max-w-[1440px] items-center justify-between px-[20px] sm:px-[40px] lg:px-[40px]">
-          {/* Left Side: Hamburger Menu (Mobile Only) */}
-          <div className="flex items-center lg:hidden">
-            <button
-              aria-label="Toggle menu"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="flex items-center justify-center p-0 transition-transform duration-300 active:scale-90 hover:text-forest-green active:text-forest-green"
-            >
-              {isMobileMenuOpen ? (
-                <CloseIcon />
-              ) : (
-                <svg
-                  className="w-[30px] h-[22.5px]"
-                  fill="none"
-                  viewBox="0 0 30 22.5"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                >
-                  <path strokeLinecap="round" d="M0 2h30M0 11.25h30M0 20.5h20" />
-                </svg>
-              )}
-            </button>
-          </div>
-
-          {/* Desktop Navigation Links (Aligned Left) */}
-          <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`relative flex h-[72px] items-center px-4 button-small transition-colors duration-300 hover:text-forest-green ${
-                    isActive ? "text-forest-green" : "text-primary"
-                  }`}
-                >
-                  {item.name}
-                  {isActive ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-forest-green" /> : null}
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* Center: Logo (Centered on Desktop & Mobile) */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Link
-              href="/"
-              className="flex items-center justify-center w-auto h-auto whitespace-nowrap font-bold uppercase tracking-widest text-[16px] transition-transform duration-300 hover:scale-105 active:scale-95 lg:heading-h8 lg:tracking-normal"
-            >
-              GALLERY 23
-            </Link>
-          </div>
-
-          {/* Right Side: Icons & Right Desktop Links */}
-          <div className="flex items-center justify-end gap-3 lg:flex-1 lg:gap-1">
-            <div className="hidden items-center gap-1 lg:flex">
-              {rightNav.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="flex h-[72px] items-center justify-center px-3 button-small transition-colors duration-300 hover:text-forest-green"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-            <span className="hidden h-6 w-px bg-border lg:block" />
-
-            <div className="flex items-center gap-[12px] h-[20px] lg:h-auto lg:gap-1">
-              <button aria-label="Search" className="flex items-center justify-center p-0 transition-all duration-300 hover:bg-[#84A59D]/10 hover:border-[#84A59D] active:scale-90 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
-                <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
-              </button>
-              <button aria-label="Cart" className="flex items-center justify-center p-0 transition-all duration-300 hover:bg-[#84A59D]/10 hover:border-[#84A59D] active:scale-90 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
-                <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Dropdown Menu (Full Width Drop) */}
-          <AnimatePresence>
-            {isMobileMenuOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="absolute left-0 top-[72px] z-50 w-full overflow-hidden border-t border-border bg-white shadow-xl lg:hidden"
-              >
-                <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-1 px-[20px] py-[32px] sm:px-[40px]">
-                  {[...navItems, ...rightNav].map((item) => {
-                    const isActive = pathname === item.href;
-                    return (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block origin-left py-3 text-[18px] font-bold tracking-tight transition-all duration-300 active:scale-95 active:text-forest-green ${
-                          isActive ? "text-forest-green" : "text-primary hover:text-forest-green"
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </nav>
-      </div>
-    </header>
-  );
-}
-
-// ==========================================
-// FOOTER COMPONENTS
-// ==========================================
-export function FooterColumn({ title, items, className = "" }: { title: string; items: (string | { label: string, href: string })[], className?: string }) {
-  return (
-    <div className={`flex w-full flex-col items-start lg:w-auto ${className}`}>
-      <h3 className="small font-bold capitalize text-white">{title}</h3>
-      <ul className="mt-[16px] flex flex-col gap-[12px] caption text-muted sm:mt-[24px] sm:gap-[14px]">
-        {items.map((item, index) => {
-          const isObj = typeof item === "object" && item !== null;
-          const label = isObj ? item.label : item;
-          const href = isObj ? item.href : null;
-
-          const isPhone = label.includes("(555)");
-          const isEmail = label.includes("@");
-          const isHighlight = index === 0 && (title === "North side" || title === "South side");
-
-          return (
-            <li key={index} className="flex max-w-[260px] items-start gap-[8px] sm:max-w-[200px]">
-              {isPhone && (
-                <svg className="mt-[2px] size-[14px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              )}
-              {isEmail && (
-                <svg className="mt-[2px] size-[14px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              )}
-              {href ? (
-                <Link href={href} className={isHighlight ? "font-bold text-white hover:text-white" : "hover:text-white"}>
-                  {label}
-                </Link>
-              ) : (
-                <span className={isHighlight ? "font-bold text-white" : ""}>
-                  {label}
-                </span>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-}
-
-export function Footer() {
-  return (
-    <footer className="w-full bg-black flex justify-center text-white">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center">
-        <div className="flex w-full items-center justify-between border-b border-dark-surface px-[20px] py-[24px] sm:px-[40px] sm:py-[28px] lg:px-[80px] lg:py-[40px]">
-          <Link href="/" className="flex h-[48px] items-center sm:h-[65px]">
-            <Image
-              src="/Homepage/Icons/Logo.svg"
-              alt="Gallery 23 Logo"
-              width={200}
-              height={48}
-              className="h-[40px] w-auto sm:h-[48px] object-contain"
-            />
-          </Link>
-        </div>
-
-        <div className="flex w-full flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:border-b lg:border-dark-surface lg:px-[80px] lg:py-[56px]">
-          <div className="grid w-full grid-cols-3 gap-[16px] border-b border-dark-surface px-[20px] py-[32px] sm:gap-[32px] sm:px-[40px] lg:contents">
-            <FooterColumn
-              title="Services"
-              items={[
-                { label: "Picture Framing", href: "/services" },
-                { label: "Canvas Prints", href: "/services" },
-                { label: "Jersey Framing", href: "/services" },
-                { label: "Shadow Boxes", href: "/services" },
-                { label: "Certificates & Awards", href: "/services" },
-                { label: "Photo Frames", href: "/services" }
-              ]}
-            />
-            <FooterColumn
-              title="Company"
-              items={[
-                { label: "About Us", href: "/about" },
-                { label: "Print Shop", href: "/printshop" },
-                { label: "Commercial", href: "/commercial" }
-              ]}
-            />
-            <FooterColumn
-              title="Resources"
-              items={[
-                { label: "FAQs", href: "/support" },
-                { label: "Contact Us", href: "/support" }
-              ]}
-            />
-          </div>
-
-          <div className="flex w-full flex-col gap-[28px] border-b border-dark-surface px-[20px] py-[28px] sm:flex-row sm:gap-[40px] sm:px-[40px] lg:contents">
-            <FooterColumn
-              title="North side"
-              items={["Gallery 23 Downtown", "Unit 4 Coolport Porters Road, Coolmine Blanchardstown D15DX3D", "(555) 123-4567", "hello@gallery23.com"]}
-            />
-            <FooterColumn
-              title="South side"
-              items={["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"]}
-            />
-          </div>
-        </div>
-
-        <div className="flex w-full flex-col items-start gap-[16px] px-[20px] py-[24px] sm:gap-[24px] sm:px-[40px] sm:py-[32px] lg:flex-row lg:items-start lg:justify-between lg:px-[80px] lg:pb-[40px] lg:pt-[32px]">
-          <div className="flex w-full flex-col gap-[8px] caption text-muted lg:w-[380px]">
-            <p>©2024 Gallery 23. All rights reserved.</p>
-            <p>
-              Professional custom framing and fine art printing services.
-              Museum-quality preservation for your most valued memories.
-            </p>
-          </div>
-
-          <div className="flex flex-row flex-wrap items-center gap-[12px] sm:w-auto">
-            <div className="flex w-max items-center justify-start gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] sm:gap-[10px] sm:px-[16px] sm:py-[10px]">
-              <div className="flex text-gold">
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon key={i} className="size-[14px]" />
-                ))}
-              </div>
-              <div className="flex flex-col small font-medium leading-[1.3]">
-                <span className="text-white">Rated 4.9 from</span>
-                <span className="text-muted">200+ customers</span>
-              </div>
-            </div>
-
-            <a href="#" className="flex w-max items-center justify-center gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] transition-all duration-300 hover:bg-primary hover:border-[#84A59D] active:scale-95 sm:gap-[10px] sm:px-[16px] sm:py-[10px]">
-              <svg className="size-[16px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3v18" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-2.5 0-4.5-4-4.5-9S9.5 3 12 3s4.5 4 4.5 9-2 9-4.5 9Z" />
-              </svg>
-              <span className="small font-medium text-white">Google Reviews</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 // ==========================================
 // MAIN PAGE COMPONENT
 // ==========================================
@@ -453,13 +174,7 @@ export default function Home() {
   // Duplicated arrays for ultra-wide seamless marquees
   const repeatedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials];
   
-  const baseInsta = [
-    { title: "19th Century Portrait in Ornate Gold", handle: "@vintagelover_ny", img: images.instagramOne },
-    { title: "Botanical Series in Natural Oak", handle: "@botanical_living", img: images.instagramTwo },
-    { title: "Abstract Minimalism in Matte Black", handle: "@modern_nest", img: images.instagramThree },
-    { title: "Championship Jersey Shadow Box", handle: "@sportscollector_88", img: images.instagramFour },
-  ];
-  const repeatedInsta = [...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta];
+  const repeatedInsta = Array.from({ length: 10 }, () => homePageData.instagram.items).flat();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -470,7 +185,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-warm-cream text-primary overflow-x-hidden">
-      <Header />
 
       <main className="w-full overflow-hidden">
         {/* --- HERO SECTION --- */}
@@ -479,7 +193,7 @@ export default function Home() {
             <div className="absolute inset-0 overflow-hidden w-full h-full">
               <Image
                 src={images.hero}
-                alt="Gallery interior with framed artwork on display"
+                alt={homePageData.hero.imageAlt}
                 fill
                 priority
                 sizes="100vw"
@@ -490,21 +204,20 @@ export default function Home() {
             <div className="relative mx-auto flex h-full w-full max-w-[1280px] items-center px-5 py-20 sm:px-[42px] sm:py-8">
               <div className="mx-auto flex w-full max-w-[620px] flex-col items-center gap-8 py-12 text-center text-white sm:py-20 lg:mx-0 lg:items-start lg:text-left">
                 <h1 className="heading-display text-[30px] leading-[1.2] text-white sm:text-[56px] sm:leading-[1.1] lg:text-[64px]">
-                  Dublin&apos;s Premier
+                  {homePageData.hero.title[0]}
                   <br />
-                  Custom Framing &amp;
+                  {homePageData.hero.title[1]}
                   <br />
-                  Archival Printing
+                  {homePageData.hero.title[2]}
                 </h1>
                 <p className="w-full max-w-[480px] body-text text-white/80 sm:max-w-[520px]">
-                  Experience the art of preservation with our expert framing and museum-quality archival printing services,
-                  crafted with care in the heart of Dublin.
+                  {homePageData.hero.description}
                 </p>
                 <Link
-                  href="/support"
+                  href={homePageData.hero.href}
                   className="btn-secondary group border-white transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary active:scale-95 text-primary"
                 >
-                  <span className="leading-[46px]">Book A Free Consultation</span>
+                  <span className="leading-[46px]">{homePageData.hero.cta}</span>
                 </Link>
               </div>
             </div>
@@ -519,12 +232,7 @@ export default function Home() {
             >
               {[...Array(6)].map((_, index) => (
                 <div key={index} className="flex items-center gap-[7.8px] pl-[23.41px] pr-[7.81px]">
-                  <span className="leading-[58px]">Get Free Consultation</span>
-                  <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
-                  <span className="leading-[58px]">Explore Services</span>
-                  <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
-                  <span className="leading-[58px]">Shop Prints Now&nbsp;&nbsp;&nbsp;&nbsp;&bull;</span>
-                  <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
+                  {homePageData.ticker.map((item) => <span key={item} className="leading-[58px]">{item} &nbsp;&nbsp;&nbsp;&bull;</span>)}
                 </div>
               ))}
             </motion.div>
@@ -536,18 +244,18 @@ export default function Home() {
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[32px] px-5 py-[40px] lg:flex-row lg:gap-[80px] lg:px-[64px]">
             <div className="flex w-full flex-col items-center gap-[12px] text-center lg:hidden">
               <h2 className="heading-h2 text-[26px] sm:text-[36px]">
-                Our Services
+                {homePageData.services.title}
               </h2>
               <p className="max-w-[320px] body-small text-secondary">
-                Expert solutions tailored to showcase and preserve your most valued pieces.
+                {homePageData.services.description}
               </p>
             </div>
             <div className="relative h-[400px] w-full shrink-0 overflow-hidden rounded-[32px] lg:h-[780px] lg:w-[580px] lg:rounded-[48px]">
-              <ResponsiveImage src={images.services} alt="Custom framing tools and artwork in a studio" />
+              <ResponsiveImage src={images.services} alt={homePageData.services.imageAlt} />
             </div>
             <div className="flex w-full flex-col gap-[48px] lg:w-[492px]">
               <h2 className="hidden heading-h2 lg:block">
-                Our Services
+                {homePageData.services.title}
               </h2>
               <div className="flex flex-col divide-y divide-border border-y border-border">
                 {services.map((service) => (
@@ -569,22 +277,22 @@ export default function Home() {
           <div className="flex w-full max-w-[1440px] flex-col items-center px-5 py-14 lg:h-[704px] lg:flex-row lg:gap-[64px] lg:px-[120px] lg:py-[72px]">
             <div className="flex w-full flex-col gap-[24px] lg:w-[560px]">
               <h2 className="heading-h2 text-[26px] text-white sm:text-[36px] lg:text-[56px]">
-                About Gallery23
+                {homePageData.about.title}
               </h2>
               <p className="body-large text-white/75">
-                A space for art, framing, and conversation.
+                {homePageData.about.eyebrow}
               </p>
               <p className="body-text text-white/75">
-                Our professional framers love what they do and will happily advise you on your next custom framing project. With a wealth of knowledge and experience, our designers tailor each complimentary design session to your needs so they can create the ideal custom frame for you.
+                {homePageData.about.description}
               </p>
               <div className="mt-2">
-                <Link href="/about" className="group flex w-max items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
-                  LEARN MORE <ArrowIcon />
+                <Link href={homePageData.about.href} className="group flex w-max items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
+                  {homePageData.about.cta} <ArrowIcon />
                 </Link>
               </div>
             </div>
             <div className="relative mt-10 h-[260px] w-full shrink-0 overflow-hidden rounded-3xl lg:mt-0 lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
-              <ResponsiveImage src={images.about} alt="Gallery interior with framed artwork" className="rounded-3xl lg:rounded-[32px]" />
+              <ResponsiveImage src={images.about} alt={homePageData.about.imageAlt} className="rounded-3xl lg:rounded-[32px]" />
             </div>
           </div>
         </section>
@@ -594,17 +302,17 @@ export default function Home() {
           <div className="absolute inset-0 z-0">
             <Image 
               src={images.why} 
-              alt="Gallery styling interior" 
+              alt={homePageData.benefits.imageAlt}
               fill 
               className="object-cover" 
             />
           </div>
           <div className="relative z-10 flex w-full max-w-[700px] flex-col items-center gap-[16px] text-center text-white">
             <h2 className="heading-h2 text-[26px] text-white sm:text-[36px] lg:text-[56px]">
-              Why Choose Our Frames
+              {homePageData.benefits.title}
             </h2>
             <p className="body-text text-white/90">
-              From independent craftsmanship to personalized design services, we bring passion and expertise to every frame we create.
+              {homePageData.benefits.description}
             </p>
           </div>
           <div className="relative z-10 flex w-full max-w-[1280px] flex-col gap-[24px] lg:flex-row lg:justify-between">
@@ -635,45 +343,39 @@ export default function Home() {
         <section className="section-alt w-full flex flex-col items-center gap-[48px] px-5 py-[80px] lg:px-[80px]">
           <div className="flex w-full max-w-[802px] flex-col items-center gap-[12px] text-center">
             <h2 className="heading-h2 text-[26px] sm:text-[36px] lg:text-[56px]">
-              Custom Printing Made for You
+              {homePageData.printing.title}
             </h2>
             <p className="body-text text-secondary">
-              Print your own photos, artwork, or designs on premium fine art papers. Choose your paper, upload your file, and we&apos;ll handle the rest.
+              {homePageData.printing.description}
             </p>
           </div>
           <div className="flex w-full max-w-[1280px] flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_8px_32px_0_rgba(0,0,0,0.078)] lg:h-[432px] lg:flex-row">
             <div className="relative h-[300px] w-full shrink-0 overflow-hidden lg:h-full lg:w-[554px]">
-              <Image src={images.print} alt="Professional fine art printing studio" fill className="object-cover" />
+              <Image src={images.print} alt={homePageData.printing.imageAlt} fill className="object-cover" />
             </div>
             <div className="flex w-full flex-1 flex-col justify-between px-6 py-8 lg:pb-[36px] lg:pl-[90px] lg:pr-[36px] lg:pt-[32px]">
               <div className="flex flex-col items-start gap-[16px]">
                 <span className="inline-flex h-[27px] items-center justify-center rounded-[100px] bg-forest-green px-[14px] py-[6px] micro font-bold text-white">
-                  Custom Print
+                  {homePageData.printing.badge}
                 </span>
                 <h3 className="heading-h7">
-                  Your Own Photo or Artwork
+                  {homePageData.printing.cardTitle}
                 </h3>
                 <p className="body-text text-secondary">
-                  Upload your personal photos, artwork, or digital files and we&apos;ll print them to museum quality on your choice of paper or canvas.
+                  {homePageData.printing.cardDescription}
                 </p>
                 <ul className="flex flex-col gap-[8px] body-small text-secondary">
-                  <li className="flex items-center gap-[10px]">
-                    <span className="size-1.5 shrink-0 rounded-full bg-forest-green" />
-                    Available in multiple sizes from 4x6 to 40x60
-                  </li>
-                  <li className="flex items-center gap-[10px]">
-                    <span className="size-1.5 shrink-0 rounded-full bg-forest-green" />
-                    Perfect for photographs and digital art
-                  </li>
-                  <li className="flex items-center gap-[10px]">
-                    <span className="size-1.5 shrink-0 rounded-full bg-forest-green" />
-                    Same-day options available in store
-                  </li>
+                  {homePageData.printing.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-[10px]">
+                      <span className="size-1.5 shrink-0 rounded-full bg-forest-green" />
+                      {feature}
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="mt-8 lg:mt-[36px]">
-                <Link href="/printshop" className="group flex w-max items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
-                  START YOUR CUSTOM PRINT <ArrowIcon />
+                <Link href={homePageData.printing.href} className="group flex w-max items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
+                    {homePageData.printing.cta} <ArrowIcon />
                 </Link>
               </div>
             </div>
@@ -684,7 +386,7 @@ export default function Home() {
         <section className="w-full flex flex-col items-center gap-[32px] bg-forest-green px-[20px] py-[64px] lg:gap-[56px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
           <div className="flex w-full max-w-[1200px] items-start justify-start lg:items-center lg:justify-between">
             <h2 className="w-full max-w-none heading-h2 text-left text-white lg:whitespace-nowrap">
-              Featured Framing Projects
+              {homePageData.showcase.title}
             </h2>
           </div>
 
@@ -699,7 +401,7 @@ export default function Home() {
                   transition={{ duration: 1, ease: "easeInOut" }}
                   className="absolute inset-0"
                 >
-                  <ResponsiveImage src={showcaseImages[activeProject]} alt={`Featured framing project ${activeProject + 1}`} />
+                  <ResponsiveImage src={showcaseImages[activeProject]} alt={`${homePageData.showcase.imageAlt} ${activeProject + 1}`} />
                 </motion.div>
               </AnimatePresence>
               <div className="pointer-events-none absolute inset-0 z-10 rounded-[20px] shadow-[inset_0_4px_8px_rgba(0,0,0,0.40)] lg:rounded-[46px]" />
@@ -732,7 +434,7 @@ export default function Home() {
                     }`}
                   >
                     <div className={`relative h-full w-full overflow-hidden ${isActive ? "rounded-[5px] sm:rounded-[16px]" : "rounded-[8px] sm:rounded-[24px]"}`}>
-                      <Image src={src} alt={`Thumbnail ${index + 1}`} fill className="object-cover" />
+                      <Image src={src} alt={`${homePageData.showcase.thumbnailAlt} ${index + 1}`} fill className="object-cover" />
                     </div>
                   </div>
                 );
@@ -747,32 +449,27 @@ export default function Home() {
           <div className="flex w-full justify-center px-5 lg:px-[80px]">
             <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
               <h2 className="w-full max-w-none heading-h2 text-[26px] sm:text-[36px] lg:text-[56px] lg:whitespace-nowrap">
-                What Our Costumer Say
+                {homePageData.testimonials.title}
               </h2>
 
               <div className="flex h-auto w-full max-w-[1200px] flex-col items-stretch gap-3 rounded-[20px] bg-white p-[20px] sm:h-[82px] sm:flex-row sm:items-center sm:justify-between sm:rounded-[27px] sm:py-0 sm:pl-[32px] sm:pr-[24px]">
                 <div className="flex flex-col items-start justify-center">
                   <div className="text-[22px] font-bold tracking-tighter sm:text-[26px]">
-                    <span className="text-[#4285F4]">G</span>
-                    <span className="text-[#EA4335]">o</span>
-                    <span className="text-[#FBBC05]">o</span>
-                    <span className="text-[#4285F4]">g</span>
-                    <span className="text-[#34A853]">l</span>
-                    <span className="text-[#EA4335]">e</span>
+                    {homePageData.testimonials.platform.map((item) => <span key={`${item.letter}-${item.color}`} className={item.color}>{item.letter}</span>)}
                   </div>
                   <div className="flex items-center gap-[6px] text-[12px] font-bold text-primary sm:text-[14px]">
-                    4.9
+                    {homePageData.testimonials.rating}
                     <div className="flex text-gold">
                       {[...Array(5)].map((_, i) => (
                         <StarIcon key={i} className="size-[14px]" />
                       ))}
                     </div>
-                    <span className="font-normal text-[#777]">(264)</span>
+                    <span className="font-normal text-[#777]">{homePageData.testimonials.reviewCount}</span>
                   </div>
                 </div>
 
-                <a href="#" className="group flex items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
-                  Review us on Google <ArrowIcon />
+                <a href={homePageData.testimonials.href} className="group flex items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
+                  {homePageData.testimonials.cta} <ArrowIcon />
                 </a>
               </div>
             </div>
@@ -815,7 +512,7 @@ export default function Home() {
         {/* --- TRUSTED BY SECTION --- */}
         <section className="w-full flex flex-col items-center bg-white px-[24px] py-[40px] sm:px-[52px] sm:py-[80px]">
           <h2 className="heading-h2 w-full max-w-[1280px] text-[26px] text-center text-primary sm:text-[36px] lg:text-[56px]">
-            Trusted By
+            {homePageData.trusted.title}
           </h2>
           <div className="relative flex h-[80px] w-full items-center overflow-hidden sm:h-[100px] mt-[24px] sm:mt-[32px]">
             <motion.div
@@ -832,7 +529,7 @@ export default function Home() {
                     >
                       <img
                         src={brandImg}
-                        alt={`Trusted Brand ${i + 1}`}
+                        alt={`${homePageData.trusted.imageAlt} ${i + 1}`}
                         className="!h-[54px] !max-h-[54px] !w-auto !max-w-none object-contain"
                       />
                     </div>
@@ -847,15 +544,15 @@ export default function Home() {
         <section className="section-alt w-full flex flex-col items-center overflow-hidden p-0">
           <div className="flex w-full flex-col items-center gap-[20px] px-5 py-[40px] sm:gap-[32px] sm:py-[56px]">
             <h2 className="w-full max-w-[697px] text-center heading-h2 text-[26px] sm:text-[36px] lg:text-[56px]">
-              What We&apos;ve Been Framing
+              {homePageData.instagram.title}
             </h2>
-            <Link href="https://instagram.com" target="_blank" className="flex items-center gap-[8px] caption font-medium text-primary">
+            <Link href={homePageData.instagram.href} target="_blank" className="flex items-center gap-[8px] caption font-medium text-primary">
               <svg className="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
               </svg>
-              Follow us <span className="text-forest-green">@gallery23framing</span>
+              {homePageData.instagram.ctaPrefix} <span className="text-forest-green">{homePageData.instagram.handle}</span>
             </Link>
           </div>
 
@@ -888,7 +585,7 @@ export default function Home() {
         <section className="section-alt w-full flex flex-col items-center px-[16px] py-[56px] sm:px-[24px] lg:py-[80px]">
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[32px] rounded-[12px] p-0 sm:gap-[40px] sm:p-[32px]">
             <h2 className="text-center heading-h2 text-[26px] sm:text-[36px] lg:text-[56px]">
-              FAQs
+              {homePageData.faq.title}
             </h2>
 
             <div className="flex w-full max-w-[752px] flex-col gap-[6px] pb-[6px]">
@@ -901,15 +598,15 @@ export default function Home() {
                     </svg>
                   </summary>
                   <p className="mt-4 body-text text-secondary">
-                    Bring the piece, dimensions, or a photo of the room. Our team will walk you through materials, finish, glass, and timeline.
+                    {homePageData.faq.answer}
                   </p>
                 </details>
               ))}
             </div>
 
             <div className="mt-[8px] text-center">
-              <Link href="/support" className="group flex items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
-                VIEW ALL FAQS <ArrowIcon />
+              <Link href={homePageData.faq.href} className="group flex items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
+                {homePageData.faq.cta} <ArrowIcon />
               </Link>
             </div>
           </div>
@@ -920,7 +617,7 @@ export default function Home() {
           <div className="absolute inset-0 z-0 overflow-hidden">
             <Image
               src={images.consultation}
-              alt="Gallery interior for consultation"
+              alt={homePageData.consultation.imageAlt}
               fill
               className="object-cover"
               sizes="100vw"
@@ -958,7 +655,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

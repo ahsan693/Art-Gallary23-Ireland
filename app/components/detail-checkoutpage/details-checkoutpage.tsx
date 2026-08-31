@@ -3,19 +3,18 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
-// Importing the reusable Header and Footer from your Home page component
-import { Header, Footer } from "@/app/components/home/home";
+// Importing the page data layer
+import { checkoutDetailsDefaults, getCheckoutDetailsData } from "@/app/lib/data/checkoutDetailsData";
 
-// Importing the Data Layer
-import { getCheckoutDetailsData, pickupLocations } from "@/app/lib/data/checkoutDetailsData";
+type CheckoutDetailsData = Awaited<ReturnType<typeof getCheckoutDetailsData>>;
 
 // ==========================================
 // CHECKOUT DETAILS COMPONENT
 // ==========================================
 
 export default function CheckoutDetailsComponent() {
-    const [data, setData] = useState<any>(null);
-    const [pickupLocation, setPickupLocation] = useState("kimmage"); // Default selection
+    const [data, setData] = useState<CheckoutDetailsData | null>(null);
+    const [pickupLocation, setPickupLocation] = useState(checkoutDetailsDefaults.pickupLocation);
     
     // Ref to handle hidden file input
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -40,12 +39,7 @@ export default function CheckoutDetailsComponent() {
     return (
         <div className="flex min-h-screen flex-col bg-warm-cream text-primary">
             
-            {/* --- DESKTOP HEADER --- */}
-            <div className="hidden md:block">
-                <Header />
-            </div>
-
-            {/* --- MOBILE HEADER --- */}
+            {/* The shared Header/Footer are rendered by the root layout. */}
             <div className="md:hidden">
                 <div className="flex h-[29px] w-full items-center justify-center bg-[#295B42] px-[16px] py-[8px]">
                     <p className="whitespace-nowrap text-center font-['Host_Grotesk'] text-[11px] font-normal leading-[1.5] tracking-[0.4px] text-white">
@@ -58,13 +52,13 @@ export default function CheckoutDetailsComponent() {
                         aria-label={data.topBar.backText}
                         className="flex size-[36px] items-center justify-center -ml-[8px]"
                     >
-                        <img src={data.icons.mobileBackIcon} alt="Back" className="size-[18px]" />
+                        <img src={data.icons.mobileBackIcon} alt={data.icons.mobileBackAlt} className="size-[18px]" />
                     </Link>
                     <p className="font-['Host_Grotesk'] text-[18px] font-bold uppercase leading-[1.4] tracking-[1px] text-[#232323]">
                         {data.mobileHeader.title}
                     </p>
-                    <button type="button" aria-label="Cart" className="flex size-[36px] items-center justify-center">
-                        <img src={data.icons.mobileBagIcon} alt="Cart" className="size-[20px]" />
+                    <button type="button" aria-label={data.mobileHeader.cartLabel} className="flex size-[36px] items-center justify-center">
+                        <img src={data.icons.mobileBagIcon} alt={data.icons.mobileBagAlt} className="size-[20px]" />
                     </button>
                 </div>
             </div>
@@ -187,24 +181,24 @@ export default function CheckoutDetailsComponent() {
                                 <div className="grid grid-cols-2 gap-[16px] max-md:gap-[12px]">
                                     <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
                                         <label className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.firstName}</label>
-                                        <input type="text" placeholder="Jane" className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
+                                        <input type="text" placeholder={data.form.labels.firstNamePlaceholder} className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
                                     </div>
                                     <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
                                         <label className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.lastName}</label>
-                                        <input type="text" placeholder="Smith" className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
+                                        <input type="text" placeholder={data.form.labels.lastNamePlaceholder} className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
                                     </div>
                                 </div>
 
                                 {/* Email */}
                                 <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
                                     <label className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.email}</label>
-                                    <input type="email" placeholder="jane@example.com" className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
+                                    <input type="email" placeholder={data.form.labels.emailPlaceholder} className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
                                 </div>
 
                                 {/* Phone */}
                                 <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
                                     <label className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.phone}</label>
-                                    <input type="tel" placeholder="+353 87 000 0000" className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
+                                    <input type="tel" placeholder={data.form.labels.phonePlaceholder} className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
                                 </div>
                             </div>
 
@@ -212,7 +206,7 @@ export default function CheckoutDetailsComponent() {
                             <div className="flex flex-col gap-[12px] pt-[8px] max-md:gap-[16px] max-md:rounded-[16px] max-md:border max-md:border-border max-md:bg-white max-md:p-[16px] max-md:pt-[16px]">
                                 <label className="text-[14px] font-bold text-primary max-md:text-[14px] max-md:uppercase max-md:tracking-[0.4px]">{data.form.labels.pickupTitle}</label>
                                 <div className="flex flex-col gap-[12px]">
-                                    {pickupLocations.map((loc) => {
+                                    {data.pickupLocations.map((loc) => {
                                         const isSelected = pickupLocation === loc.id;
                                         return (
                                             <button
@@ -248,7 +242,7 @@ export default function CheckoutDetailsComponent() {
                             {data.bottomBar.requiredText}
                         </p>
 
-                        <Link href={data.bottomBar.nextButtonLink || "/checkout-review"} className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
+                        <Link href={data.bottomBar.nextButtonLink} className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
                             {data.bottomBar.nextButtonText}
                             <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -261,7 +255,7 @@ export default function CheckoutDetailsComponent() {
                         <p className="text-center text-[13px] text-secondary">
                             {data.bottomBar.requiredText}
                         </p>
-                        <Link href={data.bottomBar.nextButtonLink || "/checkout-review"} className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#232323] font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white">
+                        <Link href={data.bottomBar.nextButtonLink} className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#232323] font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white">
                             {data.bottomBar.nextButtonText}
                             <img src={data.icons.mobileArrowIcon} alt="" className="size-[16px] brightness-0 invert" />
                         </Link>
@@ -270,10 +264,6 @@ export default function CheckoutDetailsComponent() {
                 </div>
             </main>
 
-            {/* --- DESKTOP FOOTER --- */}
-            <div className="hidden md:block">
-                <Footer />
-            </div>
         </div>
     );
 }
