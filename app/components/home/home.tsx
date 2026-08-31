@@ -174,25 +174,27 @@ export function Header() {
 
   return (
     <header className="relative z-50 w-full flex flex-col items-center border-b border-border bg-white">
-      <div className="w-full max-w-[1440px] flex flex-col">
-        {/* Top Banner */}
-        <div className="flex h-auto min-h-[36px] w-full items-center justify-center bg-forest-green px-[20px] py-[8px] text-center text-white sm:px-[40px]">
+      {/* Top Banner - Full Width Background */}
+      <div className="w-full bg-forest-green transition-colors duration-300 hover:bg-[#204834] active:bg-[#1a3a2a]">
+        <div className="mx-auto flex h-auto min-h-[36px] w-full max-w-[1440px] items-center justify-center px-[20px] py-[8px] text-center text-white sm:px-[40px]">
           <span className="caption text-white cursor-default">
             Now Trending!{" "}
-            <span className="font-semibold underline decoration-solid underline-offset-2">
+            <span className="font-semibold underline decoration-solid underline-offset-2 transition-colors duration-300 hover:text-[#E8B84B] active:text-[#E8B84B] cursor-pointer">
               Custom Gallery Walls &rarr;
             </span>
           </span>
         </div>
+      </div>
 
-        {/* Navbar */}
-        <nav className="relative flex h-[72px] w-full items-center justify-between bg-white px-[20px] sm:px-[40px] lg:px-[40px]">
+      {/* Navbar - Full Width Background */}
+      <div className="relative w-full flex justify-center bg-white">
+        <nav className="flex h-[72px] w-full max-w-[1440px] items-center justify-between px-[20px] sm:px-[40px] lg:px-[40px]">
           {/* Left Side: Hamburger Menu (Mobile Only) */}
           <div className="flex items-center lg:hidden">
             <button
               aria-label="Toggle menu"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="flex items-center justify-center p-0"
+              className="flex items-center justify-center p-0 transition-transform duration-300 active:scale-90 hover:text-forest-green active:text-forest-green"
             >
               {isMobileMenuOpen ? (
                 <CloseIcon />
@@ -233,7 +235,7 @@ export function Header() {
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <Link
               href="/"
-              className="flex items-center justify-center w-auto h-auto whitespace-nowrap font-bold uppercase tracking-widest text-[16px] lg:heading-h8 lg:tracking-normal"
+              className="flex items-center justify-center w-auto h-auto whitespace-nowrap font-bold uppercase tracking-widest text-[16px] transition-transform duration-300 hover:scale-105 active:scale-95 lg:heading-h8 lg:tracking-normal"
             >
               GALLERY 23
             </Link>
@@ -255,16 +257,16 @@ export function Header() {
             <span className="hidden h-6 w-px bg-border lg:block" />
 
             <div className="flex items-center gap-[12px] h-[20px] lg:h-auto lg:gap-1">
-              <button aria-label="Search" className="flex items-center justify-center p-0 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
+              <button aria-label="Search" className="flex items-center justify-center p-0 transition-all duration-300 hover:bg-[#84A59D]/10 hover:border-[#84A59D] active:scale-90 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
                 <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
               </button>
-              <button aria-label="Cart" className="flex items-center justify-center p-0 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
+              <button aria-label="Cart" className="flex items-center justify-center p-0 transition-all duration-300 hover:bg-[#84A59D]/10 hover:border-[#84A59D] active:scale-90 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
                 <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
               </button>
             </div>
           </div>
 
-          {/* Mobile Dropdown Menu */}
+          {/* Mobile Dropdown Menu (Full Width Drop) */}
           <AnimatePresence>
             {isMobileMenuOpen && (
               <motion.div
@@ -273,7 +275,7 @@ export function Header() {
                 exit={{ height: 0, opacity: 0 }}
                 className="absolute left-0 top-[72px] z-50 w-full overflow-hidden border-t border-border bg-white shadow-xl lg:hidden"
               >
-                <div className="flex flex-col gap-1 px-[20px] py-[32px] sm:px-[40px]">
+                <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-1 px-[20px] py-[32px] sm:px-[40px]">
                   {[...navItems, ...rightNav].map((item) => {
                     const isActive = pathname === item.href;
                     return (
@@ -281,7 +283,7 @@ export function Header() {
                         key={item.name}
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block py-3 text-[18px] font-bold tracking-tight transition-colors duration-300 ${
+                        className={`block origin-left py-3 text-[18px] font-bold tracking-tight transition-all duration-300 active:scale-95 active:text-forest-green ${
                           isActive ? "text-forest-green" : "text-primary hover:text-forest-green"
                         }`}
                       >
@@ -293,7 +295,6 @@ export function Header() {
               </motion.div>
             )}
           </AnimatePresence>
-
         </nav>
       </div>
     </header>
@@ -450,7 +451,7 @@ export default function Home() {
   const [activeProject, setActiveProject] = useState(0);
 
   // Duplicated arrays for ultra-wide seamless marquees
-  const repeatedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials];
+  const repeatedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials];
   
   const baseInsta = [
     { title: "19th Century Portrait in Ornate Gold", handle: "@vintagelover_ny", img: images.instagramOne },
@@ -458,7 +459,7 @@ export default function Home() {
     { title: "Abstract Minimalism in Matte Black", handle: "@modern_nest", img: images.instagramThree },
     { title: "Championship Jersey Shadow Box", handle: "@sportscollector_88", img: images.instagramFour },
   ];
-  const repeatedInsta = [...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta];
+  const repeatedInsta = [...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -473,7 +474,7 @@ export default function Home() {
 
       <main className="w-full overflow-hidden">
         {/* --- HERO SECTION --- */}
-        <section className="group w-full flex flex-col items-center cursor-default">
+        <section className="flex w-full flex-col items-center">
           <div className="relative h-[620px] w-full overflow-hidden lg:h-[760px]">
             <div className="absolute inset-0 overflow-hidden w-full h-full">
               <Image
