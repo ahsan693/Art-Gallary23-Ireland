@@ -140,10 +140,10 @@ export function Button({ children, href = "/support", dark = false }: { children
   return (
     <Link 
       href={href} 
-      className={`group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95 ${
+      className={`group transition-all duration-300 active:scale-95 ${
         dark 
           ? "btn-primary hover:bg-primary hover:border-primary hover:text-white" 
-          : "btn-secondary hover:bg-warm-cream hover:text-forest-green hover:border-forest-green"
+          : "btn-secondary hover:bg-primary hover:text-white hover:border-primary"
       }`}
     >
       {children}
@@ -173,127 +173,129 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="relative z-50 mx-auto flex w-full max-w-[1440px] flex-col items-start border-b border-border bg-white">
-      {/* Top Banner */}
-      <div className="flex h-auto min-h-[36px] w-full items-center justify-center bg-forest-green px-[20px] py-[8px] text-center text-white sm:px-[40px]">
-        <span className="caption text-white">
-          Now Trending!{" "}
-          <span className="font-semibold underline decoration-solid underline-offset-2">
-            Custom Gallery Walls &rarr;
+    <header className="relative z-50 w-full flex flex-col items-center border-b border-border bg-white">
+      <div className="w-full max-w-[1440px] flex flex-col">
+        {/* Top Banner */}
+        <div className="flex h-auto min-h-[36px] w-full items-center justify-center bg-forest-green px-[20px] py-[8px] text-center text-white sm:px-[40px]">
+          <span className="caption text-white cursor-default">
+            Now Trending!{" "}
+            <span className="font-semibold underline decoration-solid underline-offset-2">
+              Custom Gallery Walls &rarr;
+            </span>
           </span>
-        </span>
-      </div>
-
-      {/* Navbar */}
-      <nav className="relative flex h-[72px] w-full items-center justify-between bg-white px-[20px] sm:px-[40px] lg:px-[40px]">
-        {/* Left Side: Hamburger Menu (Mobile Only) */}
-        <div className="flex items-center lg:hidden">
-          <button
-            aria-label="Toggle menu"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex items-center justify-center p-0"
-          >
-            {isMobileMenuOpen ? (
-              <CloseIcon />
-            ) : (
-              <svg
-                className="w-[30px] h-[22.5px]"
-                fill="none"
-                viewBox="0 0 30 22.5"
-                stroke="currentColor"
-                strokeWidth="2.2"
-              >
-                <path strokeLinecap="round" d="M0 2h30M0 11.25h30M0 20.5h20" />
-              </svg>
-            )}
-          </button>
         </div>
 
-        {/* Desktop Navigation Links (Aligned Left) */}
-        <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`relative flex h-[72px] items-center px-4 button-small ${
-                  isActive ? "text-forest-green" : "text-primary hover:text-forest-green"
-                }`}
-              >
-                {item.name}
-                {isActive ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-forest-green" /> : null}
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* Center: Logo (Centered on Desktop & Mobile) */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <Link
-            href="/"
-            className="flex items-center justify-center w-auto h-auto whitespace-nowrap font-bold uppercase tracking-widest text-[16px] lg:heading-h8 lg:tracking-normal"
-          >
-            GALLERY 23
-          </Link>
-        </div>
-
-        {/* Right Side: Icons & Right Desktop Links */}
-        <div className="flex items-center justify-end gap-3 lg:flex-1 lg:gap-1">
-          <div className="hidden items-center gap-1 lg:flex">
-            {rightNav.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="flex h-[72px] items-center justify-center px-3 button-small hover:text-forest-green"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-          <span className="hidden h-6 w-px bg-border lg:block" />
-
-          <div className="flex items-center gap-[12px] h-[20px] lg:h-auto lg:gap-1">
-            <button aria-label="Search" className="flex items-center justify-center p-0 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
-              <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
-            </button>
-            <button aria-label="Cart" className="flex items-center justify-center p-0 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
-              <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Dropdown Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="absolute left-0 top-[72px] z-50 w-full overflow-hidden border-t border-border bg-white shadow-xl lg:hidden"
+        {/* Navbar */}
+        <nav className="relative flex h-[72px] w-full items-center justify-between bg-white px-[20px] sm:px-[40px] lg:px-[40px]">
+          {/* Left Side: Hamburger Menu (Mobile Only) */}
+          <div className="flex items-center lg:hidden">
+            <button
+              aria-label="Toggle menu"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="flex items-center justify-center p-0"
             >
-              <div className="flex flex-col gap-1 px-[20px] py-[32px] sm:px-[40px]">
-                {[...navItems, ...rightNav].map((item) => {
-                  const isActive = pathname === item.href;
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={`block py-3 text-[18px] font-bold tracking-tight ${
-                        isActive ? "text-forest-green" : "text-primary"
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-                  );
-                })}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              {isMobileMenuOpen ? (
+                <CloseIcon />
+              ) : (
+                <svg
+                  className="w-[30px] h-[22.5px]"
+                  fill="none"
+                  viewBox="0 0 30 22.5"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                >
+                  <path strokeLinecap="round" d="M0 2h30M0 11.25h30M0 20.5h20" />
+                </svg>
+              )}
+            </button>
+          </div>
 
-      </nav>
+          {/* Desktop Navigation Links (Aligned Left) */}
+          <div className="hidden min-w-0 flex-1 items-center gap-1 lg:flex">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`relative flex h-[72px] items-center px-4 button-small transition-colors duration-300 hover:text-forest-green ${
+                    isActive ? "text-forest-green" : "text-primary"
+                  }`}
+                >
+                  {item.name}
+                  {isActive ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-forest-green" /> : null}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Center: Logo (Centered on Desktop & Mobile) */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <Link
+              href="/"
+              className="flex items-center justify-center w-auto h-auto whitespace-nowrap font-bold uppercase tracking-widest text-[16px] lg:heading-h8 lg:tracking-normal"
+            >
+              GALLERY 23
+            </Link>
+          </div>
+
+          {/* Right Side: Icons & Right Desktop Links */}
+          <div className="flex items-center justify-end gap-3 lg:flex-1 lg:gap-1">
+            <div className="hidden items-center gap-1 lg:flex">
+              {rightNav.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="flex h-[72px] items-center justify-center px-3 button-small transition-colors duration-300 hover:text-forest-green"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+            <span className="hidden h-6 w-px bg-border lg:block" />
+
+            <div className="flex items-center gap-[12px] h-[20px] lg:h-auto lg:gap-1">
+              <button aria-label="Search" className="flex items-center justify-center p-0 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
+                <Image src="/gallery23/nav-search.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
+              </button>
+              <button aria-label="Cart" className="flex items-center justify-center p-0 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
+                <Image src="/gallery23/nav-shopping-bag.svg" alt="" width={20} height={20} className="size-[20px] lg:size-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Dropdown Menu */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="absolute left-0 top-[72px] z-50 w-full overflow-hidden border-t border-border bg-white shadow-xl lg:hidden"
+              >
+                <div className="flex flex-col gap-1 px-[20px] py-[32px] sm:px-[40px]">
+                  {[...navItems, ...rightNav].map((item) => {
+                    const isActive = pathname === item.href;
+                    return (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`block py-3 text-[18px] font-bold tracking-tight transition-colors duration-300 ${
+                          isActive ? "text-forest-green" : "text-primary hover:text-forest-green"
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+        </nav>
+      </div>
     </header>
   );
 }
@@ -346,91 +348,93 @@ export function FooterColumn({ title, items, className = "" }: { title: string; 
 
 export function Footer() {
   return (
-    <footer className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-black text-white">
-      <div className="flex w-full items-center justify-between border-b border-dark-surface px-[20px] py-[24px] sm:px-[40px] sm:py-[28px] lg:px-[80px] lg:py-[40px]">
-        <Link href="/" className="flex h-[48px] items-center sm:h-[65px]">
-          <Image
-            src="/Homepage/Icons/Logo.svg"
-            alt="Gallery 23 Logo"
-            width={200}
-            height={48}
-            className="h-[40px] w-auto sm:h-[48px] object-contain"
-          />
-        </Link>
-      </div>
-
-      <div className="flex w-full flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:border-b lg:border-dark-surface lg:px-[80px] lg:py-[56px]">
-        <div className="grid w-full grid-cols-3 gap-[16px] border-b border-dark-surface px-[20px] py-[32px] sm:gap-[32px] sm:px-[40px] lg:contents">
-          <FooterColumn
-            title="Services"
-            items={[
-              { label: "Picture Framing", href: "/services" },
-              { label: "Canvas Prints", href: "/services" },
-              { label: "Jersey Framing", href: "/services" },
-              { label: "Shadow Boxes", href: "/services" },
-              { label: "Certificates & Awards", href: "/services" },
-              { label: "Photo Frames", href: "/services" }
-            ]}
-          />
-          <FooterColumn
-            title="Company"
-            items={[
-              { label: "About Us", href: "/about" },
-              { label: "Print Shop", href: "/printshop" },
-              { label: "Commercial", href: "/commercial" }
-            ]}
-          />
-          <FooterColumn
-            title="Resources"
-            items={[
-              { label: "FAQs", href: "/support" },
-              { label: "Contact Us", href: "/support" }
-            ]}
-          />
+    <footer className="w-full bg-black flex justify-center text-white">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center">
+        <div className="flex w-full items-center justify-between border-b border-dark-surface px-[20px] py-[24px] sm:px-[40px] sm:py-[28px] lg:px-[80px] lg:py-[40px]">
+          <Link href="/" className="flex h-[48px] items-center sm:h-[65px]">
+            <Image
+              src="/Homepage/Icons/Logo.svg"
+              alt="Gallery 23 Logo"
+              width={200}
+              height={48}
+              className="h-[40px] w-auto sm:h-[48px] object-contain"
+            />
+          </Link>
         </div>
 
-        <div className="flex w-full flex-col gap-[28px] border-b border-dark-surface px-[20px] py-[28px] sm:flex-row sm:gap-[40px] sm:px-[40px] lg:contents">
-          <FooterColumn
-            title="North side"
-            items={["Gallery 23 Downtown", "Unit 4 Coolport Porters Road, Coolmine Blanchardstown D15DX3D", "(555) 123-4567", "hello@gallery23.com"]}
-          />
-          <FooterColumn
-            title="South side"
-            items={["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"]}
-          />
-        </div>
-      </div>
-
-      <div className="flex w-full flex-col items-start gap-[16px] px-[20px] py-[24px] sm:gap-[24px] sm:px-[40px] sm:py-[32px] lg:flex-row lg:items-start lg:justify-between lg:px-[80px] lg:pb-[40px] lg:pt-[32px]">
-        <div className="flex w-full flex-col gap-[8px] caption text-muted lg:w-[380px]">
-          <p>©2024 Gallery 23. All rights reserved.</p>
-          <p>
-            Professional custom framing and fine art printing services.
-            Museum-quality preservation for your most valued memories.
-          </p>
-        </div>
-
-        <div className="flex flex-row flex-wrap items-center gap-[12px] sm:w-auto">
-          <div className="flex w-max items-center justify-start gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] sm:gap-[10px] sm:px-[16px] sm:py-[10px]">
-            <div className="flex text-gold">
-              {[...Array(5)].map((_, i) => (
-                <StarIcon key={i} className="size-[14px]" />
-              ))}
-            </div>
-            <div className="flex flex-col small font-medium leading-[1.3]">
-              <span className="text-white">Rated 4.9 from</span>
-              <span className="text-muted">200+ customers</span>
-            </div>
+        <div className="flex w-full flex-col lg:flex-row lg:flex-wrap lg:justify-between lg:gap-[24px] lg:border-b lg:border-dark-surface lg:px-[80px] lg:py-[56px]">
+          <div className="grid w-full grid-cols-3 gap-[16px] border-b border-dark-surface px-[20px] py-[32px] sm:gap-[32px] sm:px-[40px] lg:contents">
+            <FooterColumn
+              title="Services"
+              items={[
+                { label: "Picture Framing", href: "/services" },
+                { label: "Canvas Prints", href: "/services" },
+                { label: "Jersey Framing", href: "/services" },
+                { label: "Shadow Boxes", href: "/services" },
+                { label: "Certificates & Awards", href: "/services" },
+                { label: "Photo Frames", href: "/services" }
+              ]}
+            />
+            <FooterColumn
+              title="Company"
+              items={[
+                { label: "About Us", href: "/about" },
+                { label: "Print Shop", href: "/printshop" },
+                { label: "Commercial", href: "/commercial" }
+              ]}
+            />
+            <FooterColumn
+              title="Resources"
+              items={[
+                { label: "FAQs", href: "/support" },
+                { label: "Contact Us", href: "/support" }
+              ]}
+            />
           </div>
 
-          <a href="#" className="flex w-max items-center justify-center gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] sm:gap-[10px] sm:px-[16px] sm:py-[10px] transition-all duration-300 hover:bg-[#232323] hover:-translate-y-1 hover:shadow-lg active:scale-95">
-            <svg className="size-[16px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3v18" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-2.5 0-4.5-4-4.5-9S9.5 3 12 3s4.5 4 4.5 9-2 9-4.5 9Z" />
-            </svg>
-            <span className="small font-medium text-white">Google Reviews</span>
-          </a>
+          <div className="flex w-full flex-col gap-[28px] border-b border-dark-surface px-[20px] py-[28px] sm:flex-row sm:gap-[40px] sm:px-[40px] lg:contents">
+            <FooterColumn
+              title="North side"
+              items={["Gallery 23 Downtown", "Unit 4 Coolport Porters Road, Coolmine Blanchardstown D15DX3D", "(555) 123-4567", "hello@gallery23.com"]}
+            />
+            <FooterColumn
+              title="South side"
+              items={["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"]}
+            />
+          </div>
+        </div>
+
+        <div className="flex w-full flex-col items-start gap-[16px] px-[20px] py-[24px] sm:gap-[24px] sm:px-[40px] sm:py-[32px] lg:flex-row lg:items-start lg:justify-between lg:px-[80px] lg:pb-[40px] lg:pt-[32px]">
+          <div className="flex w-full flex-col gap-[8px] caption text-muted lg:w-[380px]">
+            <p>©2024 Gallery 23. All rights reserved.</p>
+            <p>
+              Professional custom framing and fine art printing services.
+              Museum-quality preservation for your most valued memories.
+            </p>
+          </div>
+
+          <div className="flex flex-row flex-wrap items-center gap-[12px] sm:w-auto">
+            <div className="flex w-max items-center justify-start gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] sm:gap-[10px] sm:px-[16px] sm:py-[10px]">
+              <div className="flex text-gold">
+                {[...Array(5)].map((_, i) => (
+                  <StarIcon key={i} className="size-[14px]" />
+                ))}
+              </div>
+              <div className="flex flex-col small font-medium leading-[1.3]">
+                <span className="text-white">Rated 4.9 from</span>
+                <span className="text-muted">200+ customers</span>
+              </div>
+            </div>
+
+            <a href="#" className="flex w-max items-center justify-center gap-[8px] rounded-[100px] border border-dark-surface bg-primary px-[12px] py-[8px] transition-all duration-300 hover:bg-primary hover:border-[#84A59D] active:scale-95 sm:gap-[10px] sm:px-[16px] sm:py-[10px]">
+              <svg className="size-[16px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3v18" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21c-2.5 0-4.5-4-4.5-9S9.5 3 12 3s4.5 4 4.5 9-2 9-4.5 9Z" />
+              </svg>
+              <span className="small font-medium text-white">Google Reviews</span>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
@@ -445,6 +449,17 @@ export default function Home() {
   const showcaseImages = [images.frameOne, images.frameTwo, images.frameThree];
   const [activeProject, setActiveProject] = useState(0);
 
+  // Duplicated arrays for ultra-wide seamless marquees
+  const repeatedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials];
+  
+  const baseInsta = [
+    { title: "19th Century Portrait in Ornate Gold", handle: "@vintagelover_ny", img: images.instagramOne },
+    { title: "Botanical Series in Natural Oak", handle: "@botanical_living", img: images.instagramTwo },
+    { title: "Abstract Minimalism in Matte Black", handle: "@modern_nest", img: images.instagramThree },
+    { title: "Championship Jersey Shadow Box", handle: "@sportscollector_88", img: images.instagramFour },
+  ];
+  const repeatedInsta = [...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta, ...baseInsta];
+
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveProject((prev) => (prev + 1) % showcaseImages.length);
@@ -453,26 +468,25 @@ export default function Home() {
   }, [showcaseImages.length]);
 
   return (
-    <div className="min-h-screen bg-warm-cream text-primary">
+    <div className="min-h-screen bg-warm-cream text-primary overflow-x-hidden">
       <Header />
 
-      <main>
+      <main className="w-full overflow-hidden">
         {/* --- HERO SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-start">
+        <section className="group w-full flex flex-col items-center cursor-default">
           <div className="relative h-[620px] w-full overflow-hidden lg:h-[760px]">
-            <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden w-full h-full">
               <Image
                 src={images.hero}
                 alt="Gallery interior with framed artwork on display"
-                width={2881}
-                height={3840}
+                fill
                 priority
                 sizes="100vw"
-                className="absolute left-0 top-[-70%] h-[220%] w-full max-w-none object-cover sm:top-[-82%] sm:h-[240%] lg:top-[-89.25%] lg:h-[249.94%]"
+                className="object-cover"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-r from-black/20 from-[18.54%] to-transparent to-[68.99%]" />
-            <div className="relative mx-auto flex h-full max-w-[1280px] items-center px-5 py-20 sm:px-[42px] sm:py-8">
+            <div className="relative mx-auto flex h-full w-full max-w-[1280px] items-center px-5 py-20 sm:px-[42px] sm:py-8">
               <div className="mx-auto flex w-full max-w-[620px] flex-col items-center gap-8 py-12 text-center text-white sm:py-20 lg:mx-0 lg:items-start lg:text-left">
                 <h1 className="heading-display text-[30px] leading-[1.2] text-white sm:text-[56px] sm:leading-[1.1] lg:text-[64px]">
                   Dublin&apos;s Premier
@@ -487,7 +501,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/support"
-                  className="btn-secondary group border-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg active:scale-95 text-primary"
+                  className="btn-secondary group border-white transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary active:scale-95 text-primary"
                 >
                   <span className="leading-[46px]">Book A Free Consultation</span>
                 </Link>
@@ -498,11 +512,11 @@ export default function Home() {
           {/* --- ANIMATED TICKER --- */}
           <div className="relative flex h-[58px] w-full items-center overflow-hidden bg-primary text-[13px] font-medium text-white">
             <motion.div
-              className="flex whitespace-nowrap"
+              className="flex w-max whitespace-nowrap"
               animate={{ x: ["0%", "-50%"] }}
               transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
             >
-              {[...Array(2)].map((_, index) => (
+              {[...Array(6)].map((_, index) => (
                 <div key={index} className="flex items-center gap-[7.8px] pl-[23.41px] pr-[7.81px]">
                   <span className="leading-[58px]">Get Free Consultation</span>
                   <span className="leading-[58px]">&nbsp;&nbsp;&nbsp;Explore Our Fine Art Collection&nbsp;&nbsp;&nbsp;&bull;</span>
@@ -517,7 +531,7 @@ export default function Home() {
         </section>
 
         {/* --- OUR SERVICES SECTION --- */}
-        <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center py-[80px]">
+        <section className="section-alt w-full flex flex-col items-center py-[80px]">
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[32px] px-5 py-[40px] lg:flex-row lg:gap-[80px] lg:px-[64px]">
             <div className="flex w-full flex-col items-center gap-[12px] text-center lg:hidden">
               <h2 className="heading-h2 text-[26px] sm:text-[36px]">
@@ -550,30 +564,32 @@ export default function Home() {
         </section>
 
         {/* --- ABOUT SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-primary px-5 py-14 lg:h-[704px] lg:flex-row lg:gap-[64px] lg:px-[120px] lg:py-[72px]">
-          <div className="flex w-full flex-col gap-[24px] lg:w-[560px]">
-            <h2 className="heading-h2 text-[26px] text-white sm:text-[36px] lg:text-[56px]">
-              About Gallery23
-            </h2>
-            <p className="body-large text-white/75">
-              A space for art, framing, and conversation.
-            </p>
-            <p className="body-text text-white/75">
-              Our professional framers love what they do and will happily advise you on your next custom framing project. With a wealth of knowledge and experience, our designers tailor each complimentary design session to your needs so they can create the ideal custom frame for you.
-            </p>
-            <div className="mt-2">
-              <Link href="/about" className="group flex w-max items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-white hover:text-white hover:shadow-lg active:scale-95">
-                LEARN MORE <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+        <section className="w-full bg-primary flex justify-center">
+          <div className="flex w-full max-w-[1440px] flex-col items-center px-5 py-14 lg:h-[704px] lg:flex-row lg:gap-[64px] lg:px-[120px] lg:py-[72px]">
+            <div className="flex w-full flex-col gap-[24px] lg:w-[560px]">
+              <h2 className="heading-h2 text-[26px] text-white sm:text-[36px] lg:text-[56px]">
+                About Gallery23
+              </h2>
+              <p className="body-large text-white/75">
+                A space for art, framing, and conversation.
+              </p>
+              <p className="body-text text-white/75">
+                Our professional framers love what they do and will happily advise you on your next custom framing project. With a wealth of knowledge and experience, our designers tailor each complimentary design session to your needs so they can create the ideal custom frame for you.
+              </p>
+              <div className="mt-2">
+                <Link href="/about" className="group flex w-max items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
+                  LEARN MORE <ArrowIcon />
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="relative mt-10 h-[260px] w-full shrink-0 overflow-hidden rounded-3xl lg:mt-0 lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
-            <ResponsiveImage src={images.about} alt="Gallery interior with framed artwork" className="rounded-3xl lg:rounded-[32px]" />
+            <div className="relative mt-10 h-[260px] w-full shrink-0 overflow-hidden rounded-3xl lg:mt-0 lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
+              <ResponsiveImage src={images.about} alt="Gallery interior with framed artwork" className="rounded-3xl lg:rounded-[32px]" />
+            </div>
           </div>
         </section>
 
         {/* --- WHY CHOOSE OUR FRAMES SECTION --- */}
-        <section className="relative isolate mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[56px] px-5 py-[80px] lg:px-[80px]">
+        <section className="relative isolate w-full flex flex-col items-center gap-[56px] overflow-hidden px-5 py-[80px] lg:px-[80px]">
           <div className="absolute inset-0 z-0">
             <Image 
               src={images.why} 
@@ -615,7 +631,7 @@ export default function Home() {
         </section>
 
         {/* --- CUSTOM PRINTING SECTION --- */}
-        <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[48px] px-5 py-[80px] lg:px-[80px]">
+        <section className="section-alt w-full flex flex-col items-center gap-[48px] px-5 py-[80px] lg:px-[80px]">
           <div className="flex w-full max-w-[802px] flex-col items-center gap-[12px] text-center">
             <h2 className="heading-h2 text-[26px] sm:text-[36px] lg:text-[56px]">
               Custom Printing Made for You
@@ -655,8 +671,8 @@ export default function Home() {
                 </ul>
               </div>
               <div className="mt-8 lg:mt-[36px]">
-                <Link href="/printshop" className="group flex w-max items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-lg active:scale-95">
-                  START YOUR CUSTOM PRINT <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+                <Link href="/printshop" className="group flex w-max items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
+                  START YOUR CUSTOM PRINT <ArrowIcon />
                 </Link>
               </div>
             </div>
@@ -664,7 +680,7 @@ export default function Home() {
         </section>
 
        {/* --- SHOWCASE / FEATURED FRAMING PROJECTS SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[32px] bg-forest-green px-[20px] py-[64px] lg:gap-[56px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
+        <section className="w-full flex flex-col items-center gap-[32px] bg-forest-green px-[20px] py-[64px] lg:gap-[56px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
           <div className="flex w-full max-w-[1200px] items-start justify-start lg:items-center lg:justify-between">
             <h2 className="w-full max-w-none heading-h2 text-left text-white lg:whitespace-nowrap">
               Featured Framing Projects
@@ -694,7 +710,7 @@ export default function Home() {
                   key={index}
                   onClick={() => setActiveProject(index)}
                   className={`h-1.5 rounded-full transition-colors duration-300 ${
-                    index === activeProject ? "w-6 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80"
+                    index === activeProject ? "w-6 bg-white" : "size-1.5 bg-white/50"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -711,7 +727,7 @@ export default function Home() {
                     className={`relative flex h-[70px] w-[100px] shrink-0 cursor-pointer items-center justify-center transition-all duration-300 sm:h-[200px] sm:w-[380px] ${
                       isActive
                         ? "rounded-[8px] border-[1.5px] border-white bg-transparent p-[3px] sm:rounded-[24px] sm:border-2 sm:bg-[#336a4c] sm:p-[8px]"
-                        : "rounded-[8px] border-[1.5px] border-transparent bg-transparent opacity-60 hover:opacity-100 sm:rounded-[24px] sm:border-2"
+                        : "rounded-[8px] border-[1.5px] border-transparent bg-transparent opacity-60 sm:rounded-[24px] sm:border-2"
                     }`}
                   >
                     <div className={`relative h-full w-full overflow-hidden ${isActive ? "rounded-[5px] sm:rounded-[16px]" : "rounded-[8px] sm:rounded-[24px]"}`}>
@@ -725,7 +741,7 @@ export default function Home() {
         </section>
 
    {/* --- TESTIMONIALS SECTION --- */}
-        <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[40px] overflow-hidden py-[64px] lg:gap-[48px] lg:py-[80px]">
+        <section className="section-alt w-full flex flex-col items-center gap-[40px] overflow-hidden py-[64px] lg:gap-[48px] lg:py-[80px]">
           
           <div className="flex w-full justify-center px-5 lg:px-[80px]">
             <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
@@ -754,20 +770,20 @@ export default function Home() {
                   </div>
                 </div>
 
-                <a href="#" className="group flex items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-md active:scale-95">
-                  Review us on Google <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+                <a href="#" className="group flex items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
+                  Review us on Google <ArrowIcon />
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="relative w-full max-w-[1440px] overflow-hidden px-5 lg:px-0">
+          <div className="relative w-full overflow-hidden px-5 lg:px-0">
             <motion.div
               className="flex w-max gap-[16px] pb-[16px] sm:gap-[24px] lg:gap-[32px]"
               animate={{ x: ["0%", "-50%"] }}
               transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
             >
-              {[...testimonials, ...testimonials].map((item, index) => (
+              {repeatedTestimonials.map((item, index) => (
                 <article
                   key={index}
                   className="card flex h-[400px] w-[260px] shrink-0 flex-col gap-[16px] p-[20px] sm:h-[440px] sm:w-[360px] sm:gap-[20px] sm:p-[32px]"
@@ -796,41 +812,38 @@ export default function Home() {
         </section>
 
         {/* --- TRUSTED BY SECTION --- */}
-        <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center bg-white px-[24px] py-[40px] sm:px-[52px] sm:py-[80px]">
-          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[24px] sm:gap-[32px]">
-            <h2 className="heading-h2 text-[26px] text-center text-primary sm:text-[36px] lg:text-[56px]">
-              Trusted By
-            </h2>
-
-            <div className="relative flex h-[80px] w-full items-center overflow-hidden sm:h-[100px]">
-              <motion.div
-                className="flex w-max items-center"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
-              >
-                {[...Array(2)].map((_, idx) => (
-                  <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
-                    {trustedBrands.map((brandImg, i) => (
-                      <div
-                        key={i}
-                        className="flex h-[60px] sm:h-[80px] items-center justify-center shrink-0"
-                      >
-                        <img
-                          src={brandImg}
-                          alt={`Trusted Brand ${i + 1}`}
-                          className="!h-[54px] !max-h-[54px] !w-auto !max-w-none object-contain"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </motion.div>
-            </div>
+        <section className="w-full flex flex-col items-center bg-white px-[24px] py-[40px] sm:px-[52px] sm:py-[80px]">
+          <h2 className="heading-h2 w-full max-w-[1280px] text-[26px] text-center text-primary sm:text-[36px] lg:text-[56px]">
+            Trusted By
+          </h2>
+          <div className="relative flex h-[80px] w-full items-center overflow-hidden sm:h-[100px] mt-[24px] sm:mt-[32px]">
+            <motion.div
+              className="flex w-max items-center"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+            >
+              {[...Array(6)].map((_, idx) => (
+                <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
+                  {trustedBrands.map((brandImg, i) => (
+                    <div
+                      key={i}
+                      className="flex h-[60px] sm:h-[80px] items-center justify-center shrink-0 opacity-70 grayscale"
+                    >
+                      <img
+                        src={brandImg}
+                        alt={`Trusted Brand ${i + 1}`}
+                        className="!h-[54px] !max-h-[54px] !w-auto !max-w-none object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </motion.div>
           </div>
         </section>
 
         {/* --- WHAT WE'VE BEEN FRAMING SECTION --- */}
-        <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center overflow-hidden p-0">
+        <section className="section-alt w-full flex flex-col items-center overflow-hidden p-0">
           <div className="flex w-full flex-col items-center gap-[20px] px-5 py-[40px] sm:gap-[32px] sm:py-[56px]">
             <h2 className="w-full max-w-[697px] text-center heading-h2 text-[26px] sm:text-[36px] lg:text-[56px]">
               What We&apos;ve Been Framing
@@ -851,17 +864,8 @@ export default function Home() {
               animate={{ x: ["0%", "-50%"] }}
               transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
             >
-              {[
-                { title: "19th Century Portrait in Ornate Gold", handle: "@vintagelover_ny", img: images.instagramOne },
-                { title: "Botanical Series in Natural Oak", handle: "@botanical_living", img: images.instagramTwo },
-                { title: "Abstract Minimalism in Matte Black", handle: "@modern_nest", img: images.instagramThree },
-                { title: "Championship Jersey Shadow Box", handle: "@sportscollector_88", img: images.instagramFour },
-                { title: "19th Century Portrait in Ornate Gold", handle: "@vintagelover_ny", img: images.instagramOne },
-                { title: "Botanical Series in Natural Oak", handle: "@botanical_living", img: images.instagramTwo },
-                { title: "Abstract Minimalism in Matte Black", handle: "@modern_nest", img: images.instagramThree },
-                { title: "Championship Jersey Shadow Box", handle: "@sportscollector_88", img: images.instagramFour },
-              ].map((item, index) => (
-                <article key={index} className="flex w-[250px] shrink-0 flex-col items-start sm:w-[350px]">
+              {repeatedInsta.map((item, index) => (
+                <article key={index} className="flex w-[250px] shrink-0 flex-col items-start sm:w-[350px] pr-[12px] sm:pr-[32px]">
                   <div className="relative h-[290px] w-[190px] overflow-hidden rounded-[8px] sm:h-[400px] sm:w-[270px]">
                     <Image src={item.img} alt={item.title} fill sizes="100vw" className="object-cover" />
                   </div>
@@ -880,7 +884,7 @@ export default function Home() {
         </section>
 
         {/* --- FAQS SECTION --- */}
-        <section className="section-alt mx-auto flex w-full max-w-[1440px] flex-col items-center px-[16px] py-[56px] sm:px-[24px] lg:py-[80px]">
+        <section className="section-alt w-full flex flex-col items-center px-[16px] py-[56px] sm:px-[24px] lg:py-[80px]">
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[32px] rounded-[12px] p-0 sm:gap-[40px] sm:p-[32px]">
             <h2 className="text-center heading-h2 text-[26px] sm:text-[36px] lg:text-[56px]">
               FAQs
@@ -888,10 +892,10 @@ export default function Home() {
 
             <div className="flex w-full max-w-[752px] flex-col gap-[6px] pb-[6px]">
               {faqs.map((question, index) => (
-                <details key={index} className="card group w-full p-[20px] shadow-sm sm:p-[30px] cursor-pointer">
+                <details key={index} className="card w-full p-[20px] shadow-sm sm:p-[30px] cursor-pointer">
                   <summary className="flex items-center justify-between gap-4 list-none heading-h8 font-normal [&::-webkit-details-marker]:hidden">
                     <span>{question}</span>
-                    <svg className="size-[20px] shrink-0 text-primary transition-transform duration-300 group-open:rotate-45 sm:size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="size-[20px] shrink-0 text-primary sm:size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" />
                     </svg>
                   </summary>
@@ -903,16 +907,15 @@ export default function Home() {
             </div>
 
             <div className="mt-[8px] text-center">
-              <Link href="/support" className="group flex items-center justify-center gap-[8px] btn-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:border-primary hover:text-white hover:shadow-lg active:scale-95">
-                VIEW ALL FAQS <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+              <Link href="/support" className="group flex items-center justify-center gap-[8px] btn-primary bg-forest-green border-forest-green transition-all duration-300 hover:bg-primary hover:border-primary hover:text-white active:scale-95">
+                VIEW ALL FAQS <ArrowIcon />
               </Link>
             </div>
           </div>
         </section>
 
         {/* --- CONSULTATION SECTION --- */}
-        <section className="relative mx-auto flex w-full max-w-[1440px] items-center justify-center overflow-hidden px-[20px] py-[64px] sm:h-[578px] sm:px-[40px] sm:py-0 lg:px-[80px]">
-
+        <section className="relative w-full flex items-center justify-center overflow-hidden px-[20px] py-[64px] sm:h-[578px] sm:px-[40px] sm:py-0 lg:px-[80px]">
           <div className="absolute inset-0 z-0 overflow-hidden">
             <Image
               src={images.consultation}
@@ -938,14 +941,14 @@ export default function Home() {
             <div className="flex w-full flex-col items-center justify-center gap-[12px] sm:w-auto sm:flex-row sm:gap-[16px]">
               <a
                 href={`tel:${consultationData.phone.replace(/[^0-9]/g, '')}`}
-                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-md active:scale-95 sm:w-auto"
+                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:bg-primary hover:border-primary active:scale-95 sm:w-auto"
               >
                 <MobilePhoneIcon />
                 {consultationData.phone}
               </a>
               <a
                 href={consultationData.emailLink}
-                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-forest-green hover:border-forest-green hover:shadow-md active:scale-95 sm:w-auto"
+                className="flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[100px] bg-primary px-[32px] text-[14px] font-bold text-white transition-all duration-300 hover:bg-primary hover:border-primary active:scale-95 sm:w-auto"
               >
                 <EnvelopeIcon />
                 {consultationData.emailText}
