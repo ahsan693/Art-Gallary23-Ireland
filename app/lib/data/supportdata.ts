@@ -77,11 +77,14 @@ export const getContactData = async () => {
     },
     map: {
       title: "GALLERY 23",
-      address: "23 Stephen's Green, Dublin 2",
+      locations: [
+        { name: "Gallery 23 Northside", address: "Unit 4 Coolport, Porters Road, Coolmine, Blanchardstown, D15 DX3D" },
+        { name: "Gallery 23 Uptown", address: "23 Sundrive Rd, Kimmage, D12 KF77" },
+      ],
       linkText: "Get Directions",
-      embedTitle: "Gallery 23 Map Location",
-      url: "https://maps.google.com",
-      embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d152515.6930058694!2d-6.386008688537637!3d53.32432014169553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e80ea27ac2f%3A0xa00c7a9973171a0!2sDublin%2C%20Ireland!5e0!3m2!1sen!2sus!4v1714589000000!5m2!1sen!2sus"
+      embedTitle: "Gallery 23 Dublin locations",
+      url: "https://www.google.com/maps/dir/Unit+4+Coolport,+Porters+Road,+Coolmine,+Blanchardstown,+D15+DX3D/23+Sundrive+Rd,+Kimmage,+D12+KF77",
+      embedUrl: "https://www.google.com/maps?output=embed&f=d&saddr=Unit+4+Coolport,+Porters+Road,+Coolmine,+Blanchardstown,+D15+DX3D&daddr=23+Sundrive+Rd,+Kimmage,+D12+KF77"
     },
     stats: {
       title: "Why Visit Gallery23",

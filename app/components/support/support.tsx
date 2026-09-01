@@ -248,9 +248,14 @@ export default function ContactUsComponent({ data }: { data: ContactData }) {
               <h3 className="micro font-bold uppercase tracking-[0.1em] text-secondary">
                 {data.map.title}
               </h3>
-              <p className="body-text font-medium text-primary">
-                {data.map.address}
-              </p>
+              <div className="flex flex-col gap-[8px]">
+                {data.map.locations.map((location) => (
+                  <div key={location.name}>
+                    <p className="caption font-bold uppercase text-primary">{location.name}</p>
+                    <p className="body-small text-secondary">{location.address}</p>
+                  </div>
+                ))}
+              </div>
               <a
                 href={data.map.url}
                 target="_blank"
