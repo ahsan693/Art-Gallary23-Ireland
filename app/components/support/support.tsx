@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getContactData } from "@/app/lib/data/supportdata";
@@ -119,7 +119,30 @@ function AnimatedCounter({ target, suffix = "", duration = 2000 }: { target: num
 // MAIN CONTACT COMPONENT
 // ==========================================
 export default function ContactUsComponent({ data }: { data: ContactData }) {
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
   if (!data) return <div className="min-h-screen bg-warm-cream" />;
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const subject = String(formData.get("subject") ?? "");
+    const message = String(formData.get("message") ?? "").trim();
+    const errors: Record<string, string> = {};
+
+    if (name.length < 2) errors.name = "Enter your full name.";
+    if (!/^\S+@\S+\.\S+$/.test(email)) errors.email = "Enter a valid email address.";
+    if (!subject) errors.subject = "Choose an enquiry topic.";
+    if (message.length < 10) errors.message = "Enter a message of at least 10 characters.";
+
+    setFormErrors(errors);
+    if (Object.keys(errors).length) return;
+
+    const body = `Name: ${name}\nEmail: ${email}\nTopic: ${subject}\n\n${message}`;
+    window.location.href = `mailto:hello@gallery23.com?subject=${encodeURIComponent(`Gallery 23 enquiry: ${subject}`)}&body=${encodeURIComponent(body)}`;
+  };
 
   return (
     <div className="flex min-h-screen flex-col bg-warm-cream text-primary overflow-x-hidden">
@@ -204,26 +227,36 @@ export default function ContactUsComponent({ data }: { data: ContactData }) {
                   <p className="body-small text-secondary">{data.form.description}</p>
                 </div>
 
-                <form className="flex flex-col gap-[20px]" onSubmit={(e) => e.preventDefault()}>
+                <form className="flex flex-col gap-[20px]" noValidate onSubmit={handleSubmit}>
+                  {Object.keys(formErrors).length > 0 ? (
+                    <p className="body-small rounded-[8px] border border-red-300 bg-red-50 px-[16px] py-[12px] text-red-700" role="alert">
+                      Please correct the highlighted fields before sending your message.
+                    </p>
+                  ) : null}
                   <div className="flex flex-col gap-[8px]">
-                    <label className="caption font-bold text-primary">{data.form.fields.name.label}</label>
-                    <input type="text" placeholder={data.form.fields.name.placeholder} className="h-[50px] rounded-[8px] border border-border px-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white" />
+                    <label htmlFor="contact-name" className="caption font-bold text-primary">{data.form.fields.name.label}</label>
+                    <input id="contact-name" name="name" type="text" autoComplete="name" placeholder={data.form.fields.name.placeholder} aria-invalid={Boolean(formErrors.name)} aria-describedby={formErrors.name ? "contact-name-error" : undefined} className={`h-[50px] rounded-[8px] border px-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white ${formErrors.name ? "border-red-600" : "border-border"}`} />
+                    {formErrors.name ? <p id="contact-name-error" className="caption text-red-700">{formErrors.name}</p> : null}
                   </div>
                   <div className="flex flex-col gap-[8px]">
-                    <label className="caption font-bold text-primary">{data.form.fields.email.label}</label>
-                    <input type="email" placeholder={data.form.fields.email.placeholder} className="h-[50px] rounded-[8px] border border-border px-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white" />
+                    <label htmlFor="contact-email" className="caption font-bold text-primary">{data.form.fields.email.label}</label>
+                    <input id="contact-email" name="email" type="email" autoComplete="email" placeholder={data.form.fields.email.placeholder} aria-invalid={Boolean(formErrors.email)} aria-describedby={formErrors.email ? "contact-email-error" : undefined} className={`h-[50px] rounded-[8px] border px-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white ${formErrors.email ? "border-red-600" : "border-border"}`} />
+                    {formErrors.email ? <p id="contact-email-error" className="caption text-red-700">{formErrors.email}</p> : null}
                   </div>
                   <div className="flex flex-col gap-[8px]">
-                    <label className="caption font-bold text-primary">{data.form.fields.subject.label}</label>
-                    <select className="h-[50px] rounded-[8px] border border-border px-[16px] body-small text-secondary outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white cursor-pointer appearance-none">
+                    <label htmlFor="contact-subject" className="caption font-bold text-primary">{data.form.fields.subject.label}</label>
+                    <select id="contact-subject" name="subject" defaultValue="" aria-invalid={Boolean(formErrors.subject)} aria-describedby={formErrors.subject ? "contact-subject-error" : undefined} className={`h-[50px] rounded-[8px] border px-[16px] body-small text-secondary outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white cursor-pointer appearance-none ${formErrors.subject ? "border-red-600" : "border-border"}`}>
+                      <option value="" disabled>Select a topic</option>
                       {data.form.subjects.map((subject: string, idx: number) => (
                         <option key={idx}>{subject}</option>
                       ))}
                     </select>
+                    {formErrors.subject ? <p id="contact-subject-error" className="caption text-red-700">{formErrors.subject}</p> : null}
                   </div>
                   <div className="flex flex-col gap-[8px]">
-                    <label className="caption font-bold text-primary">{data.form.fields.message.label}</label>
-                    <textarea placeholder={data.form.fields.message.placeholder} className="h-[120px] resize-y rounded-[8px] border border-border p-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white" />
+                    <label htmlFor="contact-message" className="caption font-bold text-primary">{data.form.fields.message.label}</label>
+                    <textarea id="contact-message" name="message" placeholder={data.form.fields.message.placeholder} aria-invalid={Boolean(formErrors.message)} aria-describedby={formErrors.message ? "contact-message-error" : undefined} className={`h-[120px] resize-y rounded-[8px] border p-[16px] body-small outline-none transition-colors duration-300 hover:border-[#84A59D] focus:border-forest-green bg-white ${formErrors.message ? "border-red-600" : "border-border"}`} />
+                    {formErrors.message ? <p id="contact-message-error" className="caption text-red-700">{formErrors.message}</p> : null}
                   </div>
                   {/* Form Submit Button (Green -> Black) */}
                   <button type="submit" className="mt-[8px] h-[56px] w-full rounded-[12px] bg-forest-green body-text font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:shadow-lg active:scale-95">
