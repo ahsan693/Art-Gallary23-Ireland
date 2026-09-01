@@ -126,7 +126,7 @@ export default function CheckoutDetailsComponent() {
 
                     {/* --- PAGE HEADING --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[8px] pb-[40px] max-md:px-[20px] max-md:pb-[24px] max-md:pt-[8px]">
-                        <h1 className="text-[36px] font-bold leading-[1.1] text-primary sm:text-[40px] max-md:text-[24px] max-md:leading-[1.2]">
+                        <h1 className="heading-display text-primary">
                             {data.heading.title}
                         </h1>
                         <p className="body-text text-secondary max-md:text-[14px] max-md:leading-[1.5]">
@@ -144,13 +144,13 @@ export default function CheckoutDetailsComponent() {
                         
                         {/* LEFT COLUMN: Artwork Details */}
                         <div className="flex flex-col gap-[24px] max-md:gap-[16px] max-md:rounded-[16px] max-md:border max-md:border-border max-md:bg-white max-md:p-[16px]">
-                            <h2 className="text-[20px] font-bold text-primary max-md:text-[14px] max-md:uppercase max-md:tracking-[0.4px]">
+                            <h2 className="heading-h8 font-bold text-primary max-md:uppercase max-md:tracking-[0.4px]">
                                 {data.form.leftColTitle}
                             </h2>
                             
                             {/* Artwork Description Input */}
                             <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
-                                <label htmlFor="artwork-description" className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.artworkDesc}</label>
+                                <label htmlFor="artwork-description" className="body-small font-bold text-primary">{data.form.labels.artworkDesc}</label>
                                 <input 
                                     id="artwork-description"
                                     name="artworkDescription"
@@ -159,17 +159,17 @@ export default function CheckoutDetailsComponent() {
                                     placeholder={data.form.labels.artworkDescPlaceholder} 
                                     aria-invalid={Boolean(formErrors.artworkDescription)}
                                     aria-describedby={formErrors.artworkDescription ? "artwork-description-error" : undefined}
-                                    className={`h-[50px] w-full rounded-[8px] border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px] ${formErrors.artworkDescription ? "border-red-600" : "border-border"}`} 
+                                    className={`input-field ${formErrors.artworkDescription ? "border-red-600" : ""}`} 
                                 />
-                                {formErrors.artworkDescription && <p id="artwork-description-error" className="text-[12px] text-red-700">{formErrors.artworkDescription}</p>}
+                                {formErrors.artworkDescription && <p id="artwork-description-error" className="micro text-red-700">{formErrors.artworkDescription}</p>}
                             </div>
 
                             {/* Special Instructions Textarea */}
                             <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
-                                <label className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.instructions}</label>
+                                <label className="body-small font-bold text-primary">{data.form.labels.instructions}</label>
                                 <textarea 
                                     placeholder={data.form.labels.instructionsPlaceholder} 
-                                    className="h-[120px] w-full resize-y rounded-[8px] border border-border bg-white p-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[87px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:p-[12px] max-md:text-[14px]" 
+                                    className="textarea-field h-[120px] max-md:h-[87px]"
                                 />
                             </div>
 
@@ -180,8 +180,8 @@ export default function CheckoutDetailsComponent() {
                                 </svg>
                                 
                                 <div className="flex flex-col gap-[8px]">
-                                    <h3 className="text-[16px] font-bold text-primary max-md:text-[14px] max-md:font-medium">{data.form.upload.title}</h3>
-                                    <p className="text-[13px] leading-[1.5] text-secondary max-md:text-[12px] max-md:text-center">
+                                    <h3 className="heading-h9 text-primary max-md:font-medium">{data.form.upload.title}</h3>
+                                    <p className="caption text-secondary max-md:text-center">
                                         {data.form.upload.subtitle}
                                         <a href={`mailto:${data.form.upload.email}`} className="font-semibold text-forest-green hover:underline">
                                             {data.form.upload.email}
@@ -208,36 +208,36 @@ export default function CheckoutDetailsComponent() {
                         <div className="flex flex-col gap-[24px] max-md:gap-[20px]">
                             
                             <div className="flex flex-col gap-[16px] max-md:rounded-[16px] max-md:border max-md:border-border max-md:bg-white max-md:p-[16px] lg:contents">
-                                <h2 className="text-[20px] font-bold text-primary max-md:text-[14px] max-md:uppercase max-md:tracking-[0.4px]">
+                                <h2 className="heading-h8 font-bold text-primary max-md:uppercase max-md:tracking-[0.4px]">
                                     {data.form.rightColTitle}
                                 </h2>
 
                                 {/* Name Row */}
                                 <div className="grid grid-cols-2 gap-[16px] max-md:gap-[12px]">
                                     <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
-                                        <label htmlFor="first-name" className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.firstName}</label>
-                                        <input id="first-name" name="firstName" type="text" required placeholder={data.form.labels.firstNamePlaceholder} aria-invalid={Boolean(formErrors.firstName)} className={`h-[50px] w-full rounded-[8px] border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px] ${formErrors.firstName ? "border-red-600" : "border-border"}`} />
-                                        {formErrors.firstName && <p className="text-[12px] text-red-700">{formErrors.firstName}</p>}
+                                        <label htmlFor="first-name" className="body-small font-bold text-primary">{data.form.labels.firstName}</label>
+                                        <input id="first-name" name="firstName" type="text" required placeholder={data.form.labels.firstNamePlaceholder} aria-invalid={Boolean(formErrors.firstName)} className={`input-field ${formErrors.firstName ? "border-red-600" : ""}`} />
+                                        {formErrors.firstName && <p className="micro text-red-700">{formErrors.firstName}</p>}
                                     </div>
                                     <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
-                                        <label htmlFor="last-name" className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.lastName}</label>
-                                        <input id="last-name" name="lastName" type="text" required placeholder={data.form.labels.lastNamePlaceholder} aria-invalid={Boolean(formErrors.lastName)} className={`h-[50px] w-full rounded-[8px] border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px] ${formErrors.lastName ? "border-red-600" : "border-border"}`} />
-                                        {formErrors.lastName && <p className="text-[12px] text-red-700">{formErrors.lastName}</p>}
+                                        <label htmlFor="last-name" className="body-small font-bold text-primary">{data.form.labels.lastName}</label>
+                                        <input id="last-name" name="lastName" type="text" required placeholder={data.form.labels.lastNamePlaceholder} aria-invalid={Boolean(formErrors.lastName)} className={`input-field ${formErrors.lastName ? "border-red-600" : ""}`} />
+                                        {formErrors.lastName && <p className="micro text-red-700">{formErrors.lastName}</p>}
                                     </div>
                                 </div>
 
                                 {/* Email */}
                                 <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
-                                    <label htmlFor="checkout-email" className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.email}</label>
-                                    <input id="checkout-email" name="email" type="email" required placeholder={data.form.labels.emailPlaceholder} aria-invalid={Boolean(formErrors.email)} className={`h-[50px] w-full rounded-[8px] border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px] ${formErrors.email ? "border-red-600" : "border-border"}`} />
-                                    {formErrors.email && <p className="text-[12px] text-red-700">{formErrors.email}</p>}
+                                    <label htmlFor="checkout-email" className="body-small font-bold text-primary">{data.form.labels.email}</label>
+                                    <input id="checkout-email" name="email" type="email" required placeholder={data.form.labels.emailPlaceholder} aria-invalid={Boolean(formErrors.email)} className={`input-field ${formErrors.email ? "border-red-600" : ""}`} />
+                                    {formErrors.email && <p className="micro text-red-700">{formErrors.email}</p>}
                                 </div>
 
                                 {/* Phone */}
                                 <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
-                                    <label htmlFor="checkout-phone" className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.phone}</label>
-                                    <input id="checkout-phone" name="phone" type="tel" required placeholder={data.form.labels.phonePlaceholder} aria-invalid={Boolean(formErrors.phone)} className={`h-[50px] w-full rounded-[8px] border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px] ${formErrors.phone ? "border-red-600" : "border-border"}`} />
-                                    {formErrors.phone && <p className="text-[12px] text-red-700">{formErrors.phone}</p>}
+                                    <label htmlFor="checkout-phone" className="body-small font-bold text-primary">{data.form.labels.phone}</label>
+                                    <input id="checkout-phone" name="phone" type="tel" required placeholder={data.form.labels.phonePlaceholder} aria-invalid={Boolean(formErrors.phone)} className={`input-field ${formErrors.phone ? "border-red-600" : ""}`} />
+                                    {formErrors.phone && <p className="micro text-red-700">{formErrors.phone}</p>}
                                 </div>
                             </div>
 

@@ -65,7 +65,7 @@ export default function CheckoutConfirmedComponent() {
                             </svg>
                         </div>
 
-                        <h1 className="text-[36px] font-bold leading-[1.1] text-primary sm:text-[40px] max-md:text-[28px] mb-[8px]">
+                        <h1 className="heading-display mb-[8px] text-primary">
                             {data.orderInfo.title}
                         </h1>
                         <p className="font-['IBM_Plex_Mono'] text-[14px] font-bold uppercase tracking-[1px] text-forest-green mb-[24px] max-md:mb-[20px]">
@@ -83,7 +83,7 @@ export default function CheckoutConfirmedComponent() {
 
                     {/* "What happens next?" Card */}
                     <div className="flex w-full flex-col rounded-[20px] border border-border bg-white p-[32px] max-md:rounded-[16px] max-md:p-[24px]">
-                        <h2 className="mb-[24px] text-[16px] font-bold text-primary max-md:text-[15px]">
+                        <h2 className="heading-h9 mb-[24px] text-primary">
                             {data.nextSteps.title}
                         </h2>
 
@@ -93,7 +93,7 @@ export default function CheckoutConfirmedComponent() {
                                     <div className="flex size-[28px] shrink-0 items-center justify-center rounded-full bg-[#F0F0F0] text-[13px] font-bold text-primary max-md:size-[24px] max-md:text-[12px]">
                                         {index + 1}
                                     </div>
-                                    <p className="pt-[4px] text-[14px] leading-[1.5] text-secondary max-md:pt-[2px] max-md:text-[13px]">
+                                    <p className="body-small pt-[4px] text-secondary max-md:pt-[2px]">
                                         {step}
                                     </p>
                                 </div>
@@ -103,7 +103,7 @@ export default function CheckoutConfirmedComponent() {
 
                     {/* Contact Support Card */}
                     <div className="flex w-full items-center justify-center rounded-[16px] border border-border bg-[#F7F9F7] p-[24px] text-center max-md:p-[20px]">
-                        <p className="text-[13px] leading-[1.6] text-secondary max-md:text-[12px]">
+                        <p className="caption text-secondary">
                             {data.contactSupport.prefix}
                             <a href={`mailto:${data.contactSupport.email}`} className="font-bold text-primary hover:text-forest-green">{data.contactSupport.email}</a>
                             {data.contactSupport.middle}

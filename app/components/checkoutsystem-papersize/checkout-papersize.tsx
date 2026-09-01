@@ -107,7 +107,7 @@ export default function CheckoutPaperSizeComponent() {
 
                     {/* --- PAGE HEADING --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[8px] pb-[40px] max-md:px-[20px] max-md:pb-[16px] max-md:pt-[8px]">
-                        <h1 className="text-[36px] font-bold leading-[1.1] text-primary sm:text-[40px] max-md:text-[24px] max-md:leading-[1.2]">
+                        <h1 className="heading-display text-primary">
                             {data.heading.title}
                         </h1>
                         <p className="body-text text-secondary max-md:pt-[4px] max-md:text-[14px] max-md:leading-[1.5]">
@@ -117,7 +117,7 @@ export default function CheckoutPaperSizeComponent() {
 
                     {/* --- PAPER TYPE SECTION --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[40px] max-md:h-auto max-md:px-[20px] max-md:pb-[20px] max-md:gap-0">
-                        <h2 className="text-[20px] font-bold text-primary max-md:text-[13px] max-md:font-semibold max-md:uppercase max-md:tracking-[0.5px] max-md:leading-[1.5]">
+                            <h2 className="heading-h8 font-bold text-primary max-md:uppercase max-md:tracking-[0.5px]">
                             {data.paperSection.title}
                         </h2>
 
@@ -168,7 +168,7 @@ export default function CheckoutPaperSizeComponent() {
 
                     {/* --- PRINT SIZE SECTION --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[24px] max-md:px-[20px] max-md:pb-0 max-md:gap-0">
-                        <h2 className="text-[20px] font-bold text-primary max-md:text-[13px] max-md:font-semibold max-md:uppercase max-md:tracking-[0.5px] max-md:leading-[1.5]">
+                        <h2 className="heading-h8 font-bold text-primary max-md:uppercase max-md:tracking-[0.5px]">
                             {data.sizeSection.title}
                         </h2>
 

@@ -189,7 +189,7 @@ export default function Home() {
       <main className="w-full overflow-hidden">
         {/* --- HERO SECTION --- */}
         <section className="flex w-full flex-col items-center">
-          <div className="relative h-[620px] w-full overflow-hidden lg:h-[760px]">
+          <div className="relative h-[480px] w-full overflow-hidden lg:h-[760px]">
             <div className="absolute inset-0 overflow-hidden w-full h-full">
               <Image
                 src={images.hero}
@@ -200,31 +200,31 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/20 from-[18.54%] to-transparent to-[68.99%]" />
+            <div className="absolute inset-0 bg-black/65 lg:bg-gradient-to-r lg:from-black/20 lg:from-[18.54%] lg:to-transparent lg:to-[68.99%]" />
             <div className="relative mx-auto flex h-full w-full max-w-[1280px] items-center px-5 py-20 sm:px-[42px] sm:py-8">
-              <div className="mx-auto flex w-full max-w-[620px] flex-col items-center gap-8 py-12 text-center text-white sm:py-20 lg:mx-0 lg:items-start lg:text-left">
-                <h1 className="heading-display text-[30px] leading-[1.2] text-white sm:text-[56px] sm:leading-[1.1] lg:text-[64px]">
+              <div className="mx-auto flex w-full max-w-[620px] flex-col items-center gap-5 py-24 text-center text-white sm:py-20 lg:mx-0 lg:items-start lg:text-left">
+                <h1 className="heading-display text-white">
                   {homePageData.hero.title[0]}
                   <br />
                   {homePageData.hero.title[1]}
                   <br />
                   {homePageData.hero.title[2]}
                 </h1>
-                <p className="w-full max-w-[480px] body-text text-white/80 sm:max-w-[520px]">
+                <p className="w-full max-w-[480px] body-small text-white/80 sm:max-w-[520px] lg:body-text">
                   {homePageData.hero.description}
                 </p>
                 <Link
                   href={homePageData.hero.href}
                   className="btn-secondary group border-white transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary active:scale-95 text-primary"
                 >
-                  <span className="leading-[46px]">{homePageData.hero.cta}</span>
+                  <span>{homePageData.hero.cta}</span>
                 </Link>
               </div>
             </div>
           </div>
 
           {/* --- ANIMATED TICKER --- */}
-          <div className="relative flex h-[58px] w-full items-center overflow-hidden bg-primary text-[13px] font-medium text-white">
+          <div className="relative flex w-full items-center overflow-hidden bg-primary py-3 body-small font-medium text-white">
             <motion.div
               className="flex w-max whitespace-nowrap"
               animate={{ x: ["0%", "-50%"] }}
@@ -232,7 +232,7 @@ export default function Home() {
             >
               {[...Array(6)].map((_, index) => (
                 <div key={index} className="flex items-center gap-[7.8px] pl-[23.41px] pr-[7.81px]">
-                  {homePageData.ticker.map((item) => <span key={item} className="leading-[58px]">{item} &nbsp;&nbsp;&nbsp;&bull;</span>)}
+                  {homePageData.ticker.map((item) => <span key={item}>{item} &nbsp;&nbsp;&nbsp;&bull;</span>)}
                 </div>
               ))}
             </motion.div>
@@ -240,17 +240,17 @@ export default function Home() {
         </section>
 
         {/* --- OUR SERVICES SECTION --- */}
-        <section className="section-alt w-full flex flex-col items-center py-[80px]">
-          <div className="flex w-full max-w-[1280px] flex-col items-center gap-[32px] px-5 py-[40px] lg:flex-row lg:gap-[80px] lg:px-[64px]">
+        <section className="section-alt w-full flex flex-col items-center py-12 lg:py-[80px]">
+          <div className="flex w-full max-w-[1280px] flex-col items-center gap-8 px-5 lg:flex-row lg:gap-[80px] lg:px-[64px]">
             <div className="flex w-full flex-col items-center gap-[12px] text-center lg:hidden">
-              <h2 className="heading-h2 text-[26px] sm:text-[36px]">
+              <h2 className="heading-h2">
                 {homePageData.services.title}
               </h2>
               <p className="max-w-[320px] body-small text-secondary">
                 {homePageData.services.description}
               </p>
             </div>
-            <div className="relative h-[400px] w-full shrink-0 overflow-hidden rounded-[32px] lg:h-[780px] lg:w-[580px] lg:rounded-[48px]">
+            <div className="relative h-[280px] w-full shrink-0 overflow-hidden rounded-[24px] lg:h-[780px] lg:w-[580px] lg:rounded-[48px]">
               <ResponsiveImage src={images.services} alt={homePageData.services.imageAlt} />
             </div>
             <div className="flex w-full flex-col gap-[48px] lg:w-[492px]">
@@ -259,7 +259,7 @@ export default function Home() {
               </h2>
               <div className="flex flex-col divide-y divide-border border-y border-border">
                 {services.map((service) => (
-                  <article key={service.title} className="flex flex-col items-start justify-center gap-4 py-[32px]">
+                  <article key={service.title} className="flex flex-col items-start justify-center gap-3 py-5 lg:gap-4 lg:py-[32px]">
                     <h3 className="heading-h8">{service.title}</h3>
                     <p className="body-small text-secondary">{service.body}</p>
                     <div className="mt-2">
@@ -274,9 +274,9 @@ export default function Home() {
 
         {/* --- ABOUT SECTION --- */}
         <section className="w-full bg-primary flex justify-center">
-          <div className="flex w-full max-w-[1440px] flex-col items-center px-5 py-14 lg:h-[704px] lg:flex-row lg:gap-[64px] lg:px-[120px] lg:py-[72px]">
+          <div className="flex w-full max-w-[1440px] flex-col items-center gap-6 px-5 py-20 lg:h-[704px] lg:flex-row lg:gap-[64px] lg:px-[120px] lg:py-[72px]">
             <div className="flex w-full flex-col gap-[24px] lg:w-[560px]">
-              <h2 className="heading-h2 text-[26px] text-white sm:text-[36px] lg:text-[56px]">
+              <h2 className="heading-h2 text-white">
                 {homePageData.about.title}
               </h2>
               <p className="body-large text-white/75">
@@ -291,14 +291,14 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="relative mt-10 h-[260px] w-full shrink-0 overflow-hidden rounded-3xl lg:mt-0 lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
-              <ResponsiveImage src={images.about} alt={homePageData.about.imageAlt} className="rounded-3xl lg:rounded-[32px]" />
+            <div className="relative h-[220px] w-full shrink-0 overflow-hidden rounded-2xl lg:mt-0 lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
+              <ResponsiveImage src={images.about} alt={homePageData.about.imageAlt} className="rounded-2xl lg:rounded-[32px]" />
             </div>
           </div>
         </section>
 
         {/* --- WHY CHOOSE OUR FRAMES SECTION --- */}
-        <section className="relative isolate w-full flex flex-col items-center gap-[56px] overflow-hidden px-5 py-[80px] lg:px-[80px]">
+        <section className="relative isolate w-full flex flex-col items-center gap-8 overflow-hidden px-5 py-20 lg:gap-[56px] lg:px-[80px]">
           <div className="absolute inset-0 z-0">
             <Image 
               src={images.why} 
@@ -308,7 +308,7 @@ export default function Home() {
             />
           </div>
           <div className="relative z-10 flex w-full max-w-[700px] flex-col items-center gap-[16px] text-center text-white">
-            <h2 className="heading-h2 text-[26px] text-white sm:text-[36px] lg:text-[56px]">
+            <h2 className="heading-h2 text-white">
               {homePageData.benefits.title}
             </h2>
             <p className="body-text text-white/90">
@@ -319,14 +319,14 @@ export default function Home() {
             {benefitsData.map((item) => (
               <article
                 key={item.title}
-                className="card flex-1 lg:max-w-[302px] flex flex-col p-[36px]"
+                className="card flex-1 flex flex-col p-5 lg:max-w-[302px] lg:p-[36px]"
               >
-                <div className="flex h-[72px] w-full items-start justify-between">
-                  <div className="flex size-[72px] items-center justify-center rounded-full bg-forest-green text-[#F4F0EB]">
+                <div className="flex h-12 w-full items-start justify-between">
+                  <div className="flex size-12 items-center justify-center rounded-full bg-forest-green text-[#F4F0EB] lg:size-[72px]">
                     {getIconComponent(item.iconType)}
                   </div>
                 </div>
-                <div className="flex flex-col justify-center gap-[12px] py-[24px]">
+                <div className="flex flex-col justify-center gap-3 py-3 lg:py-[24px]">
                   <h3 className="heading-h9">
                     {item.title}
                   </h3>
@@ -340,9 +340,9 @@ export default function Home() {
         </section>
 
         {/* --- CUSTOM PRINTING SECTION --- */}
-        <section className="section-alt w-full flex flex-col items-center gap-[48px] px-5 py-[80px] lg:px-[80px]">
+        <section className="section-alt w-full flex flex-col items-center gap-8 px-5 py-20 lg:gap-[48px] lg:px-[80px]">
           <div className="flex w-full max-w-[802px] flex-col items-center gap-[12px] text-center">
-            <h2 className="heading-h2 text-[26px] sm:text-[36px] lg:text-[56px]">
+            <h2 className="heading-h2">
               {homePageData.printing.title}
             </h2>
             <p className="body-text text-secondary">
@@ -350,10 +350,10 @@ export default function Home() {
             </p>
           </div>
           <div className="flex w-full max-w-[1280px] flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_8px_32px_0_rgba(0,0,0,0.078)] lg:h-[432px] lg:flex-row">
-            <div className="relative h-[300px] w-full shrink-0 overflow-hidden lg:h-full lg:w-[554px]">
+            <div className="relative h-[180px] w-full shrink-0 overflow-hidden lg:h-full lg:w-[554px]">
               <Image src={images.print} alt={homePageData.printing.imageAlt} fill className="object-cover" />
             </div>
-            <div className="flex w-full flex-1 flex-col justify-between px-6 py-8 lg:pb-[36px] lg:pl-[90px] lg:pr-[36px] lg:pt-[32px]">
+            <div className="flex w-full flex-1 flex-col justify-between gap-3 p-5 lg:gap-0 lg:pb-[36px] lg:pl-[90px] lg:pr-[36px] lg:pt-[32px]">
               <div className="flex flex-col items-start gap-[16px]">
                 <span className="inline-flex h-[27px] items-center justify-center rounded-[100px] bg-forest-green px-[14px] py-[6px] micro font-bold text-white">
                   {homePageData.printing.badge}
@@ -383,15 +383,15 @@ export default function Home() {
         </section>
 
        {/* --- SHOWCASE / FEATURED FRAMING PROJECTS SECTION --- */}
-        <section className="w-full flex flex-col items-center gap-[32px] bg-forest-green px-[20px] py-[64px] lg:gap-[56px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
+        <section className="w-full flex flex-col items-center gap-0 bg-forest-green px-5 py-8 lg:gap-[56px] lg:px-[120px] lg:pb-[120px] lg:pt-[96px]">
           <div className="flex w-full max-w-[1200px] items-start justify-start lg:items-center lg:justify-between">
-            <h2 className="w-full max-w-none heading-h2 text-left text-white lg:whitespace-nowrap">
+              <h2 className="w-full max-w-none heading-h2 text-left text-white lg:whitespace-nowrap">
               {homePageData.showcase.title}
             </h2>
           </div>
 
-          <div className="flex w-full max-w-[1200px] flex-col items-center gap-[20px] lg:gap-[24px]">
-            <div className="relative h-[284px] w-full shrink-0 overflow-hidden rounded-[20px] sm:h-[300px] lg:h-[558px] lg:w-[1200px] lg:rounded-[46px]">
+          <div className="flex w-full max-w-[1200px] flex-col items-center gap-5 pt-6 lg:gap-[24px] lg:pt-0">
+            <div className="relative h-[260px] w-full shrink-0 overflow-hidden rounded-xl sm:h-[300px] lg:h-[558px] lg:w-[1200px] lg:rounded-[46px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeProject}
@@ -444,15 +444,15 @@ export default function Home() {
         </section>
 
    {/* --- TESTIMONIALS SECTION --- */}
-        <section className="section-alt w-full flex flex-col items-center gap-[40px] overflow-hidden py-[64px] lg:gap-[48px] lg:py-[80px]">
+        <section className="section-alt w-full flex flex-col items-center gap-6 overflow-hidden py-10 lg:gap-[48px] lg:py-[80px]">
           
           <div className="flex w-full justify-center px-5 lg:px-[80px]">
-            <div className="flex w-full max-w-[1200px] flex-col items-start gap-[24px]">
-              <h2 className="w-full max-w-none heading-h2 text-[26px] sm:text-[36px] lg:text-[56px] lg:whitespace-nowrap">
+            <div className="flex w-full max-w-[1200px] flex-col items-start gap-2">
+              <h2 className="w-full max-w-none heading-h2 lg:whitespace-nowrap">
                 {homePageData.testimonials.title}
               </h2>
 
-              <div className="flex h-auto w-full max-w-[1200px] flex-col items-stretch gap-3 rounded-[20px] bg-white p-[20px] sm:h-[82px] sm:flex-row sm:items-center sm:justify-between sm:rounded-[27px] sm:py-0 sm:pl-[32px] sm:pr-[24px]">
+              <div className="flex h-auto w-full max-w-[1200px] flex-col items-stretch gap-3 rounded-[16px] bg-white p-5 sm:h-[82px] sm:flex-row sm:items-center sm:justify-between sm:rounded-[27px] sm:py-0 sm:pl-[32px] sm:pr-[24px]">
                 <div className="flex flex-col items-start justify-center">
                   <div className="text-[22px] font-bold tracking-tighter sm:text-[26px]">
                     {homePageData.testimonials.platform.map((item) => <span key={`${item.letter}-${item.color}`} className={item.color}>{item.letter}</span>)}
@@ -484,7 +484,7 @@ export default function Home() {
               {repeatedTestimonials.map((item, index) => (
                 <article
                   key={index}
-                  className="card flex h-[400px] w-[260px] shrink-0 flex-col gap-[16px] p-[20px] sm:h-[440px] sm:w-[360px] sm:gap-[20px] sm:p-[32px]"
+                  className="card flex h-auto min-h-[280px] w-[calc(100vw-40px)] shrink-0 flex-col gap-4 p-5 sm:h-[440px] sm:w-[360px] sm:gap-[20px] sm:p-[32px]"
                 >
                   <div className="flex items-center gap-[12px]">
                     <div className="relative size-[48px] shrink-0 overflow-hidden rounded-full">
@@ -510,11 +510,11 @@ export default function Home() {
         </section>
 
         {/* --- TRUSTED BY SECTION --- */}
-        <section className="w-full flex flex-col items-center bg-white px-[24px] py-[40px] sm:px-[52px] sm:py-[80px]">
-          <h2 className="heading-h2 w-full max-w-[1280px] text-[26px] text-center text-primary sm:text-[36px] lg:text-[56px]">
+        <section className="w-full flex flex-col items-center bg-white px-5 py-8 sm:px-[52px] sm:py-[80px]">
+          <h2 className="heading-h2 w-full max-w-[1280px] text-center text-primary">
             {homePageData.trusted.title}
           </h2>
-          <div className="relative flex h-[80px] w-full max-w-[1440px] mx-auto items-center overflow-hidden sm:h-[100px] mt-[24px] sm:mt-[32px]">
+          <div className="relative mt-6 flex h-14 w-full max-w-[1440px] mx-auto items-center overflow-hidden sm:mt-[32px] sm:h-[100px]">
             <motion.div
               className="flex w-max items-center"
               animate={{ x: ["0%", "-50%"] }}
@@ -542,8 +542,8 @@ export default function Home() {
 
         {/* --- WHAT WE'VE BEEN FRAMING SECTION --- */}
         <section className="section-alt w-full flex flex-col items-center overflow-hidden p-0">
-          <div className="flex w-full flex-col items-center gap-[20px] px-5 py-[40px] sm:gap-[32px] sm:py-[56px]">
-            <h2 className="w-full max-w-[697px] text-center heading-h2 text-[26px] sm:text-[36px] lg:text-[56px]">
+          <div className="flex w-full flex-col items-center gap-5 px-5 py-8 sm:gap-[32px] sm:py-[56px]">
+            <h2 className="w-full max-w-[697px] text-center heading-h2">
               {homePageData.instagram.title}
             </h2>
             <Link href={homePageData.instagram.href} target="_blank" className="flex items-center gap-[8px] caption font-medium text-primary">
@@ -556,18 +556,18 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="relative mx-auto flex h-[420px] w-full max-w-[1440px] overflow-hidden pl-[20px] sm:h-[581px] lg:pl-[40px]">
+          <div className="relative mx-auto flex h-[294px] w-full max-w-[1440px] overflow-hidden pl-5 sm:h-[581px] lg:pl-[40px]">
             <motion.div
               className="flex w-max"
               animate={{ x: ["0%", "-50%"] }}
               transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
             >
               {repeatedInsta.map((item, index) => (
-                <article key={index} className="flex w-[250px] shrink-0 flex-col items-start sm:w-[350px] pr-[12px] sm:pr-[32px]">
-                  <div className="relative h-[290px] w-[190px] overflow-hidden rounded-[8px] sm:h-[400px] sm:w-[270px]">
+                <article key={index} className="flex w-[179px] shrink-0 flex-col items-start pr-0 sm:w-[350px] sm:pr-[32px]">
+                  <div className="relative h-[239px] w-[179px] overflow-hidden rounded-lg sm:h-[400px] sm:w-[270px]">
                     <Image src={item.img} alt={item.title} fill sizes="100vw" className="object-cover" />
                   </div>
-                  <div className="mt-[12px] flex w-[190px] flex-col gap-[4px] sm:mt-[16px] sm:w-[270px]">
+                  <div className="mt-2 flex w-[179px] flex-col gap-1 sm:mt-[16px] sm:w-[270px]">
                     <h3 className="truncate body-small font-semibold">
                       {item.title}
                     </h3>
@@ -584,7 +584,7 @@ export default function Home() {
         {/* --- FAQS SECTION --- */}
         <section className="section-alt w-full flex flex-col items-center px-[16px] py-[56px] sm:px-[24px] lg:py-[80px]">
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[32px] rounded-[12px] p-0 sm:gap-[40px] sm:p-[32px]">
-            <h2 className="text-center heading-h2 text-[26px] sm:text-[36px] lg:text-[56px]">
+            <h2 className="text-center heading-h2">
               {homePageData.faq.title}
             </h2>
 
@@ -628,7 +628,7 @@ export default function Home() {
 
           <div className="relative z-20 flex w-full max-w-[1050px] flex-col items-center justify-center gap-[24px] rounded-[24px] bg-white px-[24px] py-[40px] text-center sm:gap-[32px] sm:rounded-[32px] sm:py-[64px] lg:h-[292.5px] lg:px-[80px]">
             <div className="flex flex-col gap-[12px] sm:gap-[16px]">
-              <h2 className="heading-h2 text-[26px] text-primary sm:text-[36px] lg:text-[56px]">
+              <h2 className="heading-h2 text-primary">
                 {consultationData.title}
               </h2>
               <p className="body-text text-secondary">

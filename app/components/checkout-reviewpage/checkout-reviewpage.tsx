@@ -88,7 +88,7 @@ export default function CheckoutReviewComponent() {
 
                     {/* --- PAGE HEADING --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[8px] pb-[40px] max-md:px-[20px] max-md:pb-[24px] max-md:pt-[8px]">
-                        <h1 className="text-[36px] font-bold leading-[1.1] text-primary sm:text-[40px] max-md:text-[24px] max-md:leading-[1.2]">
+                        <h1 className="heading-display text-primary">
                             <span className="md:hidden">{data.heading.titleMobile}</span>
                             <span className="hidden md:inline">{data.heading.titleDesktop}</span>
                         </h1>
@@ -103,15 +103,15 @@ export default function CheckoutReviewComponent() {
 
                         {/* LEFT COLUMN: Order Summary */}
                         <div className="flex h-full flex-col rounded-[20px] border border-border bg-white p-[24px] lg:p-[32px] max-md:rounded-[16px] max-md:p-[16px]">
-                            <h2 className="mb-[24px] text-[20px] font-bold text-primary max-md:mb-[16px] max-md:text-[13px] max-md:uppercase max-md:tracking-[0.5px]">
+                            <h2 className="heading-h8 mb-[24px] font-bold text-primary max-md:mb-[16px] max-md:uppercase max-md:tracking-[0.5px]">
                                 {data.orderSummary.title}
                             </h2>
 
                             <div className="flex flex-1 flex-col gap-[16px] mb-[24px] max-md:gap-[12px] max-md:mb-[16px]">
                                 {data.orderSummary.items.map((item, index) => (
                                     <div key={index} className="flex justify-between items-start gap-[16px]">
-                                        <span className="text-[15px] text-secondary max-md:text-[14px]">{item.label}</span>
-                                        <span className="text-[15px] font-medium text-primary text-right max-md:text-[14px]">{item.value}</span>
+                                        <span className="body-text text-secondary">{item.label}</span>
+                                        <span className="body-text font-medium text-primary text-right">{item.value}</span>
                                     </div>
                                 ))}
                             </div>
@@ -127,16 +127,16 @@ export default function CheckoutReviewComponent() {
 
                             {/* Contact Details Card */}
                             <div className="flex flex-col rounded-[20px] border border-border bg-white p-[24px] lg:p-[32px] max-md:rounded-[16px] max-md:p-[16px]">
-                                <h2 className="mb-[24px] text-[20px] font-bold text-primary max-md:mb-[16px] max-md:text-[13px] max-md:uppercase max-md:tracking-[0.5px]">
+                                <h2 className="heading-h8 mb-[24px] font-bold text-primary max-md:mb-[16px] max-md:uppercase max-md:tracking-[0.5px]">
                                     {data.contactDetails.title}
                                 </h2>
                                 <div className="flex flex-col gap-[16px] max-md:gap-[12px]">
                                     {data.contactDetails.items.map((item, index) => (
                                         <div key={index} className="flex justify-between items-start gap-[16px]">
-                                            <span className="text-[15px] text-secondary max-md:text-[14px]">{item.label}</span>
+                                            <span className="body-text text-secondary">{item.label}</span>
                                             {item.label === "Email" ? (
-                                                <a href={`mailto:${item.value}`} className="text-[15px] font-medium text-primary text-right hover:text-forest-green max-md:text-[14px]">{item.value}</a>
-                                            ) : <span className="text-[15px] font-medium text-primary text-right max-md:text-[14px]">{item.value}</span>}
+                                                <a href={`mailto:${item.value}`} className="body-text font-medium text-primary text-right hover:text-forest-green">{item.value}</a>
+                                            ) : <span className="body-text font-medium text-primary text-right">{item.value}</span>}
                                         </div>
                                     ))}
                                 </div>
@@ -150,7 +150,7 @@ export default function CheckoutReviewComponent() {
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <h2 className="text-[20px] font-bold text-primary max-md:text-[16px]">{data.cashOnDelivery.title}</h2>
+                                    <h2 className="heading-h8 font-bold text-primary">{data.cashOnDelivery.title}</h2>
                                 </div>
 
                                 {/* Desktop Description */}
@@ -159,7 +159,7 @@ export default function CheckoutReviewComponent() {
                                 </p>
 
                                 {/* Mobile Description */}
-                                <p className="hidden text-[13px] leading-[1.5] text-secondary mb-[16px] max-md:block">
+                                <p className="hidden caption text-secondary mb-[16px] max-md:block">
                                     {data.cashOnDelivery.descriptionMobile}
                                 </p>
 
@@ -174,7 +174,7 @@ export default function CheckoutReviewComponent() {
                                 </div>
 
                                 {/* Desktop Footer Info */}
-                                <p className="text-[13px] leading-[1.5] text-secondary max-md:hidden">
+                                <p className="caption text-secondary max-md:hidden">
                                     {data.cashOnDelivery.footerTextDesktop}
                                     <a href={`mailto:${data.cashOnDelivery.footerEmail}`} className="font-bold text-primary hover:text-forest-green">{data.cashOnDelivery.footerEmail}</a>
                                     {data.cashOnDelivery.footerTextSuffix}
@@ -207,7 +207,7 @@ export default function CheckoutReviewComponent() {
                             <img src={data.icons.mobileArrowIcon} alt="" className="size-[16px] brightness-0 invert" />
                         </Link>
 
-                        <p className="text-center text-[12px] leading-[1.5] text-secondary">
+                        <p className="text-center small text-secondary">
                             {data.cashOnDelivery.footerTextMobile}
                             <a href={`mailto:${data.cashOnDelivery.footerEmail}`} className="font-medium text-primary hover:text-forest-green">{data.cashOnDelivery.footerEmail}</a>
                         </p>

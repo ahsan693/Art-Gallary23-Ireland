@@ -57,8 +57,8 @@ const PrincipleCard = ({ principle, className = "" }: { principle: Principle; cl
       {renderFigmaIcon(principle.title)}
     </div>
     <div className="flex flex-col gap-[8px]">
-      <h3 className="text-[18px] font-bold text-primary sm:text-[22px]">{principle.title}</h3>
-      <p className="body-small text-secondary sm:text-[15px]">
+      <h3 className="heading-h9 text-primary">{principle.title}</h3>
+      <p className="body-small text-secondary">
         {principle.description}
       </p>
     </div>

@@ -72,13 +72,13 @@ export default function ServicesComponent() {
           <div className="relative z-20 flex w-full max-w-[1440px] px-[24px] py-[64px] lg:px-[80px] lg:py-[120px] flex-col items-center gap-[24px] text-center text-white mx-auto">
             <div className="flex w-full max-w-[900px] flex-col items-center gap-[24px]">
               <div className="inline-flex items-center justify-center rounded-full border border-white/40 px-[16px] py-[6px] backdrop-blur-sm">
-                <span className="text-[13px] font-semibold tracking-wide text-white uppercase">
+                <span className="button-small font-semibold tracking-wide text-white uppercase">
                   {data.hero.badge}
                 </span>
               </div>
 
               {/* Mobile: 30px, Tablet: 56px, Desktop: 64px (unchanged) */}
-              <h1 className="heading-display text-[30px] leading-[1.2] text-white sm:text-[56px] sm:leading-[1.1] lg:text-[64px]">
+              <h1 className="heading-display text-white">
                 {data.hero.title}
               </h1>
 
@@ -116,7 +116,7 @@ export default function ServicesComponent() {
                   {/* Text Side (Removed bullets & divider) */}
                   <div className="flex w-full flex-col items-start justify-center gap-[24px] lg:w-[540px]">
                     {/* Mobile: 28px, Tablet: 36px, Desktop: 48px (unchanged) */}
-                    <h2 className="heading-h3 text-[28px] text-primary sm:text-[36px] lg:text-[48px]">
+                    <h2 className="heading-h3 text-primary">
                       {service.title}
                     </h2>
 
@@ -143,7 +143,7 @@ export default function ServicesComponent() {
         {/* --- THE FRAMING JOURNEY SECTION --- */}
         <section className="w-full bg-[#131313] flex justify-center py-[48px] lg:py-[100px]">
           <div className="mx-auto flex w-full max-w-[1440px] px-[24px] flex-col items-center gap-[40px] lg:gap-[64px]">
-            <h2 className="text-center text-[24px] font-bold tracking-tight text-white sm:text-[40px]">
+            <h2 className="heading-h2 text-center text-white">
               {data.journey.title}
             </h2>
 
@@ -154,10 +154,10 @@ export default function ServicesComponent() {
                   <div className="flex size-[40px] items-center justify-center rounded-full bg-forest-green text-[16px] font-bold text-white">
                     {step.num}
                   </div>
-                  <h3 className="text-[18px] font-bold text-white">
+                  <h3 className="heading-h9 text-white">
                     {step.title}
                   </h3>
-                  <p className="max-w-[280px] text-[14px] leading-[1.6] text-white/70">
+                  <p className="body-small max-w-[280px] text-white/70">
                     {step.desc}
                   </p>
                 </div>
@@ -173,7 +173,7 @@ export default function ServicesComponent() {
 
               <div className="mb-[40px] flex flex-col items-center text-center gap-[12px]">
                 {/* Mobile: 26px, Tablet: 36px, Desktop: 56px (unchanged) */}
-                <h2 className="heading-h2 text-[26px] text-primary sm:text-[36px] lg:text-[56px]">{data.form.title}</h2>
+                <h2 className="heading-h2 text-primary">{data.form.title}</h2>
                 <p className="body-text text-secondary">{data.form.subtitle}</p>
               </div>
 
@@ -181,27 +181,27 @@ export default function ServicesComponent() {
                 <div className="grid w-full grid-cols-1 gap-[24px] sm:grid-cols-2">
                   {/* Full Name */}
                   <div className="flex flex-col gap-[8px]">
-                    <label className="text-[13px] font-bold text-primary">{data.form.fields.fullName.label}</label>
-                    <input type="text" placeholder={data.form.fields.fullName.placeholder} className="h-[50px] w-full rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
+                    <label className="body-small font-bold text-primary">{data.form.fields.fullName.label}</label>
+                    <input type="text" placeholder={data.form.fields.fullName.placeholder} className="input-field" />
                   </div>
 
                   {/* Email Address */}
                   <div className="flex flex-col gap-[8px]">
-                    <label className="text-[13px] font-bold text-primary">{data.form.fields.email.label}</label>
-                    <input type="email" placeholder={data.form.fields.email.placeholder} className="h-[50px] w-full rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
+                    <label className="body-small font-bold text-primary">{data.form.fields.email.label}</label>
+                    <input type="email" placeholder={data.form.fields.email.placeholder} className="input-field" />
                   </div>
 
                   {/* Phone Number */}
                   <div className="flex flex-col gap-[8px]">
-                    <label className="text-[13px] font-bold text-primary">{data.form.fields.phone.label}</label>
-                    <input type="tel" placeholder={data.form.fields.phone.placeholder} className="h-[50px] w-full rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
+                    <label className="body-small font-bold text-primary">{data.form.fields.phone.label}</label>
+                    <input type="tel" placeholder={data.form.fields.phone.placeholder} className="input-field" />
                   </div>
 
                   {/* Service of Interest (Select) */}
                   <div className="flex flex-col gap-[8px]">
-                    <label className="text-[13px] font-bold text-primary">{data.form.fields.service.label}</label>
+                    <label className="body-small font-bold text-primary">{data.form.fields.service.label}</label>
                     <div className="relative">
-                      <select className="h-[50px] w-full appearance-none rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D] cursor-pointer">
+                      <select className="input-field h-[50px] cursor-pointer appearance-none">
                         {data.form.fields.services.map((opt: string, i: number) => (
                           <option key={i} value={opt}>{opt}</option>
                         ))}
@@ -217,8 +217,8 @@ export default function ServicesComponent() {
 
                 {/* Message */}
                 <div className="flex flex-col gap-[8px]">
-                  <label className="text-[13px] font-bold text-primary">{data.form.fields.message.label}</label>
-                  <textarea placeholder={data.form.fields.message.placeholder} className="h-[120px] w-full resize-y rounded-[8px] border border-border bg-[#F9F9F9] p-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white hover:border-[#84A59D]" />
+                  <label className="body-small font-bold text-primary">{data.form.fields.message.label}</label>
+                  <textarea placeholder={data.form.fields.message.placeholder} className="textarea-field h-[120px]" />
                 </div>
 
                 {/* Submit & Footer Text */}
@@ -255,7 +255,7 @@ export default function ServicesComponent() {
             <div className="mx-auto flex w-full max-w-[1050px] flex-col items-center justify-center gap-[24px] rounded-[24px] bg-white px-[24px] py-[40px] text-center sm:gap-[32px] sm:rounded-[32px] sm:py-[64px] lg:h-[292.5px] lg:px-[80px]">
               <div className="flex flex-col gap-[12px] sm:gap-[16px]">
                 {/* Mobile: 26px, Tablet: 36px, Desktop: 56px (unchanged) */}
-                <h2 className="heading-h2 text-[26px] text-primary sm:text-[36px] lg:text-[56px]">
+                <h2 className="heading-h2 text-primary">
                   {data.cta.title}
                 </h2>
                 <p className="body-text text-secondary">

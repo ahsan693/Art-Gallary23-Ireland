@@ -55,7 +55,7 @@ export default function Header() {
           </div>
 
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Link href="/" className="flex h-auto w-auto items-center justify-center whitespace-nowrap text-[16px] font-bold uppercase tracking-widest transition-transform duration-300 hover:scale-105 active:scale-95 lg:heading-h8 lg:tracking-normal">
+                <Link href="/" className="flex h-auto w-auto items-center justify-center whitespace-nowrap heading-h8 font-bold uppercase tracking-widest transition-transform duration-300 hover:scale-105 active:scale-95 lg:tracking-normal">
               {headerData.logo}
             </Link>
           </div>
@@ -81,7 +81,7 @@ export default function Header() {
               <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="absolute left-0 top-[72px] z-50 w-full overflow-hidden border-t border-border bg-white shadow-xl lg:hidden">
                 <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-1 px-[20px] py-[32px] sm:px-[40px]">
                   {navigationItems.map((item) => (
-                    <Link key={item.name} href={item.href} onClick={() => setIsMobileMenuOpen(false)} className={`block origin-left py-3 text-[18px] font-bold tracking-tight transition-all duration-300 active:scale-95 active:text-forest-green ${pathname === item.href ? "text-forest-green" : "text-primary hover:text-forest-green"}`}>
+                    <Link key={item.name} href={item.href} onClick={() => setIsMobileMenuOpen(false)} className={`block origin-left py-3 heading-h9 tracking-tight transition-all duration-300 active:scale-95 active:text-forest-green ${pathname === item.href ? "text-forest-green" : "text-primary hover:text-forest-green"}`}>
                       {item.name}
                     </Link>
                   ))}

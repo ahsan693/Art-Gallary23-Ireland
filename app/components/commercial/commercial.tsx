@@ -246,7 +246,7 @@ export default function CommercialComponent() {
                 <div className="flex flex-col gap-[8px]">
                     <label className="body-small font-bold">{data.form.fields.projectType.label}</label>
                   <div className="relative">
-                    <select className="h-[50px] w-full appearance-none rounded-[8px] border border-border bg-[#F9F9F9] px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green focus:bg-white cursor-pointer hover:border-[#84A59D]">
+                    <select className="input-field h-[50px] cursor-pointer appearance-none">
                       <option value="">{data.form.fields.projectType.placeholder}</option>
                       {data.form.projectTypes.map((type: string, i: number) => (
                         <option key={i} value={type}>{type}</option>

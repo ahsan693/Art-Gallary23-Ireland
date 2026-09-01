@@ -148,7 +148,7 @@ export default function PrintShopPage() {
             <div className="flex w-full max-w-[1200px] flex-col justify-between gap-[28px] lg:flex-row lg:gap-[24px]">
               {data.howItWorks.steps.map((step) => (
                 <div key={step.id} className={`flex w-full items-start gap-[16px] lg:flex-col lg:gap-[24px] ${step.maxWidth}`}>
-                  <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-white text-[18px] font-bold text-primary">
+                  <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-white heading-h9 text-primary">
                     {step.id}
                   </div>
                   <div className="flex flex-col items-start gap-[8px] text-left">

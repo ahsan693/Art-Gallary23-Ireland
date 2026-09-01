@@ -87,6 +87,39 @@
     }
   }
 
+  .heading-h7 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-primary);
+
+    @media (max-width: 1023px) {
+      font-size: 22px;
+    }
+  }
+
+  .heading-h8 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--color-primary);
+
+    @media (max-width: 1023px) {
+      font-size: 20px;
+    }
+  }
+
+  .heading-h9 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-primary);
+
+    @media (max-width: 1023px) {
+      font-size: 18px;
+    }
+  }
+
   .body-large {
     font-size: 18px;
     font-weight: 400;
@@ -127,6 +160,13 @@
     font-weight: 400;
     line-height: 1.5;
     color: var(--color-secondary);
+  }
+
+  .button-small {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--color-primary);
   }
 
   /* --- BUTTONS --- */
