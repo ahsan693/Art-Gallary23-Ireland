@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { type FormEvent, useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Importing the page data layer
 import { checkoutDetailsDefaults, getCheckoutDetailsData } from "@/app/lib/data/checkoutDetailsData";
@@ -15,6 +16,8 @@ type CheckoutDetailsData = Awaited<ReturnType<typeof getCheckoutDetailsData>>;
 export default function CheckoutDetailsComponent() {
     const [data, setData] = useState<CheckoutDetailsData | null>(null);
     const [pickupLocation, setPickupLocation] = useState(checkoutDetailsDefaults.pickupLocation);
+    const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+    const router = useRouter();
     
     // Ref to handle hidden file input
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -32,6 +35,27 @@ export default function CheckoutDetailsComponent() {
         if (fileInputRef.current) {
             fileInputRef.current.click();
         }
+    };
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const errors: Record<string, string> = {};
+        const artworkDescription = String(formData.get("artworkDescription") ?? "").trim();
+        const firstName = String(formData.get("firstName") ?? "").trim();
+        const lastName = String(formData.get("lastName") ?? "").trim();
+        const email = String(formData.get("email") ?? "").trim();
+        const phone = String(formData.get("phone") ?? "").trim();
+
+        if (!artworkDescription) errors.artworkDescription = "Describe the artwork or file.";
+        if (!firstName) errors.firstName = "Enter your first name.";
+        if (!lastName) errors.lastName = "Enter your last name.";
+        if (!/^\S+@\S+\.\S+$/.test(email)) errors.email = "Enter a valid email address.";
+        if (!/^[+\d][\d\s().-]{6,}$/.test(phone)) errors.phone = "Enter a valid phone number.";
+        if (!pickupLocation) errors.pickupLocation = "Choose a pickup location.";
+
+        setFormErrors(errors);
+        if (Object.keys(errors).length === 0) router.push(data?.bottomBar.nextButtonLink ?? "/checkout-review");
     };
 
     if (!data) return <div className="min-h-screen bg-warm-cream" />;
@@ -111,7 +135,12 @@ export default function CheckoutDetailsComponent() {
                     </div>
 
                     {/* --- FORM GRID --- */}
-                    <form className="grid w-full max-w-[920px] grid-cols-1 gap-[32px] pb-[24px] lg:grid-cols-2 max-md:gap-[20px] max-md:px-[20px]" onSubmit={(e) => e.preventDefault()}>
+                    <form id="checkout-details-form" className="grid w-full max-w-[920px] grid-cols-1 gap-[32px] pb-[24px] lg:grid-cols-2 max-md:gap-[20px] max-md:px-[20px]" noValidate onSubmit={handleSubmit}>
+                        {Object.keys(formErrors).length > 0 && (
+                            <p className="body-small rounded-[8px] border border-red-300 bg-red-50 px-[16px] py-[12px] text-red-700 lg:col-span-2" role="alert">
+                                Please complete the highlighted required fields before continuing.
+                            </p>
+                        )}
                         
                         {/* LEFT COLUMN: Artwork Details */}
                         <div className="flex flex-col gap-[24px] max-md:gap-[16px] max-md:rounded-[16px] max-md:border max-md:border-border max-md:bg-white max-md:p-[16px]">
@@ -121,12 +150,18 @@ export default function CheckoutDetailsComponent() {
                             
                             {/* Artwork Description Input */}
                             <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
-                                <label className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.artworkDesc}</label>
+                                <label htmlFor="artwork-description" className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.artworkDesc}</label>
                                 <input 
+                                    id="artwork-description"
+                                    name="artworkDescription"
                                     type="text" 
+                                    required
                                     placeholder={data.form.labels.artworkDescPlaceholder} 
-                                    className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" 
+                                    aria-invalid={Boolean(formErrors.artworkDescription)}
+                                    aria-describedby={formErrors.artworkDescription ? "artwork-description-error" : undefined}
+                                    className={`h-[50px] w-full rounded-[8px] border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px] ${formErrors.artworkDescription ? "border-red-600" : "border-border"}`} 
                                 />
+                                {formErrors.artworkDescription && <p id="artwork-description-error" className="text-[12px] text-red-700">{formErrors.artworkDescription}</p>}
                             </div>
 
                             {/* Special Instructions Textarea */}
@@ -180,31 +215,36 @@ export default function CheckoutDetailsComponent() {
                                 {/* Name Row */}
                                 <div className="grid grid-cols-2 gap-[16px] max-md:gap-[12px]">
                                     <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
-                                        <label className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.firstName}</label>
-                                        <input type="text" placeholder={data.form.labels.firstNamePlaceholder} className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
+                                        <label htmlFor="first-name" className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.firstName}</label>
+                                        <input id="first-name" name="firstName" type="text" required placeholder={data.form.labels.firstNamePlaceholder} aria-invalid={Boolean(formErrors.firstName)} className={`h-[50px] w-full rounded-[8px] border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px] ${formErrors.firstName ? "border-red-600" : "border-border"}`} />
+                                        {formErrors.firstName && <p className="text-[12px] text-red-700">{formErrors.firstName}</p>}
                                     </div>
                                     <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
-                                        <label className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.lastName}</label>
-                                        <input type="text" placeholder={data.form.labels.lastNamePlaceholder} className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
+                                        <label htmlFor="last-name" className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.lastName}</label>
+                                        <input id="last-name" name="lastName" type="text" required placeholder={data.form.labels.lastNamePlaceholder} aria-invalid={Boolean(formErrors.lastName)} className={`h-[50px] w-full rounded-[8px] border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px] ${formErrors.lastName ? "border-red-600" : "border-border"}`} />
+                                        {formErrors.lastName && <p className="text-[12px] text-red-700">{formErrors.lastName}</p>}
                                     </div>
                                 </div>
 
                                 {/* Email */}
                                 <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
-                                    <label className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.email}</label>
-                                    <input type="email" placeholder={data.form.labels.emailPlaceholder} className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
+                                    <label htmlFor="checkout-email" className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.email}</label>
+                                    <input id="checkout-email" name="email" type="email" required placeholder={data.form.labels.emailPlaceholder} aria-invalid={Boolean(formErrors.email)} className={`h-[50px] w-full rounded-[8px] border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px] ${formErrors.email ? "border-red-600" : "border-border"}`} />
+                                    {formErrors.email && <p className="text-[12px] text-red-700">{formErrors.email}</p>}
                                 </div>
 
                                 {/* Phone */}
                                 <div className="flex flex-col gap-[8px] max-md:gap-[4px]">
-                                    <label className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.phone}</label>
-                                    <input type="tel" placeholder={data.form.labels.phonePlaceholder} className="h-[50px] w-full rounded-[8px] border border-border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px]" />
+                                    <label htmlFor="checkout-phone" className="text-[14px] font-bold text-primary max-md:text-[13px]">{data.form.labels.phone}</label>
+                                    <input id="checkout-phone" name="phone" type="tel" required placeholder={data.form.labels.phonePlaceholder} aria-invalid={Boolean(formErrors.phone)} className={`h-[50px] w-full rounded-[8px] border bg-white px-[16px] text-[15px] outline-none transition-colors focus:border-forest-green max-md:h-[45px] max-md:rounded-[10px] max-md:border-[2px] max-md:bg-[#f9f9f9] max-md:px-[12px] max-md:text-[14px] ${formErrors.phone ? "border-red-600" : "border-border"}`} />
+                                    {formErrors.phone && <p className="text-[12px] text-red-700">{formErrors.phone}</p>}
                                 </div>
                             </div>
 
                             {/* Pickup Location Radios */}
                             <div className="flex flex-col gap-[12px] pt-[8px] max-md:gap-[16px] max-md:rounded-[16px] max-md:border max-md:border-border max-md:bg-white max-md:p-[16px] max-md:pt-[16px]">
                                 <label className="text-[14px] font-bold text-primary max-md:text-[14px] max-md:uppercase max-md:tracking-[0.4px]">{data.form.labels.pickupTitle}</label>
+                                <input type="hidden" name="pickupLocation" value={pickupLocation} />
                                 <div className="flex flex-col gap-[12px]">
                                     {data.pickupLocations.map((loc) => {
                                         const isSelected = pickupLocation === loc.id;
@@ -242,12 +282,12 @@ export default function CheckoutDetailsComponent() {
                             {data.bottomBar.requiredText}
                         </p>
 
-                        <Link href={data.bottomBar.nextButtonLink} className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
+                        <button type="submit" form="checkout-details-form" className="inline-flex h-[48px] items-center justify-center gap-[8px] rounded-full bg-primary px-[32px] text-[14px] font-semibold text-white transition hover:bg-dark-surface">
                             {data.bottomBar.nextButtonText}
                             <svg className="size-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
-                        </Link>
+                        </button>
                     </div>
 
                     {/* --- MOBILE BOTTOM SUMMARY BAR --- */}
@@ -255,10 +295,10 @@ export default function CheckoutDetailsComponent() {
                         <p className="text-center text-[13px] text-secondary">
                             {data.bottomBar.requiredText}
                         </p>
-                        <Link href={data.bottomBar.nextButtonLink} className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#232323] font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white">
+                        <button type="submit" form="checkout-details-form" className="inline-flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#232323] font-['Host_Grotesk'] text-[14px] font-medium uppercase leading-[1.5] tracking-[0.5px] text-white">
                             {data.bottomBar.nextButtonText}
                             <img src={data.icons.mobileArrowIcon} alt="" className="size-[16px] brightness-0 invert" />
-                        </Link>
+                        </button>
                     </div>
 
                 </div>
