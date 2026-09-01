@@ -134,7 +134,9 @@ export default function CheckoutReviewComponent() {
                                     {data.contactDetails.items.map((item, index) => (
                                         <div key={index} className="flex justify-between items-start gap-[16px]">
                                             <span className="text-[15px] text-secondary max-md:text-[14px]">{item.label}</span>
-                                            <span className="text-[15px] font-medium text-primary text-right max-md:text-[14px]">{item.value}</span>
+                                            {item.label === "Email" ? (
+                                                <a href={`mailto:${item.value}`} className="text-[15px] font-medium text-primary text-right hover:text-forest-green max-md:text-[14px]">{item.value}</a>
+                                            ) : <span className="text-[15px] font-medium text-primary text-right max-md:text-[14px]">{item.value}</span>}
                                         </div>
                                     ))}
                                 </div>
@@ -174,7 +176,7 @@ export default function CheckoutReviewComponent() {
                                 {/* Desktop Footer Info */}
                                 <p className="text-[13px] leading-[1.5] text-secondary max-md:hidden">
                                     {data.cashOnDelivery.footerTextDesktop}
-                                    <span className="font-bold text-primary">{data.cashOnDelivery.footerEmail}</span>
+                                    <a href={`mailto:${data.cashOnDelivery.footerEmail}`} className="font-bold text-primary hover:text-forest-green">{data.cashOnDelivery.footerEmail}</a>
                                     {data.cashOnDelivery.footerTextSuffix}
                                 </p>
                             </div>
@@ -207,7 +209,7 @@ export default function CheckoutReviewComponent() {
 
                         <p className="text-center text-[12px] leading-[1.5] text-secondary">
                             {data.cashOnDelivery.footerTextMobile}
-                            <span className="font-medium text-primary">{data.cashOnDelivery.footerEmail}</span>
+                            <a href={`mailto:${data.cashOnDelivery.footerEmail}`} className="font-medium text-primary hover:text-forest-green">{data.cashOnDelivery.footerEmail}</a>
                         </p>
                     </div>
 

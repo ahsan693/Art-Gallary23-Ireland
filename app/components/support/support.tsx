@@ -171,7 +171,11 @@ export default function ContactUsComponent({ data }: { data: ContactData }) {
                       {detail.items.map((item, idx) => (
                         <div key={idx}>
                           <p className="body-small font-bold text-primary uppercase">{item.label}</p>
-                          <p className="body-small text-secondary whitespace-pre-line">{item.value}</p>
+                          {detail.iconType === "phone" || detail.iconType === "mail" ? (
+                            <a href={`${detail.iconType === "phone" ? "tel:" : "mailto:"}${detail.iconType === "phone" ? item.value.replace(/[^\d+]/g, "") : item.value}`} className="body-small whitespace-pre-line text-secondary hover:text-forest-green">
+                              {item.value}
+                            </a>
+                          ) : <p className="body-small text-secondary whitespace-pre-line">{item.value}</p>}
                         </div>
                       ))}
                     </div>

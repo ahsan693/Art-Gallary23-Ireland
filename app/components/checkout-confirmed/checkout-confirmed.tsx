@@ -76,7 +76,7 @@ export default function CheckoutConfirmedComponent() {
                             {data.orderInfo.thankYouPrefix}
                             <span className="font-medium text-primary">{data.orderInfo.customerName}</span>
                             {data.orderInfo.thankYouMiddle}
-                            <span className="font-medium text-primary">{data.orderInfo.customerEmail}</span>
+                            <a href={`mailto:${data.orderInfo.customerEmail}`} className="font-medium text-primary hover:text-forest-green">{data.orderInfo.customerEmail}</a>
                             {data.orderInfo.thankYouSuffix}
                         </p>
                     </div>
@@ -105,9 +105,9 @@ export default function CheckoutConfirmedComponent() {
                     <div className="flex w-full items-center justify-center rounded-[16px] border border-border bg-[#F7F9F7] p-[24px] text-center max-md:p-[20px]">
                         <p className="text-[13px] leading-[1.6] text-secondary max-md:text-[12px]">
                             {data.contactSupport.prefix}
-                            <span className="font-bold text-primary">{data.contactSupport.email}</span>
+                            <a href={`mailto:${data.contactSupport.email}`} className="font-bold text-primary hover:text-forest-green">{data.contactSupport.email}</a>
                             {data.contactSupport.middle}
-                            <span className="font-bold text-primary">{data.contactSupport.phone}</span>
+                            <a href={`tel:${data.contactSupport.phone.replace(/[^\d+]/g, "")}`} className="font-bold text-primary hover:text-forest-green">{data.contactSupport.phone}</a>
                         </p>
                     </div>
 
