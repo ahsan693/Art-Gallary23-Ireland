@@ -475,7 +475,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative w-full overflow-hidden px-5 lg:px-0">
+          <div className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-5 lg:px-0">
             <motion.div
               className="flex w-max gap-[16px] pb-[16px] sm:gap-[24px] lg:gap-[32px]"
               animate={{ x: ["0%", "-50%"] }}
@@ -514,7 +514,7 @@ export default function Home() {
           <h2 className="heading-h2 w-full max-w-[1280px] text-[26px] text-center text-primary sm:text-[36px] lg:text-[56px]">
             {homePageData.trusted.title}
           </h2>
-          <div className="relative flex h-[80px] w-full items-center overflow-hidden sm:h-[100px] mt-[24px] sm:mt-[32px]">
+          <div className="relative flex h-[80px] w-full max-w-[1440px] mx-auto items-center overflow-hidden sm:h-[100px] mt-[24px] sm:mt-[32px]">
             <motion.div
               className="flex w-max items-center"
               animate={{ x: ["0%", "-50%"] }}
@@ -556,7 +556,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="relative flex h-[420px] w-full pl-[20px] sm:h-[581px] lg:pl-[40px]">
+          <div className="relative mx-auto flex h-[420px] w-full max-w-[1440px] overflow-hidden pl-[20px] sm:h-[581px] lg:pl-[40px]">
             <motion.div
               className="flex w-max"
               animate={{ x: ["0%", "-50%"] }}
