@@ -13,11 +13,9 @@ export const headerData = {
   ],
   utilityNavigation: [
     { name: "About Us", href: "/about" },
-    { name: "Stores", href: "/support" },
     { name: "Support", href: "/support" },
   ],
   icons: {
-    search: "/gallery23/nav-search.svg",
     cart: "/gallery23/nav-shopping-bag.svg",
   },
 };
