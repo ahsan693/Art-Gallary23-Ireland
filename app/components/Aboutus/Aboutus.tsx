@@ -272,7 +272,7 @@ export default function AboutUsComponent({ data }: { data: AboutData }) {
               {/* Mobile FAQs */}
               <div className="flex flex-col gap-[12px] lg:hidden">
                 {data.faq.questions.map((faq, index) => (
-                  <details key={index} className="group card flex flex-col gap-[12px] rounded-[12px] bg-white p-[20px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md active:scale-[0.98] active:border-[#84A59D] cursor-pointer">
+                  <details key={index} onClick={(event) => { if (!(event.target as HTMLElement).closest("summary")) event.currentTarget.open = !event.currentTarget.open; }} className="group card flex flex-col gap-[12px] rounded-[12px] bg-white p-[20px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md active:scale-[0.98] active:border-[#84A59D] cursor-pointer">
                     <summary className="flex items-start justify-between gap-[16px] list-none [&::-webkit-details-marker]:hidden">
                       <span className="heading-h8 font-semibold text-primary transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">{faq.q}</span>
                       <svg className="size-[20px] shrink-0 text-primary transition-all duration-300 group-open:rotate-45 group-hover:text-forest-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -287,7 +287,7 @@ export default function AboutUsComponent({ data }: { data: AboutData }) {
               {/* Desktop FAQs */}
               <div className="hidden flex-col gap-[12px] sm:gap-[16px] lg:flex">
                 {data.faq.questions.map((faq, index) => (
-                  <details key={index} className="group card flex flex-col gap-[12px] p-[20px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md active:scale-[0.98] active:border-[#84A59D] cursor-pointer sm:gap-[16px] sm:p-[30px]">
+                  <details key={index} onClick={(event) => { if (!(event.target as HTMLElement).closest("summary")) event.currentTarget.open = !event.currentTarget.open; }} className="group card flex flex-col gap-[12px] p-[20px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md active:scale-[0.98] active:border-[#84A59D] cursor-pointer sm:gap-[16px] sm:p-[30px]">
                     <summary className="flex items-start justify-between gap-[16px] list-none heading-h8 font-semibold [&::-webkit-details-marker]:hidden">
                       <span className="transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">{faq.q}</span>
                       <svg className="size-[20px] shrink-0 text-primary transition-all duration-300 group-open:rotate-45 group-hover:text-forest-green sm:size-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
