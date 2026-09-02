@@ -1,9 +1,4 @@
 export const headerData = {
-  announcement: {
-    prefix: "Now Trending!",
-    label: "Custom Gallery Walls ->",
-    href: "/commercial",
-  },
   logo: "GALLERY 23",
   navigation: [
     { name: "Home", href: "/" },

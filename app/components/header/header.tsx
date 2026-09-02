@@ -22,17 +22,6 @@ export default function Header() {
 
   return (
     <header className={`relative z-50 flex w-full flex-col items-center border-b border-border bg-white ${["/checkout-papersize", "/checkout-details", "/checkout-review", "/checkout-confirmed"].includes(pathname) ? "max-md:hidden" : ""}`}>
-      <div className="w-full bg-forest-green transition-colors duration-300 hover:bg-[#204834] active:bg-[#1a3a2a]">
-        <div className="mx-auto flex min-h-[36px] w-full max-w-[1440px] items-center justify-center px-[20px] py-[8px] text-center text-white sm:px-[40px]">
-          <span className="caption cursor-default text-white">
-            {headerData.announcement.prefix}{" "}
-            <Link href={headerData.announcement.href} className="cursor-pointer font-semibold underline decoration-solid underline-offset-2 transition-colors duration-300 hover:text-[#E8B84B] active:text-[#E8B84B]">
-              {headerData.announcement.label}
-            </Link>
-          </span>
-        </div>
-      </div>
-
       <div className="relative flex w-full justify-center bg-white">
         <nav className="flex h-[72px] w-full max-w-[1440px] items-center justify-between px-[20px] sm:px-[40px] lg:px-[40px]">
           <div className="flex items-center lg:hidden">
