@@ -134,28 +134,28 @@ export default function PrintShopPage() {
           </div>
 
           {/* Dark Overlay (z-10) stretched to full screen */}
-          <div className="absolute inset-0 z-10 bg-black/60 lg:bg-black/10" />
+          <div className="absolute inset-0 z-10 bg-black/70 lg:bg-black/10" />
 
           {/* Content Container (z-20) constrained to max-width */}
-          <div className="relative z-20 mx-auto flex w-full max-w-[1440px] px-[20px] sm:px-[24px] lg:px-[120px] flex-col items-start gap-[32px] text-white sm:items-center sm:text-center lg:gap-[56px]">
+          <div className="relative z-20 mx-auto flex w-full max-w-[1440px] px-[24px] sm:px-[24px] lg:px-[120px] flex-col items-start gap-[48px] text-white lg:items-center lg:text-center lg:gap-[56px]">
 
             {/* Section Heading */}
-            <h2 className="heading-h2 text-left text-white sm:text-center w-full max-w-[1200px]">
+            <h2 className="heading-h2 w-full max-w-[1200px] text-center text-white max-lg:text-[56px] max-lg:font-medium max-lg:leading-[1.1]">
               {data.howItWorks.title}
             </h2>
 
             {/* Steps Container (Stacked on Mobile) */}
-            <div className="flex w-full max-w-[1200px] flex-col justify-between gap-[28px] lg:flex-row lg:gap-[24px]">
+            <div className="flex w-full max-w-[1200px] flex-col justify-between gap-[32px] lg:flex-row lg:gap-[24px]">
               {data.howItWorks.steps.map((step) => (
                 <div key={step.id} className={`flex w-full items-start gap-[16px] lg:flex-col lg:gap-[24px] ${step.maxWidth}`}>
-                  <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-white heading-h9 text-primary">
+                  <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-white heading-h9 text-primary max-lg:text-[20px] max-lg:font-semibold max-lg:leading-[1.4] max-lg:text-black">
                     {step.id}
                   </div>
-                  <div className="flex flex-col items-start gap-[8px] text-left">
-                    <h3 className="heading-h8 font-bold text-white">
+                  <div className="flex min-w-0 flex-1 flex-col items-start gap-[6px] text-left lg:gap-[8px]">
+                    <h3 className="heading-h8 font-bold text-white max-lg:w-full max-lg:leading-[1.4]">
                       {step.title}
                     </h3>
-                    <p className="body-text text-white/90">
+                    <p className="body-text max-lg:w-full max-lg:text-[#D5D5D5] lg:text-white/90">
                       {step.desc}
                     </p>
                   </div>
