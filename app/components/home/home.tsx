@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -178,6 +178,8 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
 export default function Home() {
   const showcaseImages = [images.frameOne, images.frameTwo, images.frameThree];
   const [activeProject, setActiveProject] = useState(0);
+  const testimonialsRef = useRef<HTMLDivElement>(null);
+  const framingRef = useRef<HTMLDivElement>(null);
 
   // Duplicated arrays for ultra-wide seamless marquees
   const repeatedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials];
@@ -482,11 +484,9 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-5 lg:px-0">
-            <motion.div
-              className="flex w-max gap-[16px] pb-[16px] sm:gap-[24px] lg:gap-[32px]"
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
+          <div ref={testimonialsRef} className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-5 lg:px-0">
+            <div
+              className="flex w-max gap-[8px] pb-[16px] sm:gap-[16px] lg:gap-[20px]"
             >
               {repeatedTestimonials.map((item, index) => (
                 <article
@@ -512,7 +512,30 @@ export default function Home() {
                   </p>
                 </article>
               ))}
-            </motion.div>
+            </div>
+          </div>
+
+          <div className="mt-2 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              aria-label="Previous testimonials"
+              onClick={() => testimonialsRef.current?.scrollBy({ left: -testimonialsRef.current.clientWidth, behavior: "smooth" })}
+              className="flex size-10 items-center justify-center rounded-full border border-border bg-white text-primary transition-colors duration-300 hover:bg-primary hover:text-white"
+            >
+              <svg aria-hidden="true" className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Next testimonials"
+              onClick={() => testimonialsRef.current?.scrollBy({ left: testimonialsRef.current.clientWidth, behavior: "smooth" })}
+              className="flex size-10 items-center justify-center rounded-full border border-border bg-white text-primary transition-colors duration-300 hover:bg-primary hover:text-white"
+            >
+              <svg aria-hidden="true" className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
           </div>
         </section>
 
@@ -548,7 +571,7 @@ export default function Home() {
         </section>
 
         {/* --- WHAT WE'VE BEEN FRAMING SECTION --- */}
-        <section className="section-alt w-full flex flex-col items-center overflow-hidden p-0">
+        <section className="section-alt w-full flex flex-col items-center overflow-hidden p-0 pb-6 sm:pb-8 lg:pb-10">
           <div className="flex w-full flex-col items-center gap-5 px-5 py-8 sm:gap-[32px] sm:py-[56px]">
             <h2 className="w-full max-w-[697px] text-center heading-h2">
               {homePageData.instagram.title}
@@ -563,11 +586,9 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="relative mx-auto flex h-[294px] w-full max-w-[1440px] overflow-hidden pl-5 sm:h-[581px] lg:pl-[40px]">
-            <motion.div
+          <div ref={framingRef} className="relative mx-auto flex h-[294px] w-full max-w-[1440px] overflow-hidden pl-5 sm:h-[581px] lg:pl-[40px]">
+            <div
               className="flex w-max"
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
             >
               {repeatedInsta.map((item, index) => (
                 <article key={index} className="flex w-[179px] shrink-0 flex-col items-start pr-0 sm:w-[350px] sm:pr-[32px]">
@@ -584,12 +605,35 @@ export default function Home() {
                   </div>
                 </article>
               ))}
-            </motion.div>
+            </div>
+          </div>
+
+          <div className="mt-2 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              aria-label="Previous framing projects"
+              onClick={() => framingRef.current?.scrollBy({ left: -framingRef.current.clientWidth, behavior: "smooth" })}
+              className="flex size-10 items-center justify-center rounded-full border border-border bg-white text-primary transition-colors duration-300 hover:bg-primary hover:text-white"
+            >
+              <svg aria-hidden="true" className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Next framing projects"
+              onClick={() => framingRef.current?.scrollBy({ left: framingRef.current.clientWidth, behavior: "smooth" })}
+              className="flex size-10 items-center justify-center rounded-full border border-border bg-white text-primary transition-colors duration-300 hover:bg-primary hover:text-white"
+            >
+              <svg aria-hidden="true" className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
           </div>
         </section>
 
         {/* --- FAQS SECTION --- */}
-        <section className="section-alt w-full flex flex-col items-center px-[16px] py-[56px] sm:px-[24px] lg:py-[80px]">
+        <section className="section-alt w-full flex flex-col items-center border-t border-border px-[16px] py-[56px] sm:px-[24px] lg:py-[80px]">
           <div className="flex w-full max-w-[1280px] flex-col items-center gap-[32px] rounded-[12px] p-0 sm:gap-[40px] sm:p-[32px]">
             <h2 className="text-center heading-h2">
               {homePageData.faq.title}
