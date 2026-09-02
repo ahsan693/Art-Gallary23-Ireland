@@ -58,7 +58,6 @@ export const services = [
     title: "Licensed Artwork",
     body: "Access and browse directly from our extensive database of licensed prints and fine art collections.",
     cta: "Browse Artwork",
-    href: "/printshop", // <-- Added link
   },
 ];
 

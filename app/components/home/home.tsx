@@ -134,7 +134,15 @@ const getIconComponent = (iconType: string) => {
 // REUSABLE UI COMPONENTS
 // ==========================================
 
-export function Button({ children, href = "/support", dark = false }: { children: React.ReactNode; href?: string; dark?: boolean }) {
+export function Button({ children, href, dark = false }: { children: React.ReactNode; href?: string; dark?: boolean }) {
+  if (!href) {
+    return (
+      <span className={`group transition-all duration-300 ${dark ? "btn-primary" : "btn-secondary"}`}>
+        {children}
+      </span>
+    );
+  }
+
   return (
     <Link 
       href={href} 
