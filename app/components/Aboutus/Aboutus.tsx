@@ -84,20 +84,20 @@ export default function AboutUsComponent({ data }: { data: AboutData }) {
       <main className="flex w-full flex-1 flex-col items-center">
         
         {/* --- 1. HERO SECTION --- */}
-        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden h-[500px] lg:h-[643px]">
+        <section className="relative flex w-full flex-col items-center justify-center overflow-hidden px-[24px] py-[120px] lg:h-[643px] lg:px-0 lg:py-0">
           {/* Infinite Background Image */}
           <div className="absolute inset-0 z-0 h-full w-full">
             <Image src={data.hero.image} alt={data.hero.imageAlt} fill priority className="object-cover" sizes="100vw" />
           </div>
-          <div className="absolute inset-0 z-10 bg-black/10" />
+          <div className="absolute inset-0 z-10 bg-black/65 lg:bg-black/10" />
 
           {/* Constrained Text Container */}
-          <div className="relative z-20 mx-auto flex w-full max-w-[1440px] flex-col items-start gap-[16px] px-[20px] text-left text-white sm:items-center sm:text-center sm:px-[24px] lg:px-[80px]">
-            <div className="flex w-full max-w-[1000px] flex-col items-start gap-[16px] text-left text-white sm:items-center sm:text-center lg:items-center lg:text-center">
-              <h1 className="heading-display text-white w-full max-w-[924px]">
+          <div className="relative z-20 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[24px] px-0 text-center text-white lg:items-start lg:gap-[16px] lg:px-[80px] lg:text-left">
+            <div className="flex w-full max-w-[1000px] flex-col items-center gap-[24px] text-center text-white lg:items-center lg:gap-[16px] lg:text-center">
+              <h1 className="heading-display w-full max-w-[924px] text-white">
                 {data.hero.title}
               </h1>
-              <p className="body-large w-full max-w-[700px] text-white/80">
+              <p className="w-full max-w-[700px] text-[14px] font-medium leading-[1.5] text-white/[0.88] lg:text-[18px] lg:font-normal lg:leading-[1.5] lg:text-white/80">
                 {data.hero.subtitle}
               </p>
             </div>
@@ -106,14 +106,14 @@ export default function AboutUsComponent({ data }: { data: AboutData }) {
 
         {/* --- 2. MEET THE GREGS SECTION --- */}
         <section className="w-full bg-warm-cream flex justify-center">
-          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] py-[64px] sm:px-[24px] lg:flex-row lg:items-center lg:justify-center lg:gap-[64px] lg:px-[80px] lg:py-[80px]">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[24px] py-[56px] lg:flex-row lg:items-center lg:justify-center lg:gap-[64px] lg:px-[80px] lg:py-[80px]">
             <div className="relative h-[278px] w-full max-w-[340px] shrink-0 lg:mb-0 lg:h-[567px] lg:max-w-[480px] lg:w-[480px]">
               <img src={data.meetTheGregs.imgSr} alt={data.meetTheGregs.imgSrAlt} className="absolute left-0 top-0 h-[320px] w-[240px] rounded-[12px] object-cover lg:h-full lg:w-full" />
               <img src={data.meetTheGregs.imgJr} alt={data.meetTheGregs.imgJrAlt} className="absolute bottom-0 right-0 h-[200px] w-[160px] rounded-[12px] object-cover shadow-[0_8px_16px_-4px_rgba(0,0,0,0.1)] lg:bottom-[-40px] lg:right-[-40px] lg:h-[320px] lg:w-[260px]" />
             </div>
 
-            <div className="flex w-full max-w-[736px] flex-col gap-[24px] lg:gap-[32px] mt-[48px] lg:mt-0">
-              <h2 className="heading-h3 tracking-[-0.015em]">
+            <div className="mt-[82px] flex w-full max-w-[736px] flex-col gap-[24px] lg:mt-0 lg:gap-[32px]">
+              <h2 className="heading-h3 font-medium tracking-[-0.015em] lg:font-bold">
                 {data.meetTheGregs.title}
               </h2>
               <div className="flex flex-col gap-[16px] body-text text-primary">
@@ -121,8 +121,8 @@ export default function AboutUsComponent({ data }: { data: AboutData }) {
                   <p key={i}>{para}</p>
                 ))}
               </div>
-              <div className="border-l-[4px] border-forest-green pl-[16px] sm:pl-[24px]">
-                <p className="body-text italic text-secondary">
+              <div className="border-l-[4px] border-forest-green py-[4px] pl-[16px] sm:pl-[24px] lg:py-0">
+                <p className="text-[24px] font-normal italic leading-[1.2] text-primary lg:body-text lg:leading-[1.5] lg:text-secondary">
                   {data.meetTheGregs.quote}
                 </p>
               </div>
