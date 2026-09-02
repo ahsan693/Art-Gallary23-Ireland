@@ -107,7 +107,7 @@ export default function CheckoutPaperSizeComponent() {
 
                     {/* --- PAGE HEADING --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[8px] pb-[40px] max-md:px-[20px] max-md:pb-[16px] max-md:pt-[8px]">
-                        <h1 className="heading-display text-primary">
+                        <h1 className="heading-display text-primary max-md:text-[24px] max-md:leading-[1.2]">
                             {data.heading.title}
                         </h1>
                         <p className="body-text text-secondary max-md:pt-[4px] max-md:text-[14px] max-md:leading-[1.5]">
@@ -117,7 +117,7 @@ export default function CheckoutPaperSizeComponent() {
 
                     {/* --- PAPER TYPE SECTION --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[40px] max-md:h-auto max-md:px-[20px] max-md:pb-[20px] max-md:gap-0">
-                            <h2 className="heading-h8 font-bold text-primary max-md:uppercase max-md:tracking-[0.5px]">
+                            <h2 className="heading-h8 font-semibold text-primary max-md:text-[13px] max-md:leading-[1.5] max-md:uppercase max-md:tracking-[0.5px]">
                             {data.paperSection.title}
                         </h2>
 
@@ -130,7 +130,7 @@ export default function CheckoutPaperSizeComponent() {
                                         key={paper.id}
                                         onClick={() => setSelectedPaper(paper.id)}
                                         className={`group relative flex h-[300px] w-full flex-col overflow-hidden rounded-[16px] border-[2px] bg-white text-left transition-all max-md:h-[86px] max-md:flex-row max-md:items-center max-md:gap-[12px] max-md:rounded-[16px] ${isSelected
-                                            ? "border-primary shadow-[0_8px_24px_rgba(0,0,0,0.12)] max-md:shadow-none"
+                                            ? "border-primary shadow-[0_8px_24px_rgba(0,0,0,0.12)] max-md:border-[#232323] max-md:shadow-none"
                                             : "border-transparent shadow-sm hover:border-border max-md:border-[#D5D5D5] max-md:shadow-none"
                                             }`}
                                     >
@@ -168,7 +168,7 @@ export default function CheckoutPaperSizeComponent() {
 
                     {/* --- PRINT SIZE SECTION --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[24px] max-md:px-[20px] max-md:pb-0 max-md:gap-0">
-                        <h2 className="heading-h8 font-bold text-primary max-md:uppercase max-md:tracking-[0.5px]">
+                        <h2 className="heading-h8 font-semibold text-primary max-md:text-[13px] max-md:leading-[1.5] max-md:uppercase max-md:tracking-[0.5px]">
                             {data.sizeSection.title}
                         </h2>
 

@@ -21,7 +21,7 @@ export default function Header() {
   const navigationItems = [...headerData.navigation, ...headerData.utilityNavigation];
 
   return (
-    <header className="relative z-50 flex w-full flex-col items-center border-b border-border bg-white">
+    <header className={`relative z-50 flex w-full flex-col items-center border-b border-border bg-white ${pathname === "/checkout-papersize" ? "max-md:hidden" : ""}`}>
       <div className="w-full bg-forest-green transition-colors duration-300 hover:bg-[#204834] active:bg-[#1a3a2a]">
         <div className="mx-auto flex min-h-[36px] w-full max-w-[1440px] items-center justify-center px-[20px] py-[8px] text-center text-white sm:px-[40px]">
           <span className="caption cursor-default text-white">
