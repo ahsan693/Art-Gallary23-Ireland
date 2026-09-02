@@ -137,18 +137,18 @@ export default function CheckoutPaperSizeComponent() {
                                         {/* Top Image Area */}
                                         <div className="relative h-[150px] w-full shrink-0 bg-gray-100 max-md:h-[82px] max-md:w-[80px]">
                                             <Image src={paper.img} alt={paper.imageAlt} fill className="object-cover" />
+                                        </div>
 
-                                            {/* Checkmark Indicator */}
-                                            <div
-                                                className={`absolute right-[12px] top-[12px] flex size-[24px] items-center justify-center rounded-full border-[1.5px] transition-all max-md:right-[12px] max-md:top-1/2 max-md:-translate-y-1/2 max-md:size-[20px] max-md:border-2 ${isSelected
-                                                    ? "border-primary bg-primary"
-                                                    : "border-border bg-white shadow-sm"
-                                                    }`}
-                                            >
-                                                {isSelected && (
-                                                    <img src={data.icons.mobileCheckIcon} alt="" className="size-[14px] max-md:size-[8px]" />
-                                                )}
-                                            </div>
+                                        {/* Checkmark Indicator */}
+                                        <div
+                                            className={`absolute right-[12px] top-[12px] flex size-[24px] items-center justify-center rounded-full border-[1.5px] transition-all max-md:top-1/2 max-md:-translate-y-1/2 max-md:size-[20px] max-md:border-2 ${isSelected
+                                                ? "border-primary bg-primary"
+                                                : "border-border bg-white shadow-sm"
+                                                }`}
+                                        >
+                                            {isSelected && (
+                                                <img src={data.icons.mobileCheckIcon} alt="" className="size-[14px] max-md:size-[8px]" />
+                                            )}
                                         </div>
 
                                         {/* Bottom Text Area */}
