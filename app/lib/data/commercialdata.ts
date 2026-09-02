@@ -3,7 +3,7 @@
 // ==========================================
 
 export const commercialImages = {
-  hero: "/Commercial/Images/Section1.png",
+  hero: "/Commercial/Images/hero1.png",
   bulkFraming: "/Commercial/Images/Section3- 01.png",
   printing: "/Commercial/Images/Section3- 02.png",
   installation: "/Commercial/Images/Section3- 03.png",
