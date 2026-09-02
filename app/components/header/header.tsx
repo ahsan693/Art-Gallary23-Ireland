@@ -58,7 +58,7 @@ export default function Header() {
               ))}
             </div>
             <span className="hidden h-6 w-px bg-border lg:block" />
-            <div className="flex h-[20px] items-center gap-[12px] lg:h-auto lg:gap-1">
+            <div className="flex h-[20px] items-center gap-[12px] lg:h-auto lg:gap-1 lg:ml-2 lg:translate-x-1">
               <button aria-label="Cart" className="flex items-center justify-center p-0 transition-all duration-300 hover:bg-[#84A59D]/10 hover:border-[#84A59D] active:scale-90 lg:grid lg:size-10 lg:place-items-center lg:rounded-full lg:border lg:border-border lg:bg-warm-cream">
                 <Image src={headerData.icons.cart} alt="" width={20} height={20} className="size-[20px] lg:size-5" />
               </button>
