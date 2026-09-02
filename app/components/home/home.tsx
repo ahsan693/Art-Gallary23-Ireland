@@ -251,7 +251,7 @@ export default function Home() {
               </p>
             </div>
             <div className="relative h-[280px] w-full shrink-0 overflow-hidden rounded-[24px] lg:h-[780px] lg:w-[580px] lg:rounded-[48px]">
-              <ResponsiveImage src={images.services} alt={homePageData.services.imageAlt} />
+              <ResponsiveImage src={images.services} alt={homePageData.services.imageAlt} className="rounded-[24px] lg:rounded-[48px] [&>img]:scale-[1.05]" />
             </div>
             <div className="flex w-full flex-col gap-[48px] lg:w-[492px]">
               <h2 className="hidden heading-h2 lg:block">
