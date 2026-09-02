@@ -302,7 +302,7 @@ export default function Home() {
               </div>
             </div>
             <div className="relative h-[220px] w-full shrink-0 overflow-hidden rounded-2xl lg:mt-0 lg:h-[560px] lg:w-[640px] lg:rounded-[32px]">
-              <ResponsiveImage src={images.about} alt={homePageData.about.imageAlt} className="rounded-2xl lg:rounded-[32px]" />
+              <ResponsiveImage src={images.about} alt={homePageData.about.imageAlt} className="rounded-2xl [&>img]:scale-[1.05] lg:rounded-[32px] lg:[&>img]:scale-100" />
             </div>
           </div>
         </section>
