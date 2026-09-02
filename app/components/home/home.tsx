@@ -329,12 +329,12 @@ export default function Home() {
                 key={item.title}
                 className="card flex-1 flex flex-col p-5 lg:max-w-[302px] lg:p-[36px]"
               >
-                <div className="flex h-12 w-full items-start justify-between">
+                <div className="mb-4 flex h-12 w-full items-start justify-between lg:mb-6">
                   <div className="flex size-12 items-center justify-center rounded-full bg-forest-green text-[#F4F0EB] lg:size-[72px]">
                     {getIconComponent(item.iconType)}
                   </div>
                 </div>
-                <div className="flex flex-col justify-center gap-3 py-3 lg:py-[24px]">
+                <div className="flex flex-col justify-center gap-4 py-3 lg:gap-5 lg:py-[24px]">
                   <h3 className="heading-h9">
                     {item.title}
                   </h3>
