@@ -181,18 +181,18 @@ export default function CommercialComponent() {
 
         {/* --- 4. TRUSTED BY LOGOS SECTION --- */}
         <section className="w-full bg-primary flex justify-center">
-          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] py-[64px] sm:px-[24px] sm:py-[48px] lg:gap-[48px] lg:px-[120px] lg:py-[80px]">
-            <div className="flex w-full max-w-[1200px] flex-col items-start text-left mb-[24px] sm:items-center sm:text-center lg:mb-0">
-              <h2 className="heading-h2 text-white">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[40px] px-[24px] py-[64px] sm:py-[48px] lg:gap-[48px] lg:px-[120px] lg:py-[80px]">
+            <div className="mb-0 flex w-full max-w-[1200px] flex-col items-start text-left sm:items-center sm:text-center lg:mb-0">
+              <h2 className="heading-h2 text-white max-lg:font-semibold max-lg:leading-[1.1] max-lg:tracking-[-0.64px]">
                 {data.trustedBy.title}
               </h2>
             </div>
 
-            <div className="flex w-full max-w-[1200px] flex-col gap-[24px] sm:gap-[24px] lg:flex-row">
+            <div className="flex w-full max-w-[1200px] flex-col gap-[32px] sm:gap-[24px] lg:flex-row">
               {data.trustedBy.logos.map((logo) => (
-                <div key={logo.id} className="flex flex-1 flex-col items-start gap-[12px] sm:gap-[20px] lg:w-[384px]">
+                <div key={logo.id} className="flex flex-1 flex-col items-start gap-[16px] sm:gap-[20px] lg:w-[384px]">
                   {/* White Logo Card Container */}
-                  <div className="relative flex h-[140px] w-full items-center justify-center rounded-[16px] bg-white p-[20px] sm:h-[161px] sm:p-[24px]">
+                  <div className="relative flex h-[180px] w-full items-center justify-center rounded-[16px] bg-white p-[20px] sm:h-[161px] sm:p-[24px]">
                     <Image
                       src={logo.image}
                       alt={logo.imageAlt}
@@ -201,9 +201,9 @@ export default function CommercialComponent() {
                       className="object-contain p-[20px] sm:p-[24px]"
                     />
                   </div>
-                  <div className="flex flex-col gap-[4px]">
-                    <p className="micro font-bold uppercase tracking-widest text-[#999999]">{logo.label}</p>
-                    <h3 className="heading-mini text-white">
+                  <div className="flex flex-col gap-[8px] lg:gap-[4px]">
+                    <p className="micro font-bold uppercase tracking-widest text-[#999999] max-lg:text-[12px] max-lg:leading-normal max-lg:tracking-[1px]">{logo.label}</p>
+                    <h3 className="heading-mini text-white max-lg:text-[20px] max-lg:font-semibold max-lg:leading-[1.4]">
                       {logo.project}
                     </h3>
                   </div>
