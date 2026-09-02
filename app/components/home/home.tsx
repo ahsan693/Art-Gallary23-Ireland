@@ -349,7 +349,7 @@ export default function Home() {
 
         {/* --- CUSTOM PRINTING SECTION --- */}
         <section className="section-alt w-full flex flex-col items-center gap-8 px-5 py-20 lg:gap-[48px] lg:px-[80px]">
-          <div className="flex w-full max-w-[802px] flex-col items-center gap-[12px] text-center">
+          <div className="flex w-full max-w-[802px] flex-col items-center gap-[24px] text-center">
             <h2 className="heading-h2">
               {homePageData.printing.title}
             </h2>
@@ -412,7 +412,6 @@ export default function Home() {
                   <ResponsiveImage src={showcaseImages[activeProject]} alt={`${homePageData.showcase.imageAlt} ${activeProject + 1}`} />
                 </motion.div>
               </AnimatePresence>
-              <div className="pointer-events-none absolute inset-0 z-10 rounded-[20px] shadow-[inset_0_4px_8px_rgba(0,0,0,0.40)] lg:rounded-[46px]" />
             </div>
 
             <div className="flex h-[20px] items-center justify-center gap-[8px]">
