@@ -588,7 +588,7 @@ export default function Home() {
 
           <div ref={framingRef} className="relative mx-auto flex h-[294px] w-full max-w-[1440px] overflow-hidden pl-5 sm:h-[581px] lg:pl-[40px]">
             <div
-              className="flex w-max"
+              className="flex w-max gap-[24px] sm:gap-0"
             >
               {repeatedInsta.map((item, index) => (
                 <article key={index} className="flex w-[179px] shrink-0 flex-col items-start pr-0 sm:w-[350px] sm:pr-[32px]">
