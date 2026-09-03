@@ -105,7 +105,7 @@ export default function AboutUsComponent({ data }: { data: AboutData }) {
         </section>
 
         {/* --- 2. MEET THE GREGS SECTION --- */}
-        <section className="w-full bg-warm-cream flex justify-center">
+        <section id="meet-the-gregs" className="w-full bg-warm-cream flex justify-center">
           <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[24px] py-[56px] lg:flex-row lg:items-center lg:justify-center lg:gap-[64px] lg:px-[80px] lg:py-[80px]">
             <div className="relative h-[278px] w-full max-w-[340px] shrink-0 lg:mb-0 lg:h-[567px] lg:max-w-[480px] lg:w-[480px]">
               <img src={data.meetTheGregs.imgSr} alt={data.meetTheGregs.imgSrAlt} className="absolute left-0 top-0 h-[320px] w-[240px] rounded-[12px] object-cover lg:h-full lg:w-full" />

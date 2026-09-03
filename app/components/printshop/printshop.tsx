@@ -71,7 +71,7 @@ export default function PrintShopPage() {
         </section>
 
         {/* --- 2. CUSTOM PRINT UPLOAD SECTION --- */}
-        <section className="flex w-full flex-col items-center justify-center bg-warm-cream py-[64px] lg:py-[80px]">
+        <section id="custom-print-upload" className="flex w-full flex-col items-center justify-center bg-warm-cream py-[64px] lg:py-[80px]">
 
           {/* Main Card Wrapper constrained to max-width */}
           <div className="mx-auto flex w-full max-w-[1440px] justify-center px-[20px] sm:px-[24px]">

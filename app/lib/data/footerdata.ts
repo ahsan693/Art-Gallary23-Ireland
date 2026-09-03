@@ -7,27 +7,27 @@ export const footerData = {
     {
       title: "Services",
       items: [
-        { label: "Picture Framing", href: "/Services" },
-        { label: "Canvas Prints", href: "/Services" },
-        { label: "Jersey Framing", href: "/Services" },
-        { label: "Shadow Boxes", href: "/Services" },
-        { label: "Certificates & Awards", href: "/Services" },
-        { label: "Photo Frames", href: "/Services" },
+        { label: "Picture Framing", href: "/Services#picture-framing" },
+        { label: "Canvas Prints", href: "/Services#canvas-prints" },
+        { label: "Jersey Framing", href: "/Services#jersey-framing" },
+        { label: "Shadow Boxes", href: "/Services#shadow-box" },
+        { label: "Certificates & Awards", href: "/Services#certificate-award" },
+        { label: "Photo Frames", href: "/Services#photo-restoration" },
       ],
     },
     {
       title: "Company",
       items: [
-        { label: "About Us", href: "/about" },
-        { label: "Print Shop", href: "/printshop" },
-        { label: "Commercial", href: "/commercial" },
+        { label: "About Us", href: "/about#meet-the-gregs" },
+        { label: "Print Shop", href: "/printshop#custom-print-upload" },
+        { label: "Commercial", href: "/commercial#quote-form" },
       ],
     },
     {
       title: "Resources",
       items: [
-        { label: "FAQs", href: "/support" },
-        { label: "Contact Us", href: "/support" },
+        { label: "FAQs", href: "/support#faq-section" },
+        { label: "Contact Us", href: "/support#contact-form" },
       ],
     },
   ],

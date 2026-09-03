@@ -99,6 +99,7 @@ export default function ServicesComponent() {
             return (
               <section
                 key={service.id}
+                id={service.id}
                 // 👇 Background stretches full width 👇
                 className={`flex w-full justify-center ${isEven ? "bg-white" : "bg-warm-cream"}`}
               >

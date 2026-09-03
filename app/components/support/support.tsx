@@ -322,7 +322,7 @@ export default function ContactUsComponent({ data }: { data: ContactData }) {
         </section>
 
         {/* --- 5. FAQ SECTION --- */}
-        <section className="w-full bg-warm-cream flex justify-center py-[56px] lg:py-[100px]">
+        <section id="faq-section" className="w-full bg-warm-cream flex justify-center py-[56px] lg:py-[100px]">
           <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[32px] px-[24px] lg:flex-row lg:items-stretch lg:justify-center lg:gap-[64px] lg:px-[120px]">
             <div className="relative h-[220px] w-full max-w-[480px] shrink-0 overflow-hidden rounded-[24px] sm:h-[500px] lg:h-auto">
               <ResponsiveImage src={data.faq.image} alt={data.faq.imageAlt} />
