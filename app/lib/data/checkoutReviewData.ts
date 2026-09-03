@@ -9,11 +9,13 @@ export const getCheckoutReviewData = async () => {
             mobileBackIcon: "https://www.figma.com/api/mcp/asset/e704c3a3-0a5f-4fe0-8ac2-ed176653849c.svg",
             mobileBagIcon: "https://www.figma.com/api/mcp/asset/217818e8-ae21-49e3-a3fe-5afa12ea8ef6.svg",
             mobileArrowIcon: "https://www.figma.com/api/mcp/asset/da712e1a-3560-4de1-90fd-31d191491158.svg",
+            paymentCheckIcon: "https://www.figma.com/api/mcp/asset/e03ff638-b58e-4597-9849-eee15777c2da.svg",
+            stripeLogo: "https://www.figma.com/api/mcp/asset/ecbee59e-a11d-4d91-9ad8-2938859647f3.svg",
             mobileBackAlt: "Back",
             mobileBagAlt: "Cart",
         },
         mobileHeader: {
-            bannerText: "Cash on Delivery — Pickup at Kimmage or Coalmine",
+            bannerText: "Online Payment — Secure checkout via Stripe",
             title: "Gallery 23",
             cartLabel: "Cart",
         },
@@ -50,19 +52,18 @@ export const getCheckoutReviewData = async () => {
                 { label: "Pickup", value: "Kimmage Gallery" }
             ]
         },
-        cashOnDelivery: {
-            title: "Cash on Delivery",
-            descriptionDesktop: "Payment is collected in cash when you pick up your order at the gallery. No card or online payment required. Please bring the exact amount — €55.",
-            descriptionMobile: "Pay €55 cash when you collect your order in-store. No card payment required.",
+        onlinePayment: {
+            title: "Online Payment",
+            descriptionDesktop: "Payment is processed securely online via Stripe. Your card will be charged at checkout — €55. No cash needed.",
+            descriptionMobile: "Payment is processed securely online via Stripe. Your card will be charged at checkout — €55.",
             paymentMethodLabel: "PAYMENT METHOD",
-            paymentMethodValue: "💵 Cash on Delivery at Pickup",
-            footerTextDesktop: "You will receive an order confirmation email at ",
-            footerTextMobile: "A confirmation email will be sent to ",
+            footerTextDesktop: "You will receive a payment receipt and order confirmation email at ",
+            footerTextMobile: "A payment receipt and confirmation email will be sent to ",
             footerEmail: "dff@gmail.com",
-            footerTextSuffix: " with estimated pickup dates."
+            footerTextSuffix: " with estimated delivery dates."
         },
         bottomBar: {
-            agreementText: "By confirming, you agree to pay €55 cash at pickup.",
+            agreementText: "By confirming, you agree to pay securely online via Stripe.",
             confirmButtonText: "Confirm Order",
             confirmButtonlink: "/checkout-confirmed"
         }

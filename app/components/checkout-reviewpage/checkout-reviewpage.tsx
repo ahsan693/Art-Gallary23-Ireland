@@ -142,42 +142,42 @@ export default function CheckoutReviewComponent() {
                                 </div>
                             </div>
 
-                            {/* Cash on Delivery Card (Tinted Background) */}
-                            <div className="flex flex-col rounded-[20px] border border-border bg-[#F7F9F7] p-[24px] lg:p-[32px] max-md:rounded-[16px] max-md:p-[16px]">
+                            {/* Online Payment Card */}
+                            <div className="flex flex-col gap-[16px] rounded-[20px] border-2 border-forest-green bg-warm-cream p-[24px] lg:p-[32px] max-md:rounded-[16px] max-md:p-[16px]">
                                 <div className="flex items-center gap-[12px] mb-[16px] max-md:gap-[10px] max-md:mb-[12px]">
-                                    <div className="flex size-[24px] shrink-0 items-center justify-center rounded-full bg-forest-green text-white max-md:size-[20px]">
-                                        <svg className="size-[14px] max-md:size-[12px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                        </svg>
+                                    <div className="flex size-[32px] shrink-0 items-center justify-center rounded-full bg-forest-green max-md:size-[24px]">
+                                        <img src={data.icons.paymentCheckIcon} alt="" className="size-[12px] max-md:size-[10px]" />
                                     </div>
-                                    <h2 className="heading-h8 font-bold text-primary">{data.cashOnDelivery.title}</h2>
+                                    <h2 className="heading-h8 font-bold text-primary">{data.onlinePayment.title}</h2>
                                 </div>
 
                                 {/* Desktop Description */}
                                 <p className="body-text text-secondary mb-[24px] max-md:hidden">
-                                    {data.cashOnDelivery.descriptionDesktop}
+                                    {data.onlinePayment.descriptionDesktop}
                                 </p>
 
                                 {/* Mobile Description */}
                                 <p className="hidden caption text-secondary mb-[16px] max-md:block">
-                                    {data.cashOnDelivery.descriptionMobile}
+                                    {data.onlinePayment.descriptionMobile}
                                 </p>
 
                                 {/* Inner Payment Method Box */}
-                                <div className="flex flex-col gap-[8px] rounded-[12px] border border-border bg-white p-[16px] mb-[24px] max-md:mb-0 max-md:p-[12px] max-md:flex-row max-md:items-center">
-                                    <span className="text-[12px] font-bold uppercase tracking-[0.5px] text-secondary max-md:hidden">
-                                        {data.cashOnDelivery.paymentMethodLabel}
+                                <div className="flex w-full items-center gap-[45px] rounded-[12px] bg-[#6461FC] p-[16px] max-md:gap-[12px]">
+                                    <span className="body-small text-white max-md:text-[13px]">
+                                        {data.onlinePayment.paymentMethodLabel}
                                     </span>
-                                    <span className="text-[15px] font-medium text-primary max-md:text-[14px]">
-                                        {data.cashOnDelivery.paymentMethodValue}
-                                    </span>
+                                    <img src={data.icons.stripeLogo} alt="Stripe" className="h-[49px] w-[118px] max-md:h-[40px] max-md:w-[96px]" />
                                 </div>
 
                                 {/* Desktop Footer Info */}
                                 <p className="caption text-secondary max-md:hidden">
-                                    {data.cashOnDelivery.footerTextDesktop}
-                                    <a href={`mailto:${data.cashOnDelivery.footerEmail}`} className="font-bold text-primary hover:text-forest-green">{data.cashOnDelivery.footerEmail}</a>
-                                    {data.cashOnDelivery.footerTextSuffix}
+                                    {data.onlinePayment.footerTextDesktop}
+                                    <a href={`mailto:${data.onlinePayment.footerEmail}`} className="font-bold text-primary hover:text-forest-green">{data.onlinePayment.footerEmail}</a>
+                                    {data.onlinePayment.footerTextSuffix}
+                                </p>
+                                <p className="hidden caption text-secondary max-md:block">
+                                    {data.onlinePayment.footerTextMobile}
+                                    <a href={`mailto:${data.onlinePayment.footerEmail}`} className="font-medium text-primary hover:text-forest-green">{data.onlinePayment.footerEmail}</a>
                                 </p>
                             </div>
 
@@ -207,10 +207,6 @@ export default function CheckoutReviewComponent() {
                             <img src={data.icons.mobileArrowIcon} alt="" className="size-[16px] brightness-0 invert" />
                         </Link>
 
-                        <p className="text-center small text-secondary">
-                            {data.cashOnDelivery.footerTextMobile}
-                            <a href={`mailto:${data.cashOnDelivery.footerEmail}`} className="font-medium text-primary hover:text-forest-green">{data.cashOnDelivery.footerEmail}</a>
-                        </p>
                     </div>
 
                 </div>
