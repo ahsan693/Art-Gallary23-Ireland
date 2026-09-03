@@ -20,7 +20,7 @@ export const getCommercialData = async () => {
     hero: {
       title: "Commercial Framing & Printing for Professionals",
       subtitle: "A dedicated portal for architects, interior designers, and corporate clients. Gallery 23 partners with Dublin's leading businesses and institutions for large-scale framing, printing, and installation projects.",
-      ctaText: "Request a Commercial Quote →",
+      ctaText: "Request a Commercial Quote",
       ctaAriaLabel: "Request a Commercial Quote",
       image: commercialImages.hero,
       imageAlt: "Commercial framing and printing project",
