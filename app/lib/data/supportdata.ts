@@ -52,9 +52,8 @@ export const getContactData = async () => {
         }
       ],
       socials: [
-        { label: "IG", url: "#" },
-        { label: "FB", url: "#" },
-        { label: "IN", url: "#" }
+        { label: "IG", url: "https://www.instagram.com/gallery23framing?igsi=MTY5b3MyaTMwZ3BqYw==" },
+        { label: "FB", url: "https://www.facebook.com/Gallerytwentythree" }
       ],
       socialHeading: "Follow Us"
     },
