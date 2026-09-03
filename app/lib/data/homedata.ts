@@ -185,7 +185,7 @@ export const homePageData = {
     rating: "4.9",
     reviewCount: "(264)",
     cta: "Review us on Google",
-    href: "#",
+    href: "https://maps.app.goo.gl/DMqeFv5YV6EPtvDT7?g_st=ic",
   },
   trusted: {
     title: "Trusted By",

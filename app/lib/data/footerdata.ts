@@ -45,5 +45,5 @@ export const footerData = {
   description: "Professional custom framing and fine art printing services. Museum-quality preservation for your most valued memories.",
   rating: "Rated 4.9 from",
   customers: "200+ customers",
-  reviews: { label: "Google Reviews", href: "#" },
+  reviews: { label: "Google Reviews", href: "https://maps.app.goo.gl/DMqeFv5YV6EPtvDT7?g_st=ic" },
 };
