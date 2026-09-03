@@ -515,7 +515,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-2 flex items-center justify-center gap-3">
+          <div className="-mt-8 flex items-center justify-center gap-3 sm:mt-0">
             <button
               type="button"
               aria-label="Previous testimonials"
