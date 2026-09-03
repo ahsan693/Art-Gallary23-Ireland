@@ -78,13 +78,12 @@ export const getContactData = async () => {
     map: {
       title: "GALLERY 23",
       locations: [
-        { name: "Gallery 23 Northside", address: "Unit 4 Coolport, Porters Road, Coolmine, Blanchardstown, D15 DX3D" },
-        { name: "Gallery 23 Uptown", address: "23 Sundrive Rd, Kimmage, D12 KF77" },
+        { name: "Gallery 23", address: "23 Sundrive Rd, Harold's Cross, Dublin 12, D12 KF77, Ireland" },
       ],
       linkText: "Get Directions",
-      embedTitle: "Gallery 23 Dublin locations",
-      url: "https://www.google.com/maps/dir/Unit+4+Coolport,+Porters+Road,+Coolmine,+Blanchardstown,+D15+DX3D/23+Sundrive+Rd,+Kimmage,+D12+KF77",
-      embedUrl: "https://www.google.com/maps?output=embed&f=d&saddr=Unit+4+Coolport,+Porters+Road,+Coolmine,+Blanchardstown,+D15+DX3D&daddr=23+Sundrive+Rd,+Kimmage,+D12+KF77"
+      embedTitle: "Gallery 23, 23 Sundrive Road",
+      url: "https://www.google.com/maps/search/?api=1&query=Gallery+23%2C+23+Sundrive+Rd%2C+Harold%27s+Cross%2C+Dublin+12%2C+D12+KF77%2C+Ireland",
+      embedUrl: "https://www.google.com/maps?output=embed&q=Gallery+23%2C+23+Sundrive+Rd%2C+Harold%27s+Cross%2C+Dublin+12%2C+D12+KF77%2C+Ireland"
     },
     stats: {
       title: "Why Visit Gallery23",

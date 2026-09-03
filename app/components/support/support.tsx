@@ -280,29 +280,6 @@ export default function ContactUsComponent({ data }: { data: ContactData }) {
             title={data.map.embedTitle}
           />
 
-          <div className="pointer-events-none relative z-10 mx-auto flex h-full w-full max-w-[1440px] items-start px-[24px] py-[40px] lg:px-[120px] lg:py-[80px]">
-            <div className="pointer-events-auto flex flex-col gap-[8px] rounded-[12px] bg-white p-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] sm:gap-[12px] sm:p-[32px]">
-              <h3 className="micro font-bold uppercase tracking-[0.1em] text-secondary">
-                {data.map.title}
-              </h3>
-              <div className="flex flex-col gap-[8px]">
-                {data.map.locations.map((location) => (
-                  <div key={location.name}>
-                    <p className="caption font-bold uppercase text-primary">{location.name}</p>
-                    <p className="body-small text-secondary">{location.address}</p>
-                  </div>
-                ))}
-              </div>
-              <a
-                href={data.map.url}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-[4px] w-max caption font-bold text-primary underline decoration-2 underline-offset-4 transition-all duration-300 hover:-translate-y-[1px] hover:text-forest-green active:scale-95"
-              >
-                {data.map.linkText}
-              </a>
-            </div>
-          </div>
         </section>
 
         {/* --- 4. STATS SECTION --- */}
