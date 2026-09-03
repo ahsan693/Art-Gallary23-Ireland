@@ -102,23 +102,23 @@ export default function CheckoutReviewComponent() {
                     <div className="grid w-full max-w-[920px] grid-cols-1 items-stretch gap-[32px] pb-[24px] lg:grid-cols-2 max-md:gap-[16px] max-md:px-[20px] max-md:pb-[32px]">
 
                         {/* LEFT COLUMN: Order Summary */}
-                        <div className="flex h-full flex-col rounded-[20px] border border-border bg-white p-[24px] lg:p-[32px] max-md:rounded-[16px] max-md:p-[16px]">
-                            <h2 className="heading-h8 mb-[24px] font-bold text-primary max-md:mb-[16px] max-md:uppercase max-md:tracking-[0.5px]">
+                        <div className="flex h-full flex-col gap-[24px] rounded-[20px] border border-border bg-white p-[24px] lg:p-[32px] max-md:rounded-[16px] max-md:p-[16px]">
+                            <h2 className="heading-h8 font-bold text-primary max-md:uppercase max-md:tracking-[0.5px]">
                                 {data.orderSummary.title}
                             </h2>
 
-                            <div className="flex flex-1 flex-col gap-[16px] mb-[24px] max-md:gap-[12px] max-md:mb-[16px]">
+                            <div className="flex flex-col gap-[16px]">
                                 {data.orderSummary.items.map((item, index) => (
                                     <div key={index} className="flex justify-between items-start gap-[16px]">
-                                        <span className="body-text text-secondary">{item.label}</span>
-                                        <span className="body-text font-medium text-primary text-right">{item.value}</span>
+                                        <span className="body-small text-secondary">{item.label}</span>
+                                        <span className="body-small font-medium text-primary text-right">{item.value}</span>
                                     </div>
                                 ))}
                             </div>
 
-                            <div className="border-t border-border pt-[24px] flex justify-between items-center max-md:pt-[16px]">
-                                <span className="text-[18px] font-bold text-primary max-md:text-[16px]">{data.orderSummary.totalLabel}</span>
-                                <span className="text-[24px] font-bold text-primary max-md:text-[20px]">{data.orderSummary.total}</span>
+                            <div className="flex items-center justify-between border-t border-border pt-[16px]">
+                                <span className="text-[16px] font-semibold leading-[1.5] text-primary">{data.orderSummary.totalLabel}</span>
+                                <span className="font-mono text-[24px] font-medium leading-[1.2] text-primary">{data.orderSummary.total}</span>
                             </div>
                         </div>
 
