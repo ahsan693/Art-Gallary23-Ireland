@@ -58,7 +58,7 @@ export const getPrintShopData = async () => {
             title: "Need Help?",
             prefix: "Have questions about printing? ",
             faqText: "Check our FAQ",
-            faqLink: "/faq",
+            faqLink: "/support",
             middle: " or contact us at ",
             emailText: "info@g23.ie",
             emailLink: "mailto:info@g23.ie",
