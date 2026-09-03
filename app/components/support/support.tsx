@@ -123,6 +123,11 @@ export default function ContactUsComponent({ data }: { data: ContactData }) {
 
   if (!data) return <div className="min-h-screen bg-warm-cream" />;
 
+  const handleFormScroll = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -168,7 +173,7 @@ export default function ContactUsComponent({ data }: { data: ContactData }) {
         </section>
 
         {/* --- 2. CONTACT INFO & FORM SECTION --- */}
-        <section className="w-full bg-warm-cream flex justify-center py-[56px] lg:py-[100px]">
+        <section id="contact-form" className="w-full bg-warm-cream flex justify-center py-[56px] lg:py-[100px]">
           <div className="mx-auto flex w-full max-w-[1440px] flex-col items-start gap-[48px] px-[20px] lg:flex-row lg:justify-between lg:gap-[80px] lg:px-[120px]">
 
             {/* Left: Contact Info */}
@@ -363,7 +368,7 @@ export default function ContactUsComponent({ data }: { data: ContactData }) {
             </div>
 
             {/* Interactive Button (Green -> Black) */}
-            <Link href={data.cta.buttonLink} className="group flex h-[48px] w-max items-center justify-center gap-[12px] rounded-full bg-forest-green px-[32px] button-small font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:shadow-lg active:scale-95">
+            <Link href={data.cta.buttonLink} onClick={handleFormScroll} className="group flex h-[48px] w-max items-center justify-center gap-[12px] rounded-full bg-forest-green px-[32px] button-small font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:shadow-lg active:scale-95">
               <span>{data.cta.buttonText}</span>
               <svg className="size-[16px] shrink-0 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />

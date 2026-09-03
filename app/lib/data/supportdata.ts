@@ -111,7 +111,7 @@ export const getContactData = async () => {
       title: "Ready to Frame Something Beautiful?",
       subtitle: "Book your free consultation today and let our experts help you preserve what matters most.",
       buttonText: "Book Free Consultation",
-      buttonLink: "/support",
+      buttonLink: "#contact-form",
       image: contactImages.cta,
       imageAlt: "Gallery23 framed artwork",
     }
