@@ -238,7 +238,7 @@ export default function Home() {
             <motion.div
               className="flex w-max whitespace-nowrap"
               animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 45 }}
             >
               {[...Array(6)].map((_, index) => (
                 <div key={index} className="flex items-center gap-[7.8px] pl-[23.41px] pr-[7.81px]">
