@@ -92,7 +92,7 @@ export default function AboutUsComponent({ data }: { data: AboutData }) {
           <div className="absolute inset-0 z-10 bg-black/65 lg:bg-black/10" />
 
           {/* Constrained Text Container */}
-          <div className="relative z-20 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[24px] px-0 text-center text-white lg:items-start lg:gap-[16px] lg:px-[80px] lg:text-left">
+          <div className="relative z-20 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[24px] px-0 text-center text-white lg:items-center lg:gap-[16px] lg:px-[80px] lg:text-center">
             <div className="flex w-full max-w-[1000px] flex-col items-center gap-[24px] text-center text-white lg:items-center lg:gap-[16px] lg:text-center">
               <h1 className="heading-display w-full max-w-[924px] text-white">
                 {data.hero.title}
