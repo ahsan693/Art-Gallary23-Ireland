@@ -178,6 +178,7 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
 export default function Home() {
   const showcaseImages = [images.frameOne, images.frameTwo, images.frameThree];
   const [activeProject, setActiveProject] = useState(0);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const testimonialsRef = useRef<HTMLDivElement>(null);
   const framingRef = useRef<HTMLDivElement>(null);
 
@@ -192,6 +193,15 @@ export default function Home() {
     }, 1000);
     return () => clearInterval(interval);
   }, [showcaseImages.length]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 639px)");
+    const updateViewport = () => setIsMobileViewport(mediaQuery.matches);
+
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
 
   return (
     <div className="min-h-screen bg-warm-cream text-primary overflow-x-hidden">
@@ -548,7 +558,7 @@ export default function Home() {
             <motion.div
               className="flex w-max items-center"
               animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+              transition={{ repeat: Infinity, ease: "linear", duration: isMobileViewport ? 60 : 40 }}
             >
               {[...Array(6)].map((_, idx) => (
                 <div key={idx} className="flex items-center gap-[40px] pr-[40px] sm:gap-[64px] sm:pr-[64px]">
