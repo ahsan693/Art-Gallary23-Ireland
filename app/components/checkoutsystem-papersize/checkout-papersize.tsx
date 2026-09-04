@@ -8,6 +8,7 @@ import Link from "next/link";
 
 // Importing the Data Layer
 import { checkoutDefaults, getCheckoutPaperSizeData } from "@/app/lib/data/checkoutPaperSizeData";
+import PaymentHeader from "@/app/components/payment-header/payment-header";
 
 type CheckoutPaperSizeData = Awaited<ReturnType<typeof getCheckoutPaperSizeData>>;
 
@@ -46,26 +47,7 @@ export default function CheckoutPaperSizeComponent() {
 
             {/* --- MOBILE HEADER --- */}
             <div className="md:hidden">
-                <div className="flex h-[29px] w-full items-center justify-center bg-[#295B42] px-[16px] py-[8px]">
-                    <p className="whitespace-nowrap text-center font-['Host_Grotesk'] text-[11px] font-normal leading-[1.5] tracking-[0.4px] text-white">
-                        {data.mobileHeader.bannerText}
-                    </p>
-                </div>
-                <div className="flex h-[56px] w-full items-center justify-between border-b border-[#D5D5D5] bg-white px-[16px]">
-                    <Link
-                        href={data.topBar.backLink}
-                        aria-label={data.topBar.backText}
-                        className="flex size-[36px] items-center justify-center -ml-[8px]"
-                    >
-                        <img src={data.icons.mobileBackIcon} alt="" className="size-[18px]" />
-                    </Link>
-                    <p className="font-['Host_Grotesk'] text-[18px] font-bold uppercase leading-[1.4] tracking-[1px] text-[#232323]">
-                        {data.mobileHeader.title}
-                    </p>
-                    <button type="button" aria-label={data.mobileHeader.cartLabel} className="flex size-[36px] items-center justify-center">
-                        <img src={data.icons.mobileBagIcon} alt="" className="size-[20px]" />
-                    </button>
-                </div>
+                <PaymentHeader backLink={data.topBar.backLink} backLabel={data.topBar.backText} title={data.mobileHeader.title} cartLabel={data.mobileHeader.cartLabel} />
             </div>
 
             {/* --- MAIN PAGE CONTENT --- */}
