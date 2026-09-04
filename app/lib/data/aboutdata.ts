@@ -48,22 +48,26 @@ export const getAboutData = async () => {
         {
           title: "Master Craftsmanship",
           description: "Every frame is hand-cut, joined, and finished by experienced craftsmen in our Dublin workshop. We never outsource.",
-          iconType: "craftsmanship"
+          iconType: "craftsmanship",
+          icon: "/About Us/Icon.svg",
         },
         {
           title: "Preservation & Conservation",
           description: "Museum-standard acid-free materials, UV-filtering glass, and reversible mounting to protect your most valuable artworks.",
-          iconType: "preservation"
+          iconType: "preservation",
+          icon: "/About Us/Icon-1.svg",
         },
         {
           title: "Sustainability",
           description: "Sustainable timber sourcing, recycled packaging, and eco-friendly workshop practices to minimise our environmental footprint.",
-          iconType: "sustainability"
+          iconType: "sustainability",
+          icon: "/About Us/Icon-2.svg",
         },
         {
           title: "Client-First Service",
           description: "Free expert consultations at Kimmage and Coalmine. We take time to understand your vision – no pressure, no obligation.",
-          iconType: "service"
+          iconType: "service",
+          icon: "/About Us/Icon-3.svg",
         }
       ]
     },

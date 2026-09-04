@@ -20,41 +20,10 @@ export function ResponsiveImage({ src, alt, className = "" }: { src: string; alt
   );
 }
 
-// --- Extracted "What We Stand For" Sub-components ---
-const renderFigmaIcon = (title: string) => {
-  if (title.includes("Craftsmanship")) {
-    return (
-      <svg className="size-[26px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75a4.5 4.5 0 01-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 11-3.586-3.586l8.684-7.152c.833-.686 1.036-1.874.945-2.95a4.5 4.5 0 014.484-4.884c.83-.07 1.614.464 1.83 1.258l-.612.612a.75.75 0 000 1.06l1.59 1.59a.75.75 0 001.06 0l.612-.612c.794.216 1.328 1 1.258 1.83z" />
-      </svg>
-    );
-  }
-  if (title.includes("Preservation")) {
-    return (
-      <svg className="size-[26px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-      </svg>
-    );
-  }
-  if (title.includes("Sustainability")) {
-    return (
-      <svg className="size-[26px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.75 19.25c9-1 14.5-6.5 15.5-14.5-9.5 1-15.5 5.5-15.5 14.5z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.5 14.5c2.5-2.5 5-5 8-7.5" />
-      </svg>
-    );
-  }
-  return (
-    <svg className="size-[26px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
-    </svg>
-  );
-};
-
 const PrincipleCard = ({ principle, className = "" }: { principle: Principle; className?: string }) => (
   <div className={`flex flex-col items-start gap-[16px] rounded-[16px] border border-[#D5D5D5] bg-white p-[24px] shadow-[0_18px_20px_rgba(0,0,0,0.07),0_2px_4px_rgba(0,0,0,0.05)] sm:gap-[20px] sm:rounded-[20px] sm:p-[40px] ${className}`}>
     <div className="flex size-[48px] shrink-0 items-center justify-center rounded-full bg-[#181818] text-white sm:size-[54px]">
-      {renderFigmaIcon(principle.title)}
+      <Image src={principle.icon} alt="" width={26} height={26} className="brightness-0 invert" />
     </div>
     <div className="flex flex-col gap-[8px]">
       <h3 className="heading-h9 text-primary">{principle.title}</h3>
