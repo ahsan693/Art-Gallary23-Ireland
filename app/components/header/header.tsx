@@ -44,8 +44,8 @@ export default function Header() {
           </div>
 
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <Link href="/" className="flex h-auto w-auto items-center justify-center whitespace-nowrap heading-h8 font-bold uppercase tracking-widest transition-transform duration-300 hover:scale-105 active:scale-95 lg:tracking-normal">
-              {headerData.logo}
+                <Link href="/" className="flex h-auto w-auto items-center justify-center transition-transform duration-300 hover:scale-105 active:scale-95">
+              <Image src={headerData.logo} alt="Gallery 23" width={123} height={23} priority />
             </Link>
           </div>
 

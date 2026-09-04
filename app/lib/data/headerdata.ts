@@ -1,5 +1,5 @@
 export const headerData = {
-  logo: "GALLERY 23",
+  logo: "/logo1.svg",
   navigation: [
     { name: "Home", href: "/" },
     { name: "Services", href: "/Services" },
