@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useState, useEffect, useRef } from "react";
+import { type ChangeEvent, type FormEvent, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -18,6 +18,8 @@ export default function CheckoutDetailsComponent() {
     const [data, setData] = useState<CheckoutDetailsData | null>(null);
     const [pickupLocation, setPickupLocation] = useState(checkoutDetailsDefaults.pickupLocation);
     const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [filePreviewUrl, setFilePreviewUrl] = useState<string | null>(null);
     const router = useRouter();
     
     // Ref to handle hidden file input
@@ -31,11 +33,23 @@ export default function CheckoutDetailsComponent() {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        return () => {
+            if (filePreviewUrl) URL.revokeObjectURL(filePreviewUrl);
+        };
+    }, [filePreviewUrl]);
+
     // Trigger native file picker
     const handleFileClick = () => {
         if (fileInputRef.current) {
             fileInputRef.current.click();
         }
+    };
+
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0] ?? null;
+        setSelectedFile(file);
+        setFilePreviewUrl(file ? URL.createObjectURL(file) : null);
     };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -173,7 +187,25 @@ export default function CheckoutDetailsComponent() {
                                 </div>
 
                                 {/* Hidden File Input */}
-                                <input type="file" ref={fileInputRef} className="hidden" accept=".tiff,.jpg,.jpeg,.pdf" />
+                                <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept=".tiff,.jpg,.jpeg,.pdf" />
+
+                                {selectedFile && filePreviewUrl && (
+                                    <div className="flex w-full flex-col gap-[12px] rounded-[12px] border border-border bg-warm-cream p-[12px] text-left">
+                                        {selectedFile.type.startsWith("image/") ? (
+                                            <img src={filePreviewUrl} alt={`Preview of ${selectedFile.name}`} className="max-h-[220px] w-full rounded-[8px] object-contain" />
+                                        ) : selectedFile.type === "application/pdf" ? (
+                                            <object data={filePreviewUrl} type="application/pdf" aria-label={`Preview of ${selectedFile.name}`} className="h-[220px] w-full rounded-[8px] bg-white">
+                                                <p className="caption text-secondary">PDF preview is unavailable in this browser.</p>
+                                            </object>
+                                        ) : null}
+                                        <div className="flex items-center justify-between gap-[12px]">
+                                            <p className="caption min-w-0 truncate text-primary">{selectedFile.name}</p>
+                                            <button type="button" onClick={() => { setSelectedFile(null); if (fileInputRef.current) fileInputRef.current.value = ""; }} className="caption shrink-0 font-semibold text-forest-green hover:underline">
+                                                Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
                                 
                                 {/* Trigger Button */}
                                 <button 
