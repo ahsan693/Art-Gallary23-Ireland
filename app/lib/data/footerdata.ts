@@ -41,9 +41,9 @@ export const footerData = {
       items: ["Gallery 23 Uptown", "23 Sundrive Rd, Kimmage D12KF77", "(555) 987-6543", "uptown@gallery23.com"],
     },
   ],
-  copyright: "2024 Gallery 23. All rights reserved.",
+  copyright: "2026 Gallery 23. All rights reserved.",
   description: "Professional custom framing and fine art printing services. Museum-quality preservation for your most valued memories.",
   rating: "Rated 4.9 from",
-  customers: "200+ customers",
+  customers: "500+ customers",
   reviews: { label: "Google Reviews", href: "https://maps.app.goo.gl/DMqeFv5YV6EPtvDT7?g_st=ic" },
 };
