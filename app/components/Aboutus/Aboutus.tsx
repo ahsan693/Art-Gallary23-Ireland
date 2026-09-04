@@ -226,24 +226,24 @@ export default function AboutUsComponent({ data }: { data: AboutData }) {
 
         {/* --- 6. FAQ SECTION --- */}
         <section className="w-full bg-forest-green flex justify-center">
-          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] py-[64px] sm:px-[24px] lg:flex-row lg:items-stretch lg:justify-center lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[32px] px-[24px] py-[24px] lg:flex-row lg:items-stretch lg:justify-center lg:gap-[48px] lg:px-[80px] lg:py-[80px]">
             {/* Image Side */}
-            <div className="order-1 relative mb-[32px] h-[320px] w-full max-w-[471px] shrink-0 overflow-hidden rounded-[24px] lg:order-none lg:mb-0 lg:h-auto">
+            <div className="order-1 relative h-[320px] w-full max-w-[471px] shrink-0 overflow-hidden rounded-[24px] lg:order-none lg:h-auto">
               <ResponsiveImage src={data.faq.image} alt={data.faq.imageAlt} />
             </div>
 
             {/* Text & Accordions Side */}
-            <div className="order-2 flex w-full max-w-[761px] flex-col gap-[20px] lg:order-none lg:gap-[28px]">
-              <h2 className="heading-h2 text-white">
+            <div className="order-2 flex w-full max-w-[761px] flex-col gap-[32px] lg:order-none lg:gap-[28px]">
+              <h2 className="text-[32px] font-semibold leading-[1.1] tracking-[-0.64px] text-white">
                 {data.faq.title}
               </h2>
 
               {/* Mobile FAQs */}
               <div className="flex flex-col gap-[12px] lg:hidden">
                 {data.faq.questions.map((faq, index) => (
-                  <details key={index} onClick={(event) => { if (!(event.target as HTMLElement).closest("summary")) event.currentTarget.open = !event.currentTarget.open; }} className="group card flex flex-col gap-[16px] rounded-[12px] bg-white p-[30px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md active:scale-[0.98] active:border-[#84A59D] cursor-pointer">
+                  <details key={index} onClick={(event) => { if (!(event.target as HTMLElement).closest("summary")) event.currentTarget.open = !event.currentTarget.open; }} className="group card flex flex-col gap-[12px] rounded-[12px] bg-white p-[20px] shadow-sm transition-all duration-300 hover:border-[#84A59D] hover:shadow-md active:scale-[0.98] active:border-[#84A59D] cursor-pointer">
                     <summary className="flex items-start justify-between gap-[16px] list-none [&::-webkit-details-marker]:hidden">
-                      <span className="text-[24px] font-semibold leading-[1.2] text-primary transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">{faq.q}</span>
+                      <span className="text-[18px] font-semibold leading-[1.4] text-primary transition-colors duration-300 group-hover:text-forest-green group-active:text-forest-green">{faq.q}</span>
                       <svg className="size-[16px] shrink-0 text-primary transition-all duration-300 group-open:rotate-45 group-hover:text-forest-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" />
                       </svg>
