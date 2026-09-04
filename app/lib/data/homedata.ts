@@ -91,25 +91,21 @@ export const testimonials = [
     name: "Ayla Renford",
     date: "6 Days Ago",
     quote: "Had a wonderful experience here. I had two limited edition prints framed and FastFrame did an amazing job. The quality of the framing is some of the best I've experienced and I will definitely use FastFrame again.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
   },
   {
     name: "Marcus Byrne",
     date: "2 Weeks Ago",
     quote: "My go-to place for framing. The staff is personable and thoughtful in their creative guidance. I know my pieces are in good hands, and I'm always thrilled with the results. Highly recommend, you won't be disappointed!",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
   },
   {
     name: "Niamh O'Connell",
     date: "1 Month Ago",
     quote: "This is my go to shop for framing. The staff is extremely friendly and knowledgeable. They have a great sense of what works and what doesn't. They always find creative ways to work with our budget.",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80",
   },
   {
     name: "Sarah Jenkins",
     date: "2 Months Ago",
     quote: "I've had two pieces framed here and each time I was so impressed with their acumen for choosing the right frame and border to properly accent the piece. They turned each from a print into a work of art.",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
   },
 ];
 
@@ -183,7 +179,7 @@ export const homePageData = {
       { letter: "e", color: "text-[#EA4335]" },
     ],
     rating: "4.9",
-    reviewCount: "(264)",
+    reviewCount: "(500)",
     cta: "Review us on Google",
     href: "https://maps.app.goo.gl/DMqeFv5YV6EPtvDT7?g_st=ic",
   },

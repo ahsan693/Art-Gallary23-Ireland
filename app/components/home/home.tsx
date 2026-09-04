@@ -504,9 +504,6 @@ export default function Home() {
                   className="card flex h-auto min-h-[280px] w-[calc(100vw-40px)] shrink-0 flex-col gap-4 p-5 sm:h-[440px] sm:w-[360px] sm:gap-[20px] sm:p-[32px]"
                 >
                   <div className="flex items-center gap-[12px]">
-                    <div className="relative size-[48px] shrink-0 overflow-hidden rounded-full">
-                      <Image src={item.avatar} alt={item.name} fill className="object-cover" />
-                    </div>
                     <div className="flex flex-col">
                       <h3 className="body-text font-bold">{item.name}</h3>
                       <p className="small">{item.date}</p>
