@@ -494,7 +494,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div ref={testimonialsRef} className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-5 lg:px-0">
+          <div ref={testimonialsRef} className="relative mx-auto w-full max-w-[1440px] touch-pan-x overflow-x-auto overflow-y-hidden px-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:overflow-hidden lg:px-0">
             <div
               className="flex w-max gap-[8px] pb-[16px] sm:gap-[16px] lg:gap-[20px]"
             >
@@ -596,7 +596,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div ref={framingRef} className="relative mx-auto flex h-[294px] w-full max-w-[1440px] overflow-hidden pl-5 sm:h-[581px] lg:pl-[40px]">
+          <div ref={framingRef} className="relative mx-auto flex h-[294px] w-full max-w-[1440px] touch-pan-x overflow-x-auto overflow-y-hidden pl-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:h-[581px] lg:overflow-hidden lg:pl-[40px]">
             <div
               className="flex w-max gap-[24px] sm:gap-0"
             >
