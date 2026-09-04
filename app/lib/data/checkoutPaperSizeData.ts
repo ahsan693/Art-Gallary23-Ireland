@@ -2,6 +2,8 @@
 // DATA LAYER: CHECKOUT PAPER & SIZE PAGE
 // ==========================================
 
+import { checkoutIcons } from "@/app/lib/checkoutIcons";
+
 export const paperOptions = [
     {
         id: "art-paper",
@@ -49,12 +51,11 @@ export const checkoutDefaults = {
 
 export const getCheckoutPaperSizeData = async () => {
     return {
-        // 👇 Added External Figma Icons
         icons: {
-            mobileBackIcon: "https://www.figma.com/api/mcp/asset/e704c3a3-0a5f-4fe0-8ac2-ed176653849c.svg",
-            mobileBagIcon: "https://www.figma.com/api/mcp/asset/217818e8-ae21-49e3-a3fe-5afa12ea8ef6.svg",
-            mobileCheckIcon: "https://www.figma.com/api/mcp/asset/36abb49d-4f00-4681-b208-cf6f99222e83.svg",
-            mobileArrowIcon: "https://www.figma.com/api/mcp/asset/da712e1a-3560-4de1-90fd-31d191491158.svg",
+            mobileBackIcon: checkoutIcons.back,
+            mobileBagIcon: checkoutIcons.bag,
+            mobileCheckIcon: checkoutIcons.check,
+            mobileArrowIcon: checkoutIcons.arrow,
         },
         // 👇 Added Mobile Header Text
         mobileHeader: {

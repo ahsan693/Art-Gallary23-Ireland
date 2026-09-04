@@ -2,6 +2,8 @@
 // DATA LAYER: CHECKOUT DETAILS PAGE
 // ==========================================
 
+import { checkoutIcons } from "@/app/lib/checkoutIcons";
+
 export const pickupLocations = [
     {
         id: "kimmage",
@@ -21,11 +23,10 @@ export const checkoutDetailsDefaults = {
 
 export const getCheckoutDetailsData = async () => {
     return {
-        // 👇 Added External Figma Icons
         icons: {
-            mobileBackIcon: "https://www.figma.com/api/mcp/asset/e704c3a3-0a5f-4fe0-8ac2-ed176653849c.svg",
-            mobileBagIcon: "https://www.figma.com/api/mcp/asset/217818e8-ae21-49e3-a3fe-5afa12ea8ef6.svg",
-            mobileArrowIcon: "https://www.figma.com/api/mcp/asset/da712e1a-3560-4de1-90fd-31d191491158.svg",
+            mobileBackIcon: checkoutIcons.back,
+            mobileBagIcon: checkoutIcons.bag,
+            mobileArrowIcon: checkoutIcons.arrow,
             mobileBackAlt: "Back",
             mobileBagAlt: "Cart",
         },

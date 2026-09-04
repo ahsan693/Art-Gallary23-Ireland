@@ -2,12 +2,13 @@
 // DATA LAYER: CHECKOUT CONFIRMED PAGE
 // ==========================================
 
+import { checkoutIcons } from "@/app/lib/checkoutIcons";
+
 export const getCheckoutConfirmedData = async () => {
     return {
-        // External Figma Icons
         icons: {
-            mobileBackIcon: "https://www.figma.com/api/mcp/asset/e704c3a3-0a5f-4fe0-8ac2-ed176653849c.svg",
-            mobileBagIcon: "https://www.figma.com/api/mcp/asset/217818e8-ae21-49e3-a3fe-5afa12ea8ef6.svg",
+            mobileBackIcon: checkoutIcons.back,
+            mobileBagIcon: checkoutIcons.bag,
             mobileBackAlt: "Back",
             mobileBagAlt: "Cart",
         },
