@@ -338,9 +338,9 @@ export default function ContactUsComponent({ data }: { data: ContactData }) {
                   <details key={index} className="card group flex flex-col gap-[16px] p-[20px] sm:p-[32px] cursor-pointer transition-all duration-300 hover:border-[#84A59D] active:scale-[0.99]">
                     <summary className="flex items-start justify-between gap-[16px] list-none [&::-webkit-details-marker]:hidden">
                       <h3 className="heading-h9 font-semibold text-primary transition-colors duration-300 group-hover:text-forest-green">{faq.q}</h3>
-                      <button className="mt-[2px] shrink-0 text-primary transition-transform duration-300 group-open:rotate-45 group-hover:text-forest-green">
+                      <span aria-hidden="true" className="mt-[2px] shrink-0 text-primary transition-transform duration-300 group-open:rotate-45 group-hover:text-forest-green">
                         <svg className="size-[20px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg>
-                      </button>
+                      </span>
                     </summary>
                     <p className="mt-[4px] body-text text-secondary opacity-0 transition-opacity duration-300 group-open:opacity-100">{faq.a}</p>
                   </details>
