@@ -179,7 +179,7 @@ export const homePageData = {
       { letter: "e", color: "text-[#EA4335]" },
     ],
     rating: "4.9",
-    reviewCount: "(500)",
+    reviewCount: "(500+)",
     cta: "Review us on Google",
     href: "https://maps.app.goo.gl/DMqeFv5YV6EPtvDT7?g_st=ic",
   },
