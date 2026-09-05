@@ -52,8 +52,9 @@ export default function Header() {
           <div className="flex items-center justify-end gap-3 lg:flex-1 lg:gap-1">
             <div className="hidden items-center gap-1 lg:flex">
               {headerData.utilityNavigation.map((item) => (
-                <Link key={item.name} href={item.href} className="flex h-[72px] items-center justify-center px-3 button-small transition-colors duration-300 hover:text-forest-green">
+                <Link key={item.name} href={item.href} className={`relative flex h-[72px] items-center justify-center px-3 button-small transition-colors duration-300 hover:text-forest-green ${pathname === item.href ? "text-forest-green" : "text-primary"}`}>
                   {item.name}
+                  {pathname === item.href ? <span className="absolute inset-x-0 bottom-0 h-0.5 bg-forest-green" /> : null}
                 </Link>
               ))}
             </div>
