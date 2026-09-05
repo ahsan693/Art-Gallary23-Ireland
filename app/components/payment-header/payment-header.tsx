@@ -20,9 +20,11 @@ export default function PaymentHeader({
             >
                 <img src={paymentHeaderIcons.back} alt={backLabel} className="size-[18px]" />
             </Link>
-            <p className="font-['Host_Grotesk'] text-[18px] font-bold uppercase leading-[1.4] tracking-[1px] text-[#232323]">
-                {title}
-            </p>
+            <Link href="/" aria-label={title}>
+                <p className="font-['Host_Grotesk'] text-[18px] font-bold uppercase leading-[1.4] tracking-[1px] text-[#232323]">
+                    {title}
+                </p>
+            </Link>
             <button type="button" aria-label={cartLabel} className="flex size-[36px] items-center justify-center">
                 <img src={paymentHeaderIcons.bag} alt="" className="size-[20px]" />
             </button>
