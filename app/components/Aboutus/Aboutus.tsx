@@ -58,7 +58,7 @@ export default function AboutUsComponent({ data }: { data: AboutData }) {
           <div className="absolute inset-0 z-0 h-full w-full">
             <Image src={data.hero.image} alt={data.hero.imageAlt} fill priority className="object-cover" sizes="100vw" />
           </div>
-          <div className="absolute inset-0 z-10 bg-black/65 lg:bg-black/10" />
+          <div className="absolute inset-0 z-10 bg-black/[0.325] lg:bg-black/5" />
 
           {/* Constrained Text Container */}
           <div className="relative z-20 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[24px] px-0 text-center text-white lg:items-center lg:gap-[16px] lg:px-[80px] lg:text-center">

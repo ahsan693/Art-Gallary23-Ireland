@@ -66,7 +66,7 @@ export default function ServicesComponent() {
             />
           </div>
 
-          <div className="absolute inset-0 z-10 bg-black/10" />
+          <div className="absolute inset-0 z-10 bg-black/5" />
 
           {/* Inner Content Wrapper */}
           <div className="relative z-20 flex w-full max-w-[1440px] px-[24px] py-[64px] lg:px-[80px] lg:py-[120px] flex-col items-center gap-[24px] text-center text-white mx-auto">

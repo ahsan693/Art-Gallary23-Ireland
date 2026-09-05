@@ -159,7 +159,7 @@ export default function ContactUsComponent({ data }: { data: ContactData }) {
           <div className="absolute inset-0 z-0 w-full h-full">
             <Image src={data.hero.image} alt={data.hero.imageAlt} fill priority className="object-cover" sizes="100vw" />
           </div>
-          <div className="absolute inset-0 z-10 bg-black/10" />
+          <div className="absolute inset-0 z-10 bg-black/5" />
 
           {/* Constrained Container */}
           <div className="relative z-20 mx-auto flex w-full max-w-[1440px] px-[24px] py-[64px] lg:px-[80px] lg:py-[80px] flex-col items-center gap-[24px] text-center text-white">

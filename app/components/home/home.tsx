@@ -220,7 +220,7 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute inset-0 bg-black/65 lg:bg-gradient-to-r lg:from-black/20 lg:from-[18.54%] lg:to-transparent lg:to-[68.99%]" />
+            <div className="absolute inset-0 bg-black/[0.325] lg:bg-gradient-to-r lg:from-black/10 lg:from-[18.54%] lg:to-transparent lg:to-[68.99%]" />
             <div className="relative mx-auto flex h-full w-full max-w-[1280px] items-center px-5 py-20 sm:px-[42px] sm:py-8">
               <div className="mx-auto flex w-full max-w-[620px] flex-col items-center gap-5 py-24 text-center text-white sm:py-20 lg:mx-0 lg:items-start lg:text-left">
                 <h1 className="heading-display text-white">

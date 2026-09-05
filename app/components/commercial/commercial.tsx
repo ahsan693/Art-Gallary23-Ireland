@@ -84,7 +84,7 @@ export default function CommercialComponent() {
           </div>
 
           {/* Dark Overlay - Absolute to Section */}
-          <div className="absolute inset-0 z-10 bg-black/10" />
+          <div className="absolute inset-0 z-10 bg-black/5" />
 
           {/* Text Content - Constrained Container */}
           <div className="relative z-20 mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center px-[20px] py-[64px] sm:px-[24px] sm:py-[56px] lg:px-[80px] lg:py-[80px]">

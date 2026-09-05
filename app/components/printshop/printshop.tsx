@@ -45,7 +45,7 @@ export default function PrintShopPage() {
           />
 
           {/* Dark Overlay (z-10) for text readability */}
-          <div className="absolute inset-0 z-10 bg-[#000000]/[0.60]" />
+          <div className="absolute inset-0 z-10 bg-[#000000]/[0.30]" />
 
           {/* Content Container (z-20) constrained to max-width */}
           <div className="relative z-20 flex w-full max-w-[1440px] px-[20px] py-[64px] sm:px-[24px] lg:px-[80px] lg:py-[120px] flex-col items-center gap-[24px] text-center text-white sm:gap-[32px] mx-auto">
