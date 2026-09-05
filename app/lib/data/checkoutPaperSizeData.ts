@@ -4,7 +4,7 @@
 
 import { checkoutIcons } from "@/app/lib/checkoutIcons";
 
-export const paperOptions = [
+  export const paperOptions = [
     {
         id: "art-paper",
         name: "Art Paper",

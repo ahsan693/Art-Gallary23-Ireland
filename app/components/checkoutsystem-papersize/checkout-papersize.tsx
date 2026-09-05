@@ -111,13 +111,13 @@ export default function CheckoutPaperSizeComponent() {
                                     <button
                                         key={paper.id}
                                         onClick={() => setSelectedPaper(paper.id)}
-                                        className={`group relative flex h-[300px] w-full flex-col overflow-hidden rounded-[16px] border-[2px] bg-white text-left transition-all max-md:h-[86px] max-md:flex-row max-md:items-center max-md:gap-[12px] max-md:rounded-[16px] ${isSelected
+                                        className={`group relative flex h-[300px] w-full flex-col overflow-hidden rounded-[16px] border-[2px] bg-white text-left transition-all max-md:h-[104px] max-md:flex-row max-md:items-center max-md:gap-[12px] max-md:rounded-[16px] ${isSelected
                                             ? "border-primary shadow-[0_8px_24px_rgba(0,0,0,0.12)] max-md:border-[#232323] max-md:shadow-none"
                                             : "border-transparent shadow-sm hover:border-border max-md:border-[#D5D5D5] max-md:shadow-none"
                                             }`}
                                     >
                                         {/* Top Image Area */}
-                                        <div className="relative h-[150px] w-full shrink-0 bg-gray-100 max-md:h-[82px] max-md:w-[80px]">
+                                        <div className="relative h-[150px] w-full shrink-0 bg-gray-100 max-md:h-full max-md:w-[80px]">
                                             <Image src={paper.img} alt={paper.imageAlt} fill className="object-cover" />
                                         </div>
 
