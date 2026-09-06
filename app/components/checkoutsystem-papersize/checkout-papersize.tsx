@@ -150,28 +150,30 @@ export default function CheckoutPaperSizeComponent() {
 
                     {/* --- PRINT SIZE SECTION --- */}
                     <div className="flex w-full max-w-[920px] flex-col gap-[20px] pb-[24px] max-md:px-[20px] max-md:pb-0 max-md:gap-0">
-                        <h2 className="heading-h8 font-semibold text-primary max-md:text-[13px] max-md:leading-[1.5] max-md:uppercase max-md:tracking-[0.5px]">
+                        <h2 className="font-['Host_Grotesk'] text-[20px] font-medium leading-[1.2] text-primary max-md:text-[13px] max-md:font-semibold max-md:leading-[1.5] max-md:uppercase max-md:tracking-[0.5px]">
                             {data.sizeSection.title}
                         </h2>
 
                         {/* Sizes Grid */}
-                        <div className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3 max-md:grid-cols-2 max-md:gap-[8px] max-md:pt-[12px]">
+                        <div className="grid w-full grid-cols-1 gap-[12px] sm:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[114px] max-md:grid-cols-2 max-md:auto-rows-[92px] max-md:gap-[8px] max-md:pt-[12px]">
                             {data.sizeSection.options.map((size) => {
                                 const isSelected = selectedSize === size.id;
                                 return (
                                     <button
                                         key={size.id}
                                         onClick={() => setSelectedSize(size.id)}
-                                        className={`flex flex-col items-start justify-center gap-[12px] rounded-[16px] border-[2px] bg-white p-[20px] text-left transition-all max-md:h-[92px] max-md:gap-[2px] max-md:rounded-[12px] max-md:p-[12px] ${isSelected
-                                            ? "border-primary shadow-[0_4px_16px_rgba(0,0,0,0.08)] max-md:shadow-none"
-                                            : "border-transparent shadow-sm hover:border-border max-md:border-[#D5D5D5] max-md:shadow-none"
+                                        aria-pressed={isSelected}
+                                        className={`flex min-h-0 flex-col items-start justify-start gap-[4px] rounded-[12px] border-[2px] bg-white p-[16px] text-left transition-all ${isSelected
+                                            ? "border-[#232323] shadow-[0_8px_6px_rgba(0,0,0,0.08)]"
+                                            : "border-[#D5D5D5] hover:border-[#232323]"
+                                            } max-md:gap-[2px] max-md:p-[12px] max-md:shadow-none ${isSelected ? "max-md:border-[#232323]" : "max-md:border-[#D5D5D5]"}
                                             }`}
                                     >
-                                        <div className="flex flex-col gap-[4px]">
-                                            <h3 className="text-[18px] font-bold text-primary max-md:text-[16px] max-md:leading-[1.5]">{size.name}</h3>
-                                            <p className="text-[14px] text-secondary max-md:text-[11px] max-md:leading-[1.5]">{size.dimensions}</p>
+                                        <div className="flex w-full flex-col gap-[4px] max-md:gap-0">
+                                            <h3 className="font-['Host_Grotesk'] text-[18px] font-bold leading-[1.4] text-[#232323] max-md:text-[16px] max-md:leading-[1.5]">{size.name}</h3>
+                                            <p className="font-['Host_Grotesk'] text-[13px] font-normal leading-[1.5] text-secondary max-md:text-[11px] max-md:text-[#777]">{size.dimensions}</p>
                                         </div>
-                                        <span className={`text-[16px] font-bold mt-[4px] max-md:mt-0 max-md:font-normal max-md:text-[12px] max-md:font-['IBM_Plex_Mono'] ${isSelected ? "text-forest-green" : "text-secondary"}`}>
+                                        <span className={`mt-0 pt-[4px] font-['IBM_Plex_Mono'] text-[13px] font-medium leading-[1.5] max-md:pt-[2px] max-md:text-[12px] ${isSelected ? "text-forest-green" : "text-[#888] max-md:text-[#999]"}`}>
                                             €{size.price}
                                         </span>
                                     </button>
